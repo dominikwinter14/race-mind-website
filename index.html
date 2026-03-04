@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Race Mind – Dein KI-Trainingscoach f&uuml;r Triathlon &amp; Laufen</title>
+  <meta name="description" content="Professionelles Coaching f&uuml;r Ironman, 70.3, Marathon und Halbmarathon. Adaptiver Trainingsplan, Profi-Analyse und Zielzeit-Prognose.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="#" class="nav-logo" aria-label="Race Mind Home">
+        <svg class="logo-svg" viewBox="0 0 1482 782" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M703.076 234.161C710.096 242.43 733.467 282.217 736.667 284.792L738.628 284.517C751.428 269.116 768.818 257.997 788.978 255.022C798.718 253.586 817.747 257.99 824.677 264.669C838.907 278.4 851.657 300.253 862.927 316.94C873.117 331.876 883.407 346.744 893.797 361.543C926.847 408.449 960.477 454.929 994.677 500.999C1082.6 460.649 1155.4 507.819 1200.72 582.469C1206.87 592.609 1216.9 607.729 1224.23 616.909C1244.66 642.129 1269.13 663.779 1296.65 680.989C1341.73 709.449 1392.62 720.269 1444.43 729.459C1454.36 731.229 1470.53 732.449 1480.36 735.729C1480.8 736.519 1481.24 737.299 1481.68 738.089C1479.74 746.809 1464.57 748.119 1456.8 749.359C1417.59 755.639 1370.8 754.399 1332.17 744.519C1285.08 732.529 1241.68 709.089 1205.84 676.269C1195.79 666.899 1181.24 651.019 1172.58 640.089C1133.76 591.069 1087.39 517.809 1015.25 558.679C993.588 570.949 970.737 596.099 950.407 611.679C946.847 614.409 925.568 631.049 924.078 632.909C923.908 640.079 943.638 660.249 949.448 666.429C965.108 682.499 985.537 700.709 1009.14 701.939C1020.44 702.539 1034.79 696.839 1042.3 688.829C1058.16 671.919 1058.72 644.499 1050.22 623.959C1044.37 609.799 1035.66 597.609 1030.21 583.429C1030.56 582.729 1030.9 582.029 1031.25 581.329C1034.7 579.239 1039.88 579.509 1043.41 580.829C1111.63 606.319 1115.63 711.279 1053.16 745.279C1011.46 767.969 964.077 752.479 930.297 724.539C916.717 712.979 895.757 693.919 886.137 679.059L887.628 676.969C886.508 672.799 878.458 661.579 874.948 660.459C865.098 657.329 840.867 671.369 831.417 669.339C830.237 666.579 830.838 662.599 833.088 660.549C836.018 661.109 836.188 661.289 839.098 660.989L840.228 659.279C841.858 638.549 833.687 641.989 831.257 632.719C830.827 631.109 830.438 629.489 830.088 627.869C825.198 626.939 823.737 629.829 820.397 624.719C824.397 623.959 827.207 623.579 831.267 623.189C835.817 622.089 838.727 621.769 842.557 619.069C843.677 615.269 829.768 593.929 826.988 589.039C817.018 571.399 807.157 553.689 797.387 535.929C780.317 504.449 763.998 471.399 747.588 439.549L693.924 337.862C700.414 338.784 701.316 341.426 706.023 346.663C707.088 345.579 706.722 345.086 707.036 342.912C705.636 341.187 704.723 339.925 703.463 338.092C702.241 325.826 706.374 312.277 706.284 299.691C706.304 290.177 699.254 270.891 705.971 263.097C716.697 250.647 702.636 250.045 703.076 234.161ZM886.198 578.219C888.738 581.009 891.128 585.089 893.198 588.339C904.608 580.149 967.898 524.209 974.628 514.619C967.818 507.949 957.377 502.259 950.057 495.869C895.737 448.429 854.548 388.029 806.228 334.868C790.058 317.08 783.368 321.187 764.598 331.906C763.838 333.094 762.728 333.97 763.358 335.223C803.568 414.619 840.888 502.069 886.198 578.219Z" fill="url(#lg1)"/>
+          <path d="M703.076 234.161C710.096 242.43 733.467 282.217 736.667 284.792L738.628 284.517C740.988 295.788 754.677 320.412 761.427 330.582C762.697 331.201 763.258 331.62 764.598 331.906C763.838 333.094 762.728 333.97 763.358 335.223C803.568 414.619 840.888 502.069 886.198 578.219L883.608 578.359C877.848 572.959 874.138 571.029 871.328 563.029L870.907 561.879L869.958 564.609L869.068 563.699C869.138 561.939 869.467 556.589 868.887 555.459C865.167 548.279 846.758 512.279 843.738 508.729C831.908 510.539 829.977 534.629 832.767 542.629C835.557 544.299 836.068 544.209 839.198 544.869C839.898 554.249 842.228 562.589 837.128 569.409C841.078 579.369 844.357 580.009 839.177 589.729C840.167 599.829 847.928 613.669 845.068 620.669C843.178 622.169 842.238 623.149 839.988 624.029C838.338 623.719 833.177 623.359 831.267 623.189C835.817 622.089 838.727 621.769 842.557 619.069C843.677 615.269 829.768 593.929 826.988 589.039C817.018 571.399 807.157 553.689 797.387 535.929C780.317 504.449 763.998 471.399 747.588 439.549L693.924 337.862C700.414 338.784 701.316 341.426 706.023 346.663C707.088 345.579 706.722 345.086 707.036 342.912C705.636 341.187 704.723 339.925 703.463 338.092C702.241 325.826 706.374 312.277 706.284 299.691C706.304 290.177 699.254 270.891 705.971 263.097C716.697 250.647 702.636 250.045 703.076 234.161Z" fill="url(#lg1)"/>
+          <path d="M820.397 624.719C824.397 623.959 827.207 623.579 831.267 623.189C833.177 623.359 838.338 623.719 839.988 624.029C838.478 626.619 838.777 626.629 838.267 629.589C834.857 630.159 833.498 628.589 830.088 627.869C825.198 626.939 823.737 629.829 820.397 624.719Z" fill="url(#lg1)"/>
+          <path d="M606.82 195.269C605.143 194.257 595.158 179.932 593.562 177.669C574.801 151.07 552.044 119.839 523.145 157.857C502.501 185.017 485.729 215.908 467.367 244.763C441.864 284.839 418.827 346.276 360.281 307.498C346.019 300.16 339.322 312.165 332.138 322.355C238.589 455.039 151.085 591.829 55.1925 722.899C46.3745 734.949 16.4055 777.649 3.8445 781.759C-2.8495 780.009 0.817478 768.949 2.81548 764.369C46.6885 663.739 110.138 565.639 167.288 472.329C197.665 421.739 229.006 371.739 261.291 322.341C276.892 298.79 292.271 274.994 310.244 253.68C329.586 230.702 351.373 235.931 374.909 247.299C388.652 253.937 394.512 244.411 400.609 235.044C437.894 177.764 472.432 118.827 511.477 62.711C517.33 54.299 548.736 2.24 553.724 0C557.523 2.17 584.973 47.482 587.091 53.282C593.086 61.298 599.351 71.839 604.521 80.568C624.818 114.835 646.596 147.862 668.778 180.923C674.113 188.876 681.51 198.965 685.966 207.25C689.515 212.344 701.613 229.345 703.076 234.161C702.636 250.045 716.697 250.647 705.971 263.097C699.254 270.891 706.304 290.177 706.284 299.691C706.374 312.277 702.241 325.826 703.463 338.092C704.723 339.925 705.636 341.187 707.036 342.912C706.722 345.086 707.088 345.579 706.023 346.663C701.316 341.426 700.414 338.784 693.924 337.862C687.745 327.771 680.415 313.49 674.432 302.868C666.285 288.618 657.848 274.536 649.128 260.63C636.037 239.443 618.593 215.777 606.82 195.269Z" fill="url(#lg1)"/>
+          <path d="M587.091 53.282C593.086 61.298 599.351 71.839 604.521 80.568C624.818 114.835 646.596 147.862 668.778 180.923C674.113 188.876 681.51 198.965 685.966 207.25C689.515 212.344 701.613 229.345 703.076 234.161C702.636 250.045 716.697 250.647 705.971 263.097C699.254 270.891 706.304 290.177 706.284 299.691C706.374 312.277 702.241 325.826 703.463 338.092C704.723 339.925 705.636 341.187 707.036 342.912C706.722 345.086 707.088 345.579 706.023 346.663C701.316 341.426 700.414 338.784 693.924 337.862C687.745 327.771 680.415 313.49 674.432 302.868C666.285 288.618 657.848 274.536 649.128 260.63C636.037 239.443 618.593 215.777 606.82 195.269C618.542 200.356 668.794 290.151 677.015 292.498C677.737 290.354 677.499 290.993 677.432 288.587C683.367 281.554 680.648 278.805 680.724 269.734C680.737 268.132 680.445 268.133 680.078 266.596C678.856 263.181 682.863 257.396 682.054 253.952C679.417 242.732 680.919 231.033 679.159 219.399C678.242 213.341 675.354 216.499 675.13 211.174C675.11 210.707 677.416 206.285 677.838 205.565C675.81 204.871 675.044 204.651 672.976 204.322L671.234 204.053C670.018 202.576 669.625 202.032 669.778 200.018C671.544 191.082 660.307 182.312 658.409 175.989C653.854 160.809 637.818 143.071 631.687 132.423C624.925 120.68 587.614 62.94 587.091 53.282Z" fill="url(#lg1)"/>
+          <path d="M610.615 590.699C607.346 589.809 591.095 578.879 585.986 576.399C571.01 569.129 555.469 561.769 539.539 556.909C389.061 511.019 252.728 619.919 137.933 701.489C130.311 706.909 109.817 722.209 100.66 719.189C96.9465 710.889 122.739 682.989 128.87 676.439C243.931 553.369 413.84 447.039 585.255 518.529C602.543 525.639 657.105 554.879 669.877 567.079C661.689 579.119 679.763 606.319 664.531 627.459C649.644 618.719 624.443 601.419 610.615 590.699Z" fill="url(#lg1)"/>
+          <path d="M585.255 518.529C602.543 525.639 657.105 554.879 669.877 567.079C661.689 579.119 679.763 606.319 664.531 627.459C649.644 618.719 624.443 601.419 610.615 590.699C623.764 591.069 655.131 620.929 666.083 620.929C667.947 610.289 665.633 601.529 664.766 591.399C664.279 585.699 664.654 576.149 664.765 570.209L663.091 568.769C653.263 567.969 654.666 566.409 649.385 558.309L645.495 558.499C636.515 550.519 628.364 543.319 617.911 537.269C609.038 532.129 590.961 526.519 585.255 518.529Z" fill="url(#lg1)"/>
+          <path d="M669.877 567.079C718.747 599.919 758.977 629.909 820.397 624.719C823.737 629.829 825.198 626.939 830.088 627.869C830.438 629.489 830.827 631.109 831.257 632.719C833.687 641.989 841.858 638.549 840.228 659.279L839.098 660.989C836.188 661.289 836.018 661.109 833.088 660.549C830.838 662.599 830.237 666.579 831.417 669.339C840.867 671.369 865.098 657.329 874.948 660.459C878.458 661.579 886.508 672.799 887.628 676.969L886.137 679.059C882.847 675.549 876.107 666.099 872.927 661.869C860.437 664.729 847.628 670.959 833.838 673.579C768.718 685.939 717.197 661.779 664.531 627.459C679.763 606.319 661.689 579.119 669.877 567.079Z" fill="url(#lg1)"/>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="390.879" x2="1481.68" y2="390.879" gradientUnits="userSpaceOnUse">
+              <stop offset="0.418269" stop-color="#FF8A00"/>
+              <stop offset="0.841346" stop-color="#00D1FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">So funktioniert's</a>
+        <a href="#contact">Kontakt</a>
+        <a href="#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════════════ HERO ════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-glow hero-glow--orange"></div>
+    <div class="hero-glow hero-glow--cyan"></div>
+    <div class="container hero-inner">
+      <p class="hero-eyebrow reveal">Race Mind &ndash; Triathlon &amp; Running Coach</p>
+      <h1 class="hero-title reveal">
+        Professionelles Coaching kostet 200&nbsp;&euro;+ im Monat.<br>
+        <span class="gradient-text">Race Mind gibt dir dasselbe Niveau</span> &ndash; f&uuml;r einen Bruchteil.
+      </h1>
+      <p class="hero-sub reveal">
+        Dein pers&ouml;nlicher Ausdauer-Coach f&uuml;r <strong>Ironman, 70.3, Marathon und Halbmarathon</strong>.
+        Kein statischer PDF-Plan, sondern ein System, das deine Leistung versteht, sich deinem Alltag anpasst
+        und dir nach jeder Einheit sagt, was z&auml;hlt.
+      </p>
+      <a href="#download" class="btn btn-primary reveal">Jetzt kostenlos starten</a>
+
+      <div class="hero-mockup reveal">
+        <div class="phone-frame">
+          <div class="phone-screen" id="heroScreen">
+            <div class="placeholder-screen">
+              <div class="placeholder-bar" style="width:70%"></div>
+              <div class="placeholder-heading">Realistik-Check</div>
+              <div class="placeholder-metric">
+                <span class="pm-label">Best Case</span>
+                <span class="pm-bar pm-bar--best"></span>
+                <span class="pm-value">9:42</span>
+              </div>
+              <div class="placeholder-metric">
+                <span class="pm-label">Probable</span>
+                <span class="pm-bar pm-bar--probable"></span>
+                <span class="pm-value">10:28</span>
+              </div>
+              <div class="placeholder-metric">
+                <span class="pm-label">Worst Case</span>
+                <span class="pm-bar pm-bar--worst"></span>
+                <span class="pm-value">12:15</span>
+              </div>
+              <div class="placeholder-bar" style="width:55%; margin-top:1.5rem"></div>
+              <div class="placeholder-bar" style="width:40%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════ CORE MESSAGE ════════════ -->
+  <section class="section section--core">
+    <div class="container grid-2col">
+      <div class="mockup-pair reveal">
+        <div class="phone-frame phone-frame--sm">
+          <div class="phone-screen">
+            <div class="placeholder-screen">
+              <div class="placeholder-heading" style="font-size:.65rem">Wochenplan</div>
+              <div class="placeholder-session ps--swim">Swim 45 min</div>
+              <div class="placeholder-session ps--bike">Bike 90 min</div>
+              <div class="placeholder-session ps--run">Run 60 min</div>
+              <div class="placeholder-session ps--rest">Ruhetag</div>
+              <div class="placeholder-session ps--run">Run 45 min</div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-arrow">&rarr;</div>
+        <div class="phone-frame phone-frame--sm">
+          <div class="phone-screen">
+            <div class="placeholder-screen">
+              <div class="placeholder-heading" style="font-size:.65rem">Angepasst</div>
+              <div class="placeholder-session ps--swim">Swim 45 min</div>
+              <div class="placeholder-session ps--rest" style="opacity:.4">&#x2013;</div>
+              <div class="placeholder-session ps--bike">Bike 75 min</div>
+              <div class="placeholder-session ps--rest">Ruhetag</div>
+              <div class="placeholder-session ps--run">Run 50 min</div>
+              <div class="placeholder-chip">Angepasst</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-block reveal">
+        <h2>Dein Leben verl&auml;uft nicht linear &ndash; <span class="gradient-text">dein Trainingsplan jetzt auch nicht.</span></h2>
+        <p>Schlecht geschlafen? Meeting &uuml;berzogen? Race Mind berechnet deine Woche neu. Kein schlechtes Gewissen bei verpassten Einheiten. Kein R&uuml;ckstau. <strong>Einfach weitermachen.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FEATURES ════════════ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="feature-row reveal">
+        <div class="feature-text">
+          <h3>Adaptiver Trainingsplan</h3>
+          <p>Dein Plan wird in zwei Stufen erstellt: Ein Mesozyklus-&Uuml;berblick &uuml;ber mehrere Wochen und ein konkreter Wochenplan mit Einheiten, Zonen und Coach-Tipps. &Auml;ndern sich deine Umst&auml;nde, passt sich der Plan an &ndash; <strong>auf Knopfdruck.</strong></p>
+        </div>
+        <div class="feature-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="placeholder-screen">
+                <div class="placeholder-heading">Mesozyklus</div>
+                <div class="meso-block meso-block--build">Build 1 <span>4 Wochen</span></div>
+                <div class="meso-block meso-block--build">Build 2 <span>3 Wochen</span></div>
+                <div class="meso-block meso-block--recovery">Recovery <span>1 Woche</span></div>
+                <div class="meso-block meso-block--build">Build 3 <span>4 Wochen</span></div>
+                <div class="meso-block meso-block--taper">Taper <span>2 Wochen</span></div>
+                <div class="meso-block meso-block--race">Race Week <span>1 Woche</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row feature-row--reverse reveal">
+        <div class="feature-text">
+          <h3>Profi-Analyse nach jeder Einheit</h3>
+          <p>Race Mind importiert deine Trainings automatisch via Strava &ndash; inklusive Lap-Daten. Du bekommst eine Analyse auf Profi-Niveau: Effizienz-Check, Erm&uuml;dungsanalyse, Pacing-Bewertung und ein <strong>Performance Score von 0&ndash;100.</strong> Keine kryptischen Zahlen &ndash; sondern klare Aussagen.</p>
+        </div>
+        <div class="feature-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="placeholder-screen">
+                <div class="placeholder-heading">Analyse</div>
+                <div class="score-ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" stroke="#1A1C1E" stroke-width="8" fill="none"/>
+                    <circle cx="50" cy="50" r="42" stroke="#00D1FF" stroke-width="8" fill="none"
+                      stroke-dasharray="207 264" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                  </svg>
+                  <span class="score-value">78</span>
+                </div>
+                <div class="analysis-cards">
+                  <div class="analysis-card">Effizienz <span class="ac-ok">&#10003;</span></div>
+                  <div class="analysis-card">Erm&uuml;dung <span class="ac-warn">&#9888;</span></div>
+                  <div class="analysis-card">Pacing <span class="ac-ok">&#10003;</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-text">
+          <h3>Dein Coach antwortet</h3>
+          <p>Stell Fragen: <em>&bdquo;Warum Intervalle heute?&ldquo;</em> &ndash; <em>&bdquo;Bin ich auf Kurs f&uuml;r mein Rennen?&ldquo;</em> &ndash; <em>&bdquo;Ich habe Knieschmerzen.&ldquo;</em> Race Mind erkl&auml;rt, ordnet ein und schl&auml;gt Anpassungen vor. <strong>Wie ein Coach, der dich kennt.</strong></p>
+        </div>
+        <div class="feature-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="placeholder-screen chat-screen">
+                <div class="chat-bubble chat-bubble--user">Bin ich auf Kurs f&uuml;r mein Rennen?</div>
+                <div class="chat-bubble chat-bubble--coach">
+                  Deine letzten 4 Wochen zeigen eine stabile Entwicklung. Dein Lauf-EF ist um 8% gestiegen.
+                  Bei 10:28h Prognose und 22 Wochen bis zum Rennen bist du gut im Plan. Weiter so! &#128170;
+                </div>
+                <div class="chat-bubble chat-bubble--user">Was sollte ich diese Woche priorisieren?</div>
+                <div class="chat-bubble chat-bubble--coach">
+                  Fokus auf den langen Lauf am Samstag &ndash; das ist deine Key Session.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row feature-row--reverse reveal">
+        <div class="feature-text">
+          <h3>Zielzeit-Prognose mit Realit&auml;ts-Check</h3>
+          <p>Schon beim Start bekommst du eine ehrliche Einsch&auml;tzung: <strong>Best Case, Probable und Worst Case</strong> f&uuml;r dein Rennen. Basierend auf deinen Leistungsdaten, nicht auf Wunschdenken.</p>
+        </div>
+        <div class="feature-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="placeholder-screen">
+                <div class="placeholder-heading">Prognose</div>
+                <div class="prognose-row">
+                  <span class="pr-label">Best</span>
+                  <div class="pr-bar"><div class="pr-fill pr-fill--best" style="width:65%"></div></div>
+                  <span class="pr-time">9:42</span>
+                </div>
+                <div class="prognose-row">
+                  <span class="pr-label">Probable</span>
+                  <div class="pr-bar"><div class="pr-fill pr-fill--probable" style="width:78%"></div></div>
+                  <span class="pr-time">10:28</span>
+                </div>
+                <div class="prognose-row">
+                  <span class="pr-label">Worst</span>
+                  <div class="pr-bar"><div class="pr-fill pr-fill--worst" style="width:92%"></div></div>
+                  <span class="pr-time">12:15</span>
+                </div>
+                <div class="prognose-improvement">
+                  <span>&#8599; Verbesserungspotential: 6.4%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ HIGHLIGHTS ════════════ -->
+  <section class="section section--highlights">
+    <div class="container">
+      <div class="highlights-grid">
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">&#129657;</div>
+          <h4>Verletzungs- &amp; Krankheitsmanagement</h4>
+          <p>Verletzt oder krank? Race Mind pausiert deinen Plan und f&uuml;hrt dich mit einem strukturierten Wiedereinstieg zur&uuml;ck ins Training.</p>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">&#128994;</div>
+          <h4>T&auml;glicher Check-in</h4>
+          <p>Wie f&uuml;hlst du dich? Ein Tap reicht. Bei Ersch&ouml;pfung schl&auml;gt dein Coach proaktiv Anpassungen vor, bevor es zu sp&auml;t ist.</p>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">&#127942;</div>
+          <h4>Consistency Score</h4>
+          <p>Kein TSS, kein CTL. Race Mind zeigt dir einen klaren Score, der sagt: Bist du bereit f&uuml;r dein Rennen?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ SOCIAL PROOF ════════════ -->
+  <section class="section section--testimonials">
+    <div class="container">
+      <h2 class="section-title reveal">Was unsere Athleten sagen</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&bdquo;Endlich ein Trainingsplan, der versteht, dass mein Leben nicht nur aus Training besteht. Die automatische Anpassung ist ein Gamechanger.&ldquo;</p>
+          <div class="testimonial-author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <strong>Placeholder</strong>
+              <span>Ironman 70.3</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&bdquo;Die Analyse nach jeder Einheit ist unfassbar detailliert. Besser als alles, was ich bisher genutzt habe.&ldquo;</p>
+          <div class="testimonial-author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <strong>Placeholder</strong>
+              <span>Marathon</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>&bdquo;Ich habe 200&euro;/Monat f&uuml;r einen Coach bezahlt. Race Mind liefert das gleiche Niveau &ndash; f&uuml;r einen Bruchteil.&ldquo;</p>
+          <div class="testimonial-author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <strong>Placeholder</strong>
+              <span>Ironman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FOR WHOM ════════════ -->
+  <section class="section section--audience">
+    <div class="container grid-2col grid-2col--center">
+      <div class="audience-visual reveal">
+        <div class="silhouette silhouette--bike">
+          <svg viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="90" stroke="#FF8A00" stroke-width="1" opacity=".2"/>
+            <circle cx="100" cy="100" r="60" stroke="#FF8A00" stroke-width="1" opacity=".1"/>
+            <text x="100" y="108" text-anchor="middle" fill="#FF8A00" font-size="40">&#128692;</text>
+          </svg>
+        </div>
+        <div class="silhouette silhouette--run">
+          <svg viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="90" stroke="#00D1FF" stroke-width="1" opacity=".2"/>
+            <circle cx="100" cy="100" r="60" stroke="#00D1FF" stroke-width="1" opacity=".1"/>
+            <text x="100" y="108" text-anchor="middle" fill="#00D1FF" font-size="40">&#127939;</text>
+          </svg>
+        </div>
+      </div>
+      <div class="text-block reveal">
+        <h2>F&uuml;r wen ist Race Mind?</h2>
+        <p>F&uuml;r ambitionierte Hobby-Athleten &ndash; <strong>Triathleten und L&auml;ufer</strong> &ndash; die Pr&auml;zision wollen, aber keine Zeit f&uuml;r Excel-Tabellen haben. F&uuml;r alle, die sich keinen menschlichen Coach f&uuml;r 200&nbsp;&euro; leisten k&ouml;nnen oder wollen, aber trotzdem <strong>auf Profi-Niveau trainieren m&ouml;chten.</strong></p>
+        <div class="info-table">
+          <div class="info-col">
+            <h5>Formate</h5>
+            <p>Ironman &middot; 70.3 &middot; Marathon &middot; Halbmarathon</p>
+          </div>
+          <div class="info-col">
+            <h5>Integration</h5>
+            <p>Strava (automatischer Import)</p>
+          </div>
+          <div class="info-col">
+            <h5>Einstieg</h5>
+            <p>Kostenloser Check, Trainingsplan ab Abo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS ════════════ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title reveal">So funktioniert's</h2>
+      <div class="steps">
+        <div class="steps-line"></div>
+        <div class="step reveal">
+          <div class="step-dot">1</div>
+          <h4>Ziel setzen</h4>
+          <p>W&auml;hle deinen Wettkampf &ndash; Ironman, 70.3, Marathon oder Halbmarathon. Sag uns dein Zieldatum und deine Wunschzeit.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">2</div>
+          <h4>Status erfassen</h4>
+          <p>Verbinde Strava oder gib deine Daten manuell ein. In 3 Minuten kennen wir deinen Leistungsstand.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">3</div>
+          <h4>Realit&auml;ts-Check</h4>
+          <p>Du bekommst sofort eine ehrliche Prognose: Best, Probable, Worst Case. Basierend auf echten Daten.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">4</div>
+          <h4>Los geht's</h4>
+          <p>Dein individueller Trainingsplan wird erstellt. Woche f&uuml;r Woche, angepasst an dein Leben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ DOWNLOAD CTA ════════════ -->
+  <section class="section section--download" id="download">
+    <div class="hero-glow hero-glow--orange"></div>
+    <div class="hero-glow hero-glow--cyan"></div>
+    <div class="container download-inner">
+      <h2 class="reveal">Trainiere wie ein Profi.<br><span class="gradient-text">Zum Preis eines Kaffees.</span></h2>
+      <div class="download-buttons reveal">
+        <a href="#" class="store-badge" aria-label="App Store">
+          <svg viewBox="0 0 120 40" fill="none"><rect width="120" height="40" rx="6" fill="#fff"/><text x="60" y="24" text-anchor="middle" fill="#050505" font-size="10" font-weight="600">App Store</text></svg>
+        </a>
+        <a href="#" class="store-badge" aria-label="Google Play">
+          <svg viewBox="0 0 135 40" fill="none"><rect width="135" height="40" rx="6" fill="#fff"/><text x="67" y="24" text-anchor="middle" fill="#050505" font-size="10" font-weight="600">Google Play</text></svg>
+        </a>
+      </div>
+      <p class="download-note reveal">Kostenloser Onboarding-Check. Trainingsplan ab Abo.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ CONTACT ════════════ -->
+  <section class="section" id="contact">
+    <div class="container contact-inner">
+      <h2 class="section-title reveal">Kontakt</h2>
+      <p class="contact-sub reveal">Fragen, Feedback oder Interesse an einer Zusammenarbeit? Schreib uns!</p>
+      <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
+        <input type="hidden" name="subject" value="Neue Nachricht von race-mind.com">
+        <input type="hidden" name="from_name" value="Race Mind Website">
+        <input type="checkbox" name="botcheck" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Dein Name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required placeholder="deine@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Nachricht</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+      </form>
+      <div class="contact-success" id="contactSuccess" style="display:none">
+        <p>Danke f&uuml;r deine Nachricht! Wir melden uns schnellstm&ouml;glich.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="#">
+          <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="Race Mind">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Race Mind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
