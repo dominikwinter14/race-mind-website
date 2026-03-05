@@ -1331,6 +1331,11 @@ strong { font-weight: 600; }
   background: rgba(255, 138, 0, 0.1);
 }
 
+.lang-toggle--hero {
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   .page-content table {
     display: block;
