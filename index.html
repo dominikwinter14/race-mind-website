@@ -50,48 +50,29 @@
   <header class="hero" id="hero">
     <div class="hero-glow hero-glow--orange"></div>
     <div class="hero-glow hero-glow--cyan"></div>
-    <div class="container hero-inner">
-      <div class="lang-toggle lang-toggle--hero">
-        <a href="index.html" class="active">DE</a>
-        <a href="index-en.html">EN</a>
+    <div class="container hero-split">
+      <div class="hero-text">
+        <div class="lang-toggle lang-toggle--hero">
+          <a href="index.html" class="active">DE</a>
+          <a href="index-en.html">EN</a>
+        </div>
+        <p class="hero-eyebrow reveal">Race Mind &ndash; Triathlon &amp; Running Coach</p>
+        <h1 class="hero-title reveal">
+          Professionelles Coaching kostet 200&nbsp;&euro;+ im Monat.<br>
+          <span class="gradient-text">Race Mind gibt dir dasselbe Niveau</span> &ndash; f&uuml;r einen Bruchteil.
+        </h1>
+        <p class="hero-sub reveal">
+          Dein pers&ouml;nlicher Ausdauer-Coach f&uuml;r <strong>Ironman, 70.3, Marathon und Halbmarathon</strong>.
+          Kein statischer PDF-Plan, sondern ein System, das deine Leistung versteht, sich deinem Alltag anpasst
+          und dir nach jeder Einheit sagt, was z&auml;hlt.
+        </p>
+        <a href="#download" class="btn btn-primary reveal">Jetzt kostenlos starten</a>
       </div>
-      <p class="hero-eyebrow reveal">Race Mind &ndash; Triathlon &amp; Running Coach</p>
-      <h1 class="hero-title reveal">
-        Professionelles Coaching kostet 200&nbsp;&euro;+ im Monat.<br>
-        <span class="gradient-text">Race Mind gibt dir dasselbe Niveau</span> &ndash; f&uuml;r einen Bruchteil.
-      </h1>
-      <p class="hero-sub reveal">
-        Dein pers&ouml;nlicher Ausdauer-Coach f&uuml;r <strong>Ironman, 70.3, Marathon und Halbmarathon</strong>.
-        Kein statischer PDF-Plan, sondern ein System, das deine Leistung versteht, sich deinem Alltag anpasst
-        und dir nach jeder Einheit sagt, was z&auml;hlt.
-      </p>
-      <a href="#download" class="btn btn-primary reveal">Jetzt kostenlos starten</a>
-
       <div class="hero-mockup reveal">
-        <div class="phone-frame">
-          <div class="phone-screen" id="heroScreen">
-            <div class="placeholder-screen">
-              <div class="placeholder-bar" style="width:70%"></div>
-              <div class="placeholder-heading">Realistik-Check</div>
-              <div class="placeholder-metric">
-                <span class="pm-label">Best Case</span>
-                <span class="pm-bar pm-bar--best"></span>
-                <span class="pm-value">9:42</span>
-              </div>
-              <div class="placeholder-metric">
-                <span class="pm-label">Probable</span>
-                <span class="pm-bar pm-bar--probable"></span>
-                <span class="pm-value">10:28</span>
-              </div>
-              <div class="placeholder-metric">
-                <span class="pm-label">Worst Case</span>
-                <span class="pm-bar pm-bar--worst"></span>
-                <span class="pm-value">12:15</span>
-              </div>
-              <div class="placeholder-bar" style="width:55%; margin-top:1.5rem"></div>
-              <div class="placeholder-bar" style="width:40%"></div>
-            </div>
-          </div>
+        <div class="hero-carousel" id="heroCarousel">
+          <img src="images/mockup-forecast.jpg" class="hero-slide active" alt="Race Mind Performance Forecast mit Zielzeit-Prognose">
+          <img src="images/mockup-chat.jpg" class="hero-slide" alt="Coach Kona Chat &ndash; Dein pers&ouml;nlicher Trainingscoach">
+          <img src="images/mockup-dashboard.jpg" class="hero-slide" alt="Dashboard mit Kalender und Trainings&uuml;bersicht">
         </div>
       </div>
     </div>
@@ -100,33 +81,8 @@
   <!-- ════════════ CORE MESSAGE ════════════ -->
   <section class="section section--core">
     <div class="container grid-2col">
-      <div class="mockup-pair reveal">
-        <div class="phone-frame phone-frame--sm">
-          <div class="phone-screen">
-            <div class="placeholder-screen">
-              <div class="placeholder-heading" style="font-size:.65rem">Wochenplan</div>
-              <div class="placeholder-session ps--swim">Swim 45 min</div>
-              <div class="placeholder-session ps--bike">Bike 90 min</div>
-              <div class="placeholder-session ps--run">Run 60 min</div>
-              <div class="placeholder-session ps--rest">Ruhetag</div>
-              <div class="placeholder-session ps--run">Run 45 min</div>
-            </div>
-          </div>
-        </div>
-        <div class="mockup-arrow">&rarr;</div>
-        <div class="phone-frame phone-frame--sm">
-          <div class="phone-screen">
-            <div class="placeholder-screen">
-              <div class="placeholder-heading" style="font-size:.65rem">Angepasst</div>
-              <div class="placeholder-session ps--swim">Swim 45 min</div>
-              <div class="placeholder-session ps--rest" style="opacity:.4">&#x2013;</div>
-              <div class="placeholder-session ps--bike">Bike 75 min</div>
-              <div class="placeholder-session ps--rest">Ruhetag</div>
-              <div class="placeholder-session ps--run">Run 50 min</div>
-              <div class="placeholder-chip">Angepasst</div>
-            </div>
-          </div>
-        </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-weekplanning.jpg" class="mockup-img" alt="Adaptive Wochenplanung mit Coach Kona">
       </div>
       <div class="text-block reveal">
         <h2>Dein Leben verl&auml;uft nicht linear &ndash; <span class="gradient-text">dein Trainingsplan jetzt auch nicht.</span></h2>
@@ -144,19 +100,7 @@
           <p>Dein Plan wird in zwei Stufen erstellt: Ein Mesozyklus-&Uuml;berblick &uuml;ber mehrere Wochen und ein konkreter Wochenplan mit Einheiten, Zonen und Coach-Tipps. &Auml;ndern sich deine Umst&auml;nde, passt sich der Plan an &ndash; <strong>auf Knopfdruck.</strong></p>
         </div>
         <div class="feature-mockup">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <div class="placeholder-screen">
-                <div class="placeholder-heading">Mesozyklus</div>
-                <div class="meso-block meso-block--build">Build 1 <span>4 Wochen</span></div>
-                <div class="meso-block meso-block--build">Build 2 <span>3 Wochen</span></div>
-                <div class="meso-block meso-block--recovery">Recovery <span>1 Woche</span></div>
-                <div class="meso-block meso-block--build">Build 3 <span>4 Wochen</span></div>
-                <div class="meso-block meso-block--taper">Taper <span>2 Wochen</span></div>
-                <div class="meso-block meso-block--race">Race Week <span>1 Woche</span></div>
-              </div>
-            </div>
-          </div>
+          <img src="images/mockup-plan.jpg" class="mockup-img" alt="Mesozyklus-Trainingsplan mit Periodisierung">
         </div>
       </div>
 
@@ -166,26 +110,7 @@
           <p>Race Mind importiert deine Trainings automatisch via Strava &ndash; inklusive Lap-Daten. Du bekommst eine Analyse auf Profi-Niveau: Effizienz-Check, Erm&uuml;dungsanalyse, Pacing-Bewertung und ein <strong>Performance Score von 0&ndash;100.</strong> Keine kryptischen Zahlen &ndash; sondern klare Aussagen.</p>
         </div>
         <div class="feature-mockup">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <div class="placeholder-screen">
-                <div class="placeholder-heading">Analyse</div>
-                <div class="score-ring">
-                  <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="42" stroke="#1A1C1E" stroke-width="8" fill="none"/>
-                    <circle cx="50" cy="50" r="42" stroke="#00D1FF" stroke-width="8" fill="none"
-                      stroke-dasharray="207 264" stroke-linecap="round" transform="rotate(-90 50 50)"/>
-                  </svg>
-                  <span class="score-value">78</span>
-                </div>
-                <div class="analysis-cards">
-                  <div class="analysis-card">Effizienz <span class="ac-ok">&#10003;</span></div>
-                  <div class="analysis-card">Erm&uuml;dung <span class="ac-warn">&#9888;</span></div>
-                  <div class="analysis-card">Pacing <span class="ac-ok">&#10003;</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="images/mockup-racecontrol.jpg" class="mockup-img" alt="Race Control mit Performance-Analyse und EF-Entwicklung">
         </div>
       </div>
 
@@ -195,21 +120,7 @@
           <p>Stell Fragen: <em>&bdquo;Warum Intervalle heute?&ldquo;</em> &ndash; <em>&bdquo;Bin ich auf Kurs f&uuml;r mein Rennen?&ldquo;</em> &ndash; <em>&bdquo;Ich habe Knieschmerzen.&ldquo;</em> Race Mind erkl&auml;rt, ordnet ein und schl&auml;gt Anpassungen vor. <strong>Wie ein Coach, der dich kennt.</strong></p>
         </div>
         <div class="feature-mockup">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <div class="placeholder-screen chat-screen">
-                <div class="chat-bubble chat-bubble--user">Bin ich auf Kurs f&uuml;r mein Rennen?</div>
-                <div class="chat-bubble chat-bubble--coach">
-                  Deine letzten 4 Wochen zeigen eine stabile Entwicklung. Dein Lauf-EF ist um 8% gestiegen.
-                  Bei 10:28h Prognose und 22 Wochen bis zum Rennen bist du gut im Plan. Weiter so! &#128170;
-                </div>
-                <div class="chat-bubble chat-bubble--user">Was sollte ich diese Woche priorisieren?</div>
-                <div class="chat-bubble chat-bubble--coach">
-                  Fokus auf den langen Lauf am Samstag &ndash; das ist deine Key Session.
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="images/mockup-packlist.jpg" class="mockup-img" alt="Coach Kona erstellt eine Wettkampf-Packliste">
         </div>
       </div>
 
@@ -219,31 +130,7 @@
           <p>Schon beim Start bekommst du eine ehrliche Einsch&auml;tzung: <strong>Best Case, Probable und Worst Case</strong> f&uuml;r dein Rennen. Basierend auf deinen Leistungsdaten, nicht auf Wunschdenken.</p>
         </div>
         <div class="feature-mockup">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <div class="placeholder-screen">
-                <div class="placeholder-heading">Prognose</div>
-                <div class="prognose-row">
-                  <span class="pr-label">Best</span>
-                  <div class="pr-bar"><div class="pr-fill pr-fill--best" style="width:65%"></div></div>
-                  <span class="pr-time">9:42</span>
-                </div>
-                <div class="prognose-row">
-                  <span class="pr-label">Probable</span>
-                  <div class="pr-bar"><div class="pr-fill pr-fill--probable" style="width:78%"></div></div>
-                  <span class="pr-time">10:28</span>
-                </div>
-                <div class="prognose-row">
-                  <span class="pr-label">Worst</span>
-                  <div class="pr-bar"><div class="pr-fill pr-fill--worst" style="width:92%"></div></div>
-                  <span class="pr-time">12:15</span>
-                </div>
-                <div class="prognose-improvement">
-                  <span>&#8599; Verbesserungspotential: 6.4%</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="images/mockup-racecontrol-clean.jpg" class="mockup-img" alt="Zielzeit-Prognose mit aktuellen Splits">
         </div>
       </div>
     </div>
@@ -317,21 +204,8 @@
   <!-- ════════════ FOR WHOM ════════════ -->
   <section class="section section--audience">
     <div class="container grid-2col grid-2col--center">
-      <div class="audience-visual reveal">
-        <div class="silhouette silhouette--bike">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="90" stroke="#FF8A00" stroke-width="1" opacity=".2"/>
-            <circle cx="100" cy="100" r="60" stroke="#FF8A00" stroke-width="1" opacity=".1"/>
-            <text x="100" y="108" text-anchor="middle" fill="#FF8A00" font-size="40">&#128692;</text>
-          </svg>
-        </div>
-        <div class="silhouette silhouette--run">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="90" stroke="#00D1FF" stroke-width="1" opacity=".2"/>
-            <circle cx="100" cy="100" r="60" stroke="#00D1FF" stroke-width="1" opacity=".1"/>
-            <text x="100" y="108" text-anchor="middle" fill="#00D1FF" font-size="40">&#127939;</text>
-          </svg>
-        </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-dashboard.jpg" class="mockup-img" alt="Dashboard mit Kalender und Trainings&uuml;bersicht">
       </div>
       <div class="text-block reveal">
         <h2>F&uuml;r wen ist Race Mind?</h2>
@@ -404,32 +278,37 @@
 
   <!-- ════════════ CONTACT ════════════ -->
   <section class="section" id="contact">
-    <div class="container contact-inner">
-      <h2 class="section-title reveal">Kontakt</h2>
-      <p class="contact-sub reveal">Fragen, Feedback oder Interesse an einer Zusammenarbeit? Schreib uns!</p>
-      <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
-        <input type="hidden" name="subject" value="Neue Nachricht von race-mind.com">
-        <input type="hidden" name="from_name" value="Race Mind Website">
-        <input type="checkbox" name="botcheck" style="display:none">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Dein Name">
+    <div class="container contact-split">
+      <div class="contact-image reveal">
+        <img src="images/hero-analysis.jpg" class="mockup-img mockup-img--tall" alt="Race Mind App mit Trainingsanalyse">
+      </div>
+      <div class="contact-form-wrapper">
+        <h2 class="section-title reveal">Kontakt</h2>
+        <p class="contact-sub reveal">Fragen, Feedback oder Interesse an einer Zusammenarbeit? Schreib uns!</p>
+        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
+          <input type="hidden" name="subject" value="Neue Nachricht von race-mind.com">
+          <input type="hidden" name="from_name" value="Race Mind Website">
+          <input type="checkbox" name="botcheck" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Dein Name">
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required placeholder="deine@email.com">
+            </div>
           </div>
           <div class="form-group">
-            <label for="email">E-Mail</label>
-            <input type="email" id="email" name="email" required placeholder="deine@email.com">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht..."></textarea>
           </div>
+          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+        </form>
+        <div class="contact-success" id="contactSuccess" style="display:none">
+          <p>Danke f&uuml;r deine Nachricht! Wir melden uns schnellstm&ouml;glich.</p>
         </div>
-        <div class="form-group">
-          <label for="message">Nachricht</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Nachricht senden</button>
-      </form>
-      <div class="contact-success" id="contactSuccess" style="display:none">
-        <p>Danke f&uuml;r deine Nachricht! Wir melden uns schnellstm&ouml;glich.</p>
       </div>
     </div>
   </section>
