@@ -431,6 +431,35 @@ strong { font-weight: 600; }
   font-style: italic;
 }
 
+.feature-bullets {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.feature-bullets li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.feature-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.feature-text p + p {
+  margin-top: 0.75rem;
+}
+
 .feature-mockup {
   display: flex;
   justify-content: center;
@@ -799,6 +828,61 @@ strong { font-weight: 600; }
   color: var(--muted);
 }
 
+/* ── FAQ ── */
+
+.section--faq {
+  background: var(--surface);
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.2s;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item p {
+  padding: 0 1.5rem 1.25rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
 /* ── Footer ── */
 
 .footer {
@@ -1008,12 +1092,6 @@ strong { font-weight: 600; }
     grid-template-columns: 1fr 1fr;
   }
 
-  .testimonials-grid .testimonial-card:last-child {
-    grid-column: 1 / -1;
-    max-width: 400px;
-    justify-self: center;
-  }
-
   .steps {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
@@ -1143,11 +1221,6 @@ strong { font-weight: 600; }
 
   .testimonials-grid {
     grid-template-columns: 1fr;
-  }
-
-  .testimonials-grid .testimonial-card:last-child {
-    grid-column: auto;
-    max-width: none;
   }
 
   .steps {
