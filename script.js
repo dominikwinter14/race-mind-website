@@ -74,20 +74,6 @@
     });
   });
 
-  // ── Hero Carousel ──
-
-  const heroCarousel = document.getElementById('heroCarousel');
-  if (heroCarousel) {
-    const slides = heroCarousel.querySelectorAll('.hero-slide');
-    let currentSlide = 0;
-
-    setInterval(() => {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }, 5000);
-  }
-
   // ── Contact form (Web3Forms) ──
 
   const contactForm = document.querySelector('.contact-form');

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Race Mind – Your Training Coach for Triathlon &amp; Running</title>
-  <meta name="description" content="Professional coaching for Ironman, 70.3, Marathon and Half Marathon. Adaptive training plan, pro-level analysis and race time prediction.">
+  <title>Race Mind &ndash; Your AI Coach for Triathlon &amp; Running</title>
+  <meta name="description" content="Your Goal. Your Life. Your Coach. AI training coach for Ironman, 70.3, Marathon and Half Marathon. Try 7 days for free.">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,9 +36,10 @@
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
-        <a href="#download" class="btn btn-sm">Get Started</a>
+        <a href="#pricing" class="btn btn-sm">Get Started</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -47,33 +48,31 @@
   </nav>
 
   <!-- ════════════ HERO ════════════ -->
-  <header class="hero" id="hero">
-    <div class="hero-glow hero-glow--orange"></div>
-    <div class="hero-glow hero-glow--cyan"></div>
-    <div class="container hero-split">
-      <div class="hero-text">
-        <div class="lang-toggle lang-toggle--hero">
-          <a href="index.html">DE</a>
-          <a href="index-en.html" class="active">EN</a>
-        </div>
-        <p class="hero-eyebrow reveal">Race Mind &ndash; Triathlon &amp; Running Coach</p>
-        <h1 class="hero-title reveal">
-          Professional coaching costs &euro;200+ per month.<br>
-          <span class="gradient-text">Race Mind gives you the same level</span> &ndash; for a fraction of the price.
-        </h1>
-        <p class="hero-sub reveal">
-          Your personal endurance coach for <strong>Ironman, 70.3, Marathon and Half Marathon</strong>.
-          No static PDF plan, but a system that understands your performance, adapts to your life
-          and tells you what matters after every session.
-        </p>
-        <a href="#download" class="btn btn-primary reveal">Start for Free</a>
+  <header class="hero hero--fullbleed" id="hero">
+    <div class="hero-bg" style="background-image: url('images/hero-bg.png')"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="lang-toggle lang-toggle--hero">
+        <a href="index.html">DE</a>
+        <a href="index-en.html" class="active">EN</a>
       </div>
-      <div class="hero-mockup reveal">
-        <div class="hero-carousel" id="heroCarousel">
-          <img src="images/mockup-forecast.jpg" class="hero-slide active" alt="Race Mind Performance Forecast with Race Time Prediction">
-          <img src="images/mockup-chat.jpg" class="hero-slide" alt="Coach Kona Chat &ndash; Your Personal Training Coach">
-          <img src="images/mockup-dashboard.jpg" class="hero-slide" alt="Dashboard with calendar and training overview">
-        </div>
+      <p class="hero-eyebrow reveal">Race Mind &ndash; the coach in your pocket</p>
+      <h1 class="hero-title reveal">
+        Your Goal. Your Life.<br>
+        <span class="gradient-text">Your Coach.</span>
+      </h1>
+      <p class="hero-sub reveal">
+        A coach that thinks ahead &ndash; even when life gets in the way.
+        Training plans, analysis, nutrition, gear &ndash; your AI coach is available 24/7.
+      </p>
+      <ul class="hero-bullets reveal">
+        <li><strong>Race time in sight:</strong> Prediction shows if you&rsquo;re on track.</li>
+        <li><strong>Plan adapts:</strong> Week-by-week adjustments to your life and fitness.</li>
+        <li><strong>Coach explains data:</strong> Plain-language analysis and next steps.</li>
+      </ul>
+      <div class="hero-cta reveal">
+        <a href="#pricing" class="btn btn-primary">Try 7 days for free</a>
+        <p class="hero-price">From &euro;6.66 / month with annual plan. Cancel anytime.</p>
       </div>
     </div>
   </header>
@@ -82,11 +81,11 @@
   <section class="section section--core">
     <div class="container grid-2col">
       <div class="feature-mockup reveal">
-        <img src="images/mockup-weekplanning.jpg" class="mockup-img" alt="Adaptive weekly planning with Coach Kona">
+        <img src="images/mockup-plan-flow.png" class="mockup-img mockup-img--wide" alt="Weekly planning and mesocycle overview">
       </div>
       <div class="text-block reveal">
-        <h2>Your life isn&rsquo;t linear &ndash; <span class="gradient-text">your training plan isn&rsquo;t anymore either.</span></h2>
-        <p>Bad sleep? Meeting ran late? Race Mind recalculates your week. No guilt over missed sessions. No backlog. <strong>Just keep going.</strong></p>
+        <h2>Your life isn&rsquo;t linear &ndash; <span class="gradient-text">why should your training be?</span></h2>
+        <p>Bad sleep? Meeting ran late? Missed a session? Race Mind rebuilds your weekly plan.</p>
       </div>
     </div>
   </section>
@@ -94,119 +93,250 @@
   <!-- ════════════ FEATURES ════════════ -->
   <section class="section" id="features">
     <div class="container">
+      <h2 class="section-title reveal">What You Get</h2>
+      <p class="section-subtitle reveal">Works with all major wearables.</p>
+
       <div class="feature-row reveal">
         <div class="feature-text">
-          <h3>Adaptive Training Plan</h3>
-          <p>Your plan is built in two stages: A mesocycle overview spanning multiple weeks and a concrete weekly plan with sessions, zones and coach tips. If your circumstances change, the plan adapts &ndash; <strong>at the push of a button.</strong></p>
+          <h3>&#127919; Honest Race Time Prediction</h3>
+          <p>See early if you&rsquo;re getting faster: <strong>Best Case, Probable, Worst Case</strong>. Based on real performance data.</p>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-plan.jpg" class="mockup-img" alt="Mesocycle training plan with periodization">
+          <img src="images/mockup-overview.png" class="mockup-img mockup-img--wide" alt="Race Control with race time prediction and dashboard">
         </div>
       </div>
 
       <div class="feature-row feature-row--reverse reveal">
         <div class="feature-text">
-          <h3>Pro-Level Analysis After Every Session</h3>
-          <p>Race Mind imports your workouts automatically via Strava &ndash; including lap data. You get a pro-level analysis: efficiency check, fatigue analysis, pacing evaluation and a <strong>Performance Score from 0&ndash;100.</strong> No cryptic numbers &ndash; just clear insights.</p>
+          <h3>&#128197; A Plan That Fights Back</h3>
+          <p>When life happens, the plan doesn&rsquo;t break. It gets rebuilt.</p>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-racecontrol.jpg" class="mockup-img" alt="Race Control with performance analysis and EF trends">
+          <img src="images/mockup-calendar.png" class="mockup-img" alt="Calendar with training plan and sessions">
         </div>
       </div>
 
       <div class="feature-row reveal">
         <div class="feature-text">
-          <h3>Your Coach Responds</h3>
-          <p>Ask questions: <em>&ldquo;Why intervals today?&rdquo;</em> &ndash; <em>&ldquo;Am I on track for my race?&rdquo;</em> &ndash; <em>&ldquo;I have knee pain.&rdquo;</em> Race Mind explains, contextualizes and suggests adjustments. <strong>Like a coach who knows you.</strong></p>
+          <h3>&#128202; Coach Analysis After Every Session</h3>
+          <p>No cryptic numbers. Plain language: What went well? What do we change? What&rsquo;s the next smart step?</p>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-packlist.jpg" class="mockup-img" alt="Coach Kona creates a race day packing list">
+          <img src="images/mockup-analysis.png" class="mockup-img mockup-img--wide" alt="Training analysis with performance score and trends">
         </div>
       </div>
 
       <div class="feature-row feature-row--reverse reveal">
         <div class="feature-text">
-          <h3>Race Time Prediction with Reality Check</h3>
-          <p>Right from the start you get an honest assessment: <strong>Best Case, Probable and Worst Case</strong> for your race. Based on your performance data, not wishful thinking.</p>
+          <h3>&#128172; Ask Your Coach</h3>
+          <p><em>&ldquo;Why intervals today?&rdquo;</em> &ndash; <em>&ldquo;Am I on track?&rdquo;</em> &ndash; <em>&ldquo;What if my knee hurts?&rdquo;</em></p>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-racecontrol-clean.jpg" class="mockup-img" alt="Race time prediction with current splits">
+          <img src="images/mockup-chat-dual.png" class="mockup-img mockup-img--wide" alt="Coach Kona Chat in dark and light mode">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════════ HIGHLIGHTS ════════════ -->
-  <section class="section section--highlights">
+  <!-- ════════════ TESTIMONIALS ════════════ -->
+  <section class="section section--testimonials" id="testimonials">
     <div class="container">
-      <div class="highlights-grid">
-        <div class="highlight-card reveal">
-          <div class="highlight-icon">&#129657;</div>
-          <h4>Injury &amp; Illness Management</h4>
-          <p>Injured or sick? Race Mind pauses your plan and guides you back to training with a structured return-to-sport protocol.</p>
-        </div>
-        <div class="highlight-card reveal">
-          <div class="highlight-icon">&#128994;</div>
-          <h4>Daily Check-in</h4>
-          <p>How are you feeling? One tap is enough. When you&rsquo;re exhausted, your coach proactively suggests adjustments before it&rsquo;s too late.</p>
-        </div>
-        <div class="highlight-card reveal">
-          <div class="highlight-icon">&#127942;</div>
-          <h4>Consistency Score</h4>
-          <p>No TSS, no CTL. Race Mind shows you a clear score that tells you: Are you ready for your race?</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ SOCIAL PROOF ════════════ -->
-  <section class="section section--testimonials">
-    <div class="container">
-      <h2 class="section-title reveal">What Our Athletes Say</h2>
+      <h2 class="section-title reveal">What Beta Testers Say</h2>
       <div class="testimonials-grid">
         <div class="testimonial-card reveal">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>&ldquo;Finally a training plan that understands my life doesn&rsquo;t revolve around training. The automatic adaptation is a game changer.&rdquo;</p>
+          <div class="testimonial-sport">&#127946;</div>
+          <p>&ldquo;The prediction was brutally honest &ndash; and that&rsquo;s exactly why it was helpful. I finished my first Ironman 70.3 in 5:12, 18 minutes under my previous best.&rdquo;</p>
           <div class="testimonial-author">
-            <div class="avatar-placeholder">M</div>
-            <div>
-              <strong>Markus T.</strong>
-              <span>IRONMAN 70.3 Kraichgau</span>
-            </div>
+            <strong>Lena K.</strong>
+            <span>Ironman 70.3 &middot; Beta Tester</span>
           </div>
         </div>
         <div class="testimonial-card reveal">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>&ldquo;The post-workout analysis is incredibly detailed. Better than anything I&rsquo;ve gotten from an app before.&rdquo;</p>
+          <div class="testimonial-sport">&#127939;</div>
+          <p>&ldquo;Finally a plan that doesn&rsquo;t get offended when I have a meeting. My marathon training worked for the first time without guilt.&rdquo;</p>
           <div class="testimonial-author">
-            <div class="avatar-placeholder">S</div>
-            <div>
-              <strong>Sandra K.</strong>
-              <span>Berlin Marathon</span>
-            </div>
+            <strong>Max S.</strong>
+            <span>Marathon &middot; Beta Tester</span>
           </div>
         </div>
         <div class="testimonial-card reveal">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>&ldquo;I used to pay &euro;200/month for a coach. Race Mind delivers the same level &ndash; for a fraction of the cost.&rdquo;</p>
+          <div class="testimonial-sport">&#128692;</div>
+          <p>&ldquo;After every session I know what to take away from it. The coach explains my data &ndash; not just numbers.&rdquo;</p>
           <div class="testimonial-author">
-            <div class="avatar-placeholder">J</div>
-            <div>
-              <strong>Jonas W.</strong>
-              <span>IRONMAN Frankfurt</span>
-            </div>
+            <strong>Tom R.</strong>
+            <span>Triathlon &middot; Beta Tester</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-sport">&#127941;</div>
+          <p>&ldquo;When I was sick, getting back was suddenly easy. No guesswork, just ask the coach.&rdquo;</p>
+          <div class="testimonial-author">
+            <strong>Sarah G.</strong>
+            <span>Half Marathon &middot; Beta Tester</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-sport">&#9201;</div>
+          <p>&ldquo;I save myself Excel, notes and constant replanning. Everything in one app.&rdquo;</p>
+          <div class="testimonial-author">
+            <strong>Ben O.</strong>
+            <span>Ironman &middot; Beta Tester</span>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ════════════ COMPARISON TABLE ════════════ -->
+  <section class="section section--compare">
+    <div class="container">
+      <h2 class="section-title reveal">Why Race Mind Over a Static Plan?</h2>
+      <div class="compare-table-wrap reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="compare-highlight">Race Mind</th>
+              <th>Static Plan (PDF/Excel)</th>
+              <th>Human Coach</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="compare-label">Adapts to your life</td>
+              <td class="compare-highlight"><span class="check">&#10003;</span> Automatically, every week</td>
+              <td><span class="cross">&#10007;</span> Rigid</td>
+              <td><span class="check">&#10003;</span> Manual, with delay</td>
+            </tr>
+            <tr>
+              <td class="compare-label">Post-session analysis</td>
+              <td class="compare-highlight"><span class="check">&#10003;</span> Instant, plain language</td>
+              <td><span class="cross">&#10007;</span> None</td>
+              <td><span class="warn">&#9888;</span> Often weekly only</td>
+            </tr>
+            <tr>
+              <td class="compare-label">Available 24/7</td>
+              <td class="compare-highlight"><span class="check">&#10003;</span></td>
+              <td><span class="cross">&#10007;</span></td>
+              <td><span class="cross">&#10007;</span></td>
+            </tr>
+            <tr>
+              <td class="compare-label">Race time prediction</td>
+              <td class="compare-highlight"><span class="check">&#10003;</span> Continuously updated</td>
+              <td><span class="cross">&#10007;</span></td>
+              <td><span class="warn">&#9888;</span> Estimated</td>
+            </tr>
+            <tr>
+              <td class="compare-label">Price</td>
+              <td class="compare-highlight"><strong>From &euro;6.66 / month</strong></td>
+              <td>One-time &euro;30&ndash;80</td>
+              <td>&euro;150&ndash;400 / month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS ════════════ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title reveal">How It Works</h2>
+      <div class="steps">
+        <div class="steps-line"></div>
+        <div class="step reveal">
+          <div class="step-dot">1</div>
+          <h4>Set Your Goal</h4>
+          <p>Choose your race (Ironman, 70.3, Marathon, Half Marathon) and your target time.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">2</div>
+          <h4>Assess Your Status</h4>
+          <p>Connect your wearable or enter data manually.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">3</div>
+          <h4>Reality Check</h4>
+          <p>Get an instant prediction showing if you&rsquo;re on track.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">4</div>
+          <h4>Get Better Every Week</h4>
+          <p>Your plan adapts continuously. After every session you get feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TRUST ════════════ -->
+  <section class="section section--trust">
+    <div class="container">
+      <div class="trust-grid reveal">
+        <div class="trust-badge">
+          <div class="trust-icon">&#127465;&#127466;</div>
+          <h4>Made in Germany</h4>
+          <p>Developed in Freiburg. Hosted in the EU.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#128274;</div>
+          <h4>GDPR Compliant</h4>
+          <p>Your data belongs to you. No sharing with third parties.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#9201;</div>
+          <h4>Works With</h4>
+          <p>Garmin &middot; Polar &middot; Apple Watch &middot; Wahoo &middot; Suunto &middot; COROS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ PRICING ════════════ -->
+  <section class="section section--pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title reveal">Try 7 Days for Free</h2>
+      <p class="section-subtitle reveal">Then train at pro level for the price of a coffee.</p>
+      <div class="pricing-grid reveal">
+        <div class="pricing-card pricing-card--highlight">
+          <div class="pricing-badge">Most Popular</div>
+          <h3>Annual Plan</h3>
+          <div class="pricing-amount">
+            <span class="pricing-price">&euro;79.99</span>
+            <span class="pricing-period">/ year</span>
+          </div>
+          <p class="pricing-monthly">&asymp; &euro;6.66 / month</p>
+          <a href="#" class="btn btn-primary">Try 7 days for free</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Monthly Plan</h3>
+          <div class="pricing-amount">
+            <span class="pricing-price">&euro;9.99</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+          <p class="pricing-monthly">Flexible, cancel anytime</p>
+          <a href="#" class="btn btn-secondary">Try 7 days for free</a>
+        </div>
+      </div>
+      <p class="pricing-note reveal">No data chaos. No PDFs. Just train.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOWNLOAD CTA ════════════ -->
+  <section class="section section--download" id="download">
+    <div class="hero-glow hero-glow--orange"></div>
+    <div class="hero-glow hero-glow--cyan"></div>
+    <div class="container download-inner">
+      <h2 class="reveal">Train like a pro.<br><span class="gradient-text">Start today.</span></h2>
+      <div class="download-buttons reveal">
+        <a href="#" class="btn btn-primary btn-lg">Try 7 days for free</a>
+      </div>
+      <p class="download-note reveal">From &euro;6.66 / month with annual plan. Cancel anytime.</p>
     </div>
   </section>
 
   <!-- ════════════ FOR WHOM ════════════ -->
   <section class="section section--audience">
     <div class="container grid-2col grid-2col--center">
-      <div class="feature-mockup reveal">
-        <img src="images/mockup-dashboard.jpg" class="mockup-img" alt="Dashboard with calendar and training overview">
-      </div>
       <div class="text-block reveal">
         <h2>Who Is Race Mind For?</h2>
         <p>For ambitious amateur athletes &ndash; <strong>triathletes and runners</strong> &ndash; who want precision but don&rsquo;t have time for spreadsheets. For everyone who can&rsquo;t or doesn&rsquo;t want to pay &euro;200 for a human coach, but still wants to <strong>train at a professional level.</strong></p>
@@ -225,54 +355,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ════════════ HOW IT WORKS ════════════ -->
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <h2 class="section-title reveal">How It Works</h2>
-      <div class="steps">
-        <div class="steps-line"></div>
-        <div class="step reveal">
-          <div class="step-dot">1</div>
-          <h4>Set Your Goal</h4>
-          <p>Choose your race &ndash; Ironman, 70.3, Marathon or Half Marathon. Tell us your target date and goal time.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">2</div>
-          <h4>Assess Your Status</h4>
-          <p>Connect Strava or enter your data manually. In 3 minutes we know your current fitness level.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">3</div>
-          <h4>Reality Check</h4>
-          <p>You immediately get an honest prediction: Best, Probable, Worst Case. Based on real data.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">4</div>
-          <h4>Let&rsquo;s Go</h4>
-          <p>Your individual training plan is created. Week by week, adapted to your life.</p>
-        </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mood-week.png" class="mockup-img mockup-img--mood" alt="Race Mind app on dark background with weekly planning">
       </div>
-    </div>
-  </section>
-
-  <!-- ════════════ DOWNLOAD CTA ════════════ -->
-  <section class="section section--download" id="download">
-    <div class="hero-glow hero-glow--orange"></div>
-    <div class="hero-glow hero-glow--cyan"></div>
-    <div class="container download-inner">
-      <h2 class="reveal">Train like a pro.<br><span class="gradient-text">For the price of a coffee.</span></h2>
-      <div class="download-buttons reveal">
-        <a href="#" class="store-badge" aria-label="App Store">
-          <svg viewBox="0 0 120 40" fill="none"><rect width="120" height="40" rx="6" fill="#fff"/><text x="60" y="24" text-anchor="middle" fill="#050505" font-size="10" font-weight="600">App Store</text></svg>
-        </a>
-        <a href="#" class="store-badge" aria-label="Google Play">
-          <svg viewBox="0 0 135 40" fill="none"><rect width="135" height="40" rx="6" fill="#fff"/><text x="67" y="24" text-anchor="middle" fill="#050505" font-size="10" font-weight="600">Google Play</text></svg>
-        </a>
-      </div>
-      <p class="download-note reveal">Free onboarding check. Training plan with subscription.</p>
     </div>
   </section>
 
@@ -280,7 +365,7 @@
   <section class="section" id="contact">
     <div class="container contact-split">
       <div class="contact-image reveal">
-        <img src="images/hero-analysis.jpg" class="mockup-img mockup-img--tall" alt="Race Mind App with workout analysis">
+        <img src="images/mood-run.png" class="mockup-img mockup-img--mood" alt="Race Mind app with running shoes and training notes">
       </div>
       <div class="contact-form-wrapper">
         <h2 class="section-title reveal">Contact</h2>
