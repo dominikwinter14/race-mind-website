@@ -28,7 +28,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+
   -webkit-text-size-adjust: 100%;
 }
 
@@ -214,12 +214,6 @@ strong { font-weight: 600; }
   background-size: cover;
   background-position: 10% center;
   z-index: 0;
-  background-image: url('images/hero-bg.png');
-  background-image: image-set(
-    url('images/hero-bg.avif') type('image/avif'),
-    url('images/hero-bg.webp') type('image/webp'),
-    url('images/hero-bg.png') type('image/png')
-  );
 }
 
 .hero-overlay {
