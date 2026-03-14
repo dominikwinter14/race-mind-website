@@ -201,10 +201,10 @@ strong { font-weight: 600; }
 
 .hero--fullbleed {
   position: relative;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
-  padding: 8rem 0 4rem;
+  padding: 6rem 0 3rem;
   overflow: hidden;
 }
 
@@ -213,19 +213,20 @@ strong { font-weight: 600; }
   inset: 0;
   background-image: url('images/hero-bg.webp');
   background-size: cover;
-  background-position: 10% center;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-color: #050505;
   z-index: 0;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(5, 5, 5, 0.7) 0%,
-    rgba(5, 5, 5, 0.45) 35%,
-    rgba(5, 5, 5, 0.15) 60%,
-    rgba(5, 5, 5, 0.05) 100%
+  background: radial-gradient(
+    ellipse 60% 80% at center,
+    rgba(5, 5, 5, 0.65) 0%,
+    rgba(5, 5, 5, 0.3) 50%,
+    rgba(5, 5, 5, 0.1) 100%
   );
   z-index: 1;
 }
@@ -234,6 +235,8 @@ strong { font-weight: 600; }
   position: relative;
   z-index: 2;
   max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
   background: rgba(5, 5, 5, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -268,6 +271,8 @@ strong { font-weight: 600; }
 .hero-bullets {
   list-style: none;
   margin-bottom: 2rem;
+  text-align: left;
+  display: inline-block;
 }
 
 .hero-bullets li {
@@ -293,7 +298,7 @@ strong { font-weight: 600; }
 .hero-cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
 }
 
