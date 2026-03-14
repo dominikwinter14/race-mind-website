@@ -211,6 +211,7 @@ strong { font-weight: 600; }
 .hero-bg {
   position: absolute;
   inset: 0;
+  background-image: url('images/hero-bg.webp');
   background-size: cover;
   background-position: 10% center;
   z-index: 0;
