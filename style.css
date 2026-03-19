@@ -201,10 +201,10 @@ strong { font-weight: 600; }
 
 .hero--fullbleed {
   position: relative;
-  min-height: 70vh;
+  min-height: 95vh;
   display: flex;
   align-items: center;
-  padding: 6rem 0 3rem;
+  padding: 6rem 0 5rem;
   overflow: hidden;
 }
 
@@ -342,7 +342,7 @@ strong { font-weight: 600; }
 }
 
 .mockup-img--wide {
-  max-width: 520px;
+  max-width: 500px;
 }
 
 .mockup-img--mood {
@@ -401,12 +401,17 @@ strong { font-weight: 600; }
 
 /* ── Features ── */
 
+#features {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .feature-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
-  margin-bottom: 6rem;
+  margin-bottom: 1rem;
 }
 
 .feature-row:last-child {
@@ -776,6 +781,56 @@ strong { font-weight: 600; }
   color: var(--muted);
   font-size: 0.85rem;
   margin-top: 2rem;
+}
+
+/* ── Beta Signup ── */
+
+.beta-signup-form {
+  margin-top: 1.5rem;
+}
+
+.beta-signup-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.beta-email-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.beta-email-input::placeholder {
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+.beta-email-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.beta-signup-row .btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .beta-signup-row {
+    flex-direction: column;
+  }
+  .beta-email-input {
+    width: 100%;
+  }
+  .beta-signup-row .btn {
+    width: 100%;
+  }
 }
 
 /* ── Download CTA ── */
