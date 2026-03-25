@@ -97,7 +97,7 @@
           <tr><th>Category</th><th>Details</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Technical data</strong></td><td>Device type, operating system, app version</td></tr>
+          <tr><td><strong>Technical data</strong></td><td>Device type, operating system, app version, error reports (crash logs via Sentry)</td></tr>
           <tr><td><strong>Usage data</strong></td><td>Timestamps of app usage, onboarding progress</td></tr>
           <tr><td><strong>Anonymous session</strong></td><td>An anonymous session ID is created at app launch (no personal identification)</td></tr>
         </tbody>
@@ -160,12 +160,13 @@
           <tr><td><strong>Supabase Inc.</strong></td><td>Database, authentication, serverless functions</td><td>EU (Ireland)</td><td>Data processing within the EU</td></tr>
           <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Subscription management, in-app purchases</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
-          <tr><td><strong>BuildShip (Rowy Inc.)</strong></td><td>Serverless workflow execution (data preparation, metric calculation)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push notification delivery (FCM to Android devices)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
-          <tr><td><strong>Intervals.icu</strong></td><td>Training import (only when connected)</td><td>&ndash;</td><td>You authorize access directly</td></tr>
-          <tr><td><strong>Apple (HealthKit)</strong></td><td>Health data (only when shared)</td><td>On device</td><td>Data stays on your device; only categories you share are read</td></tr>
+          <tr><td><strong>intervals.icu Ltd</strong></td><td>Training import (only when connected)</td><td>UK (operator); data processing in Germany/Finland</td><td>You authorize access directly (OAuth); EU data processing; UK adequacy decision</td></tr>
           <tr><td><strong>GitHub Inc. (GitHub Pages)</strong></td><td>Website hosting and server log files</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
+          <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain registration and DNS for race-mind.com</td><td>Germany</td><td>Data Processing Agreement (DPA), data processing within the EU</td></tr>
+          <tr><td><strong>Expo, Inc.</strong></td><td>Push notification delivery (relay to Apple APNs and Google FCM)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
         </tbody>
       </table>
 
@@ -198,6 +199,7 @@
 
       <h3>6.4 Automated Processing</h3>
       <p>Training plans, metrics, and prognoses are primarily based on <strong>deterministic calculations</strong> (mathematical formulas, threshold models, workload ratios). Google Gemini provides supplementary qualitative interpretation and coaching text. This does not constitute solely automated decision-making with legal or similarly significant effects within the meaning of Art. 22 GDPR. All outputs are recommendations for fitness purposes &mdash; you are free to adjust or disregard them at any time.</p>
+      <p>In accordance with Art. 50 of Regulation (EU) 2024/1689 (AI Act), we inform you that the coach chat, training plans, and analysis texts are generated with the assistance of an AI system (Large Language Model). AI-generated content is labeled accordingly in the App.</p>
 
       <h3>6.5 Anonymous Usage and Account Linking</h3>
       <p>When you start the App, an <strong>anonymous session</strong> is created. You can initially use the App without personal registration. After onboarding, we recommend linking your account with Apple, Google, or email to enable data recovery on device changes.</p>
@@ -267,7 +269,6 @@
       <ul>
         <li><strong>Strava:</strong> In the App under Settings &rarr; Disconnect. Additionally at <a href="https://www.strava.com" target="_blank" rel="noopener">strava.com</a> &rarr; Settings &rarr; My Apps.</li>
         <li><strong>Intervals.icu:</strong> In the App under Settings &rarr; Disconnect.</li>
-        <li><strong>Apple Health:</strong> In iOS Settings &rarr; Privacy &amp; Security &rarr; Health &rarr; Race Mind &rarr; Disable access.</li>
       </ul>
       <p>Disconnecting a service stops further data import. Previously imported training data remains in your account until you request deletion.</p>
 
@@ -279,7 +280,13 @@
       <hr>
 
       <h2>12. Push Notifications</h2>
-      <p>Push notifications are planned (e.g., training reminders, coach tips). You can disable push notifications at any time in your device settings. The specific technical service will be disclosed in this Privacy Policy before activation.</p>
+      <p>The App uses push notifications to remind you of training sessions, send coach tips, and deliver other relevant updates. Push notifications are delivered via the <strong>Expo Push Notification Service</strong> (Expo, Inc.), which acts as a relay to <strong>Apple Push Notification Service (APNs)</strong> on iOS and <strong>Firebase Cloud Messaging (FCM)</strong> (Google LLC) on Android. Firebase Cloud Messaging is a service of Google LLC (USA); data transfer is based on EU Standard Contractual Clauses (SCCs) and the EU-U.S. Data Privacy Framework.</p>
+      <p>For delivery, a <strong>device-specific push token</strong> (Expo Push Token) is generated and stored in our database (Supabase, EU). This token is a technical identifier tied to your device and app installation &mdash; it does not contain personal information such as your name or email address.</p>
+      <p>Push notifications are optional. You can disable them at any time in your device settings (iOS: Settings &rarr; Notifications &rarr; Race Mind; Android: Settings &rarr; Apps &rarr; Race Mind &rarr; Notifications).</p>
+      <ul>
+        <li><strong>Purpose:</strong> Delivery of training reminders, coaching tips, and app-related updates.</li>
+        <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR &ndash; performance of a contract (notifications as part of the coaching service); Art. 6(1)(f) GDPR &ndash; legitimate interest (general product updates).</li>
+      </ul>
 
       <hr>
 

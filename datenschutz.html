@@ -97,7 +97,7 @@
           <tr><th>Kategorie</th><th>Details</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Technische Daten</strong></td><td>Ger&auml;tetyp, Betriebssystem, App-Version</td></tr>
+          <tr><td><strong>Technische Daten</strong></td><td>Ger&auml;tetyp, Betriebssystem, App-Version, Fehlerberichte (Crash-Logs via Sentry)</td></tr>
           <tr><td><strong>Nutzungsdaten</strong></td><td>Zeitpunkt der App-Nutzung, Onboarding-Fortschritt</td></tr>
           <tr><td><strong>Anonyme Sitzung</strong></td><td>Bei App-Start wird eine anonyme Sitzungs-ID erzeugt (ohne pers&ouml;nliche Identifikation)</td></tr>
         </tbody>
@@ -160,12 +160,13 @@
           <tr><td><strong>Supabase Inc.</strong></td><td>Datenbank, Authentifizierung, Serverless Functions</td><td>EU (Irland)</td><td>Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Trainingsplan-Generierung, Trainingsanalyse, Coach-Chat</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Abo-Verwaltung, In-App-K&auml;ufe</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>BuildShip (Rowy Inc.)</strong></td><td>Serverless Workflow-Ausf&uuml;hrung (Datenaufbereitung, Metrik-Berechnung)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>Strava Inc.</strong></td><td>Trainingsimport (nur bei Verbindung)</td><td>USA</td><td>Autorisierung direkt bei Strava (OAuth)</td></tr>
-          <tr><td><strong>Intervals.icu</strong></td><td>Trainingsimport (nur bei Verbindung)</td><td>&ndash;</td><td>Autorisierung direkt durch den Nutzer</td></tr>
-          <tr><td><strong>Apple (HealthKit)</strong></td><td>Gesundheitsdaten (nur bei Freigabe)</td><td>Lokal auf Ger&auml;t</td><td>Daten bleiben auf dem Ger&auml;t; nur von dir freigegebene Kategorien werden gelesen</td></tr>
+          <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push-Notification-Zustellung (FCM an Android-Ger&auml;te)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs), Data Privacy Framework</td></tr>
+          <tr><td><strong>Strava Inc.</strong></td><td>Trainingsimport (nur bei Verbindung)</td><td>USA</td><td>Du autorisierst den Zugriff direkt bei Strava (OAuth)</td></tr>
+          <tr><td><strong>intervals.icu Ltd</strong></td><td>Trainingsimport (nur bei Verbindung)</td><td>UK (Betreiber); Datenverarbeitung in Deutschland/Finnland</td><td>Du autorisierst den Zugriff direkt (OAuth); EU-Datenverarbeitung; UK-Angemessenheitsbeschluss</td></tr>
           <tr><td><strong>GitHub Inc. (GitHub Pages)</strong></td><td>Hosting der Website und Bereitstellung der Server-Logfiles</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs), Data Privacy Framework</td></tr>
+          <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Fehler- und Crash-Monitoring der App</td><td>EU (Frankfurt)</td><td>EU-Hosting (Sentry EU/Frankfurt), Auftragsverarbeitungsvertrag (DPA), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain-Registrierung und DNS f&uuml;r race-mind.com</td><td>Deutschland</td><td>Auftragsverarbeitungsvertrag (AVV), Datenverarbeitung in der EU</td></tr>
+          <tr><td><strong>Expo, Inc.</strong></td><td>Push-Notification-Zustellung (Relay zu Apple APNs und Google FCM)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
         </tbody>
       </table>
 
@@ -198,6 +199,8 @@
 
       <h3>6.4 Automatisierte Verarbeitung</h3>
       <p>Trainingspl&auml;ne, Metriken und Prognosen basieren &uuml;berwiegend auf <strong>deterministischen Berechnungen</strong> (mathematische Formeln, Schwellenwertmodelle, Belastungsverh&auml;ltnisse). Google Gemini liefert erg&auml;nzende qualitative Einordnungen und Coaching-Texte. Dies stellt keine ausschlie&szlig;lich automatisierte Entscheidung mit rechtlicher oder &auml;hnlich erheblicher Wirkung im Sinne von Art. 22 DSGVO dar. Alle Ergebnisse sind Empfehlungen f&uuml;r Fitnesszwecke &mdash; du kannst sie jederzeit anpassen oder ignorieren.</p>
+
+      <p>Gem&auml;&szlig; Art. 50 der Verordnung (EU) 2024/1689 (KI-Verordnung / AI Act) weisen wir darauf hin, dass der Coach-Chat, Trainingspl&auml;ne und Analysetexte mithilfe eines KI-Systems (Large Language Model) generiert werden. Die KI-generierten Inhalte sind in der App entsprechend gekennzeichnet.</p>
 
       <h3>6.5 Anonyme Nutzung und Account-Verkn&uuml;pfung</h3>
       <p>Bei App-Start wird eine <strong>anonyme Sitzung</strong> erstellt. Du kannst die App zun&auml;chst ohne pers&ouml;nliche Registrierung nutzen. Nach dem Onboarding empfehlen wir die Verkn&uuml;pfung mit Apple, Google oder E-Mail, um deine Daten bei Ger&auml;tewechsel wiederherstellen zu k&ouml;nnen.</p>
@@ -267,7 +270,6 @@
       <ul>
         <li><strong>Strava:</strong> In der App unter Einstellungen &rarr; Verbindung trennen. Zus&auml;tzlich unter <a href="https://www.strava.com" target="_blank" rel="noopener">strava.com</a> &rarr; Einstellungen &rarr; Meine Apps.</li>
         <li><strong>Intervals.icu:</strong> In der App unter Einstellungen &rarr; Verbindung trennen.</li>
-        <li><strong>Apple Health:</strong> In den iOS-Einstellungen &rarr; Datenschutz &amp; Sicherheit &rarr; Health &rarr; Race Mind &rarr; Zugriff deaktivieren.</li>
       </ul>
       <p>Beim Trennen einer Verbindung werden keine weiteren Daten importiert. Bereits importierte Trainingsdaten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
 
@@ -279,7 +281,13 @@
       <hr>
 
       <h2>12. Push-Benachrichtigungen</h2>
-      <p>Push-Benachrichtigungen sind geplant (z.&nbsp;B. Erinnerungen an Trainingseinheiten, Coach-Tipps). Du kannst Push-Benachrichtigungen jederzeit in den Ger&auml;teeinstellungen deaktivieren. Der technische Dienst wird vor Aktivierung in dieser Datenschutzerkl&auml;rung erg&auml;nzt.</p>
+      <p>Die App nutzt Push-Benachrichtigungen, um dich an Trainingseinheiten zu erinnern, Coach-Tipps zu senden und andere relevante Updates bereitzustellen. Push-Benachrichtigungen werden &uuml;ber den <strong>Expo Push Notification Service</strong> (Expo, Inc.) zugestellt, der als Relay zu <strong>Apple Push Notification Service (APNs)</strong> auf iOS und <strong>Firebase Cloud Messaging (FCM)</strong> (Google LLC) auf Android fungiert. Firebase Cloud Messaging ist ein Dienst von Google LLC (USA); die Daten&uuml;bermittlung erfolgt auf Grundlage von EU-Standardvertragsklauseln (SCCs) und dem EU-U.S. Data Privacy Framework.</p>
+      <p>Zur Zustellung wird ein <strong>ger&auml;tespezifischer Push-Token</strong> (Expo Push Token) erzeugt und in unserer Datenbank (Supabase, EU) gespeichert. Dieser Token ist ein technischer Identifier, der an dein Ger&auml;t und die App-Installation gebunden ist &mdash; er enth&auml;lt keine personenbezogenen Informationen wie Name oder E-Mail-Adresse.</p>
+      <p>Push-Benachrichtigungen sind optional. Du kannst sie jederzeit in den Ger&auml;teeinstellungen deaktivieren (iOS: Einstellungen &rarr; Mitteilungen &rarr; Race Mind; Android: Einstellungen &rarr; Apps &rarr; Race Mind &rarr; Benachrichtigungen).</p>
+      <ul>
+        <li><strong>Zweck:</strong> Zustellung von Trainings-Erinnerungen, Coaching-Hinweisen und app-bezogenen Updates.</li>
+        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO &ndash; Vertragserf&uuml;llung (Benachrichtigungen im Rahmen des Coaching-Service); Art. 6 Abs. 1 lit. f DSGVO &ndash; Berechtigtes Interesse (allgemeine Produkt-Updates).</li>
+      </ul>
 
       <hr>
 
