@@ -86,7 +86,8 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename)</td><td>Trainingsanalyse, Baseline-Berechnung, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Trainingsaktivit&auml;ten und Leistungsdaten</td><td>Trainingsanalyse, Planoptimierung</td></tr>
-          <tr><td><strong>Apple Health / HealthKit</strong></td><td>Herzfrequenzvariabilit&auml;t (HRV), Schlaf, Ruhepuls</td><td>Erholungssteuerung, Readiness-Check</td></tr>
+          <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Herzfrequenzvariabilit&auml;t (HRV SDNN), Ruhepuls, Schlafdauer und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
+          <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Herzfrequenzvariabilit&auml;t (HRV RMSSD), Ruhepuls, Schlafsitzungen und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
         </tbody>
       </table>
       <p>Die Verbindung zu diesen Diensten ist <strong>freiwillig</strong>. Du kannst die App auch ohne diese Verbindungen nutzen (manuelle Dateneingabe). Bei der Verbindung mit einem Drittanbieter gilt zus&auml;tzlich dessen eigene Datenschutzerkl&auml;rung f&uuml;r die Erhebung und &Uuml;bermittlung deiner Daten.</p>
@@ -197,12 +198,33 @@
       <h3>6.3 Coach-Chat</h3>
       <p>Deine Chat-Nachrichten werden zusammen mit relevantem Trainingskontext an Google Gemini &uuml;bermittelt, um dir personalisierte Antworten zu geben. Chat-Verl&auml;ufe werden in unserer Datenbank gespeichert.</p>
 
-      <h3>6.4 Automatisierte Verarbeitung</h3>
+      <h3>6.4 Gesundheitsdaten (Apple Health / Google Health Connect)</h3>
+      <p>Wenn du Apple Health (iOS) oder Google Health Connect (Android) verbindest, liest die App folgende Daten <strong>lokal auf deinem Ger&auml;t</strong> aus:</p>
+      <ul>
+        <li><strong>Herzfrequenzvariabilit&auml;t (HRV)</strong> &ndash; SDNN (iOS) bzw. RMSSD (Android)</li>
+        <li><strong>Ruhepuls</strong></li>
+        <li><strong>Schlafdauer und Schlafphasen</strong> (z.&nbsp;B. Tiefschlaf, REM, Leichtschlaf)</li>
+      </ul>
+      <p>Diese Daten werden zur Berechnung deiner t&auml;glichen <strong>Training Readiness</strong> verwendet &ndash; einem Erholungsindikator, der dir hilft zu entscheiden, ob du wie geplant trainieren, die Intensit&auml;t reduzieren oder einen Ruhetag einlegen solltest.</p>
+      <p><strong>Wie die Daten verarbeitet werden:</strong></p>
+      <ul>
+        <li>Gesundheitsdaten werden direkt &uuml;ber die jeweiligen Plattform-APIs von Apple Health / Health Connect auf deinem Ger&auml;t ausgelesen</li>
+        <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (&uuml;bertragen Supabase, EU) und in der Tabelle <code>wellness_daily</code> gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
+        <li>Wenn du zus&auml;tzlich Intervals.icu verbunden hast, haben Gesundheitsdaten aus dieser Quelle Vorrang; Apple Health / Health Connect f&uuml;llt nur fehlende Werte auf</li>
+        <li>Gesundheitsdaten werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder an KI-Dienste gesendet</li>
+        <li>Bei der ersten Verbindung werden die letzten 14 Tage an Gesundheitsdaten nachgeholt, um eine stabile Baseline zu etablieren</li>
+      </ul>
+      <p>Die Verbindung mit Apple Health oder Health Connect ist <strong>vollst&auml;ndig freiwillig</strong>. Du kannst alle anderen Funktionen der App auch ohne nutzen. Du kannst die Verbindung jederzeit in der App unter Einstellungen &rarr; Verbindungen trennen, wodurch keine weiteren Daten synchronisiert werden. Bereits synchronisierte Daten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
+      <ul>
+        <li><strong>Rechtsgrundlage:</strong> Art. 9 Abs. 2 lit. a DSGVO &ndash; Ausdr&uuml;ckliche Einwilligung (du verbindest aktiv und erteilst die Berechtigungen &uuml;ber den Berechtigungsdialog der Plattform)</li>
+      </ul>
+
+      <h3>6.5 Automatisierte Verarbeitung</h3>
       <p>Trainingspl&auml;ne, Metriken und Prognosen basieren &uuml;berwiegend auf <strong>deterministischen Berechnungen</strong> (mathematische Formeln, Schwellenwertmodelle, Belastungsverh&auml;ltnisse). Google Gemini liefert erg&auml;nzende qualitative Einordnungen und Coaching-Texte. Dies stellt keine ausschlie&szlig;lich automatisierte Entscheidung mit rechtlicher oder &auml;hnlich erheblicher Wirkung im Sinne von Art. 22 DSGVO dar. Alle Ergebnisse sind Empfehlungen f&uuml;r Fitnesszwecke &mdash; du kannst sie jederzeit anpassen oder ignorieren.</p>
 
       <p>Gem&auml;&szlig; Art. 50 der Verordnung (EU) 2024/1689 (KI-Verordnung / AI Act) weisen wir darauf hin, dass der Coach-Chat, Trainingspl&auml;ne und Analysetexte mithilfe eines KI-Systems (Large Language Model) generiert werden. Die KI-generierten Inhalte sind in der App entsprechend gekennzeichnet.</p>
 
-      <h3>6.5 Anonyme Nutzung und Account-Verkn&uuml;pfung</h3>
+      <h3>6.6 Anonyme Nutzung und Account-Verkn&uuml;pfung</h3>
       <p>Bei App-Start wird eine <strong>anonyme Sitzung</strong> erstellt. Du kannst die App zun&auml;chst ohne pers&ouml;nliche Registrierung nutzen. Nach dem Onboarding empfehlen wir die Verkn&uuml;pfung mit Apple, Google oder E-Mail, um deine Daten bei Ger&auml;tewechsel wiederherstellen zu k&ouml;nnen.</p>
 
       <hr>
@@ -270,8 +292,9 @@
       <ul>
         <li><strong>Strava:</strong> In der App unter Einstellungen &rarr; Verbindung trennen. Zus&auml;tzlich unter <a href="https://www.strava.com" target="_blank" rel="noopener">strava.com</a> &rarr; Einstellungen &rarr; Meine Apps.</li>
         <li><strong>Intervals.icu:</strong> In der App unter Einstellungen &rarr; Verbindung trennen.</li>
+        <li><strong>Apple Health / Health Connect:</strong> In der App unter Einstellungen &rarr; Verbindungen. Zus&auml;tzlich kannst du den Zugriff der App in den Gesundheitseinstellungen deines Ger&auml;ts widerrufen (iOS: Einstellungen &rarr; Health &rarr; Datenzugriff; Android: Einstellungen &rarr; Health Connect &rarr; App-Berechtigungen).</li>
       </ul>
-      <p>Beim Trennen einer Verbindung werden keine weiteren Daten importiert. Bereits importierte Trainingsdaten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
+      <p>Beim Trennen einer Verbindung werden keine weiteren Daten importiert. Bereits importierte Trainings- und Gesundheitsdaten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
 
       <hr>
 

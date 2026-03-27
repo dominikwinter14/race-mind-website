@@ -86,7 +86,8 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Training activities and performance data</td><td>Training analysis, plan optimization</td></tr>
-          <tr><td><strong>Apple Health / HealthKit</strong></td><td>Heart rate variability (HRV), sleep, resting heart rate</td><td>Recovery management, readiness check</td></tr>
+          <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Heart rate variability (HRV SDNN), resting heart rate, sleep duration and stages</td><td>Recovery assessment, training readiness</td></tr>
+          <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Heart rate variability (HRV RMSSD), resting heart rate, sleep sessions and stages</td><td>Recovery assessment, training readiness</td></tr>
         </tbody>
       </table>
       <p>Connecting to these services is <strong>optional</strong>. You can use the App without any connections (manual data entry). When you connect a third-party service, the respective platform&rsquo;s own privacy policy also applies to the collection and transfer of your data.</p>
@@ -197,11 +198,32 @@
       <h3>6.3 Coach Chat</h3>
       <p>Your chat messages are sent to Google Gemini along with relevant training context to provide personalized answers. Chat histories are stored in our database.</p>
 
-      <h3>6.4 Automated Processing</h3>
+      <h3>6.4 Health Data (Apple Health / Google Health Connect)</h3>
+      <p>If you choose to connect Apple Health (iOS) or Google Health Connect (Android), the App reads the following data <strong>locally on your device</strong>:</p>
+      <ul>
+        <li><strong>Heart rate variability (HRV)</strong> &ndash; SDNN (iOS) or RMSSD (Android)</li>
+        <li><strong>Resting heart rate</strong></li>
+        <li><strong>Sleep duration and stages</strong> (e.g., deep sleep, REM, light sleep)</li>
+      </ul>
+      <p>This data is used to calculate your daily <strong>Training Readiness</strong> &ndash; a recovery indicator that helps you decide whether to train as planned, reduce intensity, or take a rest day.</p>
+      <p><strong>How the data is processed:</strong></p>
+      <ul>
+        <li>Health data is read directly from Apple Health / Health Connect on your device via the respective platform APIs</li>
+        <li>Daily summaries (HRV, resting HR, sleep duration) are transmitted to our database (Supabase, EU) and stored in the <code>wellness_daily</code> table, linked to your user ID</li>
+        <li>If you also have Intervals.icu connected, health data from that source takes priority; Apple Health / Health Connect data only fills in missing values</li>
+        <li>Health data is <strong>never</strong> shared with third parties, used for advertising, or sent to AI services</li>
+        <li>On first connection, the App backfills the last 14 days of health data to establish a stable baseline</li>
+      </ul>
+      <p>Connecting Apple Health or Health Connect is <strong>entirely optional</strong>. You can use all other features of the App without it. You can disconnect at any time in the App under Settings &rarr; Connections, which stops further data synchronization. Previously synced data remains in your account until you request deletion.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Art. 9(2)(a) GDPR &ndash; Explicit consent (you actively choose to connect and grant permissions via the platform&rsquo;s permission dialog)</li>
+      </ul>
+
+      <h3>6.5 Automated Processing</h3>
       <p>Training plans, metrics, and prognoses are primarily based on <strong>deterministic calculations</strong> (mathematical formulas, threshold models, workload ratios). Google Gemini provides supplementary qualitative interpretation and coaching text. This does not constitute solely automated decision-making with legal or similarly significant effects within the meaning of Art. 22 GDPR. All outputs are recommendations for fitness purposes &mdash; you are free to adjust or disregard them at any time.</p>
       <p>In accordance with Art. 50 of Regulation (EU) 2024/1689 (AI Act), we inform you that the coach chat, training plans, and analysis texts are generated with the assistance of an AI system (Large Language Model). AI-generated content is labeled accordingly in the App.</p>
 
-      <h3>6.5 Anonymous Usage and Account Linking</h3>
+      <h3>6.6 Anonymous Usage and Account Linking</h3>
       <p>When you start the App, an <strong>anonymous session</strong> is created. You can initially use the App without personal registration. After onboarding, we recommend linking your account with Apple, Google, or email to enable data recovery on device changes.</p>
 
       <hr>
@@ -269,8 +291,9 @@
       <ul>
         <li><strong>Strava:</strong> In the App under Settings &rarr; Disconnect. Additionally at <a href="https://www.strava.com" target="_blank" rel="noopener">strava.com</a> &rarr; Settings &rarr; My Apps.</li>
         <li><strong>Intervals.icu:</strong> In the App under Settings &rarr; Disconnect.</li>
+        <li><strong>Apple Health / Health Connect:</strong> In the App under Settings &rarr; Connections. Additionally, you can revoke the App&rsquo;s access in your device&rsquo;s health settings (iOS: Settings &rarr; Health &rarr; Data Access; Android: Settings &rarr; Health Connect &rarr; App permissions).</li>
       </ul>
-      <p>Disconnecting a service stops further data import. Previously imported training data remains in your account until you request deletion.</p>
+      <p>Disconnecting a service stops further data import. Previously imported training and health data remains in your account until you request deletion.</p>
 
       <hr>
 
