@@ -1,7 +1,14 @@
 {
-  "webcredentials": {
-    "apps": [
-      "FWDHP49G44.de.racemind.app"
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["FWDHP49G44.de.racemind.app"],
+        "paths": ["/friend/*"]
+      }
     ]
+  },
+  "webcredentials": {
+    "apps": ["FWDHP49G44.de.racemind.app"]
   }
 }
