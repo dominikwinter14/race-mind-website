@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.racemind.app",
+      "sha256_cert_fingerprints": [
+        "95:87:E4:51:96:19:AC:62:63:07:CA:84:64:0D:02:65:7F:C1:29:05:5F:58:45:F5:7C:7D:26:C7:F3:CD:DF:17"
+      ]
+    }
+  }
+]
