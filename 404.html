@@ -190,6 +190,18 @@
       var display = code.replace(/(\d+)$/, '#$1');
       document.getElementById('friendCode').textContent = display;
       document.getElementById('friendView').style.display = '';
+
+      // Try to open the app via custom URL scheme
+      var appUrl = 'racemind://friend/' + code;
+      var timeout = setTimeout(function() {
+        // App didn't open — user stays on this page
+      }, 1500);
+
+      window.addEventListener('pagehide', function() {
+        clearTimeout(timeout);
+      });
+
+      window.location.href = appUrl;
     } else {
       // Generic 404
       document.getElementById('notFoundView').style.display = '';
