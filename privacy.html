@@ -38,7 +38,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Last updated: March 2026</p>
+      <p class="legal-meta">Last updated: April 2026</p>
 
       <hr>
 
@@ -86,6 +86,7 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Training activities and performance data</td><td>Training analysis, plan optimization</td></tr>
+          <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, workout push to watch</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Heart rate variability (HRV SDNN), resting heart rate, sleep duration and stages</td><td>Recovery assessment, training readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Heart rate variability (HRV RMSSD), resting heart rate, sleep sessions and stages</td><td>Recovery assessment, training readiness</td></tr>
         </tbody>
@@ -141,13 +142,15 @@
         <tbody>
           <tr><td>Training plan creation, analysis, prognosis, chat coaching</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           <tr><td>Processing health data (injuries, heart rate, HRV)</td><td><strong>Art. 9(2)(a) GDPR</strong> &ndash; Explicit consent</td></tr>
+          <!-- TODO(iap): Subscription-Zeile wieder einblenden wenn IAP implementiert
           <tr><td>Subscription management and payment processing</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
+          -->
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
-          <tr><td>Connection to Strava, Intervals.icu, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
+          <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
         </tbody>
       </table>
       <p>Your consent for processing health data is obtained as a mandatory step during onboarding. Since the App&rsquo;s core functionality (training planning, analysis, injury management) requires processing health-related data, consent is a prerequisite for using the App.</p>
-      <p>You can withdraw your consent at any time in the App under Settings &rarr; Privacy or by emailing us (see Section 9). Withdrawal means the core coaching features of the App can no longer be used.</p>
+      <p>You can withdraw your consent at any time by deleting your account in the App under Settings &rarr; Legal &rarr; Delete Account or by emailing us (see Section 9). Withdrawal means the core coaching features of the App can no longer be used.</p>
 
       <hr>
 
@@ -160,9 +163,12 @@
         <tbody>
           <tr><td><strong>Supabase Inc.</strong></td><td>Database, authentication, serverless functions</td><td>EU (Ireland)</td><td>Data processing within the EU</td></tr>
           <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <!-- TODO(iap): RevenueCat wieder einblenden wenn IAP implementiert
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Subscription management, in-app purchases</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          -->
           <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push notification delivery (FCM to Android devices)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
+          <tr><td><strong>Garmin International, Inc.</strong></td><td>Training import, workout push to watch (only when connected)</td><td>USA</td><td>You authorize access directly with Garmin (OAuth); EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>intervals.icu Ltd</strong></td><td>Training import (only when connected)</td><td>UK (operator); data processing in Germany/Finland</td><td>You authorize access directly (OAuth); EU data processing; UK adequacy decision</td></tr>
           <tr><td><strong>GitHub Inc. (GitHub Pages)</strong></td><td>Website hosting and server log files</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
@@ -237,9 +243,14 @@
           <tr><td>Profile and training data</td><td>As long as your account is active</td></tr>
           <tr><td>Chat histories</td><td>As long as your account is active</td></tr>
           <tr><td>Anonymous profiles without completed onboarding</td><td><strong>48 hours</strong>, then automatically deleted</td></tr>
+          <!-- TODO(iap): Subscription + Payment-Zeilen wieder einblenden wenn IAP implementiert
           <tr><td>Anonymous profiles with subscription, no account link</td><td>Until subscription expires + 90 days of inactivity</td></tr>
+          -->
+          <!-- TODO(retention): Automatischen Gemini-Log-Cleanup implementieren (90-Tage-Cron) -->
           <tr><td>System logs (Gemini Logs)</td><td>90 days, then anonymized or deleted</td></tr>
+          <!-- TODO(iap): Payment-Zeile wieder einblenden wenn IAP implementiert
           <tr><td>Payment data</td><td>Managed by Apple/Google and RevenueCat; we do not store payment information directly</td></tr>
+          -->
         </tbody>
       </table>
       <p>After account deletion, all personal data is fully removed within <strong>30 days</strong> (cascade delete across all linked tables).</p>
@@ -251,7 +262,7 @@
       <ul>
         <li><strong>Row Level Security (RLS):</strong> Every database query is restricted to the user&rsquo;s own ID. You can only access your own data.</li>
         <li><strong>Encryption:</strong> All data is encrypted in transit (TLS/HTTPS) and at rest (database encryption).</li>
-        <li><strong>OAuth 2.0:</strong> Strava and Intervals.icu connections use industry-standard OAuth authentication. We store only access tokens, not your passwords.</li>
+        <li><strong>OAuth 2.0:</strong> Strava, Garmin Connect, and Intervals.icu connections use industry-standard OAuth authentication. We store only access tokens, not your passwords.</li>
         <li><strong>Anonymous authentication:</strong> Before account linking, the App operates with an anonymous session &ndash; no email or personal identification required.</li>
       </ul>
 
@@ -275,7 +286,7 @@
       </table>
 
       <p><strong>How to exercise your rights:</strong></p>
-      <p>You can manage your privacy settings directly in the App under <strong>Settings &rarr; Privacy</strong> (including withdrawal of health data consent). Alternatively, send an email to <a href="mailto:help@race-mind.com">help@race-mind.com</a>. We will respond within 30 days.</p>
+      <p>You can delete your account and all associated data directly in the App under <strong>Settings &rarr; Legal &rarr; Delete Account</strong>. This also withdraws any previously given consent. Alternatively, send an email to <a href="mailto:help@race-mind.com">help@race-mind.com</a>. We will respond within 30 days.</p>
 
       <p><strong>Right to lodge a complaint:</strong> You have the right to lodge a complaint with a data protection supervisory authority. The authority responsible for us is:</p>
       <p>
@@ -290,6 +301,7 @@
       <h2>10. Disconnecting Third-Party Services</h2>
       <ul>
         <li><strong>Strava:</strong> In the App under Settings &rarr; Disconnect. Additionally at <a href="https://www.strava.com" target="_blank" rel="noopener">strava.com</a> &rarr; Settings &rarr; My Apps.</li>
+        <li><strong>Garmin Connect:</strong> In the App under Settings &rarr; Disconnect. Additionally at <a href="https://connect.garmin.com" target="_blank" rel="noopener">connect.garmin.com</a> &rarr; Account Settings &rarr; Connected Apps.</li>
         <li><strong>Intervals.icu:</strong> In the App under Settings &rarr; Disconnect.</li>
         <li><strong>Apple Health / Health Connect:</strong> In the App under Settings &rarr; Connections. Additionally, you can revoke the App&rsquo;s access in your device&rsquo;s health settings (iOS: Settings &rarr; Health &rarr; Data Access; Android: Settings &rarr; Health Connect &rarr; App permissions).</li>
       </ul>
