@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://race-mind.com/sitemap.xml

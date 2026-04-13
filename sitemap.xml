@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://race-mind.com/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/index-en.html"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/index-en.html"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/datenschutz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/privacy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/privacy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/impressum.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/friend/</loc>
+    <priority>0.5</priority>
+  </url>
+</urlset>
