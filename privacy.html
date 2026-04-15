@@ -189,7 +189,7 @@
       <h2>6. Data Processing in Detail</h2>
 
       <h3>6.1 Training Plan Generation</h3>
-      <p>Your profile, performance, and availability data are sent to Google Gemini to create an individualized training plan. In this process:</p>
+      <p>Your profile, performance, availability, and &mdash; if provided &mdash; injury data are sent to Google Gemini to create an individualized training plan. In this process:</p>
       <ul>
         <li><strong>No</strong> real names are sent to Gemini (only anonymized user IDs)</li>
         <li>Data is used solely for plan calculation and is not used by Google for its own purposes</li>
@@ -220,7 +220,7 @@
         <li>Health data is read directly from Apple Health / Health Connect on your device via the respective platform APIs</li>
         <li>Daily summaries (HRV, resting HR, sleep duration) are transmitted to our database (Supabase, EU) and stored in the <code>wellness_daily</code> table, linked to your user ID</li>
         <li>If you also have Intervals.icu connected, health data from that source takes priority; Apple Health / Health Connect data only fills in missing values</li>
-        <li>Health data is <strong>never</strong> shared with third parties, used for advertising, or sent to AI services</li>
+        <li>Apple Health / Health Connect data (HRV, resting heart rate, sleep) is <strong>never</strong> shared with third parties, used for advertising, or sent to AI services. Injury information you enter during onboarding may be included in AI-based plan generation (see Section 6.1).</li>
         <li>On first connection, the App backfills the last 14 days of health data to establish a stable baseline</li>
       </ul>
       <p>Connecting Apple Health or Health Connect is <strong>entirely optional</strong>. You can use all other features of the App without it. You can disconnect at any time in the App under Settings &rarr; Connections, which stops further data synchronization. Previously synced data remains in your account until you request deletion.</p>

@@ -189,7 +189,7 @@
       <h2>6. Datenverarbeitung im Detail</h2>
 
       <h3>6.1 Trainingsplan-Generierung</h3>
-      <p>Deine Profil-, Leistungs- und Verf&uuml;gbarkeitsdaten werden an Google Gemini &uuml;bermittelt, um einen individualisierten Trainingsplan zu erstellen. Dabei werden:</p>
+      <p>Deine Profil-, Leistungs-, Verf&uuml;gbarkeits- und &mdash; sofern angegeben &mdash; Verletzungsdaten werden an Google Gemini &uuml;bermittelt, um einen individualisierten Trainingsplan zu erstellen. Dabei werden:</p>
       <ul>
         <li><strong>Keine</strong> Klarnamen an Gemini gesendet (nur anonymisierte Nutzer-IDs)</li>
         <li>Daten nur f&uuml;r die Planberechnung verwendet und nicht von Google f&uuml;r eigene Zwecke genutzt</li>
@@ -220,7 +220,7 @@
         <li>Gesundheitsdaten werden direkt &uuml;ber die jeweiligen Plattform-APIs von Apple Health / Health Connect auf deinem Ger&auml;t ausgelesen</li>
         <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (&uuml;bertragen Supabase, EU) und in der Tabelle <code>wellness_daily</code> gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
         <li>Wenn du zus&auml;tzlich Intervals.icu verbunden hast, haben Gesundheitsdaten aus dieser Quelle Vorrang; Apple Health / Health Connect f&uuml;llt nur fehlende Werte auf</li>
-        <li>Gesundheitsdaten werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder an KI-Dienste gesendet</li>
+        <li>Apple-Health- / Health-Connect-Daten (HRV, Ruhepuls, Schlaf) werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder an KI-Dienste gesendet. Verletzungsangaben, die du beim Onboarding eingibst, k&ouml;nnen in die KI-gest&uuml;tzte Planerstellung einflie&szlig;en (siehe Abschnitt 6.1).</li>
         <li>Bei der ersten Verbindung werden die letzten 14 Tage an Gesundheitsdaten nachgeholt, um eine stabile Baseline zu etablieren</li>
       </ul>
       <p>Die Verbindung mit Apple Health oder Health Connect ist <strong>vollst&auml;ndig freiwillig</strong>. Du kannst alle anderen Funktionen der App auch ohne nutzen. Du kannst die Verbindung jederzeit in der App unter Einstellungen &rarr; Verbindungen trennen, wodurch keine weiteren Daten synchronisiert werden. Bereits synchronisierte Daten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
