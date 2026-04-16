@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" fill="white">
+  <!-- Polar P mark -->
+  <rect x="2" y="8" width="3" height="24" rx="1.5" fill="white"/>
+  <path d="M5,8 L14,8 C18,8 21,11 21,15 C21,19 18,22 14,22 L5,22" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <!-- POLAR text -->
+  <text x="28" y="27" font-family="system-ui, Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="1">POLAR</text>
+</svg>

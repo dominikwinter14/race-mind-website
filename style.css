@@ -428,6 +428,171 @@ strong { font-weight: 600; }
   line-height: 1.7;
 }
 
+/* ── Compatibility Logos ── */
+
+.section--compat {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.compat-label {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.75rem;
+}
+
+.compat-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem 3rem;
+}
+
+.compat-logo {
+  height: 28px;
+  width: auto;
+  opacity: 0.55;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease;
+}
+
+.compat-logo:hover {
+  opacity: 0.9;
+}
+
+/* ── Reality Check ── */
+
+.section--reality {
+  background: var(--bg);
+  padding-bottom: 1.5rem;
+}
+
+.section--core {
+  padding-top: 1.5rem;
+}
+
+.reality-timeline {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.reality-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(239, 68, 68, 0.4) 0%,
+    rgba(239, 68, 68, 0.4) 55%,
+    rgba(255, 138, 0, 0.6) 70%,
+    rgba(0, 209, 255, 0.4) 100%
+  );
+}
+
+.reality-step {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.reality-marker {
+  position: absolute;
+  left: -2.5rem;
+  top: 1.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--error);
+  border: 2px solid var(--bg);
+  z-index: 1;
+}
+
+.reality-marker--glow {
+  background: var(--primary);
+  box-shadow: 0 0 12px rgba(255, 138, 0, 0.6), 0 0 24px rgba(255, 138, 0, 0.3);
+  width: 0.875rem;
+  height: 0.875rem;
+  left: calc(-2.5rem - 1px);
+}
+
+.reality-card {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+}
+
+.reality-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.reality-card p strong {
+  color: var(--foreground);
+}
+
+.reality-step--problem .reality-card p strong {
+  color: var(--error);
+}
+
+.reality-day {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.reality-day--highlight {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 0.9rem;
+}
+
+.reality-card--highlight {
+  background: var(--surface-light);
+  border-color: rgba(255, 138, 0, 0.2);
+  box-shadow: 0 0 30px rgba(255, 138, 0, 0.08);
+}
+
+.reality-card--highlight p {
+  color: var(--foreground);
+}
+
+.reality-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.reality-divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 138, 0, 0.4),
+    transparent
+  );
+}
+
 /* ── Features ── */
 
 #features {
@@ -918,6 +1083,60 @@ strong { font-weight: 600; }
   color: var(--muted);
 }
 
+/* ── Audience grid ── */
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.audience-col {
+  background: var(--surface);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.audience-col--yes {
+  border-top: 2px solid var(--primary);
+}
+
+.audience-col--no {
+  border-top: 2px solid rgba(255,255,255,0.15);
+}
+
+.audience-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.audience-col--yes .audience-heading {
+  color: var(--primary);
+}
+
+.audience-col--no .audience-heading {
+  color: var(--muted);
+}
+
+.audience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.audience-list li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 /* ── FAQ ── */
 
 .section--faq {
@@ -1338,6 +1557,22 @@ strong { font-weight: 600; }
   .trust-grid .trust-badge:last-child {
     grid-column: auto;
     max-width: none;
+  }
+
+  .reality-timeline {
+    padding-left: 2rem;
+  }
+
+  .reality-marker {
+    left: -2rem;
+  }
+
+  .reality-marker--glow {
+    left: calc(-2rem - 1px);
+  }
+
+  .reality-card {
+    padding: 1rem 1.25rem;
   }
 
   .pricing-grid {
