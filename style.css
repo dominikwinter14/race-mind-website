@@ -461,6 +461,11 @@ strong { font-weight: 600; }
   transition: opacity 0.2s ease;
 }
 
+.compat-logo--natural {
+  filter: none;
+  opacity: 1;
+}
+
 .compat-logo:hover {
   opacity: 0.9;
 }
