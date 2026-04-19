@@ -74,6 +74,38 @@
     });
   });
 
+  // ── Beta signup form (Web3Forms) ──
+
+  const betaForm = document.querySelector('.beta-signup-form');
+  if (betaForm) {
+    betaForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = betaForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Wird gesendet\u2026';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(betaForm),
+        });
+
+        if (res.ok) {
+          betaForm.innerHTML = '<p style="color: var(--success); text-align: center; padding: 1rem 0; font-weight: 500;">Du bist dabei! Wir melden uns bei dir. \u2705</p>';
+        } else {
+          throw new Error('failed');
+        }
+      } catch {
+        btn.textContent = 'Fehler \u2013 erneut versuchen';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 3000);
+      }
+    });
+  }
+
   // ── Contact form (Web3Forms) ──
 
   const contactForm = document.querySelector('.contact-form');

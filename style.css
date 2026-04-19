@@ -1128,8 +1128,8 @@ strong { font-weight: 600; }
 }
 
 .audience-list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding: 0 0 0 1.2rem;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1140,6 +1140,14 @@ strong { font-weight: 600; }
   font-size: 0.9rem;
   color: var(--muted);
   line-height: 1.5;
+}
+
+.audience-col--yes .audience-list li::marker {
+  color: var(--primary);
+}
+
+.audience-col--no .audience-list li::marker {
+  color: rgba(255,255,255,0.3);
 }
 
 /* ── FAQ ── */
