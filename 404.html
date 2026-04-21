@@ -200,9 +200,7 @@
   <div class="card" id="friendView" style="display: none;">
     <img src="/favicon.png" alt="Race Mind" class="logo">
     <h1 class="title"><span class="gradient-text">Race Mind</span></h1>
-    <p class="description">
-      Dein adaptiver Ausdauer-Coach f&uuml;r Langdistanz, Halbdistanz, Marathon und Halbmarathon &ndash; der sich deinem Leben anpasst, nicht umgekehrt.
-    </p>
+    <p class="description" id="description"></p>
 
     <div class="friend-code" id="friendCode"></div>
     <p class="hint" id="hint"></p>
@@ -210,15 +208,15 @@
     <div class="features">
       <div class="feature">
         <span class="feature-icon">&circlearrowright;</span>
-        <span><strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet &ndash; kein Nachholen, kein schlechtes Gewissen.</span>
+        <span id="feature1"></span>
       </div>
       <div class="feature">
         <span class="feature-icon">&varr;</span>
-        <span><strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ern&auml;hrung &ndash; per Chat erledigt.</span>
+        <span id="feature2"></span>
       </div>
       <div class="feature">
         <span class="feature-icon">&target;</span>
-        <span><strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist &ndash; die Prognose wird jede Woche genauer.</span>
+        <span id="feature3"></span>
       </div>
     </div>
 
@@ -243,14 +241,38 @@
   <!-- Generic 404 view (hidden by default) -->
   <div class="card" id="notFoundView" style="display: none;">
     <img src="/favicon.png" alt="Race Mind" class="logo">
-    <h1 class="title"><span class="gradient-text">Seite nicht gefunden</span></h1>
-    <p class="description">
-      Die Seite, die du suchst, existiert nicht.
-    </p>
-    <a href="/" class="back-link">Zur&uuml;ck zu race-mind.com</a>
+    <h1 class="title"><span class="gradient-text" id="notFoundTitle"></span></h1>
+    <p class="description" id="notFoundText"></p>
+    <a href="/" class="back-link" id="notFoundBack"></a>
   </div>
 
   <script>
+    var isDE = (navigator.language || '').toLowerCase().startsWith('de');
+
+    var t = isDE ? {
+      description: 'Dein adaptiver Ausdauer-Coach für Langdistanz, Halbdistanz, Marathon und Halbmarathon – der sich deinem Leben anpasst, nicht umgekehrt.',
+      feature1: '<strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet – kein Nachholen, kein schlechtes Gewissen.',
+      feature2: '<strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ernährung – per Chat erledigt.',
+      feature3: '<strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist – die Prognose wird jede Woche genauer.',
+      hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um {name} hinzuzufügen.',
+      hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.',
+      notFoundTitle: 'Seite nicht gefunden',
+      notFoundText: 'Die Seite, die du suchst, existiert nicht.',
+      notFoundBack: 'Zurück zu race-mind.com'
+    } : {
+      description: 'Your adaptive endurance coach for Ironman, 70.3, marathon and half marathon – built around your life, not the other way around.',
+      feature1: '<strong>Plan adapts:</strong> Missed a session? Your week gets recalculated – no catching up, no guilt.',
+      feature2: '<strong>Coach that acts:</strong> Reschedule workouts, comeback after illness, nutrition – handled via chat.',
+      feature3: '<strong>Goal time in sight:</strong> From day 1 you see if you\'re on track – the prediction gets more accurate every week.',
+      hintWithName: 'It looks like you don\'t have the app yet. Install Race Mind and tap the friend link again to add {name}.',
+      hintGeneric: 'It looks like you don\'t have the app yet. Install Race Mind and tap the friend link again to add your friend.',
+      notFoundTitle: 'Page not found',
+      notFoundText: 'The page you\'re looking for doesn\'t exist.',
+      notFoundBack: 'Back to race-mind.com'
+    };
+
+    document.documentElement.lang = isDE ? 'de' : 'en';
+
     var path = window.location.pathname;
     var parts = path.split('/').filter(Boolean);
     var friendIndex = parts.indexOf('friend');
@@ -261,17 +283,25 @@
       document.getElementById('friendCode').textContent = display;
       document.getElementById('friendView').style.display = '';
 
+      document.getElementById('description').textContent = t.description;
+      document.getElementById('feature1').innerHTML = t.feature1;
+      document.getElementById('feature2').innerHTML = t.feature2;
+      document.getElementById('feature3').innerHTML = t.feature3;
+
       var hintEl = document.getElementById('hint');
       var name = code.replace(/\d+$/, '');
       var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
       if (name) {
-        hintEl.textContent = 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um ' + capitalName + ' hinzuzufügen.';
+        hintEl.textContent = t.hintWithName.replace('{name}', capitalName);
       } else {
-        hintEl.textContent = 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.';
+        hintEl.textContent = t.hintGeneric;
       }
     } else {
       document.getElementById('notFoundView').style.display = '';
+      document.getElementById('notFoundTitle').textContent = t.notFoundTitle;
+      document.getElementById('notFoundText').textContent = t.notFoundText;
+      document.getElementById('notFoundBack').textContent = t.notFoundBack;
     }
   </script>
 </body>

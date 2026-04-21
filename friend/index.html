@@ -188,9 +188,7 @@
   <div class="card">
     <img src="../favicon.png" alt="Race Mind" class="logo">
     <h1 class="title"><span class="gradient-text">Race Mind</span></h1>
-    <p class="description">
-      Dein adaptiver Ausdauer-Coach f&uuml;r Langdistanz, Halbdistanz, Marathon und Halbmarathon &ndash; der sich deinem Leben anpasst, nicht umgekehrt.
-    </p>
+    <p class="description" id="description"></p>
 
     <div class="friend-code" id="friendCode"></div>
     <p class="hint" id="hint"></p>
@@ -198,15 +196,15 @@
     <div class="features">
       <div class="feature">
         <span class="feature-icon">&circlearrowright;</span>
-        <span><strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet &ndash; kein Nachholen, kein schlechtes Gewissen.</span>
+        <span id="feature1"></span>
       </div>
       <div class="feature">
         <span class="feature-icon">&varr;</span>
-        <span><strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ern&auml;hrung &ndash; per Chat erledigt.</span>
+        <span id="feature2"></span>
       </div>
       <div class="feature">
         <span class="feature-icon">&target;</span>
-        <span><strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist &ndash; die Prognose wird jede Woche genauer.</span>
+        <span id="feature3"></span>
       </div>
     </div>
 
@@ -229,6 +227,30 @@
   </div>
 
   <script>
+    var isDE = (navigator.language || '').toLowerCase().startsWith('de');
+
+    var t = isDE ? {
+      description: 'Dein adaptiver Ausdauer-Coach für Langdistanz, Halbdistanz, Marathon und Halbmarathon – der sich deinem Leben anpasst, nicht umgekehrt.',
+      feature1: '<strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet – kein Nachholen, kein schlechtes Gewissen.',
+      feature2: '<strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ernährung – per Chat erledigt.',
+      feature3: '<strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist – die Prognose wird jede Woche genauer.',
+      hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um {name} hinzuzufügen.',
+      hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.'
+    } : {
+      description: 'Your adaptive endurance coach for Ironman, 70.3, marathon and half marathon – built around your life, not the other way around.',
+      feature1: '<strong>Plan adapts:</strong> Missed a session? Your week gets recalculated – no catching up, no guilt.',
+      feature2: '<strong>Coach that acts:</strong> Reschedule workouts, comeback after illness, nutrition – handled via chat.',
+      feature3: '<strong>Goal time in sight:</strong> From day 1 you see if you’re on track – the prediction gets more accurate every week.',
+      hintWithName: 'It looks like you don’t have the app yet. Install Race Mind and tap the friend link again to add {name}.',
+      hintGeneric: 'It looks like you don’t have the app yet. Install Race Mind and tap the friend link again to add your friend.'
+    };
+
+    document.documentElement.lang = isDE ? 'de' : 'en';
+    document.getElementById('description').textContent = t.description;
+    document.getElementById('feature1').innerHTML = t.feature1;
+    document.getElementById('feature2').innerHTML = t.feature2;
+    document.getElementById('feature3').innerHTML = t.feature3;
+
     var parts = window.location.pathname.split('/').filter(Boolean);
     var codeIndex = parts.indexOf('friend');
     var code = codeIndex >= 0 && parts[codeIndex + 1] ? parts[codeIndex + 1] : '';
@@ -247,9 +269,9 @@
       var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
       if (name) {
-        hintEl.textContent = 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um ' + capitalName + ' hinzuzufügen.';
+        hintEl.textContent = t.hintWithName.replace('{name}', capitalName);
       } else {
-        hintEl.textContent = 'Anscheinend hast du die App noch nicht installiert. Installiere Race Mind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.';
+        hintEl.textContent = t.hintGeneric;
       }
     } else {
       el.style.display = 'none';
