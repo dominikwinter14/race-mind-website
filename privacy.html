@@ -247,7 +247,7 @@
         <li>The IP address is transmitted to the third-party service <strong>ipapi.co</strong> (Kloudend, Inc., USA) to derive your approximate location (latitude/longitude, city). The accuracy is typically at city or regional level, not at street level.</li>
         <li>The resulting coordinates are then sent to <strong>Open-Meteo</strong> (Switzerland) to retrieve the 7-day weather forecast. <strong>No IP address is transmitted to Open-Meteo</strong>; only the previously derived coordinates are sent.</li>
         <li>We do not store the IP address, the derived coordinates, or the city name persistently in our database. The data is processed exclusively at runtime during the weather lookup. In case of an error (e.g., when the geo lookup fails), the IP address may be temporarily logged in our error monitoring (Sentry, EU).</li>
-        <li>The weather forecast is loaded automatically when you open the weekly planning screen and is a convenience feature. It is not required to use the App. A separate option to disable the weather display within weekly planning is not currently provided; we are evaluating such an option for future versions.</li>
+        <li>The weather forecast is an optional convenience feature. You can disable it at any time under <strong>Settings &rarr; App &rarr; Weather forecast</strong>. When disabled, the Edge Function is not called and your IP address is not processed for geolocation.</li>
       </ul>
       <ul>
         <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR &ndash; Legitimate interest (providing relevant training context information such as precipitation and wind that supports your training decisions).</li>
