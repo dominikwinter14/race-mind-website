@@ -193,10 +193,11 @@
       <h2>6. Datenverarbeitung im Detail</h2>
 
       <h3>6.1 Trainingsplan-Generierung</h3>
-      <p>Deine Profil-, Leistungs-, Verf&uuml;gbarkeits- und &mdash; sofern angegeben &mdash; Verletzungsdaten werden an Google Gemini &uuml;bermittelt, um einen individualisierten Trainingsplan zu erstellen. Dabei werden:</p>
+      <p>Der Trainingsplan selbst (Wochenstruktur, Intensit&auml;tsverteilung, Belastungssteuerung) wird vollst&auml;ndig <strong>deterministisch auf unseren Servern</strong> berechnet &mdash; aus mathematischen Formeln, Schwellenwertmodellen und Belastungsverh&auml;ltnissen. Hierf&uuml;r kommt keine KI zum Einsatz.</p>
+      <p>F&uuml;r die <strong>begleitenden Coaching-Texte</strong> (z.&nbsp;B. Plan-Einleitung, Wochenbeschreibungen, motivierende Hinweise) &uuml;bermitteln wir relevante Profil- und Plan-Kontext-Daten an Google Gemini, um diese Texte personalisiert zu formulieren. Dabei werden:</p>
       <ul>
         <li><strong>Keine</strong> Klarnamen an Gemini gesendet (nur anonymisierte Nutzer-IDs)</li>
-        <li>Daten nur f&uuml;r die Planberechnung verwendet und nicht von Google f&uuml;r eigene Zwecke genutzt</li>
+        <li>Daten nur f&uuml;r die Text-Generierung verwendet und nicht von Google f&uuml;r eigene Zwecke genutzt</li>
         <li>Ergebnisse in unserer Datenbank (Supabase, EU) gespeichert</li>
       </ul>
 
@@ -222,9 +223,9 @@
       <p><strong>Wie die Daten verarbeitet werden:</strong></p>
       <ul>
         <li>Gesundheitsdaten werden direkt &uuml;ber die jeweiligen Plattform-APIs von Apple Health / Health Connect auf deinem Ger&auml;t ausgelesen</li>
-        <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (&uuml;bertragen Supabase, EU) und in der Tabelle <code>wellness_daily</code> gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
+        <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (Supabase, EU) &uuml;bertragen und in der Tabelle <code>wellness_daily</code> gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
         <li>Wenn du zus&auml;tzlich Intervals.icu verbunden hast, haben Gesundheitsdaten aus dieser Quelle Vorrang; Apple Health / Health Connect f&uuml;llt nur fehlende Werte auf</li>
-        <li>Apple-Health- / Health-Connect-Daten (HRV, Ruhepuls, Schlaf) werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder an KI-Dienste gesendet. Verletzungsangaben, die du beim Onboarding eingibst, k&ouml;nnen in die KI-gest&uuml;tzte Planerstellung einflie&szlig;en (siehe Abschnitt 6.1).</li>
+        <li>Die <strong>Rohwerte</strong> aus Apple Health / Health Connect (HRV, Ruhepuls, Schlafphasen) werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder direkt an KI-Dienste gesendet. Daraus berechnete Trainingskennzahlen (z.&nbsp;B. Schwellenwerte, Erholungsstatus) k&ouml;nnen in die KI-gest&uuml;tzte Coaching-Text-Erstellung einflie&szlig;en (siehe Abschnitt 6.1). Verletzungsangaben aus dem Onboarding k&ouml;nnen ebenfalls in diese Texte einflie&szlig;en.</li>
         <li>Bei der ersten Verbindung werden die letzten 14 Tage an Gesundheitsdaten nachgeholt, um eine stabile Baseline zu etablieren</li>
       </ul>
       <p>Die Verbindung mit Apple Health oder Health Connect ist <strong>vollst&auml;ndig freiwillig</strong>. Du kannst alle anderen Funktionen der App auch ohne nutzen. Du kannst die Verbindung jederzeit in der App unter Einstellungen &rarr; Verbindungen trennen, wodurch keine weiteren Daten synchronisiert werden. Bereits synchronisierte Daten bleiben in deinem Konto, bis du eine L&ouml;schung beantragst.</p>
@@ -247,7 +248,7 @@
         <li>Die IP-Adresse wird an den Drittanbieter <strong>ipapi.co</strong> (Kloudend, Inc., USA) &uuml;bermittelt, um daraus den ungef&auml;hren Standort (L&auml;nge/Breite, Stadt) abzuleiten. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
         <li>Die so ermittelten Koordinaten werden anschlie&szlig;end an <strong>Open-Meteo</strong> (Schweiz) gesendet, um die 7-Tage-Wettervorschau abzurufen. <strong>An Open-Meteo wird keine IP-Adresse &uuml;bermittelt</strong>, sondern ausschlie&szlig;lich die zuvor ermittelten Koordinaten.</li>
         <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen persistent in unserer Datenbank. Die Daten werden ausschlie&szlig;lich w&auml;hrend des Wetter-Abrufs zur Laufzeit verarbeitet. Im Fehlerfall (z.&nbsp;B. wenn der Geo-Lookup fehlschl&auml;gt) kann die IP-Adresse in unserem Fehler-Monitoring (Sentry, EU) tempor&auml;r geloggt werden.</li>
-        <li>Die Wettervorschau ist eine Komfortfunktion und f&uuml;r die Nutzung der App nicht erforderlich. Wenn du keine Wetteranzeige w&uuml;nschst, kannst du den Aufruf vermeiden, indem du die Wochenplanung nicht &ouml;ffnest, oder uns kontaktieren, damit wir dich von dieser Verarbeitung ausnehmen.</li>
+        <li>Die Wettervorschau wird automatisch beim &Ouml;ffnen der Wochenplanung geladen und ist eine Komfortfunktion. Sie ist f&uuml;r die Nutzung der App nicht erforderlich. Eine separate Deaktivierung der Wetteranzeige innerhalb der Wochenplanung ist derzeit nicht vorgesehen; eine entsprechende Option pr&uuml;fen wir f&uuml;r zuk&uuml;nftige Versionen.</li>
       </ul>
       <ul>
         <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO &ndash; Berechtigtes Interesse (Bereitstellung relevanter Trainingskontext-Informationen wie Niederschlag und Wind, die deine Trainingsentscheidungen unterst&uuml;tzen).</li>

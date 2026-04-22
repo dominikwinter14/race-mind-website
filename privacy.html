@@ -22,9 +22,9 @@
         <img src="logo-full.svg" class="logo-svg" alt="Race Mind">
       </a>
       <div class="nav-links">
-        <a href="index.html#features">Features</a>
-        <a href="index.html#how-it-works">So funktioniert's</a>
-        <a href="index.html#download" class="btn btn-sm">Jetzt starten</a>
+        <a href="index-en.html#features">Features</a>
+        <a href="index-en.html#how-it-works">How it works</a>
+        <a href="index-en.html#download" class="btn btn-sm">Get Started</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -193,10 +193,11 @@
       <h2>6. Data Processing in Detail</h2>
 
       <h3>6.1 Training Plan Generation</h3>
-      <p>Your profile, performance, availability, and &mdash; if provided &mdash; injury data are sent to Google Gemini to create an individualized training plan. In this process:</p>
+      <p>The training plan itself (weekly structure, intensity distribution, load management) is calculated entirely <strong>deterministically on our servers</strong> &mdash; using mathematical formulas, threshold models, and load ratios. No AI is involved in this calculation.</p>
+      <p>For the <strong>accompanying coaching texts</strong> (e.g., plan introduction, week descriptions, motivational notes), we send relevant profile and plan-context data to Google Gemini to phrase these texts in a personalized way. In this process:</p>
       <ul>
         <li><strong>No</strong> real names are sent to Gemini (only anonymized user IDs)</li>
-        <li>Data is used solely for plan calculation and is not used by Google for its own purposes</li>
+        <li>Data is used solely for text generation and is not used by Google for its own purposes</li>
         <li>Results are stored in our database (Supabase, EU)</li>
       </ul>
 
@@ -224,7 +225,7 @@
         <li>Health data is read directly from Apple Health / Health Connect on your device via the respective platform APIs</li>
         <li>Daily summaries (HRV, resting HR, sleep duration) are transmitted to our database (Supabase, EU) and stored in the <code>wellness_daily</code> table, linked to your user ID</li>
         <li>If you also have Intervals.icu connected, health data from that source takes priority; Apple Health / Health Connect data only fills in missing values</li>
-        <li>Apple Health / Health Connect data (HRV, resting heart rate, sleep) is <strong>never</strong> shared with third parties, used for advertising, or sent to AI services. Injury information you enter during onboarding may be included in AI-based plan generation (see Section 6.1).</li>
+        <li>The <strong>raw values</strong> from Apple Health / Health Connect (HRV, resting heart rate, sleep stages) are <strong>never</strong> shared with third parties, used for advertising, or sent directly to AI services. Training metrics derived from them (e.g., thresholds, recovery status) may be included in AI-based coaching text generation (see Section 6.1). Injury information you enter during onboarding may also be included in those texts.</li>
         <li>On first connection, the App backfills the last 14 days of health data to establish a stable baseline</li>
       </ul>
       <p>Connecting Apple Health or Health Connect is <strong>entirely optional</strong>. You can use all other features of the App without it. You can disconnect at any time in the App under Settings &rarr; Connections, which stops further data synchronization. Previously synced data remains in your account until you request deletion.</p>
@@ -246,7 +247,7 @@
         <li>The IP address is transmitted to the third-party service <strong>ipapi.co</strong> (Kloudend, Inc., USA) to derive your approximate location (latitude/longitude, city). The accuracy is typically at city or regional level, not at street level.</li>
         <li>The resulting coordinates are then sent to <strong>Open-Meteo</strong> (Switzerland) to retrieve the 7-day weather forecast. <strong>No IP address is transmitted to Open-Meteo</strong>; only the previously derived coordinates are sent.</li>
         <li>We do not store the IP address, the derived coordinates, or the city name persistently in our database. The data is processed exclusively at runtime during the weather lookup. In case of an error (e.g., when the geo lookup fails), the IP address may be temporarily logged in our error monitoring (Sentry, EU).</li>
-        <li>The weather forecast is a convenience feature and is not required to use the App. If you do not wish to have the weather displayed, you can avoid the lookup by not opening the weekly planning screen, or contact us to be excluded from this processing.</li>
+        <li>The weather forecast is loaded automatically when you open the weekly planning screen and is a convenience feature. It is not required to use the App. A separate option to disable the weather display within weekly planning is not currently provided; we are evaluating such an option for future versions.</li>
       </ul>
       <ul>
         <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR &ndash; Legitimate interest (providing relevant training context information such as precipitation and wind that supports your training decisions).</li>
@@ -370,11 +371,11 @@
         </a>
       </div>
       <div class="footer-links">
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="index.html#contact">Kontakt</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="impressum.html">Imprint</a>
+        <a href="index-en.html#contact">Contact</a>
       </div>
-      <p class="footer-copy">&copy; 2026 Race Mind. Alle Rechte vorbehalten.</p>
+      <p class="footer-copy">&copy; 2026 Race Mind. All rights reserved.</p>
     </div>
   </footer>
 
