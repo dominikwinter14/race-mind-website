@@ -326,9 +326,10 @@ strong { font-weight: 600; }
 
 .hero-cta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .hero-price {
@@ -1064,6 +1065,40 @@ strong { font-weight: 600; }
 .download-note {
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+/* ── Store Buttons ── */
+
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.store-btn:hover { opacity: 0.85; }
+
+.store-btn--ios {
+  background: var(--foreground);
+  color: var(--bg);
+}
+
+.store-btn--android {
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.store-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 /* ── Audience ── */
