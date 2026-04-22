@@ -105,7 +105,7 @@
           <tr><td><strong>Technische Daten</strong></td><td>Ger&auml;tetyp, Betriebssystem, App-Version, Fehlerberichte (Crash-Logs via Sentry)</td></tr>
           <tr><td><strong>Nutzungsdaten</strong></td><td>Zeitpunkt der App-Nutzung, Onboarding-Fortschritt</td></tr>
           <tr><td><strong>Anonyme Sitzung</strong></td><td>Bei App-Start wird eine anonyme Sitzungs-ID erzeugt (ohne pers&ouml;nliche Identifikation)</td></tr>
-          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>Beim Aufruf der Wochenplanung wird deine IP-Adresse zur Ableitung des ungef&auml;hren Standorts (Stadt-/Regionsebene) f&uuml;r die Anzeige der lokalen Wettervorschau verwendet. Die IP-Adresse wird nicht persistent in unserer Datenbank gespeichert. Details siehe Abschnitt 6.7.</td></tr>
+          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>Beim Aufruf der Wochenplanung wird deine IP-Adresse <strong>ausschlie&szlig;lich auf unserem Server</strong> mithilfe der lokalen MaxMind GeoLite2-Datenbank in einen ungef&auml;hren Standort (Stadt-/Regionsebene) umgerechnet. Die IP-Adresse wird nicht an Dritte &uuml;bermittelt und nicht persistent gespeichert. Details siehe Abschnitt 6.7.</td></tr>
         </tbody>
       </table>
 
@@ -179,7 +179,6 @@
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Fehler- und Crash-Monitoring der App</td><td>EU (Frankfurt)</td><td>EU-Hosting (Sentry EU/Frankfurt), Auftragsverarbeitungsvertrag (DPA), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain-Registrierung und DNS f&uuml;r race-mind.com</td><td>Deutschland</td><td>Auftragsverarbeitungsvertrag (AVV), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push-Notification-Zustellung (Relay zu Apple APNs und Google FCM)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>ipapi.co (Kloudend, Inc.)</strong></td><td>Geolokalisierung aus IP-Adresse zur Anzeige der lokalen Wettervorschau in der Wochenplanung</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs); IP wird ausschlie&szlig;lich f&uuml;r den Lookup &uuml;bermittelt und nicht persistent gespeichert</td></tr>
           <tr><td><strong>Open-Meteo</strong></td><td>Abruf der 7-Tage-Wettervorschau anhand grober Koordinaten (ohne IP-&Uuml;bermittlung)</td><td>Schweiz</td><td>Angemessenheitsbeschluss der EU-Kommission f&uuml;r die Schweiz; Open-Source-Wetterdienst (CC-BY 4.0)</td></tr>
         </tbody>
       </table>
@@ -245,9 +244,9 @@
       <p>Im Bildschirm der Wochenplanung zeigen wir dir eine 7-Tage-Wettervorschau f&uuml;r deinen ungef&auml;hren Standort, damit du dein Training entsprechend planen kannst. Daf&uuml;r verarbeiten wir Standortdaten auf Stadt-/Regionsebene:</p>
       <ul>
         <li>Beim &Ouml;ffnen des Wochenplanungs-Bildschirms ruft die App eine Edge-Function auf unserem Server (Supabase, EU) auf. Die Edge-Function liest die <strong>IP-Adresse</strong> aus dem eingehenden HTTP-Request.</li>
-        <li>Die IP-Adresse wird an den Drittanbieter <strong>ipapi.co</strong> (Kloudend, Inc., USA) &uuml;bermittelt, um daraus den ungef&auml;hren Standort (L&auml;nge/Breite, Stadt) abzuleiten. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
-        <li>Die so ermittelten Koordinaten werden anschlie&szlig;end an <strong>Open-Meteo</strong> (Schweiz) gesendet, um die 7-Tage-Wettervorschau abzurufen. <strong>An Open-Meteo wird keine IP-Adresse &uuml;bermittelt</strong>, sondern ausschlie&szlig;lich die zuvor ermittelten Koordinaten.</li>
-        <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen persistent in unserer Datenbank. Die Daten werden ausschlie&szlig;lich w&auml;hrend des Wetter-Abrufs zur Laufzeit verarbeitet. Im Fehlerfall (z.&nbsp;B. wenn der Geo-Lookup fehlschl&auml;gt) kann die IP-Adresse in unserem Fehler-Monitoring (Sentry, EU) tempor&auml;r geloggt werden.</li>
+        <li>Die IP-Adresse wird <strong>ausschlie&szlig;lich auf unserem Server verarbeitet</strong>: wir leiten daraus den ungef&auml;hren Standort (L&auml;nge/Breite, Stadt) ab, und zwar mithilfe der lokal vorgehaltenen <strong>MaxMind GeoLite2-Datenbank</strong>. Die IP-Adresse verl&auml;sst dabei zu keinem Zeitpunkt unsere Infrastruktur und wird an keinen Dritten &uuml;bermittelt. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
+        <li>Die so ermittelten Koordinaten werden an <strong>Open-Meteo</strong> (Schweiz) gesendet, um die 7-Tage-Wettervorschau abzurufen. An Open-Meteo wird keine IP-Adresse &uuml;bermittelt, sondern ausschlie&szlig;lich die zuvor ermittelten Koordinaten.</li>
+        <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen persistent in unserer Datenbank. Die Daten werden ausschlie&szlig;lich w&auml;hrend des Wetter-Abrufs zur Laufzeit verarbeitet. Im Fehlerfall (z.&nbsp;B. wenn die Edge-Function einen Fehler protokolliert) kann die IP-Adresse in unserem Fehler-Monitoring (Sentry, EU) tempor&auml;r geloggt werden.</li>
         <li>Die Wettervorschau ist eine optionale Komfortfunktion. Du kannst sie jederzeit unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> deaktivieren. Bei deaktivierter Wettervorschau wird die Edge-Function nicht aufgerufen, deine IP-Adresse wird also nicht zur Geolokalisierung verarbeitet.</li>
       </ul>
       <ul>
