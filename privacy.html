@@ -105,6 +105,7 @@
           <tr><td><strong>Technical data</strong></td><td>Device type, operating system, app version, error reports (crash logs via Sentry)</td></tr>
           <tr><td><strong>Usage data</strong></td><td>Timestamps of app usage, onboarding progress</td></tr>
           <tr><td><strong>Anonymous session</strong></td><td>An anonymous session ID is created at app launch (no personal identification)</td></tr>
+          <tr><td><strong>Approximate location data</strong></td><td>When you open the weekly planning screen, your IP address is used to derive your approximate location (city/region level) for displaying the local weather forecast. The IP address is not stored persistently in our database. See Section 6.7 for details.</td></tr>
         </tbody>
       </table>
 
@@ -150,6 +151,7 @@
           -->
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
           <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
+          <tr><td>Display of weather forecast in weekly planning (IP-based geolocation)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (providing relevant training context information)</td></tr>
         </tbody>
       </table>
       <p>Your consent for processing health data is obtained as a mandatory step during onboarding. Since the App&rsquo;s core functionality (training planning, analysis, injury management) requires processing health-related data, consent is a prerequisite for using the App.</p>
@@ -177,6 +179,8 @@
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain registration and DNS for race-mind.com</td><td>Germany</td><td>Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push notification delivery (relay to Apple APNs and Google FCM)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <tr><td><strong>ipapi.co (Kloudend, Inc.)</strong></td><td>IP-based geolocation for displaying the local weather forecast in weekly planning</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs); IP is transmitted only for the lookup and not stored persistently</td></tr>
+          <tr><td><strong>Open-Meteo</strong></td><td>Retrieval of the 7-day weather forecast based on coarse coordinates (no IP transmission)</td><td>Switzerland</td><td>EU Commission adequacy decision for Switzerland; open-source weather service (CC-BY 4.0)</td></tr>
         </tbody>
       </table>
 
@@ -234,6 +238,19 @@
 
       <h3>6.6 Anonymous Usage and Account Linking</h3>
       <p>When you start the App, an <strong>anonymous session</strong> is created. You can initially use the App without personal registration. After onboarding, we recommend linking your account with Apple, Google, or email to enable data recovery on device changes.</p>
+
+      <h3>6.7 Weather Forecast in Weekly Planning</h3>
+      <p>On the weekly planning screen, we display a 7-day weather forecast for your approximate location to help you plan your training accordingly. For this, we process location data at city/region level:</p>
+      <ul>
+        <li>When you open the weekly planning screen, the App calls an Edge Function on our server (Supabase, EU). The Edge Function reads the <strong>IP address</strong> from the incoming HTTP request.</li>
+        <li>The IP address is transmitted to the third-party service <strong>ipapi.co</strong> (Kloudend, Inc., USA) to derive your approximate location (latitude/longitude, city). The accuracy is typically at city or regional level, not at street level.</li>
+        <li>The resulting coordinates are then sent to <strong>Open-Meteo</strong> (Switzerland) to retrieve the 7-day weather forecast. <strong>No IP address is transmitted to Open-Meteo</strong>; only the previously derived coordinates are sent.</li>
+        <li>We do not store the IP address, the derived coordinates, or the city name persistently in our database. The data is processed exclusively at runtime during the weather lookup. In case of an error (e.g., when the geo lookup fails), the IP address may be temporarily logged in our error monitoring (Sentry, EU).</li>
+        <li>The weather forecast is a convenience feature and is not required to use the App. If you do not wish to have the weather displayed, you can avoid the lookup by not opening the weekly planning screen, or contact us to be excluded from this processing.</li>
+      </ul>
+      <ul>
+        <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR &ndash; Legitimate interest (providing relevant training context information such as precipitation and wind that supports your training decisions).</li>
+      </ul>
 
       <hr>
 
