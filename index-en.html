@@ -14,11 +14,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    #features .container { max-width: 900px; }
     .feature-row { align-items: center; grid-template-columns: 1fr auto; gap: 2rem; }
     .feature-row--reverse { direction: ltr; grid-template-columns: auto 1fr; }
     .feature-row--reverse .feature-text { grid-column: 2; grid-row: 1; }
     .feature-row--reverse .feature-mockup { grid-column: 1; grid-row: 1; }
     .feature-row .mockup-img { max-width: 320px; }
+    @media (max-width: 768px) {
+      .feature-row { grid-template-columns: 1fr !important; }
+      .feature-row .feature-text,
+      .feature-row--reverse .feature-text { max-width: 100%; margin-left: 0; grid-column: auto; grid-row: auto; }
+      .feature-row .feature-mockup,
+      .feature-row--reverse .feature-mockup { grid-column: auto; grid-row: auto; justify-content: center; }
+    }
   </style>
 </head>
 <body>
