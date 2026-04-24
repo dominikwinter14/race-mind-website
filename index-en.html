@@ -13,6 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .feature-row { align-items: center; grid-template-columns: 1fr auto; gap: 2rem; }
+    .feature-row--reverse { direction: ltr; grid-template-columns: auto 1fr; }
+    .feature-row--reverse .feature-text { grid-column: 2; grid-row: 1; }
+    .feature-row--reverse .feature-mockup { grid-column: 1; grid-row: 1; }
+    .feature-row .mockup-img { max-width: 320px; }
+  </style>
 </head>
 <body>
 
@@ -139,7 +146,7 @@
   <section class="section section--core">
     <div class="container grid-2col">
       <div class="feature-mockup reveal">
-        <img src="images/mockup-plan-flow.webp" class="mockup-img mockup-img--wide" alt="Weekly planning and mesocycle overview">
+        <img src="images/mockup-readiness-en.webp" class="mockup-img" style="max-width:320px" alt="Training Readiness with rest day recommendation">
       </div>
       <div class="text-block reveal">
         <h2>Your life isn&rsquo;t linear &ndash; <span class="gradient-text">why should your training be?</span></h2>
@@ -182,7 +189,7 @@
           </ul>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-chat-dual.webp" class="mockup-img mockup-img--wide" alt="Coach Chat with plan control and quick actions">
+          <img src="images/mockup-coach-en.webp" class="mockup-img" style="max-width:320px" alt="Coach Kona chat with quick actions">
         </div>
       </div>
 
@@ -198,7 +205,7 @@
           </ul>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-analysis.webp" class="mockup-img mockup-img--wide" alt="Training analysis with context and recommendations">
+          <img src="images/mockup-analysis-en.webp" class="mockup-img" style="max-width:320px" alt="Training analysis with coach summary">
         </div>
       </div>
 
@@ -215,7 +222,7 @@
           </ul>
         </div>
         <div class="feature-mockup">
-          <img src="images/mockup-overview.webp" class="mockup-img mockup-img--wide" alt="Race Control with race time prediction and dashboard">
+          <img src="images/mockup-nutrition-en.webp" class="mockup-img" style="max-width:320px" alt="Session detail with nutrition and coach tip">
         </div>
       </div>
 
