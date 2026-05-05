@@ -249,23 +249,46 @@
   <script>
     var isDE = (navigator.language || '').toLowerCase().startsWith('de');
 
+    // Two distinct deep-link landing flavors share the same card layout but
+    // different copy. /friend/<code> = befriend, /r/<code> = pure referral
+    // bonus. The branch is decided by whichever path segment we find.
     var t = isDE ? {
-      description: 'Dein adaptiver Ausdauer-Coach für Langdistanz, Halbdistanz, Marathon und Halbmarathon – der sich deinem Leben anpasst, nicht umgekehrt.',
-      feature1: '<strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet – kein Nachholen, kein schlechtes Gewissen.',
-      feature2: '<strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ernährung – per Chat erledigt.',
-      feature3: '<strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist – die Prognose wird jede Woche genauer.',
-      hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um {name} hinzuzufügen.',
-      hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.',
+      friend: {
+        description: 'Dein adaptiver Ausdauer-Coach für Langdistanz, Halbdistanz, Marathon und Halbmarathon – der sich deinem Leben anpasst, nicht umgekehrt.',
+        feature1: '<strong>Plan passt sich an:</strong> Einheit verpasst? Deine Woche wird neu gerechnet – kein Nachholen, kein schlechtes Gewissen.',
+        feature2: '<strong>Coach, der handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Ernährung – per Chat erledigt.',
+        feature3: '<strong>Zielzeit im Blick:</strong> Ab Tag 1 siehst du, ob du auf Kurs bist – die Prognose wird jede Woche genauer.',
+        hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um {name} hinzuzufügen.',
+        hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.'
+      },
+      referral: {
+        description: 'Du wurdest empfohlen — lade RaceMind und schließe Premium ab. Nach 6 Monaten Abo bekommst du 1 Monat gratis. Dein Empfehlender auch.',
+        feature1: '<strong>1 Monat Premium gratis</strong> nach 6 Monaten Abo — automatisch deiner Subscription gutgeschrieben.',
+        feature2: '<strong>Auch dein Empfehlender</strong> bekommt 1 Monat geschenkt — ihr profitiert beide.',
+        feature3: '<strong>Kein Code-Tippen nötig</strong> — installier die App und der Code wird automatisch angewendet.',
+        hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus von {name} zu aktivieren.',
+        hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
+      },
       notFoundTitle: 'Seite nicht gefunden',
       notFoundText: 'Die Seite, die du suchst, existiert nicht.',
       notFoundBack: 'Zurück zu race-mind.com'
     } : {
-      description: 'Your adaptive endurance coach for Ironman, 70.3, marathon and half marathon – built around your life, not the other way around.',
-      feature1: '<strong>Plan adapts:</strong> Missed a session? Your week gets recalculated – no catching up, no guilt.',
-      feature2: '<strong>Coach that acts:</strong> Reschedule workouts, comeback after illness, nutrition – handled via chat.',
-      feature3: '<strong>Goal time in sight:</strong> From day 1 you see if you\'re on track – the prediction gets more accurate every week.',
-      hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add {name}.',
-      hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add your friend.',
+      friend: {
+        description: 'Your adaptive endurance coach for Ironman, 70.3, marathon and half marathon – built around your life, not the other way around.',
+        feature1: '<strong>Plan adapts:</strong> Missed a session? Your week gets recalculated – no catching up, no guilt.',
+        feature2: '<strong>Coach that acts:</strong> Reschedule workouts, comeback after illness, nutrition – handled via chat.',
+        feature3: '<strong>Goal time in sight:</strong> From day 1 you see if you\'re on track – the prediction gets more accurate every week.',
+        hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add {name}.',
+        hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add your friend.'
+      },
+      referral: {
+        description: 'You were referred — install RaceMind and start a Premium subscription. After 6 months on a paid plan, you get 1 free month. Your referrer too.',
+        feature1: '<strong>1 free month of Premium</strong> after 6 months on a paid plan — added to your subscription automatically.',
+        feature2: '<strong>Your referrer</strong> also gets 1 free month — you both benefit.',
+        feature3: '<strong>No code to type</strong> — install the app and the code is applied automatically.',
+        hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate {name}\'s bonus.',
+        hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
+      },
       notFoundTitle: 'Page not found',
       notFoundText: 'The page you\'re looking for doesn\'t exist.',
       notFoundBack: 'Back to race-mind.com'
@@ -276,26 +299,36 @@
     var path = window.location.pathname;
     var parts = path.split('/').filter(Boolean);
     var friendIndex = parts.indexOf('friend');
+    var rIndex = parts.indexOf('r');
 
+    var subset = null;
+    var code = '';
     if (friendIndex >= 0 && parts[friendIndex + 1]) {
-      var code = parts[friendIndex + 1];
+      subset = t.friend;
+      code = parts[friendIndex + 1];
+    } else if (rIndex >= 0 && parts[rIndex + 1]) {
+      subset = t.referral;
+      code = parts[rIndex + 1];
+    }
+
+    if (subset) {
       var display = code.replace(/(\d+)$/, '#$1');
       document.getElementById('friendCode').textContent = display;
       document.getElementById('friendView').style.display = '';
 
-      document.getElementById('description').textContent = t.description;
-      document.getElementById('feature1').innerHTML = t.feature1;
-      document.getElementById('feature2').innerHTML = t.feature2;
-      document.getElementById('feature3').innerHTML = t.feature3;
+      document.getElementById('description').textContent = subset.description;
+      document.getElementById('feature1').innerHTML = subset.feature1;
+      document.getElementById('feature2').innerHTML = subset.feature2;
+      document.getElementById('feature3').innerHTML = subset.feature3;
 
       var hintEl = document.getElementById('hint');
       var name = code.replace(/\d+$/, '');
       var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
       if (name) {
-        hintEl.textContent = t.hintWithName.replace('{name}', capitalName);
+        hintEl.textContent = subset.hintWithName.replace('{name}', capitalName);
       } else {
-        hintEl.textContent = t.hintGeneric;
+        hintEl.textContent = subset.hintGeneric;
       }
     } else {
       document.getElementById('notFoundView').style.display = '';
