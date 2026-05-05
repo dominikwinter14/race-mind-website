@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; 1 Monat Premium geschenkt</title>
+  <meta name="description" content="Lade RaceMind, schließe Premium ab — und du bekommst 1 Monat gratis nach 6 Monaten. Dein Empfehlender auch.">
+  <link rel="canonical" href="https://race-mind.com/r/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #FF8A00;
+      --primary-dark: #FF6B00;
+      --secondary: #00D1FF;
+      --bg: #050505;
+      --surface: #111111;
+      --card: #1A1C1E;
+      --muted: #949494;
+      --foreground: #FFFFFF;
+      --radius: 1rem;
+    }
+
+    body {
+      font-family: 'Lexend Deca', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      max-width: 420px;
+      width: 100%;
+      margin: 1.5rem;
+      padding: 2rem 1.5rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .friend-code {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      padding: 1rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--primary);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      padding: 0 0.25rem;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.4;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 18px;
+      text-align: center;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .feature strong {
+      font-weight: 500;
+      color: var(--foreground);
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      margin-bottom: 1.5rem;
+    }
+
+    .store-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .store-btn:hover { opacity: 0.85; }
+
+    .store-btn--ios {
+      background: var(--foreground);
+      color: var(--bg);
+    }
+
+    .store-btn--android {
+      background: var(--surface);
+      color: var(--foreground);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .store-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .footer-text {
+      margin-top: 1.25rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .footer-text a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="../favicon.png" alt="RaceMind" class="logo">
+    <h1 class="title"><span class="gradient-text">RaceMind</span></h1>
+    <p class="description" id="description"></p>
+
+    <div class="friend-code" id="friendCode"></div>
+    <p class="hint" id="hint"></p>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">&#10003;</span>
+        <span id="feature1"></span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">&#10003;</span>
+        <span id="feature2"></span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">&#10003;</span>
+        <span id="feature3"></span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+        Google Play
+      </a>
+    </div>
+
+    <p class="footer-text">
+      <a href="/">race-mind.com</a>
+    </p>
+  </div>
+
+  <script>
+    var isDE = (navigator.language || '').toLowerCase().startsWith('de');
+
+    var t = isDE ? {
+      description: 'Du wurdest empfohlen — lade RaceMind und schließe Premium ab. Nach 6 Monaten Abo bekommst du 1 Monat gratis. Dein Empfehlender auch.',
+      feature1: '<strong>1 Monat Premium gratis</strong> nach 6 Monaten Abo — automatisch deiner Subscription gutgeschrieben.',
+      feature2: '<strong>Auch dein Empfehlender</strong> bekommt 1 Monat geschenkt — ihr profitiert beide.',
+      feature3: '<strong>Kein Code-Tippen nötig</strong> — installier die App und der Code wird automatisch angewendet.',
+      hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus von {name} zu aktivieren.',
+      hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
+    } : {
+      description: 'You were referred — install RaceMind and start a Premium subscription. After 6 months on a paid plan, you get 1 free month. Your referrer too.',
+      feature1: '<strong>1 free month of Premium</strong> after 6 months on a paid plan — added to your subscription automatically.',
+      feature2: '<strong>Your referrer</strong> also gets 1 free month — you both benefit.',
+      feature3: '<strong>No code to type</strong> — install the app and the code is applied automatically.',
+      hintWithName: 'It looks like you don’t have the app yet. Install RaceMind and tap the referral link again to activate {name}\'s bonus.',
+      hintGeneric: 'It looks like you don’t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
+    };
+
+    document.documentElement.lang = isDE ? 'de' : 'en';
+    document.getElementById('description').textContent = t.description;
+    document.getElementById('feature1').innerHTML = t.feature1;
+    document.getElementById('feature2').innerHTML = t.feature2;
+    document.getElementById('feature3').innerHTML = t.feature3;
+
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var codeIndex = parts.indexOf('r');
+    var code = codeIndex >= 0 && parts[codeIndex + 1] ? parts[codeIndex + 1] : '';
+    if (!code) {
+      code = new URLSearchParams(window.location.search).get('code') || '';
+    }
+
+    var el = document.getElementById('friendCode');
+    var hintEl = document.getElementById('hint');
+
+    if (code) {
+      var display = code.replace(/(\d+)$/, '#$1');
+      el.textContent = display;
+
+      var name = code.replace(/\d+$/, '');
+      var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
+
+      if (name) {
+        hintEl.textContent = t.hintWithName.replace('{name}', capitalName);
+      } else {
+        hintEl.textContent = t.hintGeneric;
+      }
+    } else {
+      el.style.display = 'none';
+      hintEl.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
