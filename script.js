@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════
-   Race Mind – Landing Page Scripts
+   RaceMind – Landing Page Scripts
    ══════════════════════════════════════ */
 
 (function () {
