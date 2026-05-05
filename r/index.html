@@ -202,10 +202,6 @@
         <span class="feature-icon">&#10003;</span>
         <span id="feature2"></span>
       </div>
-      <div class="feature">
-        <span class="feature-icon">&#10003;</span>
-        <span id="feature3"></span>
-      </div>
     </div>
 
     <div class="divider"></div>
@@ -233,14 +229,12 @@
       description: 'Du wurdest empfohlen — lade RaceMind und schließe Premium ab. Nach 6 Monaten Abo bekommst du 1 Monat gratis. Dein Empfehlender auch.',
       feature1: '<strong>1 Monat Premium gratis</strong> nach 6 Monaten Abo — automatisch deiner Subscription gutgeschrieben.',
       feature2: '<strong>Auch dein Empfehlender</strong> bekommt 1 Monat geschenkt — ihr profitiert beide.',
-      feature3: '<strong>Kein Code-Tippen nötig</strong> — installier die App und der Code wird automatisch angewendet.',
       hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus von {name} zu aktivieren.',
       hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
     } : {
       description: 'You were referred — install RaceMind and start a Premium subscription. After 6 months on a paid plan, you get 1 free month. Your referrer too.',
       feature1: '<strong>1 free month of Premium</strong> after 6 months on a paid plan — added to your subscription automatically.',
       feature2: '<strong>Your referrer</strong> also gets 1 free month — you both benefit.',
-      feature3: '<strong>No code to type</strong> — install the app and the code is applied automatically.',
       hintWithName: 'It looks like you don’t have the app yet. Install RaceMind and tap the referral link again to activate {name}\'s bonus.',
       hintGeneric: 'It looks like you don’t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
     };
@@ -249,7 +243,6 @@
     document.getElementById('description').textContent = t.description;
     document.getElementById('feature1').innerHTML = t.feature1;
     document.getElementById('feature2').innerHTML = t.feature2;
-    document.getElementById('feature3').innerHTML = t.feature3;
 
     var parts = window.location.pathname.split('/').filter(Boolean);
     var codeIndex = parts.indexOf('r');
