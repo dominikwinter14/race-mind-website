@@ -166,6 +166,26 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .open-app-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      margin-bottom: 0.75rem;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--primary);
+      color: var(--bg);
+      transition: opacity 0.2s;
+    }
+
+    .open-app-btn:hover { opacity: 0.85; }
+
     .store-icon {
       width: 22px;
       height: 22px;
@@ -222,6 +242,8 @@
 
     <div class="divider"></div>
 
+    <a id="openAppBtn" class="open-app-btn" href="#"></a>
+
     <div class="store-buttons">
       <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
         <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -268,6 +290,7 @@
         hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus von {name} zu aktivieren.',
         hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
       },
+      openApp: 'App öffnen',
       notFoundTitle: 'Seite nicht gefunden',
       notFoundText: 'Die Seite, die du suchst, existiert nicht.',
       notFoundBack: 'Zurück zu race-mind.com'
@@ -287,6 +310,7 @@
         hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate {name}\'s bonus.',
         hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
       },
+      openApp: 'Open in app',
       notFoundTitle: 'Page not found',
       notFoundText: 'The page you\'re looking for doesn\'t exist.',
       notFoundBack: 'Back to race-mind.com'
@@ -301,12 +325,15 @@
 
     var subset = null;
     var code = '';
+    var deepLinkSegment = '';
     if (friendIndex >= 0 && parts[friendIndex + 1]) {
       subset = t.friend;
       code = parts[friendIndex + 1];
+      deepLinkSegment = 'friend';
     } else if (rIndex >= 0 && parts[rIndex + 1]) {
       subset = t.referral;
       code = parts[rIndex + 1];
+      deepLinkSegment = 'r';
     }
 
     if (subset) {
@@ -333,6 +360,21 @@
         hintEl.textContent = subset.hintWithName.replace('{name}', capitalName);
       } else {
         hintEl.textContent = subset.hintGeneric;
+      }
+
+      // "Open in app" escape hatch for users on a device that has the app
+      // but where iOS hasn't refreshed the AASA cache yet (in-place update,
+      // not a fresh install). Triple-slash so the path passed to
+      // +native-intent.tsx starts with `/r/` or `/friend/` and matches the
+      // existing path.includes() checks. Mobile UA only — desktop users would
+      // get a "Cannot Open Page" dialog.
+      var ua = navigator.userAgent || '';
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+      if (isMobile) {
+        var openBtn = document.getElementById('openAppBtn');
+        openBtn.href = 'racemind:///' + deepLinkSegment + '/' + encodeURIComponent(code);
+        openBtn.textContent = t.openApp;
+        openBtn.style.display = 'flex';
       }
     } else {
       document.getElementById('notFoundView').style.display = '';
