@@ -4,7 +4,7 @@
     "details": [
       {
         "appIDs": ["FWDHP49G44.de.racemind.app"],
-        "paths": ["/friend/*"]
+        "paths": ["/friend/*", "/r/*"]
       }
     ]
   },
