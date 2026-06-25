@@ -181,11 +181,24 @@ strong { font-weight: 600; }
 
 .nav-links a {
   font-size: 0.875rem;
-  color: var(--muted);
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.btn) {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nav-links a:not(.btn):hover {
+  color: #fff;
+}
+
+.nav.scrolled .nav-links a:not(.btn) {
+  color: var(--muted);
+  text-shadow: none;
+}
+
+.nav.scrolled .nav-links a:not(.btn):hover {
   color: var(--foreground);
 }
 
