@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="concept.css">
 </head>
 <body>
 
@@ -51,7 +52,7 @@
     </div>
   </nav>
 
-  <!-- ════════════ HERO ════════════ -->
+  <!-- ════════════ HERO — Q&A SELF-SELECTION ════════════ -->
   <header class="hero hero--fullbleed" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -61,21 +62,17 @@
           <a href="index.html" class="active">DE</a>
           <a href="index-en.html">EN</a>
         </div>
-        <p class="hero-eyebrow reveal">RaceMind &ndash; Triathlon und Laufen</p>
-        <h1 class="hero-title reveal">
-          Dein Ziel. Dein Rennen.<br>
-          <span class="gradient-text">Dein Coach.</span>
-        </h1>
-        <p class="hero-sub reveal">
-          Trainingsplan, Einheit-Analyse, Zielzeit-Prognose: Du setzt das Ziel, RaceMind k&uuml;mmert sich um den Weg.
-        </p>
-        <ul class="hero-bullets reveal">
-          <li><strong>Zielzeit im Blick:</strong> Du siehst fr&uuml;h, ob du auf Kurs bist.</li>
-          <li><strong>Plan passt sich an:</strong> Wenn Alltag passiert, plant RaceMind deine Woche neu.</li>
-          <li><strong>Coach handelt:</strong> Einheiten verschieben, Comeback nach Krankheit, Periode &ndash; per Chat erledigt.</li>
-          <li><strong>Readiness-Check:</strong> Jeden Morgen wissen, ob du pushen kannst oder besser locker bleibst.</li>
-          <li><strong>Verf&uuml;gbar f&uuml;r:</strong> Triathlon und Laufen &ndash; von Sprint bis Langdistanz, 5&nbsp;km bis Marathon.</li>
-        </ul>
+        <p class="hero-eyebrow reveal">RaceMind &ndash; Dein Coach f&uuml;r Triathlon und Laufen</p>
+        <p class="hero-scope reveal">5&nbsp;km &middot; 10&nbsp;km &middot; Halbmarathon &middot; Marathon &middot; Triathlon: Sprint bis Langdistanz</p>
+        <div class="hero-questions reveal">
+          <a href="#q1" class="hero-q" data-q="0">Die Zielzeit steht &ndash; <span>aber der Weg dahin noch nicht?</span></a>
+          <a href="#q2" class="hero-q" data-q="1">F&uuml;r den Ironman angemeldet &ndash; <span>aber keine Ahnung, wo du anfangen sollst?</span></a>
+          <a href="#q3" class="hero-q" data-q="2">Ein Coach w&uuml;rde helfen &ndash; <span>aber nicht f&uuml;r 200&nbsp;&euro; im Monat?</span></a>
+        </div>
+        <div class="hero-answer reveal">
+          <p class="hero-answer-lead">Dann fehlt dir nicht Disziplin. Dir fehlt die richtige Struktur.</p>
+          <p>RaceMind ist dein digitaler Coach &ndash; f&uuml;r Anf&auml;nger und Fortgeschrittene. Er plant dein Training auf dein Ziel, dein Level und deine Woche &ndash; und erkl&auml;rt dir, warum.</p>
+        </div>
         <div class="hero-cta reveal">
           <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
             <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -85,20 +82,138 @@
             <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
             Google Play
           </a>
+          <a href="#how-it-works" class="btn btn-secondary">So funktioniert's</a>
         </div>
       </div>
       <div class="hero-mockup reveal">
-        <img src="images/mockup-hero.webp" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
+        <img src="images/mockup-hero.webp" class="hero-shot is-active" data-q="0" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
+        <img src="images/hero-plan.webp" class="hero-shot" data-q="1" alt="RaceMind App &ndash; Trainingsplan mit Phasen">
+        <img src="images/hero-coachchat.webp" class="hero-shot" data-q="2" alt="RaceMind App &ndash; Coach-Chat mit Quick Actions">
       </div>
     </div>
   </header>
 
-  <!-- ════════════ CORE MESSAGE ════════════ -->
-  <section class="section section--core">
+  <!-- ════════════ COMPATIBILITY ════════════ -->
+  <section class="section--compat">
+    <div class="container">
+      <p class="compat-label reveal">Verbindet sich mit</p>
+      <div class="compat-logos reveal">
+        <img src="images/logo-garmin.webp" alt="Garmin" class="compat-logo compat-logo--natural">
+        <img src="images/logo-strava.svg" alt="Strava" class="compat-logo compat-logo--natural">
+        <img src="images/logo-apple-watch.svg" alt="Apple Watch" class="compat-logo">
+        <img src="images/logo-intervals.svg" alt="intervals.icu" class="compat-logo">
+        <img src="images/logo-coros.webp" alt="COROS" class="compat-logo compat-logo--natural">
+        <img src="images/logo-polar.webp" alt="Polar" class="compat-logo compat-logo--natural">
+        <img src="images/logo-suunto.svg" alt="Suunto" class="compat-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 1 — PLATEAU ════════════ -->
+  <section class="section" id="q1">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">01</span> Warum werde ich nicht schneller?</p>
+        <h2>&bdquo;Ich trainiere &ndash; <span class="gradient-text">aber es geht nicht voran.&ldquo;</span></h2>
+        <p class="qa-lead">Du trainierst regelm&auml;&szlig;ig. Trotzdem stagnieren deine Zeiten. Der h&auml;ufigste Grund: Training ohne klare Struktur &ndash; zu oft mittel-hart, zu selten wirklich locker, zu selten gezielt intensiv. <strong>Das kostet Fortschritt &ndash; oder es endet in einer Verletzung.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Periodisierter Plan</strong> &ndash; Wechsel aus Belastung und Erholung, abgestimmt auf deinen Fitnessstand.</li>
+          <li><strong>Zielzeit immer im Blick</strong> &ndash; du siehst laufend, ob du auf Kurs bist.</li>
+          <li><strong>Klartext nach jeder Einheit</strong> &ndash; was sie gebracht hat, worauf es beim n&auml;chsten Mal ankommt.</li>
+          <li><strong>Du verstehst dein Training</strong> &ndash; physiologische Hintergr&uuml;nde statt blindem Zonen-Abarbeiten.</li>
+          <li><strong>Readiness-Check jeden Morgen</strong> &ndash; &bdquo;Heute kannst du pushen&ldquo; oder &bdquo;Nimm es locker&ldquo;, statt HRV-Charts.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-analysis.webp" class="mockup-img" alt="Einheiten-Analyse mit Coach-Einsch&auml;tzung">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 2 — FIRST-TIMER ════════════ -->
+  <section class="section section--surface-alt" id="q2">
+    <div class="container grid-2col grid-2col--center" style="direction: rtl;">
+      <div class="text-block reveal" style="direction: ltr;">
+        <p class="qa-eyebrow"><span class="qa-num">02</span> Angemeldet ist. Und jetzt?</p>
+        <h2>&bdquo;Der Startplatz steht &ndash; <span class="gradient-text">der Plan fehlt.&ldquo;</span></h2>
+        <p class="qa-lead">Zwischen Anmeldung und Startlinie liegen viele Wochen &ndash; und noch mehr Fragen. Wie viel Training ist genug? Was ist zu viel? Und ist das Ziel &uuml;berhaupt realistisch?</p>
+        <ul class="feature-bullets">
+          <li><strong>Zielzeit-Prognose ab Tag 1</strong> &ndash; wird jede Woche genauer.</li>
+          <li><strong>Plan passend zu deiner Zeit</strong> &ndash; kein 15-Stunden-Plan, wenn du 7 Stunden hast.</li>
+          <li><strong>Sicher ans Ziel</strong> &ndash; die Engine drosselt bewusst: Schutz vor zu hart und zu viel.</li>
+          <li><strong>Race Day inklusive</strong> &ndash; Pacing- und Verpflegungsplan f&uuml;r den Wettkampftag.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal" style="direction: ltr;">
+        <img src="images/hero-raceprep.webp" class="mockup-img" alt="Race Prep mit Zielzeit-Prognose">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 3 — COACH-KOSTEN ════════════ -->
+  <section class="section" id="q3">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">03</span> Ein Coach w&auml;re gut. Aber 200&nbsp;&euro; im Monat?</p>
+        <h2>&bdquo;Zwischen PDF-Plan <span class="gradient-text">und Premium-Coach.&ldquo;</span></h2>
+        <p class="qa-lead">Ein pers&ouml;nlicher Coach ist f&uuml;r die meisten keine Option &ndash; zu teuer, zu viel Abstimmung. Ein PDF-Plan ist das andere Extrem: g&uuml;nstig, aber niemand, der antwortet. <strong>RaceMind macht professionelle Trainingsplanung zug&auml;nglich.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Ein Coach, der antwortet</strong> &ndash; rund um die Uhr, mit deinen Daten und deinem Plan im Kontext.</li>
+          <li><strong>Ein Coach, der handelt</strong> &ndash; &bdquo;Verschieb mein Intervalltraining auf Donnerstag&ldquo; &ndash; erledigt.</li>
+          <li><strong>Transparent im Preis</strong> &ndash; ab 6,66&nbsp;&euro; im Monat, jederzeit k&uuml;ndbar.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/hero-coach.webp" class="mockup-img" alt="Coach reagiert auf Krankheit und passt den Plan an">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ ZYKLUS — LISTENING FEATURE ════════════ -->
+  <section class="section section--surface-alt">
+    <div class="container grid-2col grid-2col--center" style="direction: rtl;">
+      <div class="text-block reveal" style="direction: ltr;">
+        <p class="qa-eyebrow"><span class="qa-num">04</span> Cycle Tracking</p>
+        <h2>Dein Coach ignoriert <span class="gradient-text">deinen Zyklus nicht.</span></h2>
+        <p class="qa-lead">Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein &ndash; etwa wenn in der <strong>Lutealphase</strong> die gef&uuml;hlte Belastung steigt und Erholung wichtiger wird. <strong>Optional &ndash; du entscheidest, ob und wie, und kannst es jederzeit deaktivieren.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Normal weiterlaufen</strong> &ndash; willst du keine Anpassung, &auml;ndert sich nichts an deinem Plan.</li>
+          <li><strong>Vorsichtiger in der Lutealphase</strong> &ndash; die Engine nimmt vor der Periode bewusst Last raus.</li>
+          <li><strong>Periodentage sch&uuml;tzen</strong> &ndash; harte Einheiten weichen, die Belastung holst du sp&auml;ter zur&uuml;ck.</li>
+        </ul>
+        <p class="qa-lead" style="margin-top:1.25rem;margin-bottom:0;">Kein Wunderversprechen &ndash; ein Plan, der dich ernst nimmt.</p>
+      </div>
+      <div class="feature-mockup reveal" style="direction: ltr;">
+        <img src="images/mockup-cycle.webp" class="mockup-img" alt="Cycle Tracking &ndash; zyklusbasierte Trainingsanpassung">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ UND AUSSERDEM ════════════ -->
+  <section class="section" id="features">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">05</span> Und au&szlig;erdem</p>
+        <h2>Zusammen trainiert <span class="gradient-text">sich's leichter.</span></h2>
+        <p class="qa-lead">RaceMind ist kein Solo-Tool: Vergleiche Trainings mit Freund:innen und plane Einheiten gemeinsam. Und dar&uuml;ber hinaus steckt in jeder Woche mehr, als ein statischer Plan bietet.</p>
+        <ul class="feature-bullets">
+          <li><strong>Gemeinsam statt allein</strong> &ndash; Trainings mit Freund:innen vergleichen und Einheiten zusammen planen.</li>
+          <li><strong>Einheit ans Ger&auml;t senden</strong> &ndash; strukturierte Workouts direkt auf die Garmin-Uhr, mit Pace, Intervallen und Herzfrequenz.</li>
+          <li><strong>W&ouml;chentlicher Coach Review</strong> &ndash; jeden Sonntag: was lief gut, was muss sich &auml;ndern.</li>
+          <li><strong>Workout Library</strong> &ndash; &uuml;ber 300 Einheiten: Schwimmen, Radfahren, Laufen, Kraft, Mobility.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-friends.webp" class="mockup-img" alt="Gemeinsam trainieren &ndash; Freunde und geteilte Einheiten">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 4 — WOCHE KIPPT ════════════ -->
+  <section class="section section--core section--surface-alt">
     <div class="container grid-2col grid-2col--reality">
       <div class="feature-mockup reveal">
         <div class="reality-compact" role="img" aria-label="Beispielwoche: Montag Kind krank, Long Run gestrichen; Dienstag Meeting bis 21 Uhr, Schwellen-Intervalle gestrichen; Mittwoch Migr&auml;ne, Stabi gestrichen &ndash; RaceMind plant die Woche neu.">
-          <span class="reality-compact-eyebrow">Wenn deine Woche kippt</span>
           <div class="rc-list">
             <div class="rc-row">
               <span class="rc-day">Mo</span>
@@ -131,102 +246,14 @@
         </div>
       </div>
       <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">06</span> Und wenn eine Woche auseinanderf&auml;llt?</p>
         <h2>Dein Leben verl&auml;uft nicht linear &ndash; <span class="gradient-text">warum sollte es dein Training?</span></h2>
-        <p class="text-lead">Viele trainieren ohne klare Struktur, oft zu intensiv &ndash; das kostet Fortschritt oder endet in einer Verletzung. Ein pers&ouml;nlicher Coach ist f&uuml;r die meisten keine Option. <strong>RaceMind bringt Struktur ins Training und macht professionelle Planung f&uuml;r mehr Leute zug&auml;nglich.</strong></p>
+        <p class="text-lead">RaceMind plant deine Woche neu &ndash; auf die Zeit, die du <em>jetzt</em> hast. Der Coach erkl&auml;rt, was bleibt, was wegf&auml;llt und warum das okay ist. Der Ausl&ouml;ser ist austauschbar: Deadline, schlechter Schlaf, Erk&auml;ltung &ndash; oder deine Periode. Alles davon ist normal.</p>
         <ul class="core-points">
-          <li><strong>Gemacht f&uuml;r Wochen, die nicht nach Plan laufen.</strong> Schlecht geschlafen, Meeting &uuml;berzogen, Periode, Stress oder leichte Erk&auml;ltung? RaceMind bringt deinen Trainingskalender wieder in Ordnung &ndash; ohne Neuplanen, ohne Nachholen.</li>
+          <li><strong>Gemacht f&uuml;r Wochen, die nicht nach Plan laufen.</strong> RaceMind bringt deinen Trainingskalender wieder in Ordnung &ndash; ohne Neuplanen, ohne Nachholen.</li>
           <li><strong>Weitermachen statt hinwerfen.</strong> Du trainierst weiter &ndash; ohne schlechtes Gewissen und ohne Chaos im Kopf.</li>
-          <li><strong>Klarheit am Morgen.</strong> Nicht sicher, ob du heute pushen sollst? RaceMind sagt es dir &ndash; basierend auf Schlaf, Erholung und Belastung.</li>
+          <li><strong>Zur&uuml;ck nach Krankheit oder Verletzung.</strong> Progressiver Weg zur&uuml;ck statt Neustart &ndash; konservativ genug, um R&uuml;ckf&auml;lle zu vermeiden.</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ COMPATIBILITY ════════════ -->
-  <section class="section--compat">
-    <div class="container">
-      <p class="compat-label reveal">Verbindet sich mit</p>
-      <div class="compat-logos reveal">
-        <img src="images/logo-garmin.webp" alt="Garmin" class="compat-logo compat-logo--natural">
-        <img src="images/logo-strava.svg" alt="Strava" class="compat-logo compat-logo--natural">
-        <img src="images/logo-apple-watch.svg" alt="Apple Watch" class="compat-logo">
-        <img src="images/logo-intervals.svg" alt="intervals.icu" class="compat-logo">
-        <img src="images/logo-coros.webp" alt="COROS" class="compat-logo compat-logo--natural">
-        <img src="images/logo-polar.webp" alt="Polar" class="compat-logo compat-logo--natural">
-        <img src="images/logo-suunto.svg" alt="Suunto" class="compat-logo">
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FEATURES ════════════ -->
-  <section class="section" id="features">
-    <div class="container">
-
-      <div class="feature-row reveal">
-        <div class="feature-text">
-          <h3>&#128172; Mehr als ein Chatbot &ndash; ein Coach, der dich begleitet.</h3>
-          <p>Viele Apps haben Chatbots. RaceMind hat einen Coach, der deinen Plan tats&auml;chlich &auml;ndern kann: &bdquo;Verschieb mein Intervalltraining auf Donnerstag&ldquo; &ndash; erledigt. Kein Copy-Paste, kein Umplanen von Hand.</p>
-          <p>24/7 verf&uuml;gbar, kennt deine gesamte Historie und kostet einen Bruchteil eines menschlichen Coaches.</p>
-          <ul class="feature-bullets">
-            <li><strong>Plan&auml;nderungen on the fly:</strong> Einheiten verschieben, Woche umbauen, Intensit&auml;t anpassen &ndash; per Chat, ohne dass die Struktur leidet.</li>
-            <li><strong>Comeback nach Verletzung oder Krankheit:</strong> Der Coach baut dir einen progressiven Weg zur&uuml;ck &ndash; konservativ genug, um R&uuml;ckf&auml;lle zu vermeiden.</li>
-            <li><strong>Ern&auml;hrung &amp; Wettkampf:</strong> Was vor dem Long Run, was w&auml;hrend des Wettkampfs? Konkrete Empfehlungen statt Google-Rabbit-Holes.</li>
-          </ul>
-        </div>
-        <div class="feature-mockup">
-          <img src="images/mockup-chat-dual.webp" class="mockup-img" alt="Coach Chat mit Plan-Kontrolle und Quick Actions">
-        </div>
-      </div>
-
-      <div class="feature-row feature-row--reverse reveal">
-        <div class="feature-text">
-          <h3>&#128202; Alle liefern Daten. Wir liefern Kontext.</h3>
-          <p>Andere Apps zeigen dir TSS, CTL, VO2max &ndash; Zahlen, mit denen die meisten nichts anfangen k&ouml;nnen. RaceMind &uuml;bersetzt alles in klare Aussagen, die du sofort verstehst.</p>
-          <ul class="feature-bullets">
-            <li><strong>Zielzeit immer im Blick:</strong> Nicht nur FTP und Schwellenwerte &ndash; sondern was sie f&uuml;r dich bedeuten: &bdquo;Du bist auf Kurs f&uuml;r 3:42.&ldquo;</li>
-            <li><strong>Klartext nach jeder Einheit:</strong> Kein Dashboard mit 15 Metriken &ndash; sondern eine Coach-Einsch&auml;tzung, die du sofort einordnen kannst.</li>
-            <li><strong>Readiness statt Daten-Overload:</strong> Kein HRV-Chart und Ruhepuls-Trend &ndash; sondern &bdquo;Heute kannst du pushen&ldquo; oder &bdquo;Nimm es locker.&ldquo;</li>
-            <li><strong>Fragen? Frag den Coach:</strong> Statt Google und Foren &ndash; Antworten, die deine Daten und deinen Plan kennen.</li>
-          </ul>
-        </div>
-        <div class="feature-mockup">
-          <img src="images/mockup-analysis.webp" class="mockup-img" alt="Trainingsanalyse mit Kontext und Empfehlungen">
-        </div>
-      </div>
-
-      <div class="feature-row reveal">
-        <div class="feature-text">
-          <h3>&#128640; Und au&szlig;erdem</h3>
-          <p>RaceMind wird jede Woche besser. Hier ein Auszug aus dem, was schon drin ist &ndash; und es kommt laufend mehr dazu.</p>
-          <ul class="feature-bullets">
-            <li><strong>&#127919; Zielzeit-Prognose:</strong> Schon ab Tag 1 siehst du, ob du auf Kurs bist &ndash; die Prognose wird mit jeder Woche genauer.</li>
-            <li><strong>&#9201; Einheit ans Ger&auml;t senden:</strong> Strukturierte Workouts direkt auf deine Garmin-Uhr &ndash; mit Pace-Zielen, Intervallen und Herzfrequenz-Vorgaben.</li>
-            <li><strong>&#127939; Race Day Pacing:</strong> Individueller Pacing- und Verpflegungsplan f&uuml;r deinen Wettkampftag &ndash; abgestimmt auf Distanz, Zielzeit und Bedingungen.</li>
-            <li><strong>&#128203; W&ouml;chentlicher Coach Review:</strong> Jeden Sonntag eine strukturierte Analyse deiner Trainingswoche &ndash; was lief gut, was muss sich &auml;ndern.</li>
-            <li><strong>&#128218; Workout Library:</strong> &Uuml;ber 300 Einheiten &ndash; Schwimmen, Radfahren, Laufen, Kraft, Mobility und Stabilisation, abgestimmt auf Phase und Leistungsniveau.</li>
-            <li><strong>&#128101; Gemeinsam statt allein:</strong> Trainings mit Freund:innen vergleichen und Einheiten zusammen planen.</li>
-          </ul>
-        </div>
-        <div class="feature-mockup">
-          <img src="images/mockup-overview.webp" class="mockup-img" alt="Trainingsplan-Phase mit Trainingsverf&uuml;gbarkeit und Wetter">
-        </div>
-      </div>
-
-      <div class="feature-row reveal" style="display: none;">
-        <div class="feature-text">
-          <h3>&#127947;&#65039; Dein Plan. Nicht von der Stange.</h3>
-          <p>RaceMind erstellt deinen Trainingsplan nicht nach Schema F. Jede Woche wird individuell berechnet &ndash; basierend auf deinem Ziel, deiner Verf&uuml;gbarkeit, deiner aktuellen Form und deiner Trainingshistorie.</p>
-          <p>Dazu greift RaceMind auf eine <strong>Workout Library mit &uuml;ber 300 Einheiten</strong> zu: Schwimmen, Radfahren, Laufen, Kraft, Mobility und Stabilisation &ndash; abgestimmt auf Sportart, Trainingsphase und Leistungsniveau.</p>
-          <ul class="feature-bullets">
-            <li><strong>Phasengerecht:</strong> Base, Build, Peak, Taper &ndash; jede Phase hat eigene Schwerpunkte und Intensit&auml;ten.</li>
-            <li><strong>Sportartspezifisch:</strong> Lauf-Intervalle, Schwellenfahrten, Technik-Schwimmen, funktionelles Krafttraining &ndash; alles aus einer Bibliothek.</li>
-            <li><strong>Individuell zusammengesetzt:</strong> Welche Einheiten in deiner Woche landen, h&auml;ngt von deinen Zielen, deiner Belastung und deiner verf&uuml;gbaren Zeit ab.</li>
-            <li><strong>Mit Anleitung:</strong> Jede &Uuml;bung erkl&auml;rt Ziel, Ausf&uuml;hrung und Intensit&auml;t &ndash; damit du wei&szlig;t, warum du tust, was du tust.</li>
-          </ul>
-        </div>
-        <div class="feature-mockup">
-          <img src="images/mockup-plan-adapt.webp" class="mockup-img mockup-img--wide" alt="Trainingsplan mit Workout Library">
-        </div>
       </div>
     </div>
   </section>
@@ -234,7 +261,7 @@
   <!-- ════════════ TESTIMONIALS ════════════ -->
   <section class="section section--testimonials" id="testimonials">
     <div class="container">
-      <h2 class="section-title reveal">Was unsere Nutzer sagen</h2>
+      <h2 class="section-title reveal">Was Nutzer in den Stores schreiben</h2>
       <p class="section-subtitle reveal">Ein Auszug aus den Bewertungen im App&nbsp;Store &amp; Google&nbsp;Play</p>
     </div>
     <div class="reviews-marquee reveal">
@@ -365,14 +392,13 @@
     </div>
   </section>
 
-  <!-- ════════════ COMPARISON TABLE ════════════ -->
+  <!-- ════════════ COMPARISON ════════════ -->
   <section class="section section--compare">
     <div class="container">
       <h2 class="section-title reveal">Warum RaceMind statt statischer Plan?</h2>
       <p class="section-subtitle reveal">Kurzer Vergleich, worin der Unterschied im Alltag wirklich liegt.</p>
       <div class="compare-cards reveal">
 
-        <!-- Statischer Plan -->
         <div class="compare-card">
           <div class="compare-card-head">
             <span class="compare-card-icon">
@@ -391,7 +417,6 @@
           </div>
         </div>
 
-        <!-- RaceMind -->
         <div class="compare-card compare-card--highlight">
           <span class="compare-card-badge">Empfohlen</span>
           <div class="compare-card-head">
@@ -403,7 +428,7 @@
           <ul class="compare-card-list">
             <li><span class="check">&#10003;</span><span>Automatisch &amp; w&ouml;chentlich adaptiv</span></li>
             <li><span class="check">&#10003;</span><span>Sofortige Analyse in Klartext</span></li>
-            <li><span class="check">&#10003;</span><span>24/7 Chat-Support (AI Coach)</span></li>
+            <li><span class="check">&#10003;</span><span>24/7 Coach-Chat mit vollem Kontext</span></li>
             <li><span class="check">&#10003;</span><span>Integration von HRV, Schlaf, Belastung</span></li>
           </ul>
           <div class="compare-card-price">
@@ -412,7 +437,6 @@
           </div>
         </div>
 
-        <!-- Menschlicher Coach -->
         <div class="compare-card">
           <div class="compare-card-head">
             <span class="compare-card-icon">
@@ -421,9 +445,9 @@
             <h3>Menschlicher Coach</h3>
           </div>
           <ul class="compare-card-list">
-            <li><span class="check">&#10003;</span><span>Manuell, oft mit Verz&ouml;gerung</span></li>
-            <li><span class="check">&#10003;</span><span>Analyse meist nur w&ouml;chentlich</span></li>
-            <li><span class="cross">&#10007;</span><span>Feedback per Nachricht, mit Verz&ouml;gerung</span></li>
+            <li><span class="check">&#10003;</span><span>Individuell &amp; pers&ouml;nlich</span></li>
+            <li><span class="cross">&#10007;</span><span>Feedback oft mit Verz&ouml;gerung</span></li>
+            <li><span class="cross">&#10007;</span><span>Analyse meist nur w&ouml;chentlich</span></li>
           </ul>
           <div class="compare-card-price">
             <span class="ccp-label">Preis</span>
@@ -435,7 +459,7 @@
     </div>
   </section>
 
-  <!-- ════════════ HOW IT WORKS ════════════ -->
+  <!-- ════════════ SO FUNKTIONIERT'S ════════════ -->
   <section class="section" id="how-it-works">
     <div class="container">
       <h2 class="section-title reveal">So funktioniert's</h2>
@@ -489,6 +513,33 @@
     </div>
   </section>
 
+  <!-- ════════════ FÜR WEN ════════════ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">F&uuml;r wen ist RaceMind &ndash; und f&uuml;r wen nicht?</h2>
+      <p class="section-subtitle reveal">Ehrliche Selbstselektion, bevor du dich anmeldest.</p>
+      <div class="audience-grid audience-standalone reveal">
+        <div class="audience-col audience-col--yes">
+          <h3 class="audience-heading">&#10003; F&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Ein Ziel im Triathlon oder Laufen hast &ndash; von 5&nbsp;km oder Sprint bis Marathon und Langdistanz</li>
+            <li>Zum ersten Mal strukturiert trainierst und nicht durch zu hart oder zu viel in eine Verletzung laufen willst</li>
+            <li>Keinen Bock auf PDF-Pl&auml;ne hast, die bei der ersten verschobenen Einheit wertlos werden</li>
+            <li>Verstehen willst, was du trainierst &ndash; nicht nur Zahlen nachjagen</li>
+            <li>Schon mal einen Coach hattest oder br&auml;uchtest, aber nicht 200&nbsp;&euro; im Monat zahlen willst</li>
+          </ul>
+        </div>
+        <div class="audience-col audience-col--no">
+          <h3 class="audience-heading">&#10007; Nicht f&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Profi oder Pro-Age-Grouper auf Kona-Niveau bist &ndash; dann brauchst du einen menschlichen Coach mit Augen auf deiner Form</li>
+            <li>Gar kein konkretes Rennen oder Ziel hast und einfach nur lockere Freizeit-Workouts ohne Plan suchst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════ PRICING ════════════ -->
   <section class="section section--pricing" id="pricing">
     <div class="container">
@@ -530,12 +581,46 @@
     </div>
   </section>
 
+  <!-- ════════════ FAQ ════════════ -->
+  <section class="section section--faq" id="faq">
+    <div class="container">
+      <h2 class="section-title reveal">H&auml;ufige Fragen</h2>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>&bdquo;Ich trainiere schon lange &ndash; ist RaceMind nur f&uuml;r Anf&auml;nger?&ldquo;</summary>
+          <p>Nein. Gerade wenn deine Zeiten stagnieren, hilft RaceMind, Struktur und Periodisierung ins Training zu bringen. Deine bestehenden Daten aus Garmin, COROS, Strava oder <a href="https://intervals.icu" target="_blank" rel="noopener">intervals.icu</a> werden nicht nur angezeigt, sondern in einen Plan, eine Zielzeit-Prognose und konkrete Entscheidungen f&uuml;r deine Woche &uuml;bersetzt.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Was passiert, wenn ich eine Woche gar nicht trainieren kann?&ldquo;</summary>
+          <p>Dann musst du nichts nachholen. RaceMind kann Einheiten verschieben, anpassen oder &uuml;berspringen, ohne dass deine Woche komplett auseinanderf&auml;llt. Wenn eine einzelne &Auml;nderung nicht mehr reicht, wird die Woche neu geplant statt einfach alles nach hinten zu schieben.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Wie sch&uuml;tzt mich RaceMind vor &Uuml;berlastung und Verletzungen?&ldquo;</summary>
+          <p>RaceMind bewertet nicht nur, was du leisten k&ouml;nntest, sondern auch, was gerade sinnvoll ist. Gerade f&uuml;r Einsteiger drosselt die Engine bewusst &ndash; Schutz vor zu hart und zu viel. Schlaf, HRV, Ruhepuls und Belastung flie&szlig;en mit ein. Wichtig bleibt: RaceMind ist ein Trainings-Coach, kein Ersatz f&uuml;r &auml;rztliche oder physiotherapeutische Einsch&auml;tzung.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Wie funktioniert das Cycle Tracking &ndash; und muss ich das nutzen?&ldquo;</summary>
+          <p>Du musst es nicht nutzen. Wenn du es aktivierst, kann RaceMind deinen Zyklus als zus&auml;tzlichen Kontext f&uuml;r Belastung und Planung ber&uuml;cksichtigen. Je nach Pr&auml;ferenz kann der Plan in dieser Zeit normal weiterlaufen, etwas vorsichtiger werden oder Periodentage st&auml;rker sch&uuml;tzen.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Was unterscheidet euch von TrainingPeaks/TriDot/Humango?&ldquo;</summary>
+          <p>RaceMind kombiniert drei Dinge, die oft getrennt voneinander auftreten: Anpassung, Erkl&auml;rbarkeit und direkte Handlung. Statt nur Daten zu zeigen, erkl&auml;rt dir der Coach, was sie bedeuten. Statt nur Empfehlungen zu geben, kann RaceMind Einheiten direkt verschieben oder die Woche neu planen.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Kann ich meinen Plan k&uuml;ndigen / pausieren, wenn ich nicht mehr trainiere?&ldquo;</summary>
+          <p>Ja, du kannst jederzeit k&uuml;ndigen. Die K&uuml;ndigung l&auml;uft &uuml;ber die Abo-Verwaltung im App Store oder bei Google Play. Und wenn du dein Konto komplett l&ouml;schen willst, ist auch das m&ouml;glich.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════ DOWNLOAD CTA ════════════ -->
   <section class="section section--download" id="download">
     <div class="hero-glow hero-glow--orange"></div>
     <div class="hero-glow hero-glow--cyan"></div>
     <div class="container download-inner">
-      <h2 class="reveal">Dein Ziel. Dein Rennen. Dein Coach.<br><span class="gradient-text">Jetzt herunterladen.</span></h2>
+      <h2 class="reveal">Dein Ziel. Dein Rennen. Dein Coach.<br><span class="gradient-text">Jetzt starten.</span></h2>
+      <p class="reveal" style="color: var(--muted); margin-bottom: 1.75rem;">Early-Adopter-Preis gilt lebenslang f&uuml;r alle, die jetzt abonnieren.</p>
       <div class="download-buttons reveal">
         <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
           <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -545,79 +630,6 @@
           <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
           Google Play
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FOR WHOM ════════════ -->
-  <section class="section section--audience">
-    <div class="container grid-2col grid-2col--center">
-      <div class="text-block reveal">
-        <h2>F&uuml;r wen ist RaceMind?</h2>
-        <div class="audience-grid">
-          <div class="audience-col audience-col--yes">
-            <h3 class="audience-heading">&#10003; F&uuml;r dich, wenn du</h3>
-            <ul class="audience-list">
-              <li>Ein Ziel im Triathlon oder Laufen hast &ndash; von 5&nbsp;km oder Sprint bis Marathon und Langdistanz</li>
-              <li>Zum ersten Mal strukturiert trainierst und nicht durch zu hart oder zu viel in eine Verletzung laufen willst</li>
-              <li>Keinen Bock auf PDF-Pl&auml;ne hast, die bei der ersten verschobenen Einheit wertlos werden</li>
-              <li>Verstehen willst, was du trainierst &mdash; nicht nur Zahlen nachjagen</li>
-              <li>Mehr Kontrolle &uuml;ber Schwerpunkte und Struktur willst, ohne den Plan komplett selbst zu bauen</li>
-              <li>Schon mal einen Coach hattest oder br&auml;uchtest, aber nicht 200&nbsp;&euro; im Monat zahlen willst</li>
-            </ul>
-          </div>
-          <div class="audience-col audience-col--no">
-            <h3 class="audience-heading">&#10007; Nicht f&uuml;r dich, wenn du</h3>
-            <ul class="audience-list">
-              <li>Profi oder Pro-Age-Grouper auf Kona-Niveau bist &mdash; dann brauchst du einen menschlichen Coach mit Augen auf deiner Form</li>
-              <li>Gar kein konkretes Rennen oder Ziel hast und einfach nur lockere Freizeit-Workouts ohne Plan suchst</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="feature-mockup reveal">
-        <img src="images/mood-week.webp" class="mockup-img mockup-img--mood" alt="RaceMind App auf dunklem Hintergrund mit Wochenplanung">
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FAQ ════════════ -->
-  <section class="section section--faq" id="faq">
-    <div class="container">
-      <h2 class="section-title reveal">H&auml;ufige Fragen</h2>
-      <div class="faq-list">
-        <details class="faq-item reveal">
-          <summary>&bdquo;Ich habe schon einen Garmin/Coros. Brauche ich RaceMind?&ldquo;</summary>
-          <p>Nicht zwingend &ndash; aber genau dann spielt RaceMind seine St&auml;rke aus. Deine bestehenden Daten werden nicht nur angezeigt, sondern in einen Plan, eine Zielzeit-Prognose und konkrete Entscheidungen f&uuml;r deine Woche &uuml;bersetzt. Du musst also nicht bei null anfangen oder Daten manuell &uuml;bertragen. Wenn du schon mit Garmin, COROS, Strava oder <a href="https://intervals.icu" target="_blank" rel="noopener">intervals.icu</a> trainierst, dockt RaceMind genau dort an.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Was passiert, wenn ich eine Woche gar nicht trainieren kann?&ldquo;</summary>
-          <p>Dann musst du nichts nachholen. RaceMind kann Einheiten verschieben, anpassen oder &uuml;berspringen, ohne dass deine Woche komplett auseinanderf&auml;llt. Wenn eine einzelne &Auml;nderung nicht mehr reicht, wird die Woche neu geplant statt einfach alles nach hinten zu schieben. Das Ziel ist nicht Perfektion, sondern ein Plan, der auch dann noch sinnvoll bleibt, wenn das echte Leben dazwischenkommt.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Wie sch&uuml;tzt mich RaceMind vor &Uuml;berlastung und Verletzungen?&ldquo;</summary>
-          <p>RaceMind bewertet nicht nur, was du leisten k&ouml;nntest, sondern auch, was gerade sinnvoll ist. Gerade f&uuml;r Einsteiger drosselt die Engine bewusst &ndash; Schutz vor zu hart und zu viel. Schlaf, HRV, Ruhepuls und Belastung flie&szlig;en mit ein, damit aus einem harten Tag auch bewusst ein lockerer Tag oder ein Ruhetag werden kann. Gr&ouml;&szlig;ere Anpassungen werden nicht blind in die Woche gedr&uuml;ckt, sondern kontrolliert neu geplant. Wichtig bleibt trotzdem: RaceMind ist ein Trainings-Coach, kein Ersatz f&uuml;r &auml;rztliche oder physiotherapeutische Einsch&auml;tzung.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Ersetzt RaceMind einen menschlichen Coach?&ldquo;</summary>
-          <p>Nein. Ein guter menschlicher Coach kann Dinge sehen und beurteilen, die keine App vollst&auml;ndig ersetzen kann. RaceMind &uuml;bernimmt aber viele der Aufgaben, die im Alltag wirklich entscheidend sind: einen Plan, der sich anpasst, klare Erkl&auml;rungen statt Metrik-Overload und schnelle Hilfe, wenn eine Woche anders l&auml;uft als gedacht. F&uuml;r viele ist das deutlich hilfreicher als ein statischer Plan &ndash; und deutlich zug&auml;nglicher als ein 1:1-Coaching.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Was unterscheidet euch von TrainingPeaks/TriDot/Humango?&ldquo;</summary>
-          <p>RaceMind kombiniert drei Dinge, die oft getrennt voneinander auftreten: Anpassung, Erkl&auml;rbarkeit und direkte Handlung. Statt nur Daten zu zeigen, erkl&auml;rt dir der Coach, was sie f&uuml;r dein Training bedeuten. Statt nur Empfehlungen zu geben, kann RaceMind Einheiten direkt verschieben oder die Woche neu planen. Und statt starr an einem Plan festzuhalten, bleibt der Fokus darauf, was in deiner Realit&auml;t gerade sinnvoll und machbar ist.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Wie funktioniert das Cycle Tracking &ndash; und muss ich das nutzen?&ldquo;</summary>
-          <p>Du musst es nicht nutzen. Wenn du es aktivierst, kann RaceMind deinen Zyklus als zus&auml;tzlichen Kontext f&uuml;r Belastung und Planung ber&uuml;cksichtigen. Je nach Pr&auml;ferenz kann der Plan in dieser Zeit normal weiterlaufen, etwas vorsichtiger werden oder Periodentage st&auml;rker sch&uuml;tzen. Das ist kein Wunderversprechen, sondern ein optionales Anpassungsfeature f&uuml;r mehr Realit&auml;tsn&auml;he im Training.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Ich bin First-Timer. Ist RaceMind zu fortgeschritten f&uuml;r mich?&ldquo;</summary>
-          <p>Nein. Du kannst mit importierten Daten starten, aber auch mit Selbsteinsch&auml;tzung und manueller Fitness-Eingabe. Gerade als First-Timer ist wichtig, dass du eine realistische Zielzeit-Prognose bekommst, verstehst, warum du was trainierst, und jederzeit nachfragen kannst, wenn etwas unklar ist. Genau daf&uuml;r ist RaceMind gebaut.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>&bdquo;Kann ich meinen Plan k&uuml;ndigen / pausieren, wenn ich nicht mehr trainiere?&ldquo;</summary>
-          <p>Ja, du kannst jederzeit k&uuml;ndigen. Die K&uuml;ndigung l&auml;uft &uuml;ber die Abo-Verwaltung im App Store oder bei Google Play. Wenn du gerade nicht trainierst, musst du also nicht in einem laufenden Abo festhängen. Und wenn du dein Konto komplett l&ouml;schen willst, ist auch das m&ouml;glich.</p>
-        </details>
       </div>
     </div>
   </section>
@@ -677,6 +689,51 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Hero self-selection: rotate highlight, swap the synced mockup,
+    // and let hover/focus on a question take over (pauses rotation).
+    (function () {
+      var qs = document.querySelectorAll('.hero-q');
+      if (!qs.length) return;
+      var shots = document.querySelectorAll('.hero-shot');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var i = 0;
+      var timer = null;
+
+      function setActive(n) {
+        i = n;
+        for (var j = 0; j < qs.length; j++) {
+          qs[j].classList.toggle('active', j === n);
+        }
+        for (var k = 0; k < shots.length; k++) {
+          shots[k].classList.toggle('is-active', k === n);
+        }
+      }
+
+      function start() {
+        if (reduced || timer) return;
+        timer = setInterval(function () {
+          setActive((i + 1) % qs.length);
+        }, 3500);
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      setActive(0);
+      start();
+
+      for (var q = 0; q < qs.length; q++) {
+        (function (idx) {
+          qs[idx].addEventListener('mouseenter', function () { stop(); setActive(idx); });
+          qs[idx].addEventListener('mouseleave', start);
+          qs[idx].addEventListener('focus', function () { stop(); setActive(idx); });
+          qs[idx].addEventListener('blur', start);
+        })(q);
+      }
+    })();
+  </script>
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
 <!-- End Cloudflare Web Analytics -->
