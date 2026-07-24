@@ -35,6 +35,16 @@
   height: 100%;
 }
 
+/* Stacked hero shots that crossfade in sync with the active question */
+.hero-shot {
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.hero-shot.is-active {
+  opacity: 1;
+}
+
 /* ── Hero: rotating self-selection questions ── */
 
 .hero-questions {
@@ -125,108 +135,6 @@
 
 .qa-lead strong { color: var(--foreground); }
 
-/* ── Cycle / listening feature ── */
-
-.section--cycle { background: var(--surface); }
-
-.cycle-card {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  background: var(--card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-lg);
-  padding: 3rem;
-}
-
-.cycle-card h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.cycle-card p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.cycle-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.cycle-switch {
-  width: 44px;
-  height: 24px;
-  border-radius: 999px;
-  background: var(--secondary);
-  position: relative;
-  flex: none;
-  box-shadow: 0 0 18px rgba(0, 209, 255, 0.45);
-}
-
-.cycle-switch::after {
-  content: '';
-  position: absolute;
-  right: 3px;
-  top: 3px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.cycle-note {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 1rem;
-}
-
-/* Illustrative coach message (no screenshot available yet) */
-.cycle-visual {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.cycle-chip {
-  align-self: flex-start;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--secondary);
-  border: 1px solid rgba(0, 209, 255, 0.35);
-  border-radius: 999px;
-  padding: 0.25rem 0.75rem;
-}
-
-.cycle-bubble {
-  background: var(--bg);
-  border: 1px solid rgba(0, 209, 255, 0.22);
-  border-radius: var(--radius);
-  border-top-left-radius: 0.35rem;
-  padding: 1.15rem 1.25rem;
-}
-
-.cycle-bubble p {
-  color: var(--foreground);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.cycle-bubble-by {
-  display: block;
-  margin-top: 0.75rem;
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
 /* ── "Und außerdem" feature grid ── */
 
 .also-grid {
@@ -282,6 +190,5 @@
 /* ── Responsive ── */
 
 @media (max-width: 860px) {
-  .cycle-card { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
   .also-grid { grid-template-columns: 1fr; }
 }

@@ -83,7 +83,9 @@
         </div>
       </div>
       <div class="hero-mockup reveal">
-        <img src="images/mockup-hero.webp" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
+        <img src="images/mockup-hero.webp" class="hero-shot is-active" data-q="0" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
+        <img src="images/hero-plan.webp" class="hero-shot" data-q="1" alt="RaceMind App &ndash; Trainingsplan mit Phasen">
+        <img src="images/hero-raceprep.webp" class="hero-shot" data-q="2" alt="RaceMind App &ndash; Zielzeit-Prognose">
       </div>
     </div>
   </header>
@@ -216,25 +218,21 @@
   </section>
 
   <!-- ════════════ ZYKLUS — LISTENING FEATURE ════════════ -->
-  <section class="section section--cycle">
-    <div class="container">
-      <div class="cycle-card reveal">
-        <div>
-          <h2>Dein Coach ignoriert deinen Zyklus nicht</h2>
-          <p>Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein &ndash; je nach Pr&auml;ferenz normal, vorsichtiger oder mit gesch&uuml;tzten Periodentagen.</p>
-          <div class="cycle-toggle">
-            <span class="cycle-switch" aria-hidden="true"></span>
-            Optional &ndash; du entscheidest, ob und wie. Jederzeit deaktivierbar.
-          </div>
-          <p class="cycle-note">Kein Wunderversprechen. Ein Plan, der dich ernst nimmt.</p>
-        </div>
-        <div class="cycle-visual" aria-hidden="true">
-          <span class="cycle-chip">Cycle Tracking</span>
-          <div class="cycle-bubble">
-            <p>&bdquo;Kurz vor deiner Periode nehme ich die harten Intervalle am Dienstag raus und setze eine lockere Einheit an. Die Belastung holen wir n&auml;chste Woche zur&uuml;ck.&ldquo;</p>
-            <span class="cycle-bubble-by">RaceMind Coach</span>
-          </div>
-        </div>
+  <section class="section">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow">Cycle Tracking</p>
+        <h2>Dein Coach ignoriert <span class="gradient-text">deinen Zyklus nicht.</span></h2>
+        <p class="qa-lead">Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein. <strong>Optional &ndash; du entscheidest, ob und wie, und kannst es jederzeit deaktivieren.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Normal weiterlaufen</strong> &ndash; willst du keine Anpassung, &auml;ndert sich nichts an deinem Plan.</li>
+          <li><strong>Vorsichtiger planen</strong> &ndash; die Engine nimmt in sensiblen Phasen bewusst Last raus.</li>
+          <li><strong>Periodentage sch&uuml;tzen</strong> &ndash; harte Einheiten weichen, die Belastung holst du sp&auml;ter zur&uuml;ck.</li>
+        </ul>
+        <p class="qa-lead" style="margin-top:1.25rem;margin-bottom:0;">Kein Wunderversprechen &ndash; ein Plan, der dich ernst nimmt. Kein direkter Wettbewerber bietet das.</p>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-cycle.webp" class="mockup-img" alt="Cycle Tracking &ndash; zyklusbasierte Trainingsanpassung">
       </div>
     </div>
   </section>
@@ -702,10 +700,14 @@
     (function () {
       var qs = document.querySelectorAll('.hero-q');
       if (!qs.length) return;
+      var shots = document.querySelectorAll('.hero-shot');
       var i = 0;
       function setActive(n) {
         for (var j = 0; j < qs.length; j++) {
           qs[j].classList.toggle('active', j === n);
+        }
+        for (var k = 0; k < shots.length; k++) {
+          shots[k].classList.toggle('is-active', k === n);
         }
       }
       setActive(0);
