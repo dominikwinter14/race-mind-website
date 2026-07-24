@@ -4,7 +4,13 @@
    Reuses existing tokens: --primary, --secondary, --bg, --card, etc.
    ══════════════════════════════════════ */
 
-/* ── Hero: wider layout so the questions can breathe ── */
+/* ── Hero: taller + wider so the questions can breathe ── */
+
+.hero--fullbleed {
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: 7rem;
+}
 
 .hero-split {
   max-width: 1180px;
