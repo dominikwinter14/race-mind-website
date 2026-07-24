@@ -45,6 +45,20 @@
   opacity: 1;
 }
 
+/* ── Hero: eyebrow + scope line ── */
+
+.hero-eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.hero-scope {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 0 0 0.25rem;
+}
+
 /* ── Hero: rotating self-selection questions ── */
 
 .hero-questions {
