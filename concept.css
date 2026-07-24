@@ -15,23 +15,28 @@
   padding-right: 3.5rem;
 }
 
+/* Roomier padding inside the frosted hero card */
+.hero-content.hero-split {
+  padding: 3.25rem;
+}
+
 /* ── Hero: rotating self-selection questions ── */
 
 .hero-questions {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin: 0.5rem 0 1.75rem;
+  gap: 1.25rem;
+  margin: 1rem 0 2.25rem;
 }
 
 .hero-q {
-  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
   font-weight: 700;
-  line-height: 1.28;
+  line-height: 1.4;
   color: var(--foreground);
-  padding-left: 1rem;
+  padding-left: 1.15rem;
   border-left: 3px solid transparent;
-  opacity: 0.32;
+  opacity: 0.3;
   transition: opacity 0.5s ease, border-color 0.5s ease;
 }
 
@@ -56,47 +61,22 @@
   border-left: 4px solid var(--primary);
   background: linear-gradient(90deg, rgba(255, 138, 0, 0.09), rgba(255, 138, 0, 0));
   border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 1.1rem 1.4rem;
-  margin-bottom: 1.75rem;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2.25rem;
 }
 
 .hero-answer-lead {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--foreground);
-  margin-bottom: 0.35rem;
-  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
 }
 
 .hero-answer p:not(.hero-answer-lead) {
   color: var(--muted);
   line-height: 1.6;
   font-size: 0.95rem;
-}
-
-/* ── Hero: integration chips ── */
-
-.hero-chips {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.75rem;
-}
-
-.hero-chips-label {
-  color: var(--muted);
-  font-size: 0.8rem;
-  margin-right: 0.25rem;
-}
-
-.hero-chip {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  padding: 0.25rem 0.8rem;
-  font-size: 0.78rem;
-  color: var(--muted);
-  white-space: nowrap;
 }
 
 /* ── Alternating section background for rhythm ── */
