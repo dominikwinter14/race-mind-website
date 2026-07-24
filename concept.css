@@ -201,4 +201,17 @@
     line-height: 1.35;
     padding-left: 0.9rem;
   }
+
+  /* Show the rotating mockup below the CTAs (auto-swap keeps running) */
+  .hero-mockup {
+    display: block;
+    height: 56vh;
+    min-height: 420px;
+    max-height: 540px;
+    margin-top: 2.5rem;
+  }
+
+  .hero-mockup img {
+    height: 100%;
+  }
 }
