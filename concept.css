@@ -162,3 +162,43 @@
   max-width: 920px;
   margin: 0 auto;
 }
+
+/* ── Mobile: reset the desktop hero overrides so it doesn't blow up ── */
+
+@media (max-width: 768px) {
+  .hero--fullbleed {
+    min-height: auto;
+    padding: 7rem 0 3rem;
+  }
+
+  .hero-split {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .hero-content.hero-split {
+    min-height: 0;
+    padding: 1.75rem;
+  }
+
+  .hero-split .hero-text {
+    padding-right: 0;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .hero-scope {
+    font-size: 0.8rem;
+  }
+
+  .hero-questions {
+    gap: 1.1rem;
+    margin: 1.5rem 0 1.75rem;
+  }
+
+  .hero-q {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    padding-left: 0.9rem;
+  }
+}
