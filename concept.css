@@ -13,12 +13,17 @@
 }
 
 .hero-split {
-  max-width: 1180px;
-  grid-template-columns: 1.5fr 1fr;
+  max-width: 1220px;
+  grid-template-columns: 1.4fr 1.1fr;
 }
 
 .hero-split .hero-text {
   padding-right: 3.5rem;
+}
+
+/* Larger hero mockup */
+.hero-mockup img {
+  height: 108%;
 }
 
 /* Roomier padding inside the frosted hero card */
@@ -31,8 +36,8 @@
 .hero-questions {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  margin: 1rem 0 2.25rem;
+  gap: 1.85rem;
+  margin: 1rem 0 2.5rem;
 }
 
 .hero-q {
