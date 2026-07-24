@@ -19,16 +19,20 @@
 
 .hero-split .hero-text {
   padding-right: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Larger hero mockup */
-.hero-mockup img {
-  height: 108%;
-}
-
-/* Roomier padding inside the frosted hero card */
+/* Taller frosted card so the enlarged mockup fits without cropping */
 .hero-content.hero-split {
   padding: 3.25rem;
+  min-height: 660px;
+}
+
+/* Larger hero mockup, fully visible inside the taller card */
+.hero-mockup img {
+  height: 100%;
 }
 
 /* ── Hero: rotating self-selection questions ── */
