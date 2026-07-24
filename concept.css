@@ -4,6 +4,17 @@
    Reuses existing tokens: --primary, --secondary, --bg, --card, etc.
    ══════════════════════════════════════ */
 
+/* ── Hero: wider layout so the questions can breathe ── */
+
+.hero-split {
+  max-width: 1180px;
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.hero-split .hero-text {
+  padding-right: 3.5rem;
+}
+
 /* ── Hero: rotating self-selection questions ── */
 
 .hero-questions {
