@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; Q&amp;A-Konzept (Vorschau)</title>
+  <meta name="description" content="Konzept-Vorschau: Q&amp;A-Selbstselektion. Nicht live.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="concept.css">
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="#" class="nav-logo" aria-label="RaceMind Home">
+        <svg class="logo-svg" viewBox="0 0 1482 782" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M703.076 234.161C710.096 242.43 733.467 282.217 736.667 284.792L738.628 284.517C751.428 269.116 768.818 257.997 788.978 255.022C798.718 253.586 817.747 257.99 824.677 264.669C838.907 278.4 851.657 300.253 862.927 316.94C873.117 331.876 883.407 346.744 893.797 361.543C926.847 408.449 960.477 454.929 994.677 500.999C1082.6 460.649 1155.4 507.819 1200.72 582.469C1206.87 592.609 1216.9 607.729 1224.23 616.909C1244.66 642.129 1269.13 663.779 1296.65 680.989C1341.73 709.449 1392.62 720.269 1444.43 729.459C1454.36 731.229 1470.53 732.449 1480.36 735.729C1480.8 736.519 1481.24 737.299 1481.68 738.089C1479.74 746.809 1464.57 748.119 1456.8 749.359C1417.59 755.639 1370.8 754.399 1332.17 744.519C1285.08 732.529 1241.68 709.089 1205.84 676.269C1195.79 666.899 1181.24 651.019 1172.58 640.089C1133.76 591.069 1087.39 517.809 1015.25 558.679C993.588 570.949 970.737 596.099 950.407 611.679C946.847 614.409 925.568 631.049 924.078 632.909C923.908 640.079 943.638 660.249 949.448 666.429C965.108 682.499 985.537 700.709 1009.14 701.939C1020.44 702.539 1034.79 696.839 1042.3 688.829C1058.16 671.919 1058.72 644.499 1050.22 623.959C1044.37 609.799 1035.66 597.609 1030.21 583.429C1030.56 582.729 1030.9 582.029 1031.25 581.329C1034.7 579.239 1039.88 579.509 1043.41 580.829C1111.63 606.319 1115.63 711.279 1053.16 745.279C1011.46 767.969 964.077 752.479 930.297 724.539C916.717 712.979 895.757 693.919 886.137 679.059L887.628 676.969C886.508 672.799 878.458 661.579 874.948 660.459C865.098 657.329 840.867 671.369 831.417 669.339C830.237 666.579 830.838 662.599 833.088 660.549C836.018 661.109 836.188 661.289 839.098 660.989L840.228 659.279C841.858 638.549 833.687 641.989 831.257 632.719C830.827 631.109 830.438 629.489 830.088 627.869C825.198 626.939 823.737 629.829 820.397 624.719C824.397 623.959 827.207 623.579 831.267 623.189C835.817 622.089 838.727 621.769 842.557 619.069C843.677 615.269 829.768 593.929 826.988 589.039C817.018 571.399 807.157 553.689 797.387 535.929C780.317 504.449 763.998 471.399 747.588 439.549L693.924 337.862C700.414 338.784 701.316 341.426 706.023 346.663C707.088 345.579 706.722 345.086 707.036 342.912C705.636 341.187 704.723 339.925 703.463 338.092C702.241 325.826 706.374 312.277 706.284 299.691C706.304 290.177 699.254 270.891 705.971 263.097C716.697 250.647 702.636 250.045 703.076 234.161ZM886.198 578.219C888.738 581.009 891.128 585.089 893.198 588.339C904.608 580.149 967.898 524.209 974.628 514.619C967.818 507.949 957.377 502.259 950.057 495.869C895.737 448.429 854.548 388.029 806.228 334.868C790.058 317.08 783.368 321.187 764.598 331.906C763.838 333.094 762.728 333.97 763.358 335.223C803.568 414.619 840.888 502.069 886.198 578.219Z" fill="url(#lg1)"/>
+          <path d="M703.076 234.161C710.096 242.43 733.467 282.217 736.667 284.792L738.628 284.517C740.988 295.788 754.677 320.412 761.427 330.582C762.697 331.201 763.258 331.62 764.598 331.906C763.838 333.094 762.728 333.97 763.358 335.223C803.568 414.619 840.888 502.069 886.198 578.219L883.608 578.359C877.848 572.959 874.138 571.029 871.328 563.029L870.907 561.879L869.958 564.609L869.068 563.699C869.138 561.939 869.467 556.589 868.887 555.459C865.167 548.279 846.758 512.279 843.738 508.729C831.908 510.539 829.977 534.629 832.767 542.629C835.557 544.299 836.068 544.209 839.198 544.869C839.898 554.249 842.228 562.589 837.128 569.409C841.078 579.369 844.357 580.009 839.177 589.729C840.167 599.829 847.928 613.669 845.068 620.669C843.178 622.169 842.238 623.149 839.988 624.029C838.338 623.719 833.177 623.359 831.267 623.189C835.817 622.089 838.727 621.769 842.557 619.069C843.677 615.269 829.768 593.929 826.988 589.039C817.018 571.399 807.157 553.689 797.387 535.929C780.317 504.449 763.998 471.399 747.588 439.549L693.924 337.862C700.414 338.784 701.316 341.426 706.023 346.663C707.088 345.579 706.722 345.086 707.036 342.912C705.636 341.187 704.723 339.925 703.463 338.092C702.241 325.826 706.374 312.277 706.284 299.691C706.304 290.177 699.254 270.891 705.971 263.097C716.697 250.647 702.636 250.045 703.076 234.161Z" fill="url(#lg1)"/>
+          <path d="M820.397 624.719C824.397 623.959 827.207 623.579 831.267 623.189C833.177 623.359 838.338 623.719 839.988 624.029C838.478 626.619 838.777 626.629 838.267 629.589C834.857 630.159 833.498 628.589 830.088 627.869C825.198 626.939 823.737 629.829 820.397 624.719Z" fill="url(#lg1)"/>
+          <path d="M606.82 195.269C605.143 194.257 595.158 179.932 593.562 177.669C574.801 151.07 552.044 119.839 523.145 157.857C502.501 185.017 485.729 215.908 467.367 244.763C441.864 284.839 418.827 346.276 360.281 307.498C346.019 300.16 339.322 312.165 332.138 322.355C238.589 455.039 151.085 591.829 55.1925 722.899C46.3745 734.949 16.4055 777.649 3.8445 781.759C-2.8495 780.009 0.817478 768.949 2.81548 764.369C46.6885 663.739 110.138 565.639 167.288 472.329C197.665 421.739 229.006 371.739 261.291 322.341C276.892 298.79 292.271 274.994 310.244 253.68C329.586 230.702 351.373 235.931 374.909 247.299C388.652 253.937 394.512 244.411 400.609 235.044C437.894 177.764 472.432 118.827 511.477 62.711C517.33 54.299 548.736 2.24 553.724 0C557.523 2.17 584.973 47.482 587.091 53.282C593.086 61.298 599.351 71.839 604.521 80.568C624.818 114.835 646.596 147.862 668.778 180.923C674.113 188.876 681.51 198.965 685.966 207.25C689.515 212.344 701.613 229.345 703.076 234.161C702.636 250.045 716.697 250.647 705.971 263.097C699.254 270.891 706.304 290.177 706.284 299.691C706.374 312.277 702.241 325.826 703.463 338.092C704.723 339.925 705.636 341.187 707.036 342.912C706.722 345.086 707.088 345.579 706.023 346.663C701.316 341.426 700.414 338.784 693.924 337.862C687.745 327.771 680.415 313.49 674.432 302.868C666.285 288.618 657.848 274.536 649.128 260.63C636.037 239.443 618.593 215.777 606.82 195.269Z" fill="url(#lg1)"/>
+          <path d="M587.091 53.282C593.086 61.298 599.351 71.839 604.521 80.568C624.818 114.835 646.596 147.862 668.778 180.923C674.113 188.876 681.51 198.965 685.966 207.25C689.515 212.344 701.613 229.345 703.076 234.161C702.636 250.045 716.697 250.647 705.971 263.097C699.254 270.891 706.304 290.177 706.284 299.691C706.374 312.277 702.241 325.826 703.463 338.092C704.723 339.925 705.636 341.187 707.036 342.912C706.722 345.086 707.088 345.579 706.023 346.663C701.316 341.426 700.414 338.784 693.924 337.862C687.745 327.771 680.415 313.49 674.432 302.868C666.285 288.618 657.848 274.536 649.128 260.63C636.037 239.443 618.593 215.777 606.82 195.269C618.542 200.356 668.794 290.151 677.015 292.498C677.737 290.354 677.499 290.993 677.432 288.587C683.367 281.554 680.648 278.805 680.724 269.734C680.737 268.132 680.445 268.133 680.078 266.596C678.856 263.181 682.863 257.396 682.054 253.952C679.417 242.732 680.919 231.033 679.159 219.399C678.242 213.341 675.354 216.499 675.13 211.174C675.11 210.707 677.416 206.285 677.838 205.565C675.81 204.871 675.044 204.651 672.976 204.322L671.234 204.053C670.018 202.576 669.625 202.032 669.778 200.018C671.544 191.082 660.307 182.312 658.409 175.989C653.854 160.809 637.818 143.071 631.687 132.423C624.925 120.68 587.614 62.94 587.091 53.282Z" fill="url(#lg1)"/>
+          <path d="M610.615 590.699C607.346 589.809 591.095 578.879 585.986 576.399C571.01 569.129 555.469 561.769 539.539 556.909C389.061 511.019 252.728 619.919 137.933 701.489C130.311 706.909 109.817 722.209 100.66 719.189C96.9465 710.889 122.739 682.989 128.87 676.439C243.931 553.369 413.84 447.039 585.255 518.529C602.543 525.639 657.105 554.879 669.877 567.079C661.689 579.119 679.763 606.319 664.531 627.459C649.644 618.719 624.443 601.419 610.615 590.699Z" fill="url(#lg1)"/>
+          <path d="M585.255 518.529C602.543 525.639 657.105 554.879 669.877 567.079C661.689 579.119 679.763 606.319 664.531 627.459C649.644 618.719 624.443 601.419 610.615 590.699C623.764 591.069 655.131 620.929 666.083 620.929C667.947 610.289 665.633 601.529 664.766 591.399C664.279 585.699 664.654 576.149 664.765 570.209L663.091 568.769C653.263 567.969 654.666 566.409 649.385 558.309L645.495 558.499C636.515 550.519 628.364 543.319 617.911 537.269C609.038 532.129 590.961 526.519 585.255 518.529Z" fill="url(#lg1)"/>
+          <path d="M669.877 567.079C718.747 599.919 758.977 629.909 820.397 624.719C823.737 629.829 825.198 626.939 830.088 627.869C830.438 629.489 830.827 631.109 831.257 632.719C833.687 641.989 841.858 638.549 840.228 659.279L839.098 660.989C836.188 661.289 836.018 661.109 833.088 660.549C830.838 662.599 830.237 666.579 831.417 669.339C840.867 671.369 865.098 657.329 874.948 660.459C878.458 661.579 886.508 672.799 887.628 676.969L886.137 679.059C882.847 675.549 876.107 666.099 872.927 661.869C860.437 664.729 847.628 670.959 833.838 673.579C768.718 685.939 717.197 661.779 664.531 627.459C679.763 606.319 661.689 579.119 669.877 567.079Z" fill="url(#lg1)"/>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="390.879" x2="1481.68" y2="390.879" gradientUnits="userSpaceOnUse">
+              <stop offset="0.418269" stop-color="#FF8A00"/>
+              <stop offset="0.841346" stop-color="#00D1FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#testimonials">Erfahrungen</a>
+        <a href="#pricing">Preise</a>
+        <a href="events.html">Rennen</a>
+        <a href="#contact">Kontakt</a>
+        <a href="#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════════════ HERO — Q&A SELF-SELECTION ════════════ -->
+  <header class="hero hero--fullbleed" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content hero-split">
+      <div class="hero-text">
+        <div class="lang-toggle lang-toggle--hero">
+          <a href="concept.html" class="active">DE</a>
+          <a href="index-en.html">EN</a>
+        </div>
+        <p class="hero-eyebrow reveal">RaceMind &ndash; Dein Coach f&uuml;r Triathlon und Laufen</p>
+        <div class="hero-questions reveal">
+          <p class="hero-q">Die Zielzeit steht &ndash; <span>aber der Weg dahin noch nicht?</span></p>
+          <p class="hero-q">F&uuml;r den Ironman angemeldet &ndash; <span>aber keine Ahnung, wo du anfangen sollst?</span></p>
+          <p class="hero-q">Ein Coach w&uuml;rde helfen &ndash; <span>aber nicht f&uuml;r 200&nbsp;&euro; im Monat?</span></p>
+        </div>
+        <div class="hero-answer reveal">
+          <p class="hero-answer-lead">Dann fehlt dir nicht Disziplin. Dir fehlt die richtige Struktur.</p>
+          <p>RaceMind plant dein Training wie ein Coach: auf dein Ziel, dein Level und deine Woche &ndash; und erkl&auml;rt dir, warum.</p>
+        </div>
+        <div class="hero-cta reveal">
+          <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+            Google Play
+          </a>
+          <a href="#how-it-works" class="btn btn-secondary">So funktioniert's</a>
+        </div>
+        <div class="hero-chips reveal">
+          <span class="hero-chips-label">Verbindet sich mit</span>
+          <span class="hero-chip">Garmin</span>
+          <span class="hero-chip">Strava</span>
+          <span class="hero-chip">Apple Watch</span>
+          <span class="hero-chip">COROS</span>
+          <span class="hero-chip">Polar</span>
+          <span class="hero-chip">Suunto</span>
+          <span class="hero-chip">intervals.icu</span>
+        </div>
+      </div>
+      <div class="hero-mockup reveal">
+        <img src="images/mockup-hero.webp" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════ FRAGE 1 — PLATEAU ════════════ -->
+  <section class="section">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">01</span> Warum werde ich nicht schneller?</p>
+        <h2>&bdquo;Ich trainiere &ndash; <span class="gradient-text">aber es geht nicht voran.&ldquo;</span></h2>
+        <p class="qa-lead">Du trainierst regelm&auml;&szlig;ig. Trotzdem stagnieren deine Zeiten. Der h&auml;ufigste Grund: Training ohne klare Struktur &ndash; zu oft mittel-hart, zu selten wirklich locker, zu selten gezielt intensiv. <strong>Das kostet Fortschritt &ndash; oder es endet in einer Verletzung.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Periodisierter Plan</strong> &ndash; Wechsel aus Belastung und Erholung, abgestimmt auf deinen Fitnessstand.</li>
+          <li><strong>Zielzeit immer im Blick</strong> &ndash; du siehst laufend, ob du auf Kurs bist.</li>
+          <li><strong>Klartext nach jeder Einheit</strong> &ndash; was sie gebracht hat, worauf es beim n&auml;chsten Mal ankommt.</li>
+          <li><strong>Du verstehst dein Training</strong> &ndash; physiologische Hintergr&uuml;nde statt blindem Zonen-Abarbeiten.</li>
+          <li><strong>Readiness-Check jeden Morgen</strong> &ndash; &bdquo;Heute kannst du pushen&ldquo; oder &bdquo;Nimm es locker&ldquo;, statt HRV-Charts.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-analysis.webp" class="mockup-img" alt="Einheiten-Analyse mit Coach-Einsch&auml;tzung">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 2 — FIRST-TIMER ════════════ -->
+  <section class="section section--surface-alt">
+    <div class="container grid-2col grid-2col--center" style="direction: rtl;">
+      <div class="text-block reveal" style="direction: ltr;">
+        <p class="qa-eyebrow"><span class="qa-num">02</span> Angemeldet ist. Und jetzt?</p>
+        <h2>&bdquo;Der Startplatz steht &ndash; <span class="gradient-text">der Plan fehlt.&ldquo;</span></h2>
+        <p class="qa-lead">Zwischen Anmeldung und Startlinie liegen viele Wochen &ndash; und noch mehr Fragen. Wie viel Training ist genug? Was ist zu viel? Und ist das Ziel &uuml;berhaupt realistisch?</p>
+        <ul class="feature-bullets">
+          <li><strong>Zielzeit-Prognose ab Tag 1</strong> &ndash; wird jede Woche genauer.</li>
+          <li><strong>Plan passend zu deiner Zeit</strong> &ndash; kein 15-Stunden-Plan, wenn du 7 Stunden hast.</li>
+          <li><strong>Sicher ans Ziel</strong> &ndash; die Engine drosselt bewusst: Schutz vor zu hart und zu viel.</li>
+          <li><strong>Race Day inklusive</strong> &ndash; Pacing- und Verpflegungsplan f&uuml;r den Wettkampftag.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal" style="direction: ltr;">
+        <!-- TODO(concept-screens): eigener "Race Control / Zielzeit-Prognose"-Screenshot fehlt, nutzt vorerst Plan-Phasen-Mockup -->
+        <img src="images/mockup-overview.webp" class="mockup-img" alt="Race Control mit Zielzeit-Prognose">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 3 — COACH-KOSTEN ════════════ -->
+  <section class="section">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">03</span> Ein Coach w&auml;re gut. Aber 200&nbsp;&euro; im Monat?</p>
+        <h2>&bdquo;Zwischen PDF-Plan <span class="gradient-text">und Premium-Coach.&ldquo;</span></h2>
+        <p class="qa-lead">Ein pers&ouml;nlicher Coach ist f&uuml;r die meisten keine Option &ndash; zu teuer, zu viel Abstimmung. Ein PDF-Plan ist das andere Extrem: g&uuml;nstig, aber niemand, der antwortet. <strong>RaceMind macht professionelle Trainingsplanung zug&auml;nglich.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Ein Coach, der antwortet</strong> &ndash; rund um die Uhr, mit deinen Daten und deinem Plan im Kontext.</li>
+          <li><strong>Ein Coach, der handelt</strong> &ndash; &bdquo;Verschieb mein Intervalltraining auf Donnerstag&ldquo; &ndash; erledigt.</li>
+          <li><strong>Transparent im Preis</strong> &ndash; ab 6,66&nbsp;&euro; im Monat, jederzeit k&uuml;ndbar.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-chat-dual.webp" class="mockup-img" alt="Coach-Chat &auml;ndert den Plan live">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FRAGE 4 — WOCHE KIPPT ════════════ -->
+  <section class="section section--core section--surface-alt">
+    <div class="container grid-2col grid-2col--reality">
+      <div class="feature-mockup reveal">
+        <div class="reality-compact" role="img" aria-label="Beispielwoche: Montag Kind krank, Long Run gestrichen; Dienstag Meeting bis 21 Uhr, Schwellen-Intervalle gestrichen; Mittwoch Migr&auml;ne, Stabi gestrichen &ndash; RaceMind plant die Woche neu.">
+          <span class="reality-compact-eyebrow">Wenn deine Woche kippt</span>
+          <div class="rc-list">
+            <div class="rc-row">
+              <span class="rc-day">Mo</span>
+              <div class="rc-content">
+                <span class="rc-reason">Kind krank. Schlafmangel.</span>
+                <span class="rc-session">Long Run &middot; 90&nbsp;min</span>
+              </div>
+            </div>
+            <div class="rc-row">
+              <span class="rc-day">Di</span>
+              <div class="rc-content">
+                <span class="rc-reason">Meeting bis 21 Uhr.</span>
+                <span class="rc-session">Schwellen-Intervalle &middot; 60&nbsp;min</span>
+              </div>
+            </div>
+            <div class="rc-row">
+              <span class="rc-day">Mi</span>
+              <div class="rc-content">
+                <span class="rc-reason">Migr&auml;ne, kein Fokus.</span>
+                <span class="rc-session">Stabi &middot; 30&nbsp;min</span>
+              </div>
+            </div>
+          </div>
+          <p class="rc-note">Das f&uuml;hlt sich schnell nach Hinterherhinken an &ndash; genau hier verlieren viele die Motivation.</p>
+          <div class="rc-divider"></div>
+          <div class="rc-resolution">
+            <span class="rc-resolution-eyebrow">RaceMind</span>
+            <span class="rc-resolution-text">Plant die Woche neu.<br>Du bleibst auf Kurs.</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">04</span> Und wenn eine Woche auseinanderf&auml;llt?</p>
+        <h2>Dein Leben verl&auml;uft nicht linear &ndash; <span class="gradient-text">warum sollte es dein Training?</span></h2>
+        <p class="text-lead">RaceMind plant deine Woche neu &ndash; auf die Zeit, die du <em>jetzt</em> hast. Der Coach erkl&auml;rt, was bleibt, was wegf&auml;llt und warum das okay ist. Der Ausl&ouml;ser ist austauschbar: Deadline, schlechter Schlaf, Erk&auml;ltung &ndash; oder deine Periode. Alles davon ist normal.</p>
+        <ul class="core-points">
+          <li><strong>Gemacht f&uuml;r Wochen, die nicht nach Plan laufen.</strong> RaceMind bringt deinen Trainingskalender wieder in Ordnung &ndash; ohne Neuplanen, ohne Nachholen.</li>
+          <li><strong>Weitermachen statt hinwerfen.</strong> Du trainierst weiter &ndash; ohne schlechtes Gewissen und ohne Chaos im Kopf.</li>
+          <li><strong>Zur&uuml;ck nach Krankheit oder Verletzung.</strong> Progressiver Weg zur&uuml;ck statt Neustart &ndash; konservativ genug, um R&uuml;ckf&auml;lle zu vermeiden.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ ZYKLUS — LISTENING FEATURE ════════════ -->
+  <section class="section section--cycle">
+    <div class="container">
+      <div class="cycle-card reveal">
+        <div>
+          <h2>Dein Coach ignoriert deinen Zyklus nicht</h2>
+          <p>Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein &ndash; je nach Pr&auml;ferenz normal, vorsichtiger oder mit gesch&uuml;tzten Periodentagen.</p>
+          <div class="cycle-toggle">
+            <span class="cycle-switch" aria-hidden="true"></span>
+            Optional &ndash; du entscheidest, ob und wie. Jederzeit deaktivierbar.
+          </div>
+          <p class="cycle-note">Kein Wunderversprechen. Ein Plan, der dich ernst nimmt.</p>
+        </div>
+        <div class="cycle-visual" aria-hidden="true">
+          <span class="cycle-chip">Cycle Tracking</span>
+          <div class="cycle-bubble">
+            <p>&bdquo;Kurz vor deiner Periode nehme ich die harten Intervalle am Dienstag raus und setze eine lockere Einheit an. Die Belastung holen wir n&auml;chste Woche zur&uuml;ck.&ldquo;</p>
+            <span class="cycle-bubble-by">RaceMind Coach</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ UND AUSSERDEM ════════════ -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title reveal">Und au&szlig;erdem</h2>
+      <p class="section-subtitle reveal">Produkttiefe f&uuml;r alle, die genauer vergleichen.</p>
+      <div class="also-grid reveal">
+        <div class="also-card">
+          <h3>&#9201; Einheit ans Ger&auml;t senden</h3>
+          <p>Strukturierte Workouts direkt auf die Garmin-Uhr &ndash; mit Pace-Zielen, Intervallen und Herzfrequenz-Vorgaben.</p>
+        </div>
+        <div class="also-card">
+          <h3>&#128203; W&ouml;chentlicher Coach Review</h3>
+          <p>Jeden Sonntag eine strukturierte Analyse deiner Woche: was lief gut, was muss sich &auml;ndern.</p>
+        </div>
+        <div class="also-card">
+          <h3>&#128218; Workout Library</h3>
+          <p>&Uuml;ber 300 Einheiten &ndash; Schwimmen, Radfahren, Laufen, Kraft, Mobility und Stabilisation.</p>
+        </div>
+        <div class="also-card also-card--highlight">
+          <h3>&#128101; Gemeinsam statt allein</h3>
+          <p>Trainings mit Freund:innen vergleichen und Einheiten zusammen planen.</p>
+          <span class="also-card-tag">Wird gerade ausgebaut</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ SO FUNKTIONIERT'S ════════════ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title reveal">So funktioniert's</h2>
+      <p class="section-subtitle reveal">Plan-Anpassungen passieren proaktiv (z.&thinsp;B. nach Check-ins/Belastung) oder auf deinen Wunsch (z.&thinsp;B. &bdquo;verschiebe diese Einheit&ldquo;).</p>
+      <div class="steps">
+        <div class="steps-line"></div>
+        <div class="step reveal">
+          <div class="step-dot">1</div>
+          <h4>Ziel setzen</h4>
+          <p>W&auml;hle dein Rennen (von 5&nbsp;km oder Sprint bis Marathon und Langdistanz) und deine Zielzeit.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">2</div>
+          <h4>Status erfassen</h4>
+          <p>Verbinde dein Wearable oder gib Daten manuell ein.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">3</div>
+          <h4>Realit&auml;ts-Check</h4>
+          <p>Du bekommst sofort eine Prognose, die zeigt, ob du auf Kurs bist.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">4</div>
+          <h4>Woche f&uuml;r Woche besser</h4>
+          <p>Dein Plan wird laufend angepasst. Nach jeder Einheit bekommst du Feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TRUST ════════════ -->
+  <section class="section section--trust">
+    <div class="container">
+      <div class="trust-grid reveal">
+        <div class="trust-badge">
+          <div class="trust-icon">&#127465;&#127466;</div>
+          <h4>Made in Germany</h4>
+          <p>Entwickelt in Freiburg. Hosting in der EU.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#128274;</div>
+          <h4>DSGVO-konform</h4>
+          <p>Deine Daten geh&ouml;ren dir. Keine Weitergabe an Dritte.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#9201;</div>
+          <h4>Funktioniert mit</h4>
+          <p>Garmin &middot; Apple Watch &middot; Polar &middot; Suunto &middot; COROS &middot; Strava &middot; intervals.icu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FÜR WEN ════════════ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">F&uuml;r wen ist RaceMind &ndash; und f&uuml;r wen nicht?</h2>
+      <p class="section-subtitle reveal">Ehrliche Selbstselektion, bevor du dich anmeldest.</p>
+      <div class="audience-grid audience-standalone reveal">
+        <div class="audience-col audience-col--yes">
+          <h3 class="audience-heading">&#10003; F&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Ein Ziel im Triathlon oder Laufen hast &ndash; von 5&nbsp;km oder Sprint bis Marathon und Langdistanz</li>
+            <li>Zum ersten Mal strukturiert trainierst und nicht durch zu hart oder zu viel in eine Verletzung laufen willst</li>
+            <li>Keinen Bock auf PDF-Pl&auml;ne hast, die bei der ersten verschobenen Einheit wertlos werden</li>
+            <li>Verstehen willst, was du trainierst &mdash; nicht nur Zahlen nachjagen</li>
+            <li>Schon mal einen Coach hattest oder br&auml;uchtest, aber nicht 200&nbsp;&euro; im Monat zahlen willst</li>
+          </ul>
+        </div>
+        <div class="audience-col audience-col--no">
+          <h3 class="audience-heading">&#10007; Nicht f&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Profi oder Pro-Age-Grouper auf Kona-Niveau bist &mdash; dann brauchst du einen menschlichen Coach mit Augen auf deiner Form</li>
+            <li>Gar kein konkretes Rennen oder Ziel hast und einfach nur lockere Freizeit-Workouts ohne Plan suchst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TESTIMONIALS ════════════ -->
+  <section class="section section--testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title reveal">Was Nutzer in den Stores schreiben</h2>
+      <p class="section-subtitle reveal">Ein Auszug aus den Bewertungen im App&nbsp;Store &amp; Google&nbsp;Play</p>
+    </div>
+    <div class="reviews-marquee reveal">
+      <div class="reviews-track">
+        <div class="reviews-set">
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Endlich ein Plan, der zu meinem Leben als Mama passt!</h3>
+            <p class="review-text">Dank RaceMind habe ich meinen Halbmarathon in einer neuen Bestzeit gefinisht, die ich mir selbst nie zugetraut h&auml;tte! Mit zwei Kleinkindern ist mein Alltag oft chaotisch, aber die Flexibilit&auml;t der App ist Gold wert. Besonders genial: Die Anpassung an den Zyklus. Da ich stark unter PMS leide, war es eine totale Entlastung, dass das Training in dieser Zeit R&uuml;cksicht auf meine Verfassung nimmt.</p>
+            <figcaption class="review-meta"><span class="review-avatar">P</span><span class="review-meta-text"><strong>pawa1977</strong><span>6. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Ich bereite mich gerade auf meine erste Mitteldistanz vor und kann mich dabei sehr gut auf die App verlassen. Sie funktioniert reibungslos und gibt mir wissenschaftlich fundierte Pl&auml;ne an die Hand, die sich dann automatisch meiner Woche und Freizeit anpassen. So kann ich meinen Fokus voll und ganz auf mein Training legen und mir viel Zeit sparen.</p>
+            <figcaption class="review-meta"><span class="review-avatar">E</span><span class="review-meta-text"><strong>Erol C.</strong><span>21. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Sehr happy!</h3>
+            <p class="review-text">Sehr zufrieden und innovativer Ansatz. Ich konnte sie noch nicht auf Wettkampf testen, aber der bisherige Eindruck nach drei Monaten Nutzung ist sehr gut. Eine App, die Sportler wirklich versteht. Und besser ist als alles, was ich bisher an Lauf-Apps getestet habe.</p>
+            <figcaption class="review-meta"><span class="review-avatar">M</span><span class="review-meta-text"><strong>MMausKinNRW</strong><span>22. Juni</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Bin vor Jahren mal einen Halbmarathon gelaufen und hab es danach nie wieder geschafft, einen Trainingsplan durchzuziehen. Habe es dann mit der App nochmal probiert und war positiv &uuml;berrascht, wie einfach und intuitiv alles funktioniert &ndash; die App ist echt eine super Unterst&uuml;tzung, um im Alltag dranzubleiben.</p>
+            <figcaption class="review-meta"><span class="review-avatar">R</span><span class="review-meta-text"><strong>Ronja S.</strong><span>4. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Super Hilfe, um Struktur ins Training zu bekommen</h3>
+            <p class="review-text">Ich trainiere neben Job und Familie und brauche vor allem Struktur. Die App nimmt mir das ab, danke.</p>
+            <figcaption class="review-meta"><span class="review-avatar">J</span><span class="review-meta-text"><strong>JaP1091</strong><span>7. Juli</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Finde die App super bisher. Ich hab nicht 15 Stunden pro Woche. Ich hab Kinder, Job, Beziehung. Will trotzdem beim Ironman am Start stehen und deswegen so wenig Zeit wie m&ouml;glich in Trainingsplanung oder dergleichen verbringen &ndash; gerade hier nimmt die App quasi alles ab.</p>
+            <figcaption class="review-meta"><span class="review-avatar">P</span><span class="review-meta-text"><strong>Paprika Chips</strong><span>27. Juni</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars" aria-label="5 von 5 Sternen">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Tolle App, die den pers&ouml;nlichen Coach ersetzt und mit der sich realistisch und gezielt auf eine Wunschzeit trainieren l&auml;sst. Sub-3 Marathon, ich komme. Toll ist auch die Workout-Bibliothek, und der Roast-me-Coachmodus deckt gnadenlos die Unstimmigkeiten im Training auf.</p>
+            <figcaption class="review-meta"><span class="review-avatar">T</span><span class="review-meta-text"><strong>Tom R.</strong><span>3. Mai</span></span></figcaption>
+          </figure>
+        </div>
+        <div class="reviews-set" aria-hidden="true">
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Endlich ein Plan, der zu meinem Leben als Mama passt!</h3>
+            <p class="review-text">Dank RaceMind habe ich meinen Halbmarathon in einer neuen Bestzeit gefinisht, die ich mir selbst nie zugetraut h&auml;tte! Mit zwei Kleinkindern ist mein Alltag oft chaotisch, aber die Flexibilit&auml;t der App ist Gold wert. Besonders genial: Die Anpassung an den Zyklus. Da ich stark unter PMS leide, war es eine totale Entlastung, dass das Training in dieser Zeit R&uuml;cksicht auf meine Verfassung nimmt.</p>
+            <figcaption class="review-meta"><span class="review-avatar">P</span><span class="review-meta-text"><strong>pawa1977</strong><span>6. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Ich bereite mich gerade auf meine erste Mitteldistanz vor und kann mich dabei sehr gut auf die App verlassen. Sie funktioniert reibungslos und gibt mir wissenschaftlich fundierte Pl&auml;ne an die Hand, die sich dann automatisch meiner Woche und Freizeit anpassen. So kann ich meinen Fokus voll und ganz auf mein Training legen und mir viel Zeit sparen.</p>
+            <figcaption class="review-meta"><span class="review-avatar">E</span><span class="review-meta-text"><strong>Erol C.</strong><span>21. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Sehr happy!</h3>
+            <p class="review-text">Sehr zufrieden und innovativer Ansatz. Ich konnte sie noch nicht auf Wettkampf testen, aber der bisherige Eindruck nach drei Monaten Nutzung ist sehr gut. Eine App, die Sportler wirklich versteht. Und besser ist als alles, was ich bisher an Lauf-Apps getestet habe.</p>
+            <figcaption class="review-meta"><span class="review-avatar">M</span><span class="review-meta-text"><strong>MMausKinNRW</strong><span>22. Juni</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Bin vor Jahren mal einen Halbmarathon gelaufen und hab es danach nie wieder geschafft, einen Trainingsplan durchzuziehen. Habe es dann mit der App nochmal probiert und war positiv &uuml;berrascht, wie einfach und intuitiv alles funktioniert &ndash; die App ist echt eine super Unterst&uuml;tzung, um im Alltag dranzubleiben.</p>
+            <figcaption class="review-meta"><span class="review-avatar">R</span><span class="review-meta-text"><strong>Ronja S.</strong><span>4. Mai</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z"/></svg>App Store</span>
+            </div>
+            <h3 class="review-title">Super Hilfe, um Struktur ins Training zu bekommen</h3>
+            <p class="review-text">Ich trainiere neben Job und Familie und brauche vor allem Struktur. Die App nimmt mir das ab, danke.</p>
+            <figcaption class="review-meta"><span class="review-avatar">J</span><span class="review-meta-text"><strong>JaP1091</strong><span>7. Juli</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Finde die App super bisher. Ich hab nicht 15 Stunden pro Woche. Ich hab Kinder, Job, Beziehung. Will trotzdem beim Ironman am Start stehen und deswegen so wenig Zeit wie m&ouml;glich in Trainingsplanung oder dergleichen verbringen &ndash; gerade hier nimmt die App quasi alles ab.</p>
+            <figcaption class="review-meta"><span class="review-avatar">P</span><span class="review-meta-text"><strong>Paprika Chips</strong><span>27. Juni</span></span></figcaption>
+          </figure>
+          <figure class="review-card">
+            <div class="review-card-top">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-source"><svg class="review-source-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>Google Play</span>
+            </div>
+            <p class="review-text">Tolle App, die den pers&ouml;nlichen Coach ersetzt und mit der sich realistisch und gezielt auf eine Wunschzeit trainieren l&auml;sst. Sub-3 Marathon, ich komme. Toll ist auch die Workout-Bibliothek, und der Roast-me-Coachmodus deckt gnadenlos die Unstimmigkeiten im Training auf.</p>
+            <figcaption class="review-meta"><span class="review-avatar">T</span><span class="review-meta-text"><strong>Tom R.</strong><span>3. Mai</span></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ COMPARISON ════════════ -->
+  <section class="section section--compare">
+    <div class="container">
+      <h2 class="section-title reveal">Warum RaceMind statt statischer Plan?</h2>
+      <p class="section-subtitle reveal">Kurzer Vergleich, worin der Unterschied im Alltag wirklich liegt.</p>
+      <div class="compare-cards reveal">
+
+        <div class="compare-card">
+          <div class="compare-card-head">
+            <span class="compare-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+            </span>
+            <h3>Statischer Plan</h3>
+          </div>
+          <ul class="compare-card-list">
+            <li><span class="cross">&#10007;</span><span>Starr und unflexibel bei Ausf&auml;llen</span></li>
+            <li><span class="cross">&#10007;</span><span>Keine Analyse nach jeder Einheit</span></li>
+            <li><span class="cross">&#10007;</span><span>Kein Feedback bei Fragen</span></li>
+          </ul>
+          <div class="compare-card-price">
+            <span class="ccp-label">Preis</span>
+            <span class="ccp-value">Einmalig 30&ndash;80&nbsp;&euro;</span>
+          </div>
+        </div>
+
+        <div class="compare-card compare-card--highlight">
+          <span class="compare-card-badge">Empfohlen</span>
+          <div class="compare-card-head">
+            <span class="compare-card-icon compare-card-icon--primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+            </span>
+            <h3>RaceMind</h3>
+          </div>
+          <ul class="compare-card-list">
+            <li><span class="check">&#10003;</span><span>Automatisch &amp; w&ouml;chentlich adaptiv</span></li>
+            <li><span class="check">&#10003;</span><span>Sofortige Analyse in Klartext</span></li>
+            <li><span class="check">&#10003;</span><span>24/7 Chat-Support (AI Coach)</span></li>
+            <li><span class="check">&#10003;</span><span>Integration von HRV, Schlaf, Belastung</span></li>
+          </ul>
+          <div class="compare-card-price">
+            <span class="ccp-label">Preis</span>
+            <span class="ccp-value ccp-value--primary">Ab 6,66&nbsp;&euro; / Monat</span>
+          </div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-card-head">
+            <span class="compare-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            </span>
+            <h3>Menschlicher Coach</h3>
+          </div>
+          <ul class="compare-card-list">
+            <li><span class="check">&#10003;</span><span>Manuell, oft mit Verz&ouml;gerung</span></li>
+            <li><span class="check">&#10003;</span><span>Analyse meist nur w&ouml;chentlich</span></li>
+            <li><span class="cross">&#10007;</span><span>Feedback per Nachricht, mit Verz&ouml;gerung</span></li>
+          </ul>
+          <div class="compare-card-price">
+            <span class="ccp-label">Preis</span>
+            <span class="ccp-value">150&ndash;400&nbsp;&euro; / Monat</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ PRICING ════════════ -->
+  <section class="section section--pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title reveal">Early Adopter Offer.</h2>
+      <p class="section-subtitle reveal">Jetzt einsteigen &ndash; zum Launch-Preis, den du lebenslang beh&auml;ltst.</p>
+      <div class="pricing-grid reveal">
+        <div class="pricing-card pricing-card--highlight">
+          <h3>Monatlich</h3>
+          <div class="pricing-amount"><span class="pricing-price">&euro;9,99</span><span class="pricing-period">&nbsp;/ Monat</span></div>
+          <p class="pricing-monthly">Jederzeit k&uuml;ndbar &uuml;ber App Store oder Google Play.</p>
+          <div class="download-buttons" style="margin-top: 1.25rem; margin-bottom: 0;">
+            <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <h3>J&auml;hrlich</h3>
+          <div class="pricing-amount"><span class="pricing-price">&euro;79,99</span><span class="pricing-period">&nbsp;/ Jahr</span></div>
+          <p class="pricing-monthly">Entspricht &euro;6,66&nbsp;/ Monat &ndash; 2 Monate gratis gegen&uuml;ber monatlich.</p>
+          <div class="download-buttons" style="margin-top: 1.25rem; margin-bottom: 0;">
+            <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="pricing-note reveal"><em>Der Early-Adopter-Preis gilt lebenslang f&uuml;r alle, die jetzt abonnieren.</em></p>
+    </div>
+  </section>
+
+  <!-- ════════════ FAQ ════════════ -->
+  <section class="section section--faq" id="faq">
+    <div class="container">
+      <h2 class="section-title reveal">H&auml;ufige Fragen</h2>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>&bdquo;Ich trainiere schon lange &ndash; ist RaceMind nur f&uuml;r Anf&auml;nger?&ldquo;</summary>
+          <p>Nein. Gerade wenn deine Zeiten stagnieren, hilft RaceMind, Struktur und Periodisierung ins Training zu bringen. Deine bestehenden Daten aus Garmin, COROS, Strava oder <a href="https://intervals.icu" target="_blank" rel="noopener">intervals.icu</a> werden nicht nur angezeigt, sondern in einen Plan, eine Zielzeit-Prognose und konkrete Entscheidungen f&uuml;r deine Woche &uuml;bersetzt.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Was passiert, wenn ich eine Woche gar nicht trainieren kann?&ldquo;</summary>
+          <p>Dann musst du nichts nachholen. RaceMind kann Einheiten verschieben, anpassen oder &uuml;berspringen, ohne dass deine Woche komplett auseinanderf&auml;llt. Wenn eine einzelne &Auml;nderung nicht mehr reicht, wird die Woche neu geplant statt einfach alles nach hinten zu schieben.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Wie sch&uuml;tzt mich RaceMind vor &Uuml;berlastung und Verletzungen?&ldquo;</summary>
+          <p>RaceMind bewertet nicht nur, was du leisten k&ouml;nntest, sondern auch, was gerade sinnvoll ist. Gerade f&uuml;r Einsteiger drosselt die Engine bewusst &ndash; Schutz vor zu hart und zu viel. Schlaf, HRV, Ruhepuls und Belastung flie&szlig;en mit ein. Wichtig bleibt: RaceMind ist ein Trainings-Coach, kein Ersatz f&uuml;r &auml;rztliche oder physiotherapeutische Einsch&auml;tzung.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Wie funktioniert das Cycle Tracking &ndash; und muss ich das nutzen?&ldquo;</summary>
+          <p>Du musst es nicht nutzen. Wenn du es aktivierst, kann RaceMind deinen Zyklus als zus&auml;tzlichen Kontext f&uuml;r Belastung und Planung ber&uuml;cksichtigen. Je nach Pr&auml;ferenz kann der Plan in dieser Zeit normal weiterlaufen, etwas vorsichtiger werden oder Periodentage st&auml;rker sch&uuml;tzen.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Was unterscheidet euch von TrainingPeaks/TriDot/Humango?&ldquo;</summary>
+          <p>RaceMind kombiniert drei Dinge, die oft getrennt voneinander auftreten: Anpassung, Erkl&auml;rbarkeit und direkte Handlung. Statt nur Daten zu zeigen, erkl&auml;rt dir der Coach, was sie bedeuten. Statt nur Empfehlungen zu geben, kann RaceMind Einheiten direkt verschieben oder die Woche neu planen.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>&bdquo;Kann ich meinen Plan k&uuml;ndigen / pausieren, wenn ich nicht mehr trainiere?&ldquo;</summary>
+          <p>Ja, du kannst jederzeit k&uuml;ndigen. Die K&uuml;ndigung l&auml;uft &uuml;ber die Abo-Verwaltung im App Store oder bei Google Play. Und wenn du dein Konto komplett l&ouml;schen willst, ist auch das m&ouml;glich.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ DOWNLOAD CTA ════════════ -->
+  <section class="section section--download" id="download">
+    <div class="hero-glow hero-glow--orange"></div>
+    <div class="hero-glow hero-glow--cyan"></div>
+    <div class="container download-inner">
+      <h2 class="reveal">Dein Ziel. Dein Rennen. Dein Coach.<br><span class="gradient-text">Jetzt starten.</span></h2>
+      <p class="reveal" style="color: var(--muted); margin-bottom: 1.75rem;">Early-Adopter-Preis gilt lebenslang f&uuml;r alle, die jetzt abonnieren.</p>
+      <div class="download-buttons reveal">
+        <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CONTACT ════════════ -->
+  <section class="section" id="contact">
+    <div class="container contact-split">
+      <div class="contact-image reveal">
+        <img src="images/mood-run.webp" class="mockup-img mockup-img--mood" alt="RaceMind App mit Laufschuhen und Trainingsnotizen">
+      </div>
+      <div class="contact-form-wrapper">
+        <h2 class="section-title reveal">Kontakt</h2>
+        <p class="contact-sub reveal">Fragen, Feedback oder Interesse an einer Zusammenarbeit? Schreib uns!</p>
+        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
+          <input type="hidden" name="subject" value="Neue Nachricht von race-mind.com">
+          <input type="hidden" name="from_name" value="RaceMind Website">
+          <input type="checkbox" name="botcheck" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Dein Name">
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required placeholder="deine@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+        </form>
+        <div class="contact-success" id="contactSuccess" style="display:none">
+          <p>Danke f&uuml;r deine Nachricht! Wir melden uns schnellstm&ouml;glich.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="#">
+          <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Rotating highlight across the hero self-selection questions
+    (function () {
+      var qs = document.querySelectorAll('.hero-q');
+      if (!qs.length) return;
+      var i = 0;
+      function setActive(n) {
+        for (var j = 0; j < qs.length; j++) {
+          qs[j].classList.toggle('active', j === n);
+        }
+      }
+      setActive(0);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(function () {
+          i = (i + 1) % qs.length;
+          setActive(i);
+        }, 3500);
+      }
+    })();
+  </script>
+</body>
+</html>
