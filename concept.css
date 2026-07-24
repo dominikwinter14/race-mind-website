@@ -55,6 +55,9 @@
 }
 
 .hero-q {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
   font-size: clamp(1.3rem, 2.6vw, 1.8rem);
   font-weight: 700;
   line-height: 1.4;
@@ -63,6 +66,10 @@
   border-left: 3px solid transparent;
   opacity: 0.3;
   transition: opacity 0.5s ease, border-color 0.5s ease;
+}
+
+.hero-q:hover {
+  opacity: 1;
 }
 
 .hero-q span {
@@ -135,60 +142,9 @@
 
 .qa-lead strong { color: var(--foreground); }
 
-/* ── "Und außerdem" feature grid ── */
-
-.also-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.also-card {
-  background: var(--card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-}
-
-.also-card h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-}
-
-.also-card p {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.also-card--highlight {
-  border-color: rgba(0, 209, 255, 0.4);
-  box-shadow: 0 0 45px rgba(0, 209, 255, 0.08);
-}
-
-.also-card-tag {
-  display: inline-block;
-  margin-top: 0.9rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--secondary);
-}
-
 /* ── For-whom (standalone, no image) ── */
 
 .audience-standalone {
   max-width: 920px;
   margin: 0 auto;
-}
-
-/* ── Responsive ── */
-
-@media (max-width: 860px) {
-  .also-grid { grid-template-columns: 1fr; }
 }

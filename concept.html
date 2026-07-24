@@ -62,9 +62,9 @@
         </div>
         <p class="hero-eyebrow reveal">RaceMind &ndash; Dein Coach f&uuml;r Triathlon und Laufen</p>
         <div class="hero-questions reveal">
-          <p class="hero-q">Die Zielzeit steht &ndash; <span>aber der Weg dahin noch nicht?</span></p>
-          <p class="hero-q">F&uuml;r den Ironman angemeldet &ndash; <span>aber keine Ahnung, wo du anfangen sollst?</span></p>
-          <p class="hero-q">Ein Coach w&uuml;rde helfen &ndash; <span>aber nicht f&uuml;r 200&nbsp;&euro; im Monat?</span></p>
+          <a href="#q1" class="hero-q" data-q="0">Die Zielzeit steht &ndash; <span>aber der Weg dahin noch nicht?</span></a>
+          <a href="#q2" class="hero-q" data-q="1">F&uuml;r den Ironman angemeldet &ndash; <span>aber keine Ahnung, wo du anfangen sollst?</span></a>
+          <a href="#q3" class="hero-q" data-q="2">Ein Coach w&uuml;rde helfen &ndash; <span>aber nicht f&uuml;r 200&nbsp;&euro; im Monat?</span></a>
         </div>
         <div class="hero-answer reveal">
           <p class="hero-answer-lead">Dann fehlt dir nicht Disziplin. Dir fehlt die richtige Struktur.</p>
@@ -84,8 +84,8 @@
       </div>
       <div class="hero-mockup reveal">
         <img src="images/mockup-hero.webp" class="hero-shot is-active" data-q="0" alt="RaceMind App &ndash; Wochenplan mit Trainings&uuml;bersicht">
-        <img src="images/hero-plan.webp" class="hero-shot" data-q="1" alt="RaceMind App &ndash; Trainingsplan mit Phasen">
-        <img src="images/hero-raceprep.webp" class="hero-shot" data-q="2" alt="RaceMind App &ndash; Zielzeit-Prognose">
+        <img src="images/hero-raceprep.webp" class="hero-shot" data-q="1" alt="RaceMind App &ndash; Race Prep mit Zielzeit-Prognose">
+        <img src="images/hero-coach.webp" class="hero-shot" data-q="2" alt="RaceMind App &ndash; Coach-Chat">
       </div>
     </div>
   </header>
@@ -107,7 +107,7 @@
   </section>
 
   <!-- ════════════ FRAGE 1 — PLATEAU ════════════ -->
-  <section class="section">
+  <section class="section" id="q1">
     <div class="container grid-2col grid-2col--center">
       <div class="text-block reveal">
         <p class="qa-eyebrow"><span class="qa-num">01</span> Warum werde ich nicht schneller?</p>
@@ -128,7 +128,7 @@
   </section>
 
   <!-- ════════════ FRAGE 2 — FIRST-TIMER ════════════ -->
-  <section class="section section--surface-alt">
+  <section class="section section--surface-alt" id="q2">
     <div class="container grid-2col grid-2col--center" style="direction: rtl;">
       <div class="text-block reveal" style="direction: ltr;">
         <p class="qa-eyebrow"><span class="qa-num">02</span> Angemeldet ist. Und jetzt?</p>
@@ -142,14 +142,13 @@
         </ul>
       </div>
       <div class="feature-mockup reveal" style="direction: ltr;">
-        <!-- TODO(concept-screens): eigener "Race Control / Zielzeit-Prognose"-Screenshot fehlt, nutzt vorerst Plan-Phasen-Mockup -->
-        <img src="images/mockup-overview.webp" class="mockup-img" alt="Race Control mit Zielzeit-Prognose">
+        <img src="images/hero-raceprep.webp" class="mockup-img" alt="Race Prep mit Zielzeit-Prognose">
       </div>
     </div>
   </section>
 
   <!-- ════════════ FRAGE 3 — COACH-KOSTEN ════════════ -->
-  <section class="section">
+  <section class="section" id="q3">
     <div class="container grid-2col grid-2col--center">
       <div class="text-block reveal">
         <p class="qa-eyebrow"><span class="qa-num">03</span> Ein Coach w&auml;re gut. Aber 200&nbsp;&euro; im Monat?</p>
@@ -163,6 +162,46 @@
       </div>
       <div class="feature-mockup reveal">
         <img src="images/mockup-chat-dual.webp" class="mockup-img" alt="Coach-Chat &auml;ndert den Plan live">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ ZYKLUS — LISTENING FEATURE ════════════ -->
+  <section class="section">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">04</span> Cycle Tracking</p>
+        <h2>Dein Coach ignoriert <span class="gradient-text">deinen Zyklus nicht.</span></h2>
+        <p class="qa-lead">Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein &ndash; etwa wenn in der <strong>Lutealphase</strong> die gef&uuml;hlte Belastung steigt und Erholung wichtiger wird. <strong>Optional &ndash; du entscheidest, ob und wie, und kannst es jederzeit deaktivieren.</strong></p>
+        <ul class="feature-bullets">
+          <li><strong>Normal weiterlaufen</strong> &ndash; willst du keine Anpassung, &auml;ndert sich nichts an deinem Plan.</li>
+          <li><strong>Vorsichtiger in der Lutealphase</strong> &ndash; die Engine nimmt vor der Periode bewusst Last raus.</li>
+          <li><strong>Periodentage sch&uuml;tzen</strong> &ndash; harte Einheiten weichen, die Belastung holst du sp&auml;ter zur&uuml;ck.</li>
+        </ul>
+        <p class="qa-lead" style="margin-top:1.25rem;margin-bottom:0;">Kein Wunderversprechen &ndash; ein Plan, der dich ernst nimmt. Kein direkter Wettbewerber bietet das.</p>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-cycle.webp" class="mockup-img" alt="Cycle Tracking &ndash; zyklusbasierte Trainingsanpassung">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ UND AUSSERDEM ════════════ -->
+  <section class="section" id="features">
+    <div class="container grid-2col grid-2col--center">
+      <div class="text-block reveal">
+        <p class="qa-eyebrow"><span class="qa-num">05</span> Und au&szlig;erdem</p>
+        <h2>Zusammen trainiert <span class="gradient-text">sich's leichter.</span></h2>
+        <p class="qa-lead">RaceMind ist kein Solo-Tool: Vergleiche Trainings mit Freund:innen und plant Einheiten gemeinsam. Und dar&uuml;ber hinaus steckt in jeder Woche mehr, als ein statischer Plan bietet.</p>
+        <ul class="feature-bullets">
+          <li><strong>Gemeinsam statt allein</strong> &ndash; Trainings mit Freund:innen vergleichen und Einheiten zusammen planen.</li>
+          <li><strong>Einheit ans Ger&auml;t senden</strong> &ndash; strukturierte Workouts direkt auf die Garmin-Uhr, mit Pace, Intervallen und Herzfrequenz.</li>
+          <li><strong>W&ouml;chentlicher Coach Review</strong> &ndash; jeden Sonntag: was lief gut, was muss sich &auml;ndern.</li>
+          <li><strong>Workout Library</strong> &ndash; &uuml;ber 300 Einheiten: Schwimmen, Radfahren, Laufen, Kraft, Mobility.</li>
+        </ul>
+      </div>
+      <div class="feature-mockup reveal">
+        <img src="images/mockup-friends.webp" class="mockup-img" alt="Gemeinsam trainieren &ndash; Freunde und geteilte Einheiten">
       </div>
     </div>
   </section>
@@ -205,7 +244,7 @@
         </div>
       </div>
       <div class="text-block reveal">
-        <p class="qa-eyebrow"><span class="qa-num">04</span> Und wenn eine Woche auseinanderf&auml;llt?</p>
+        <p class="qa-eyebrow"><span class="qa-num">06</span> Und wenn eine Woche auseinanderf&auml;llt?</p>
         <h2>Dein Leben verl&auml;uft nicht linear &ndash; <span class="gradient-text">warum sollte es dein Training?</span></h2>
         <p class="text-lead">RaceMind plant deine Woche neu &ndash; auf die Zeit, die du <em>jetzt</em> hast. Der Coach erkl&auml;rt, was bleibt, was wegf&auml;llt und warum das okay ist. Der Ausl&ouml;ser ist austauschbar: Deadline, schlechter Schlaf, Erk&auml;ltung &ndash; oder deine Periode. Alles davon ist normal.</p>
         <ul class="core-points">
@@ -213,134 +252,6 @@
           <li><strong>Weitermachen statt hinwerfen.</strong> Du trainierst weiter &ndash; ohne schlechtes Gewissen und ohne Chaos im Kopf.</li>
           <li><strong>Zur&uuml;ck nach Krankheit oder Verletzung.</strong> Progressiver Weg zur&uuml;ck statt Neustart &ndash; konservativ genug, um R&uuml;ckf&auml;lle zu vermeiden.</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ ZYKLUS — LISTENING FEATURE ════════════ -->
-  <section class="section">
-    <div class="container grid-2col grid-2col--center">
-      <div class="text-block reveal">
-        <p class="qa-eyebrow">Cycle Tracking</p>
-        <h2>Dein Coach ignoriert <span class="gradient-text">deinen Zyklus nicht.</span></h2>
-        <p class="qa-lead">Die meisten Trainingspl&auml;ne tun so, als g&auml;be es deinen Zyklus nicht. RaceMind h&ouml;rt zu: Wenn du Cycle Tracking aktivierst, flie&szlig;t dein Zyklus als Kontext in Belastung und Planung ein. <strong>Optional &ndash; du entscheidest, ob und wie, und kannst es jederzeit deaktivieren.</strong></p>
-        <ul class="feature-bullets">
-          <li><strong>Normal weiterlaufen</strong> &ndash; willst du keine Anpassung, &auml;ndert sich nichts an deinem Plan.</li>
-          <li><strong>Vorsichtiger planen</strong> &ndash; die Engine nimmt in sensiblen Phasen bewusst Last raus.</li>
-          <li><strong>Periodentage sch&uuml;tzen</strong> &ndash; harte Einheiten weichen, die Belastung holst du sp&auml;ter zur&uuml;ck.</li>
-        </ul>
-        <p class="qa-lead" style="margin-top:1.25rem;margin-bottom:0;">Kein Wunderversprechen &ndash; ein Plan, der dich ernst nimmt. Kein direkter Wettbewerber bietet das.</p>
-      </div>
-      <div class="feature-mockup reveal">
-        <img src="images/mockup-cycle.webp" class="mockup-img" alt="Cycle Tracking &ndash; zyklusbasierte Trainingsanpassung">
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ UND AUSSERDEM ════════════ -->
-  <section class="section" id="features">
-    <div class="container">
-      <h2 class="section-title reveal">Und au&szlig;erdem</h2>
-      <p class="section-subtitle reveal">Produkttiefe f&uuml;r alle, die genauer vergleichen.</p>
-      <div class="also-grid reveal">
-        <div class="also-card">
-          <h3>&#9201; Einheit ans Ger&auml;t senden</h3>
-          <p>Strukturierte Workouts direkt auf die Garmin-Uhr &ndash; mit Pace-Zielen, Intervallen und Herzfrequenz-Vorgaben.</p>
-        </div>
-        <div class="also-card">
-          <h3>&#128203; W&ouml;chentlicher Coach Review</h3>
-          <p>Jeden Sonntag eine strukturierte Analyse deiner Woche: was lief gut, was muss sich &auml;ndern.</p>
-        </div>
-        <div class="also-card">
-          <h3>&#128218; Workout Library</h3>
-          <p>&Uuml;ber 300 Einheiten &ndash; Schwimmen, Radfahren, Laufen, Kraft, Mobility und Stabilisation.</p>
-        </div>
-        <div class="also-card also-card--highlight">
-          <h3>&#128101; Gemeinsam statt allein</h3>
-          <p>Trainings mit Freund:innen vergleichen und Einheiten zusammen planen.</p>
-          <span class="also-card-tag">Wird gerade ausgebaut</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ SO FUNKTIONIERT'S ════════════ -->
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <h2 class="section-title reveal">So funktioniert's</h2>
-      <p class="section-subtitle reveal">Plan-Anpassungen passieren proaktiv (z.&thinsp;B. nach Check-ins/Belastung) oder auf deinen Wunsch (z.&thinsp;B. &bdquo;verschiebe diese Einheit&ldquo;).</p>
-      <div class="steps">
-        <div class="steps-line"></div>
-        <div class="step reveal">
-          <div class="step-dot">1</div>
-          <h4>Ziel setzen</h4>
-          <p>W&auml;hle dein Rennen (von 5&nbsp;km oder Sprint bis Marathon und Langdistanz) und deine Zielzeit.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">2</div>
-          <h4>Status erfassen</h4>
-          <p>Verbinde dein Wearable oder gib Daten manuell ein.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">3</div>
-          <h4>Realit&auml;ts-Check</h4>
-          <p>Du bekommst sofort eine Prognose, die zeigt, ob du auf Kurs bist.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-dot">4</div>
-          <h4>Woche f&uuml;r Woche besser</h4>
-          <p>Dein Plan wird laufend angepasst. Nach jeder Einheit bekommst du Feedback.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ TRUST ════════════ -->
-  <section class="section section--trust">
-    <div class="container">
-      <div class="trust-grid reveal">
-        <div class="trust-badge">
-          <div class="trust-icon">&#127465;&#127466;</div>
-          <h4>Made in Germany</h4>
-          <p>Entwickelt in Freiburg. Hosting in der EU.</p>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">&#128274;</div>
-          <h4>DSGVO-konform</h4>
-          <p>Deine Daten geh&ouml;ren dir. Keine Weitergabe an Dritte.</p>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">&#9201;</div>
-          <h4>Funktioniert mit</h4>
-          <p>Garmin &middot; Apple Watch &middot; Polar &middot; Suunto &middot; COROS &middot; Strava &middot; intervals.icu</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FÜR WEN ════════════ -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title reveal">F&uuml;r wen ist RaceMind &ndash; und f&uuml;r wen nicht?</h2>
-      <p class="section-subtitle reveal">Ehrliche Selbstselektion, bevor du dich anmeldest.</p>
-      <div class="audience-grid audience-standalone reveal">
-        <div class="audience-col audience-col--yes">
-          <h3 class="audience-heading">&#10003; F&uuml;r dich, wenn du</h3>
-          <ul class="audience-list">
-            <li>Ein Ziel im Triathlon oder Laufen hast &ndash; von 5&nbsp;km oder Sprint bis Marathon und Langdistanz</li>
-            <li>Zum ersten Mal strukturiert trainierst und nicht durch zu hart oder zu viel in eine Verletzung laufen willst</li>
-            <li>Keinen Bock auf PDF-Pl&auml;ne hast, die bei der ersten verschobenen Einheit wertlos werden</li>
-            <li>Verstehen willst, was du trainierst &mdash; nicht nur Zahlen nachjagen</li>
-            <li>Schon mal einen Coach hattest oder br&auml;uchtest, aber nicht 200&nbsp;&euro; im Monat zahlen willst</li>
-          </ul>
-        </div>
-        <div class="audience-col audience-col--no">
-          <h3 class="audience-heading">&#10007; Nicht f&uuml;r dich, wenn du</h3>
-          <ul class="audience-list">
-            <li>Profi oder Pro-Age-Grouper auf Kona-Niveau bist &mdash; dann brauchst du einen menschlichen Coach mit Augen auf deiner Form</li>
-            <li>Gar kein konkretes Rennen oder Ziel hast und einfach nur lockere Freizeit-Workouts ohne Plan suchst</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
@@ -546,6 +457,87 @@
     </div>
   </section>
 
+  <!-- ════════════ SO FUNKTIONIERT'S ════════════ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title reveal">So funktioniert's</h2>
+      <p class="section-subtitle reveal">Plan-Anpassungen passieren proaktiv (z.&thinsp;B. nach Check-ins/Belastung) oder auf deinen Wunsch (z.&thinsp;B. &bdquo;verschiebe diese Einheit&ldquo;).</p>
+      <div class="steps">
+        <div class="steps-line"></div>
+        <div class="step reveal">
+          <div class="step-dot">1</div>
+          <h4>Ziel setzen</h4>
+          <p>W&auml;hle dein Rennen (von 5&nbsp;km oder Sprint bis Marathon und Langdistanz) und deine Zielzeit.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">2</div>
+          <h4>Status erfassen</h4>
+          <p>Verbinde dein Wearable oder gib Daten manuell ein.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">3</div>
+          <h4>Realit&auml;ts-Check</h4>
+          <p>Du bekommst sofort eine Prognose, die zeigt, ob du auf Kurs bist.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-dot">4</div>
+          <h4>Woche f&uuml;r Woche besser</h4>
+          <p>Dein Plan wird laufend angepasst. Nach jeder Einheit bekommst du Feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TRUST ════════════ -->
+  <section class="section section--trust">
+    <div class="container">
+      <div class="trust-grid reveal">
+        <div class="trust-badge">
+          <div class="trust-icon">&#127465;&#127466;</div>
+          <h4>Made in Germany</h4>
+          <p>Entwickelt in Freiburg. Hosting in der EU.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#128274;</div>
+          <h4>DSGVO-konform</h4>
+          <p>Deine Daten geh&ouml;ren dir. Keine Weitergabe an Dritte.</p>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">&#9201;</div>
+          <h4>Funktioniert mit</h4>
+          <p>Garmin &middot; Apple Watch &middot; Polar &middot; Suunto &middot; COROS &middot; Strava &middot; intervals.icu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FÜR WEN ════════════ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">F&uuml;r wen ist RaceMind &ndash; und f&uuml;r wen nicht?</h2>
+      <p class="section-subtitle reveal">Ehrliche Selbstselektion, bevor du dich anmeldest.</p>
+      <div class="audience-grid audience-standalone reveal">
+        <div class="audience-col audience-col--yes">
+          <h3 class="audience-heading">&#10003; F&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Ein Ziel im Triathlon oder Laufen hast &ndash; von 5&nbsp;km oder Sprint bis Marathon und Langdistanz</li>
+            <li>Zum ersten Mal strukturiert trainierst und nicht durch zu hart oder zu viel in eine Verletzung laufen willst</li>
+            <li>Keinen Bock auf PDF-Pl&auml;ne hast, die bei der ersten verschobenen Einheit wertlos werden</li>
+            <li>Verstehen willst, was du trainierst &mdash; nicht nur Zahlen nachjagen</li>
+            <li>Schon mal einen Coach hattest oder br&auml;uchtest, aber nicht 200&nbsp;&euro; im Monat zahlen willst</li>
+          </ul>
+        </div>
+        <div class="audience-col audience-col--no">
+          <h3 class="audience-heading">&#10007; Nicht f&uuml;r dich, wenn du</h3>
+          <ul class="audience-list">
+            <li>Profi oder Pro-Age-Grouper auf Kona-Niveau bist &mdash; dann brauchst du einen menschlichen Coach mit Augen auf deiner Form</li>
+            <li>Gar kein konkretes Rennen oder Ziel hast und einfach nur lockere Freizeit-Workouts ohne Plan suchst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════ PRICING ════════════ -->
   <section class="section section--pricing" id="pricing">
     <div class="container">
@@ -696,13 +688,18 @@
 
   <script src="script.js"></script>
   <script>
-    // Rotating highlight across the hero self-selection questions
+    // Hero self-selection: rotate highlight, swap the synced mockup,
+    // and let hover/focus on a question take over (pauses rotation).
     (function () {
       var qs = document.querySelectorAll('.hero-q');
       if (!qs.length) return;
       var shots = document.querySelectorAll('.hero-shot');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var i = 0;
+      var timer = null;
+
       function setActive(n) {
+        i = n;
         for (var j = 0; j < qs.length; j++) {
           qs[j].classList.toggle('active', j === n);
         }
@@ -710,12 +707,28 @@
           shots[k].classList.toggle('is-active', k === n);
         }
       }
-      setActive(0);
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setInterval(function () {
-          i = (i + 1) % qs.length;
-          setActive(i);
+
+      function start() {
+        if (reduced || timer) return;
+        timer = setInterval(function () {
+          setActive((i + 1) % qs.length);
         }, 3500);
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      setActive(0);
+      start();
+
+      for (var q = 0; q < qs.length; q++) {
+        (function (idx) {
+          qs[idx].addEventListener('mouseenter', function () { stop(); setActive(idx); });
+          qs[idx].addEventListener('mouseleave', start);
+          qs[idx].addEventListener('focus', function () { stop(); setActive(idx); });
+          qs[idx].addEventListener('blur', start);
+        })(q);
       }
     })();
   </script>
