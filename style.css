@@ -2905,6 +2905,273 @@ a.race-card-image {
   background: var(--primary);
 }
 
+.race-detail-hint {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+}
+
+.race-detail-hint:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Kona qualifying block ── */
+.race-kona .rk-target {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  background: rgba(255, 138, 0, 0.1);
+  border: 1px solid rgba(255, 138, 0, 0.25);
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.race-kona .rk-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 560px) {
+  .race-kona .rk-form { grid-template-columns: 1fr; }
+}
+
+.race-kona .rk-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.race-kona .rk-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--foreground);
+}
+
+.race-kona .rk-field select,
+.race-kona .rk-field input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.95rem;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.race-kona .rk-field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23949494' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.race-kona .rk-field select:focus,
+.race-kona .rk-field input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.race-kona .rk-verdict {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.race-kona .rk-v-yes { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #d7f5e1; }
+.race-kona .rk-v-close { background: rgba(255, 138, 0, 0.1); border: 1px solid rgba(255, 138, 0, 0.3); color: #ffe4c4; }
+.race-kona .rk-v-no { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); color: #f7d4d4; }
+
+.race-kona .rk-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.race-kona .rk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.race-kona .rk-table th,
+.race-kona .rk-table td {
+  text-align: right;
+  padding: 0.6rem 0.85rem;
+  white-space: nowrap;
+}
+
+.race-kona .rk-table th:first-child,
+.race-kona .rk-table td:first-child {
+  text-align: left;
+}
+
+.race-kona .rk-table thead th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.race-kona .rk-table tbody tr { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.race-kona .rk-table tbody tr:last-child { border-bottom: none; }
+
+.race-kona .rk-sub td {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.9rem;
+}
+
+.race-kona .rk-table td.rk-cut { font-weight: 700; color: var(--foreground); }
+.race-kona .rk-table td.rk-range { color: var(--muted); }
+.race-kona .rk-table tr.is-active td { background: rgba(255, 138, 0, 0.12); }
+
+.race-kona .rk-note {
+  font-size: 0.8rem !important;
+  color: var(--muted);
+  margin-top: 0.9rem;
+}
+
+.race-kona .rk-more {
+  display: inline-block;
+  margin-top: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.race-kona .rk-more:hover { text-decoration: underline; }
+
+/* ── Kona promo banner on events overview ── */
+.events-kona-promo-section {
+  padding: 1.5rem 0;
+}
+
+.events-kona-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(255, 138, 0, 0.12) 0%, rgba(0, 209, 255, 0.08) 100%);
+  border: 1px solid rgba(255, 138, 0, 0.25);
+  text-decoration: none;
+  color: var(--foreground);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.events-kona-promo:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 0 40px rgba(255, 138, 0, 0.15);
+}
+
+.events-kona-promo-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.events-kona-promo-text h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.events-kona-promo-text p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.events-kona-promo-cta {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .events-kona-promo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* ── Qualifier race list on kona-check ── */
+.kc-races {
+  max-width: 680px;
+  margin: 4rem auto 0;
+}
+
+.kc-races h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.kc-races-sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.kc-races-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .kc-races-grid { grid-template-columns: 1fr; }
+}
+
+.kc-race-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--foreground);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.kc-race-link:hover {
+  border-color: var(--primary);
+  background: var(--surface-light);
+}
+
+.kc-race-flag { font-size: 1.1rem; flex-shrink: 0; }
+.kc-race-name { font-weight: 600; font-size: 0.9rem; }
+.kc-race-city { color: var(--muted); font-size: 0.8rem; margin-left: auto; padding-left: 0.5rem; }
+
 .race-detail-tags {
   display: flex;
   flex-wrap: wrap;

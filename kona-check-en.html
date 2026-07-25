@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; Kona Check: Your IRONMAN World Championship Qualifying Time</title>
+  <meta name="description" content="Can you qualify for Kona? Pick your IRONMAN race and age group and see the typical qualifying time for the IRONMAN World Championship &ndash; based on the official qualification method and public results.">
+  <link rel="canonical" href="https://race-mind.com/kona-check-en.html">
+  <link rel="alternate" hreflang="de" href="https://race-mind.com/kona-check.html">
+  <link rel="alternate" hreflang="en" href="https://race-mind.com/kona-check-en.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RaceMind">
+  <meta property="og:title" content="Kona Check &ndash; Can you hit the IRONMAN World Championship qualifying time?">
+  <meta property="og:description" content="Pick a race + age group and see the typical qualifying time for Kona.">
+  <meta property="og:url" content="https://race-mind.com/kona-check-en.html">
+  <meta property="og:image" content="https://race-mind.com/images/races/default_triathlon_1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* ── Kona-Check widget ── */
+    .kc-main { padding-top: 7rem; }
+    .kc-hero { text-align: center; padding: 2rem 0 1rem; }
+    .kc-eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .kc-title { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.05; margin-bottom: 0.75rem; }
+    .kc-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+    .kc-card {
+      max-width: 680px; margin: 2.5rem auto 0;
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg); padding: 2rem;
+    }
+    .kc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .kc-fields { grid-template-columns: 1fr; } }
+    .kc-field { display: flex; flex-direction: column; }
+    .kc-field.kc-field--full { grid-column: 1 / -1; }
+    .kc-field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.45rem; color: var(--foreground); }
+    .kc-field select, .kc-field input {
+      width: 100%; padding: 0.85rem 1rem; background: var(--surface-light);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
+      color: var(--foreground); font-family: inherit; font-size: 0.95rem;
+      transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
+    }
+    .kc-field select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23949494' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    .kc-field select:focus, .kc-field input:focus { outline: none; border-color: var(--primary); }
+    .kc-field input::placeholder { color: var(--muted); opacity: 0.5; }
+    .kc-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+
+    /* Result */
+    .kc-result { margin-top: 1.75rem; display: none; }
+    .kc-result.is-visible { display: block; animation: kcFade 0.35s ease; }
+    @keyframes kcFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .kc-result-head { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.25rem; }
+    .kc-result-race { font-size: 1.1rem; font-weight: 700; }
+    .kc-result-ag {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; color: #000;
+      background: var(--primary); padding: 0.2rem 0.6rem; border-radius: 0.6rem;
+    }
+    .kc-big {
+      font-size: clamp(2.75rem, 11vw, 4.25rem); font-weight: 800; line-height: 1;
+      margin: 0.75rem 0 0.35rem; letter-spacing: -0.02em;
+    }
+    .kc-big-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .kc-range { color: var(--muted); font-size: 0.95rem; }
+    .kc-target {
+      display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1rem;
+      font-size: 0.9rem; color: var(--foreground);
+      background: rgba(255,138,0,0.1); border: 1px solid rgba(255,138,0,0.25);
+      padding: 0.5rem 0.9rem; border-radius: 0.8rem;
+    }
+
+    .kc-verdict { margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.5; }
+    .kc-verdict strong { font-weight: 700; }
+    .kc-verdict--yes { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); }
+    .kc-verdict--close { background: rgba(255,138,0,0.1); border: 1px solid rgba(255,138,0,0.3); }
+    .kc-verdict--no { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); }
+
+    .kc-note { margin-top: 1rem; font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* Per-year table */
+    .kc-years { margin-top: 1.5rem; width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .kc-years th, .kc-years td { text-align: right; padding: 0.55rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .kc-years th:first-child, .kc-years td:first-child { text-align: left; }
+    .kc-years th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .kc-years td.kc-cut { font-weight: 700; color: var(--foreground); }
+
+    /* Actions */
+    .kc-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .kc-actions .btn { flex: 1; min-width: 160px; }
+    .kc-toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%);
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.12);
+      color: var(--foreground); padding: 0.75rem 1.25rem; border-radius: var(--radius);
+      font-size: 0.9rem; transition: transform 0.3s ease; z-index: 200;
+    }
+    .kc-toast.is-visible { transform: translateX(-50%) translateY(0); }
+
+    .kc-result-cta { width: 100%; margin-top: 0.9rem; }
+
+    .kc-placeholder { margin-top: 1.75rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
+
+    .kc-cta-line { color: var(--foreground); font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
+
+    /* Explainer */
+    .kc-explain { max-width: 680px; margin: 3.5rem auto 0; }
+    .kc-explain h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; text-align: center; }
+    .kc-explain details {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+    }
+    .kc-explain summary { cursor: pointer; font-weight: 600; }
+    .kc-explain details p { color: var(--muted); line-height: 1.65; margin-top: 0.75rem; font-size: 0.92rem; }
+    .kc-cta-row { text-align: center; margin: 3rem auto 0; }
+
+    canvas#kcCanvas { display: none; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do the numbers come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The basis is the public IRONMAN results of the last few years per race plus the official IRONMAN qualification method from 2026: each age group gets one automatic World Championship slot for its winner, the remaining slots go by normalized performance (age-grading against the age group’s Kona Standard) to the fastest times in the field. The qualifying time shown is the slowest time that would typically still have earned a slot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this a guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The actual cutoff time depends on the field strength on race day, the number of slots and roll-down. Treat the number as a realistic guide, not a fixed limit. The value is the median across several editions; the range shows how much it varies from year to year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the World Championship held?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From 2026 the IRONMAN World Championship for men and women takes place together again in Kailua-Kona, Hawaii. The Kona/Nice split (2023–2025) is history – all races listed here qualify for Kona."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is roll-down?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not every qualified athlete accepts their World Championship slot. Unclaimed slots then roll down within the age group to the next-fastest athlete – that is roll-down. It is why a slightly slower time than the raw qualifying time often still makes it to Kona."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I qualify for Kona 2026 or 2027?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The qualifying window for the 2026 World Championship (Kona, 10 Oct 2026) closes in mid-August 2026. Races before that feed Kona 2026, later races feed the 2027 edition – also held in Kona. Only 2026 is officially confirmed so far."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index-en.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="events-en.html">Races</a>
+        <a href="index-en.html#download" class="btn btn-sm">Get the app</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="kc-main">
+    <div class="container">
+
+      <div class="kc-hero">
+        <div class="lang-toggle" style="justify-content:center; margin-bottom: 1rem;">
+          <a href="kona-check.html">DE</a>
+          <a href="kona-check-en.html" class="active">EN</a>
+        </div>
+        <span class="kc-eyebrow">IRONMAN World Championship</span>
+        <h1 class="kc-title">Can you qualify for <span class="gradient-text">Kona</span>?</h1>
+        <p class="kc-sub">
+          Pick your IRONMAN race and age group and see the typical qualifying time for the
+          World Championship &ndash; calculated from the official qualification method and public
+          results of the last few years.
+        </p>
+      </div>
+
+      <!-- ── Picker card ── -->
+      <div class="kc-card">
+        <div class="kc-fields">
+          <div class="kc-field">
+            <label for="kcRace">Race</label>
+            <select id="kcRace"><option value="">Choose race &hellip;</option></select>
+          </div>
+          <div class="kc-field">
+            <label for="kcAg">Age group</label>
+            <select id="kcAg" disabled><option value="">Choose a race first</option></select>
+          </div>
+          <div class="kc-field kc-field--full">
+            <label for="kcTime">Your goal time <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
+            <input id="kcTime" type="text" inputmode="numeric" placeholder="e.g. 9:45:00 (hh:mm:ss)" autocomplete="off">
+            <span class="kc-hint">Enter your target finish time to compare it against the qualifying time.</span>
+          </div>
+        </div>
+
+        <div class="kc-placeholder" id="kcPlaceholder">
+          Pick a race and an age group to see the qualifying time.
+        </div>
+
+        <div class="kc-result" id="kcResult">
+          <div class="kc-result-head">
+            <span class="kc-result-race" id="kcResRace"></span>
+            <span class="kc-result-ag" id="kcResAg"></span>
+          </div>
+          <div class="kc-big-label">Typical Kona qualifying time</div>
+          <div class="kc-big gradient-text" id="kcResTime"></div>
+          <div class="kc-range" id="kcResRange"></div>
+          <div class="kc-target" id="kcResTarget"></div>
+
+          <div class="kc-verdict" id="kcVerdict" style="display:none;"></div>
+
+          <table class="kc-years" id="kcYears">
+            <thead><tr><th>Year</th><th>Finishers</th><th>Slots</th><th>Cutoff</th></tr></thead>
+            <tbody></tbody>
+          </table>
+
+          <div class="kc-note" id="kcNote"></div>
+
+          <div class="kc-actions">
+            <button class="btn btn-primary" id="kcShareBtn">Save as image</button>
+            <button class="btn btn-secondary" id="kcCopyBtn">Copy link</button>
+          </div>
+
+          <a href="index-en.html#download" class="btn btn-brand kc-result-cta">Head to Kona with RaceMind</a>
+        </div>
+      </div>
+
+      <!-- ── All qualifier races (internal links) ── -->
+      <div class="kc-races">
+        <h2>All qualifying races</h2>
+        <p class="kc-races-sub">16 European IRONMAN full-distance races with Kona qualifying times. Go to the detail page with the full age-group table:</p>
+        <div class="kc-races-grid">
+          <a href="events/ironman-austria-klagenfurt-en.html" class="kc-race-link"><span class="kc-race-flag">🇦🇹</span><span class="kc-race-name">Ironman Austria (Klagenfurt)</span><span class="kc-race-city">Klagenfurt</span></a>
+          <a href="events/ironman-barcelona-calella-en.html" class="kc-race-link"><span class="kc-race-flag">🇪🇸</span><span class="kc-race-name">Ironman Barcelona (Calella)</span><span class="kc-race-city">Calella</span></a>
+          <a href="events/ironman-copenhagen-en.html" class="kc-race-link"><span class="kc-race-flag">🇩🇰</span><span class="kc-race-name">Ironman Copenhagen</span><span class="kc-race-city">Kopenhagen</span></a>
+          <a href="events/ironman-frankfurt-european-championship-en.html" class="kc-race-link"><span class="kc-race-flag">🇩🇪</span><span class="kc-race-name">Ironman Frankfurt (European Championship)</span><span class="kc-race-city">Frankfurt am Main</span></a>
+          <a href="events/ironman-hamburg-en.html" class="kc-race-link"><span class="kc-race-flag">🇩🇪</span><span class="kc-race-name">Ironman Hamburg</span><span class="kc-race-city">Hamburg</span></a>
+          <a href="events/ironman-italy-emilia-romagna-en.html" class="kc-race-link"><span class="kc-race-flag">🇮🇹</span><span class="kc-race-name">Ironman Italy (Emilia-Romagna)</span><span class="kc-race-city">Cervia</span></a>
+          <a href="events/ironman-kalmar-sweden-en.html" class="kc-race-link"><span class="kc-race-flag">🇸🇪</span><span class="kc-race-name">Ironman Kalmar (Sweden)</span><span class="kc-race-city">Kalmar</span></a>
+          <a href="events/ironman-lanzarote-en.html" class="kc-race-link"><span class="kc-race-flag">🇪🇸</span><span class="kc-race-name">Ironman Lanzarote</span><span class="kc-race-city">Puerto del Carmen</span></a>
+          <a href="events/ironman-nice-france-en.html" class="kc-race-link"><span class="kc-race-flag">🇫🇷</span><span class="kc-race-name">Ironman Nice (France)</span><span class="kc-race-city">Nizza</span></a>
+          <a href="events/ironman-portugal-cascais-en.html" class="kc-race-link"><span class="kc-race-flag">🇵🇹</span><span class="kc-race-name">Ironman Portugal (Cascais)</span><span class="kc-race-city">Cascais</span></a>
+          <a href="events/ironman-switzerland-thun-en.html" class="kc-race-link"><span class="kc-race-flag">🇨🇭</span><span class="kc-race-name">Ironman Switzerland (Thun)</span><span class="kc-race-city">Thun</span></a>
+          <a href="events/ironman-tallinn-en.html" class="kc-race-link"><span class="kc-race-flag">🇪🇪</span><span class="kc-race-name">Ironman Tallinn</span><span class="kc-race-city">Tallinn</span></a>
+          <a href="events/ironman-tours-m-tropole-loire-valley-en.html" class="kc-race-link"><span class="kc-race-flag">🇫🇷</span><span class="kc-race-name">IRONMAN Tours Métropole – Loire Valley</span><span class="kc-race-city">Tours</span></a>
+          <a href="events/ironman-vichy-en.html" class="kc-race-link"><span class="kc-race-flag">🇫🇷</span><span class="kc-race-name">IRONMAN Vichy</span><span class="kc-race-city">Vichy</span></a>
+          <a href="events/ironman-vitoria-gasteiz-en.html" class="kc-race-link"><span class="kc-race-flag">🇪🇸</span><span class="kc-race-name">Ironman Vitoria-Gasteiz</span><span class="kc-race-city">Vitoria-Gasteiz</span></a>
+          <a href="events/ironman-wales-tenby-en.html" class="kc-race-link"><span class="kc-race-flag">🇬🇧</span><span class="kc-race-name">Ironman Wales (Tenby)</span><span class="kc-race-city">Tenby</span></a>
+        </div>
+      </div>
+
+      <!-- ── Explainer ── -->
+      <div class="kc-explain">
+        <h2>How is the qualifying time calculated?</h2>
+        <details>
+          <summary>Where do the numbers come from?</summary>
+          <p>
+            The basis is the public IRONMAN results of the last few years per race plus the
+            official IRONMAN qualification method from 2026: each age group gets one automatic
+            World Championship slot for its winner, the remaining slots go by normalized
+            performance (age-grading against that age group&rsquo;s &bdquo;Kona Standard&ldquo;) to the
+            fastest times in the field. The qualifying time shown is the slowest time that would
+            typically still have earned a slot.
+          </p>
+        </details>
+        <details>
+          <summary>Is this a guarantee?</summary>
+          <p>
+            No. The actual cutoff time depends on the field strength on race day, the number
+            of slots and roll-down (unclaimed slots pass down the ranking). Treat the number as
+            a realistic guide, not a fixed limit. The value is the median across several
+            editions; the range shows how much it varies from year to year.
+          </p>
+        </details>
+        <details>
+          <summary>Where is the World Championship held?</summary>
+          <p>
+            From 2026 the IRONMAN World Championship for men and women takes place together again in
+            Kailua-Kona, Hawaii. The Kona/Nice split (2023&ndash;2025) is history &ndash;
+            all races listed here qualify for Kona.
+          </p>
+        </details>
+        <details>
+          <summary>What is roll-down?</summary>
+          <p>
+            Not every qualified athlete accepts their World Championship slot. Unclaimed slots then roll
+            down within the age group to the next-fastest athlete &ndash; that is roll-down. It is why a
+            slightly slower time than the raw qualifying time often still makes it to Kona.
+          </p>
+        </details>
+        <details>
+          <summary>Do I qualify for Kona 2026 or 2027?</summary>
+          <p>
+            The qualifying window for the 2026 World Championship (Kona, 10 Oct 2026) closes in mid-August
+            2026. Races before that feed Kona 2026, later races feed the 2027 edition &ndash; also held in
+            Kona. Only 2026 is officially confirmed so far.
+          </p>
+        </details>
+      </div>
+
+      <div class="kc-cta-row">
+        <p class="kc-cta-line">You’ve got your qualifying time. Now you just need the plan to get there.</p>
+        <a href="index-en.html#download" class="btn btn-brand btn-lg">Head to Kona with RaceMind</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer" style="margin-top: 5rem;">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="index-en.html"><img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind"></a>
+      </div>
+      <div class="footer-links">
+        <a href="events-en.html">Races</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="impressum.html">Imprint</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="kc-toast" id="kcToast"></div>
+  <canvas id="kcCanvas" width="1080" height="1350"></canvas>
+
+  <script src="script.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var FLAGS = {
+      'Österreich':'🇦🇹','Spanien':'🇪🇸','Dänemark':'🇩🇰','Deutschland':'🇩🇪','Italien':'🇮🇹',
+      'Schweden':'🇸🇪','Frankreich':'🇫🇷','Portugal':'🇵🇹','Schweiz':'🇨🇭','Estland':'🇪🇪',
+      'Vereinigtes Königreich':'🇬🇧'
+    };
+    var $ = function (id) { return document.getElementById(id); };
+    var raceSel = $('kcRace'), agSel = $('kcAg'), timeInp = $('kcTime');
+    var result = $('kcResult'), placeholder = $('kcPlaceholder');
+    var DATA = null;
+
+    function fmt(sec) {
+      sec = Math.round(sec);
+      var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+      return h + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+    function fmtDiff(sec) {
+      sec = Math.round(Math.abs(sec));
+      var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+      if (h > 0) return h + ' h ' + String(m).padStart(2, '0') + ' min';
+      if (m > 0) return m + ' min ' + String(s).padStart(2, '0') + ' s';
+      return s + ' s';
+    }
+    function parseTime(str) {
+      if (!str) return null;
+      var parts = str.trim().split(/[:.\s]+/).filter(Boolean).map(Number);
+      if (parts.some(isNaN) || parts.length === 0 || parts.length > 3) return null;
+      var h = 0, m = 0, s = 0;
+      if (parts.length === 3) { h = parts[0]; m = parts[1]; s = parts[2]; }
+      else if (parts.length === 2) { h = parts[0]; m = parts[1]; }
+      else { h = parts[0]; }
+      if (m > 59 || s > 59) return null;
+      var total = h * 3600 + m * 60 + s;
+      return (total > 0 && total < 20 * 3600) ? total : null;
+    }
+
+    function readParams() {
+      var p = new URLSearchParams(location.search);
+      return { race: p.get('race') || '', ag: p.get('ag') || '', t: p.get('t') || '' };
+    }
+    function writeParams() {
+      var p = new URLSearchParams();
+      if (raceSel.value) p.set('race', raceSel.value);
+      if (agSel.value) p.set('ag', agSel.value);
+      var t = parseTime(timeInp.value);
+      if (t) p.set('t', String(t));
+      var qs = p.toString();
+      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    }
+
+    function raceLabel(r) {
+      var flag = FLAGS[r.country] || '';
+      return (flag ? flag + ' ' : '') + r.raceName;
+    }
+
+    function populateRaces() {
+      var entries = Object.keys(DATA.races).map(function (slug) {
+        return { slug: slug, r: DATA.races[slug] };
+      }).sort(function (a, b) { return a.r.raceName.localeCompare(b.r.raceName, 'en'); });
+      entries.forEach(function (e) {
+        var o = document.createElement('option');
+        o.value = e.slug;
+        o.textContent = raceLabel(e.r);
+        raceSel.appendChild(o);
+      });
+    }
+
+    function populateAgs(slug, preselect) {
+      agSel.innerHTML = '';
+      var r = DATA.races[slug];
+      if (!r) { agSel.disabled = true; return; }
+      var ph = document.createElement('option');
+      ph.value = ''; ph.textContent = 'Choose age group …';
+      agSel.appendChild(ph);
+      var groups = { 'Women': [], 'Men': [] };
+      r.ageGroups.forEach(function (a) {
+        (a.ageGroup[0] === 'F' ? groups['Women'] : groups['Men']).push(a.ageGroup);
+      });
+      ['Women', 'Men'].forEach(function (g) {
+        if (!groups[g].length) return;
+        var og = document.createElement('optgroup'); og.label = g;
+        groups[g].forEach(function (ag) {
+          var o = document.createElement('option'); o.value = ag; o.textContent = ag;
+          og.appendChild(o);
+        });
+        agSel.appendChild(og);
+      });
+      agSel.disabled = false;
+      if (preselect) agSel.value = preselect;
+    }
+
+    var current = null; // { race, ag, agData }
+
+    function render() {
+      var slug = raceSel.value, ag = agSel.value;
+      if (!slug || !ag) {
+        result.classList.remove('is-visible');
+        placeholder.style.display = 'block';
+        current = null;
+        return;
+      }
+      var r = DATA.races[slug];
+      var agData = r.ageGroups.filter(function (a) { return a.ageGroup === ag; })[0];
+      if (!agData) { result.classList.remove('is-visible'); placeholder.style.display = 'block'; return; }
+      current = { slug: slug, race: r, ag: ag, agData: agData };
+
+      $('kcResRace').textContent = raceLabel(r);
+      $('kcResAg').textContent = ag;
+      $('kcResTime').textContent = agData.medianFmt;
+      $('kcResRange').textContent = 'Range ' + r.years.join(', ') + ': '
+        + agData.minFmt + ' – ' + agData.maxFmt;
+      $('kcResTarget').innerHTML = 'Goal: IRONMAN World Championship · Kona, Hawaii';
+
+      // per-year table
+      var tb = $('kcYears').querySelector('tbody');
+      tb.innerHTML = '';
+      var tiny = false;
+      agData.perYear.forEach(function (y) {
+        if (y.finishers < 5) tiny = true;
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + y.year + '</td><td>' + y.finishers + '</td><td>' + y.slots
+          + '</td><td class="kc-cut">' + y.qFmt + '</td>';
+        tb.appendChild(tr);
+      });
+
+      $('kcNote').textContent = tiny
+        ? 'Note: only a few athletes finished in this age group – the qualifying time is essentially the winning time and correspondingly uncertain.'
+        : 'Estimate based on the official qualification method and public results. Not a guarantee – roll-down and field strength shift the real cutoff.';
+
+      renderVerdict(agData);
+      placeholder.style.display = 'none';
+      result.classList.add('is-visible');
+    }
+
+    function renderVerdict(agData) {
+      var v = $('kcVerdict');
+      var t = parseTime(timeInp.value);
+      if (!t) { v.style.display = 'none'; return; }
+      var m = agData.medianSec;
+      var diff = t - m;
+      v.style.display = 'block';
+      v.classList.remove('kc-verdict--yes', 'kc-verdict--close', 'kc-verdict--no');
+      if (diff <= 0) {
+        v.classList.add('kc-verdict--yes');
+        v.innerHTML = '<strong>Strong — that is enough.</strong> At ' + fmt(t)
+          + ' you would typically have stayed under the qualifying time in recent years ('
+          + fmtDiff(diff) + ' faster than the median).';
+      } else if (diff <= 600) {
+        v.classList.add('kc-verdict--close');
+        v.innerHTML = '<strong>Close.</strong> ' + fmt(t) + ' is about ' + fmtDiff(diff)
+          + ' above the typical qualifying time — doable on a fast day or via roll-down.';
+      } else {
+        v.classList.add('kc-verdict--no');
+        v.innerHTML = '<strong>Still some way to go.</strong> ' + fmt(t) + ' is about ' + fmtDiff(diff)
+          + ' above the typical qualifying time. Plenty of time to work on it.';
+      }
+    }
+
+    function showToast(msg) {
+      var t = $('kcToast'); t.textContent = msg; t.classList.add('is-visible');
+      setTimeout(function () { t.classList.remove('is-visible'); }, 2200);
+    }
+
+    // ── Share image (canvas) ──
+    function drawShare() {
+      if (!current) return null;
+      var c = $('kcCanvas'), ctx = c.getContext('2d');
+      var W = c.width, H = c.height;
+      // background
+      var g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, '#0a0a0a'); g.addColorStop(1, '#050505');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      // accent glow
+      var rg = ctx.createRadialGradient(W / 2, 380, 40, W / 2, 380, 520);
+      rg.addColorStop(0, 'rgba(255,138,0,0.18)'); rg.addColorStop(1, 'rgba(255,138,0,0)');
+      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, 800);
+
+      ctx.textAlign = 'center';
+      // wordmark
+      ctx.fillStyle = '#FF8A00'; ctx.font = '700 34px "Lexend Deca", sans-serif';
+      ctx.fillText('R A C E M I N D', W / 2, 130);
+      ctx.fillStyle = '#949494'; ctx.font = '500 26px "Lexend Deca", sans-serif';
+      ctx.fillText('KONA-CHECK', W / 2, 172);
+
+      // race name
+      ctx.fillStyle = '#FFFFFF'; ctx.font = '700 52px "Lexend Deca", sans-serif';
+      wrapText(ctx, current.race.raceName, W / 2, 300, W - 160, 62);
+
+      // AG badge
+      ctx.fillStyle = '#FF8A00';
+      roundRect(ctx, W / 2 - 90, 390, 180, 58, 16); ctx.fill();
+      ctx.fillStyle = '#000'; ctx.font = '700 34px "Lexend Deca", sans-serif';
+      ctx.fillText(current.ag, W / 2, 430);
+
+      // label
+      ctx.fillStyle = '#949494'; ctx.font = '600 30px "Lexend Deca", sans-serif';
+      ctx.fillText('TYPICAL KONA QUALIFYING TIME', W / 2, 560);
+      // big time
+      var grad = ctx.createLinearGradient(W / 2 - 300, 0, W / 2 + 300, 0);
+      grad.addColorStop(0, '#FF8A00'); grad.addColorStop(1, '#00D1FF');
+      ctx.fillStyle = grad; ctx.font = '800 150px "Lexend Deca", sans-serif';
+      ctx.fillText(current.agData.medianFmt, W / 2, 700);
+      // range
+      ctx.fillStyle = '#949494'; ctx.font = '400 30px "Lexend Deca", sans-serif';
+      ctx.fillText(current.agData.minFmt + '  –  ' + current.agData.maxFmt
+        + '  (' + current.race.years.join(', ') + ')', W / 2, 760);
+
+      // user time verdict
+      var t = parseTime(timeInp.value);
+      var y = 900;
+      if (t) {
+        var diff = t - current.agData.medianSec;
+        var col = diff <= 0 ? '#22C55E' : (diff <= 600 ? '#FF8A00' : '#EF4444');
+        var label = diff <= 0 ? 'QUALIFIED' : (diff <= 600 ? 'CLOSE' : 'NOT YET');
+        ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.fillStyle = 'rgba(255,255,255,0.03)';
+        roundRect(ctx, 120, y, W - 240, 190, 24); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#949494'; ctx.font = '600 28px "Lexend Deca", sans-serif';
+        ctx.fillText('YOUR GOAL TIME', W / 2, y + 62);
+        ctx.fillStyle = '#FFFFFF'; ctx.font = '800 76px "Lexend Deca", sans-serif';
+        ctx.fillText(fmt(t), W / 2, y + 138);
+        ctx.fillStyle = col; ctx.font = '700 30px "Lexend Deca", sans-serif';
+        ctx.fillText(label, W / 2, y + 176);
+        y += 230;
+      }
+
+      // target
+      ctx.fillStyle = '#FFFFFF'; ctx.font = '500 32px "Lexend Deca", sans-serif';
+      ctx.fillText('Goal: IRONMAN World Championship · Kona', W / 2, t ? y + 10 : 960);
+
+      // footer url
+      ctx.fillStyle = '#666'; ctx.font = '500 30px "Lexend Deca", sans-serif';
+      ctx.fillText('race-mind.com/kona-check', W / 2, H - 70);
+      return c;
+    }
+    function wrapText(ctx, text, x, y, maxW, lh) {
+      var words = text.split(' '), line = '', lines = [];
+      for (var i = 0; i < words.length; i++) {
+        var test = line + words[i] + ' ';
+        if (ctx.measureText(test).width > maxW && line) { lines.push(line.trim()); line = words[i] + ' '; }
+        else line = test;
+      }
+      lines.push(line.trim());
+      var startY = y - ((lines.length - 1) * lh) / 2;
+      lines.forEach(function (ln, i) { ctx.fillText(ln, x, startY + i * lh); });
+    }
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function doShare() {
+      var c = drawShare();
+      if (!c) return;
+      // small delay so the web font is applied
+      c.toBlob(function (blob) {
+        if (!blob) { showToast('Could not create image'); return; }
+        var name = 'kona-check-' + current.slug + '-' + current.ag + '.png';
+        if (navigator.canShare && navigator.canShare({ files: [new File([blob], name, { type: 'image/png' })] })) {
+          navigator.share({ files: [new File([blob], name, { type: 'image/png' })],
+            title: 'Kona Check', text: current.race.raceName + ' · ' + current.ag }).catch(function () {});
+        } else {
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a'); a.href = url; a.download = name;
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          showToast('Image saved — ready to share on Instagram & co.');
+        }
+      }, 'image/png');
+    }
+
+    function doCopy() {
+      writeParams();
+      var url = location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function () { showToast('Link copied'); },
+          function () { showToast(url); });
+      } else { showToast(url); }
+    }
+
+    // ── wire up ──
+    raceSel.addEventListener('change', function () {
+      populateAgs(raceSel.value, '');
+      writeParams(); render();
+    });
+    agSel.addEventListener('change', function () { writeParams(); render(); });
+    timeInp.addEventListener('input', function () {
+      writeParams();
+      if (current) renderVerdict(current.agData);
+      if (current) result.classList.add('is-visible');
+    });
+    $('kcShareBtn').addEventListener('click', doShare);
+    $('kcCopyBtn').addEventListener('click', doCopy);
+
+    fetch('data/kona-qualifying.json', { cache: 'no-cache' })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        DATA = json;
+        populateRaces();
+        var p = readParams();
+        if (p.race && DATA.races[p.race]) {
+          raceSel.value = p.race;
+          populateAgs(p.race, p.ag);
+          if (p.t) { var s = parseInt(p.t, 10); if (s > 0) timeInp.value = fmt(s); }
+          render();
+        }
+      })
+      .catch(function () {
+        placeholder.textContent = 'Could not load data. Please try again later.';
+      });
+  })();
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
+</body>
+</html>

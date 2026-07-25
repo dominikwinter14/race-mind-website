@@ -120,7 +120,53 @@
       <article class="race-detail-content">
         <a href="../events.html" class="race-detail-back">&larr; Zurück zum Kalender</a>
         <section class="race-detail-block"><h2>Streckenbeschreibung</h2><p>Berühmt für seine Stimmung. Geschwommen wird im Kalmarsund, danach führt die Ein-Runden-Radstrecke über die 6 km lange Ölandbrücke auf die Insel Öland und über das wellige Småland zurück – sonst ist die Brücke für Räder gesperrt. Der flache Lauf endet in der unvergesslichen „Heroes Hour“.</p></section>
-        <section class="race-detail-block"><h2>Coach-Tipp</h2><ul class="race-detail-hints"><li>Der Wind auf der langen Ölandbrücke kann viel Kraft kosten – fahre dort tief, kontrolliert und nach Watt. Die Radstrecke ist flach mit einigen welligen Abschnitten auf Öland. Die Zuschauer tragen dich ins Ziel: Die „Heroes Hour“ beim Zieleinlauf ist unvergesslich, genieße jeden Meter.</li></ul></section>
+        <section class="race-detail-block"><h2>Coach-Tipp</h2><p class="race-detail-hint">Der Wind auf der langen Ölandbrücke kann viel Kraft kosten – fahre dort tief, kontrolliert und nach Watt. Die Radstrecke ist flach mit einigen welligen Abschnitten auf Öland. Die Zuschauer tragen dich ins Ziel: Die „Heroes Hour“ beim Zieleinlauf ist unvergesslich, genieße jeden Meter.</p></section>
+        <section class="race-detail-block race-kona" id="rk">
+        <h2>Kona-Qualifikation &ndash; Ironman Kalmar (Sweden)</h2>
+        <p>Typische Qualifikationszeiten für die IRONMAN World Championship, geschätzt aus der offiziellen Qualifikationsmethode und den öffentlichen Ergebnissen der letzten Jahre (2025, 2024, 2023).</p>
+        <div class="rk-target">Ziel: IRONMAN World Championship · Kona, Hawaii</div>
+        <div class="rk-form">
+          <div class="rk-field">
+            <label for="rkAg">Deine Altersklasse</label>
+            <select id="rkAg"><option value="">Altersklasse wählen …</option><optgroup label="Frauen"><option value="F18-24">F18-24</option><option value="F25-29">F25-29</option><option value="F30-34">F30-34</option><option value="F35-39">F35-39</option><option value="F40-44">F40-44</option><option value="F45-49">F45-49</option><option value="F50-54">F50-54</option><option value="F55-59">F55-59</option><option value="F60-64">F60-64</option><option value="F65-69">F65-69</option></optgroup><optgroup label="Männer"><option value="M18-24">M18-24</option><option value="M25-29">M25-29</option><option value="M30-34">M30-34</option><option value="M35-39">M35-39</option><option value="M40-44">M40-44</option><option value="M45-49">M45-49</option><option value="M50-54">M50-54</option><option value="M55-59">M55-59</option><option value="M60-64">M60-64</option><option value="M65-69">M65-69</option><option value="M70-74">M70-74</option><option value="M75-79">M75-79</option></optgroup></select>
+          </div>
+          <div class="rk-field">
+            <label for="rkTime">Deine Zielzeit</label>
+            <input id="rkTime" type="text" inputmode="numeric" autocomplete="off" placeholder="z. B. 9:45:00">
+          </div>
+        </div>
+        <div class="rk-verdict" id="rkVerdict" hidden></div>
+        <div class="rk-table-wrap">
+          <table class="rk-table">
+            <thead><tr><th>Altersklasse</th><th>Typische Qualizeit</th><th>Spanne</th></tr></thead>
+            <tbody><tr class="rk-sub"><td colspan="3">Frauen</td></tr><tr data-ag="F18-24" data-median="37081"><td>F18-24</td><td class="rk-cut">10:18:01</td><td class="rk-range">10:17:04–12:46:21</td></tr><tr data-ag="F25-29" data-median="34525"><td>F25-29</td><td class="rk-cut">9:35:25</td><td class="rk-range">9:15:54–10:06:18</td></tr><tr data-ag="F30-34" data-median="35567"><td>F30-34</td><td class="rk-cut">9:52:47</td><td class="rk-range">9:40:59–9:57:52</td></tr><tr data-ag="F35-39" data-median="34765"><td>F35-39</td><td class="rk-cut">9:39:25</td><td class="rk-range">9:35:24–10:02:51</td></tr><tr data-ag="F40-44" data-median="35616"><td>F40-44</td><td class="rk-cut">9:53:36</td><td class="rk-range">9:38:24–10:13:48</td></tr><tr data-ag="F45-49" data-median="36947"><td>F45-49</td><td class="rk-cut">10:15:47</td><td class="rk-range">10:01:30–10:46:00</td></tr><tr data-ag="F50-54" data-median="37978"><td>F50-54</td><td class="rk-cut">10:32:58</td><td class="rk-range">10:31:20–10:40:39</td></tr><tr data-ag="F55-59" data-median="39509"><td>F55-59</td><td class="rk-cut">10:58:29</td><td class="rk-range">10:43:17–11:17:14</td></tr><tr data-ag="F60-64" data-median="44253"><td>F60-64</td><td class="rk-cut">12:17:33</td><td class="rk-range">11:43:06–12:29:12</td></tr><tr data-ag="F65-69" data-median="51184.5"><td>F65-69</td><td class="rk-cut">14:13:05</td><td class="rk-range">13:08:20–15:17:49</td></tr><tr class="rk-sub"><td colspan="3">Männer</td></tr><tr data-ag="M18-24" data-median="32186"><td>M18-24</td><td class="rk-cut">8:56:26</td><td class="rk-range">8:41:56–9:19:19</td></tr><tr data-ag="M25-29" data-median="30799"><td>M25-29</td><td class="rk-cut">8:33:19</td><td class="rk-range">8:19:40–8:44:11</td></tr><tr data-ag="M30-34" data-median="30456"><td>M30-34</td><td class="rk-cut">8:27:36</td><td class="rk-range">8:27:12–8:50:55</td></tr><tr data-ag="M35-39" data-median="31140"><td>M35-39</td><td class="rk-cut">8:39:00</td><td class="rk-range">8:38:30–8:54:14</td></tr><tr data-ag="M40-44" data-median="31709"><td>M40-44</td><td class="rk-cut">8:48:29</td><td class="rk-range">8:47:00–9:11:11</td></tr><tr data-ag="M45-49" data-median="33106"><td>M45-49</td><td class="rk-cut">9:11:46</td><td class="rk-range">9:09:46–9:31:30</td></tr><tr data-ag="M50-54" data-median="34602"><td>M50-54</td><td class="rk-cut">9:36:42</td><td class="rk-range">9:33:40–9:56:17</td></tr><tr data-ag="M55-59" data-median="35975"><td>M55-59</td><td class="rk-cut">9:59:35</td><td class="rk-range">9:58:22–10:16:17</td></tr><tr data-ag="M60-64" data-median="36918"><td>M60-64</td><td class="rk-cut">10:15:18</td><td class="rk-range">9:46:31–10:40:38</td></tr><tr data-ag="M65-69" data-median="39528"><td>M65-69</td><td class="rk-cut">10:58:48</td><td class="rk-range">10:38:11–11:58:27</td></tr><tr data-ag="M70-74" data-median="44946"><td>M70-74</td><td class="rk-cut">12:29:06</td><td class="rk-range">12:28:18–14:12:57</td></tr><tr data-ag="M75-79" data-median="55447.5"><td>M75-79</td><td class="rk-cut">15:24:08</td><td class="rk-range">14:51:58–15:56:17</td></tr></tbody>
+          </table>
+        </div>
+        <p class="rk-note">Schätzung, keine Garantie – Roll-down und Feldstärke verändern den realen Cutoff.</p>
+        <a class="rk-more" id="rkMore" href="../kona-check.html?race=ironman-kalmar-sweden">Detaillierte Auswertung & teilbares Bild →</a>
+        <script>
+        (function(){
+          var root=document.getElementById('rk'); if(!root)return;
+          var S={"yes":"Stark – % schneller als die typische Qualizeit.","close":"Knapp dran – ca. % über der typischen Qualizeit.","no":"Noch ca. % über der typischen Qualizeit."};
+          var agSel=root.querySelector('#rkAg'),timeInp=root.querySelector('#rkTime');
+          var verdict=root.querySelector('#rkVerdict'),more=root.querySelector('#rkMore');
+          var rows=root.querySelectorAll('tbody tr[data-ag]'),baseHref=more.getAttribute('href');
+          function parse(str){if(!str)return null;var p=str.trim().split(/[:.\s]+/).filter(Boolean).map(Number);if(p.some(isNaN)||!p.length||p.length>3)return null;var h=0,m=0,s=0;if(p.length===3){h=p[0];m=p[1];s=p[2];}else if(p.length===2){h=p[0];m=p[1];}else{h=p[0];}if(m>59||s>59)return null;var t=h*3600+m*60+s;return(t>0&&t<72000)?t:null;}
+          function diff(sec){sec=Math.round(Math.abs(sec));var h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60);if(h>0)return h+' h '+('0'+m).slice(-2)+' min';if(m>0)return m+' min';return sec+' s';}
+          function upd(){
+            var ag=agSel.value,t=parse(timeInp.value),row=null;
+            rows.forEach(function(r){var on=r.getAttribute('data-ag')===ag;r.classList.toggle('is-active',on);if(on)row=r;});
+            more.setAttribute('href',ag?baseHref+'&ag='+encodeURIComponent(ag):baseHref);
+            if(!ag||!t||!row){verdict.hidden=true;return;}
+            var d=t-Number(row.getAttribute('data-median'));verdict.hidden=false;verdict.className='rk-verdict';
+            if(d<=0){verdict.classList.add('rk-v-yes');verdict.textContent=S.yes.replace('%',diff(d));}
+            else if(d<=600){verdict.classList.add('rk-v-close');verdict.textContent=S.close.replace('%',diff(d));}
+            else{verdict.classList.add('rk-v-no');verdict.textContent=S.no.replace('%',diff(d));}
+          }
+          agSel.addEventListener('change',upd);timeInp.addEventListener('input',upd);
+        })();
+        </script>
+      </section>
         <div class="race-detail-tags"><span class="race-card-tag">Flach</span><span class="race-card-tag">Schnell</span><span class="race-card-tag">Meer-Schwimmen</span><span class="race-card-tag">Zuschauermagnet</span><span class="race-card-tag">Windanfällig</span></div>
       </article>
 
