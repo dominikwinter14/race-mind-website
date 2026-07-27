@@ -2916,23 +2916,11 @@ a.race-card-image {
 }
 
 /* ── Kona qualifying block ── */
-.race-kona .rk-target {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--foreground);
-  background: rgba(255, 138, 0, 0.1);
-  border: 1px solid rgba(255, 138, 0, 0.25);
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
 .race-kona .rk-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin-top: 1.75rem;
   margin-bottom: 1.25rem;
 }
 
