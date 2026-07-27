@@ -242,7 +242,6 @@
           <div class="kc-big-label">Typical Kona qualifying time</div>
           <div class="kc-big gradient-text" id="kcResTime"></div>
           <div class="kc-range" id="kcResRange"></div>
-          <div class="kc-target" id="kcResTarget"></div>
 
           <div class="kc-verdict" id="kcVerdict" style="display:none;"></div>
 
@@ -490,7 +489,6 @@
       $('kcResTime').textContent = agData.medianFmt;
       $('kcResRange').textContent = 'Range ' + r.years.join(', ') + ': '
         + agData.minFmt + ' – ' + agData.maxFmt;
-      $('kcResTarget').innerHTML = 'Goal: IRONMAN World Championship · Kona, Hawaii';
 
       // per-year table
       var tb = $('kcYears').querySelector('tbody');
