@@ -225,7 +225,7 @@
           </div>
           <div class="kc-field kc-field--full">
             <label for="kcTime">Your goal time <span style="color:var(--muted); font-weight:400;">(optional)</span></label>
-            <input id="kcTime" type="text" inputmode="numeric" placeholder="e.g. 9:45:00 (hh:mm:ss)" autocomplete="off">
+            <input id="kcTime" type="text" inputmode="numeric" placeholder="e.g. 9:45 (hh:mm)" autocomplete="off">
             <span class="kc-hint">Enter your target finish time to compare it against the qualifying time.</span>
           </div>
         </div>
@@ -392,8 +392,8 @@
 
     function fmt(sec) {
       sec = Math.round(sec);
-      var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
-      return h + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60);
+      return h + ':' + String(m).padStart(2, '0');
     }
     function fmtDiff(sec) {
       sec = Math.round(Math.abs(sec));
