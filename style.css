@@ -1347,68 +1347,6 @@ strong { font-weight: 600; }
   color: var(--muted);
 }
 
-/* ── Audience grid ── */
-
-.audience-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.audience-col {
-  background: var(--surface);
-  border-radius: 1rem;
-  padding: 1.25rem 1.5rem;
-}
-
-.audience-col--yes {
-  border-top: 2px solid var(--primary);
-}
-
-.audience-col--no {
-  border-top: 2px solid rgba(255,255,255,0.15);
-}
-
-.audience-heading {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.75rem;
-}
-
-.audience-col--yes .audience-heading {
-  color: var(--primary);
-}
-
-.audience-col--no .audience-heading {
-  color: var(--muted);
-}
-
-.audience-list {
-  list-style: disc;
-  padding: 0 0 0 1.2rem;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.audience-list li {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.audience-col--yes .audience-list li::marker {
-  color: var(--primary);
-}
-
-.audience-col--no .audience-list li::marker {
-  color: rgba(255,255,255,0.3);
-}
-
 /* ── FAQ ── */
 
 .section--faq {
