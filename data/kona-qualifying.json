@@ -1,6 +1,6 @@
 {
   "generatedFor": "race-mind-website",
-  "generatedAt": "2026-07-25",
+  "generatedAt": "2026-07-27",
   "method": "IRONMAN's official 2026 performance-based qualification, implemented from public data. Each age-group winner earns an automatic World Championship slot; the remaining slots go to the athletes whose age-graded time (finish ÷ their age-group Kona Standard) ranks highest in a single global ranking across all age groups and both genders. The Kona Standard is the average of the fastest 20% of World Championship finish times over the last 5 editions (Kona and Nice), per age group per gender. Each race uses a fixed slot allocation (~40, larger for a few big races). Qualifying time = the slowest finish time that still earned a slot. Independent historical estimate — not a guarantee: roll-down softens the real cutoff. Figures are the median of the last editions with a min–max range.",
   "standardYears": [
     "2025",
@@ -55,10 +55,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 40796,
-          "medianFmt": "11:19:56",
+          "medianSec": 36089,
+          "medianFmt": "10:01:29",
           "minFmt": "10:01:29",
-          "maxFmt": "12:39:49",
+          "maxFmt": "10:01:29",
           "perYear": [
             {
               "year": "2025",
@@ -70,13 +70,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "11:19:56"
+              "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:39:49"
+              "qFmt": null
             }
           ]
         },
@@ -271,10 +271,10 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 47897,
-          "medianFmt": "13:18:17",
+          "medianSec": 39003,
+          "medianFmt": "10:50:03",
           "minFmt": "10:50:03",
-          "maxFmt": "15:55:52",
+          "maxFmt": "10:50:03",
           "perYear": [
             {
               "year": "2025",
@@ -286,40 +286,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:18:17"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:55:52"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 46833.5,
-          "medianFmt": "13:00:34",
-          "minFmt": "12:43:26",
-          "maxFmt": "13:17:41",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "12:43:26"
-            },
-            {
               "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "13:17:41"
+              "qFmt": null
             }
           ]
         },
@@ -592,60 +565,6 @@
               "qFmt": "11:37:51"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 43637,
-          "medianFmt": "12:07:17",
-          "minFmt": "12:04:46",
-          "maxFmt": "12:20:01",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:20:01"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:04:46"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "12:07:17"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 59997,
-          "medianFmt": "16:39:57",
-          "minFmt": "16:39:57",
-          "maxFmt": "16:39:57",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:39:57"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
         }
       ]
     },
@@ -904,87 +823,6 @@
               "slots": 1,
               "finishers": 11,
               "qFmt": "11:51:30"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 49440,
-          "medianFmt": "13:44:00",
-          "minFmt": "13:16:13",
-          "maxFmt": "14:34:05",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "13:16:13"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:44:00"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:34:05"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 51056,
-          "medianFmt": "14:10:56",
-          "minFmt": "14:10:56",
-          "maxFmt": "14:10:56",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:10:56"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 58684,
-          "medianFmt": "16:18:04",
-          "minFmt": "16:18:04",
-          "maxFmt": "16:18:04",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:18:04"
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -1260,10 +1098,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 46906,
-          "medianFmt": "13:01:46",
+          "medianSec": 44434,
+          "medianFmt": "12:20:34",
           "minFmt": "12:20:34",
-          "maxFmt": "15:15:30",
+          "maxFmt": "12:20:34",
           "perYear": [
             {
               "year": "2026",
@@ -1275,67 +1113,13 @@
               "year": "2025",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:15:30"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:01:46"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 52625,
-          "medianFmt": "14:37:05",
-          "minFmt": "14:30:29",
-          "maxFmt": "16:20:28",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:20:28"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:37:05"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:30:29"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 60929,
-          "medianFmt": "16:55:29",
-          "minFmt": "16:55:29",
-          "maxFmt": "16:55:29",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:55:29"
+              "finishers": 2,
+              "qFmt": null
             }
           ]
         }
@@ -1358,10 +1142,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 37109,
-          "medianFmt": "10:18:29",
+          "medianSec": 35545.5,
+          "medianFmt": "9:52:26",
           "minFmt": "9:26:22",
-          "maxFmt": "12:19:19",
+          "maxFmt": "10:18:29",
           "perYear": [
             {
               "year": "2025",
@@ -1379,7 +1163,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "12:19:19"
+              "qFmt": null
             }
           ]
         },
@@ -1574,8 +1358,8 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 44401,
-          "medianFmt": "12:20:01",
+          "medianSec": 42876,
+          "medianFmt": "11:54:36",
           "minFmt": "11:26:47",
           "maxFmt": "12:22:25",
           "perYear": [
@@ -1595,7 +1379,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:20:01"
+              "qFmt": null
             }
           ]
         },
@@ -1868,60 +1652,6 @@
               "qFmt": "11:26:29"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 42899,
-          "medianFmt": "11:54:59",
-          "minFmt": "11:46:55",
-          "maxFmt": "13:12:42",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "11:46:55"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "11:54:59"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "13:12:42"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 56996,
-          "medianFmt": "15:49:56",
-          "minFmt": "15:49:56",
-          "maxFmt": "15:49:56",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:49:56"
-            }
-          ]
         }
       ]
     },
@@ -1942,10 +1672,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 39270,
-          "medianFmt": "10:54:30",
+          "medianSec": 35698,
+          "medianFmt": "9:54:58",
           "minFmt": "9:54:58",
-          "maxFmt": "13:23:28",
+          "maxFmt": "9:54:58",
           "perYear": [
             {
               "year": "2026",
@@ -1957,13 +1687,13 @@
               "year": "2025",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "13:23:28"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "10:54:30"
+              "qFmt": null
             }
           ]
         },
@@ -2131,8 +1861,8 @@
         },
         {
           "ageGroup": "F55-59",
-          "medianSec": 42439,
-          "medianFmt": "11:47:19",
+          "medianSec": 43530,
+          "medianFmt": "12:05:30",
           "minFmt": "11:35:38",
           "maxFmt": "12:35:22",
           "perYear": [
@@ -2152,16 +1882,16 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "11:47:19"
+              "qFmt": null
             }
           ]
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 42833,
-          "medianFmt": "11:53:53",
+          "medianSec": 42189.5,
+          "medianFmt": "11:43:10",
           "minFmt": "11:32:26",
-          "maxFmt": "13:00:49",
+          "maxFmt": "11:53:53",
           "perYear": [
             {
               "year": "2026",
@@ -2179,7 +1909,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "13:00:49"
+              "qFmt": null
             }
           ]
         },
@@ -2201,33 +1931,6 @@
               "slots": 0,
               "finishers": 0,
               "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 54205,
-          "medianFmt": "15:03:25",
-          "minFmt": "15:03:25",
-          "maxFmt": "15:03:25",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:03:25"
             },
             {
               "year": "2024",
@@ -2504,60 +2207,6 @@
               "slots": 1,
               "finishers": 15,
               "qFmt": "11:29:32"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 48557,
-          "medianFmt": "13:29:17",
-          "minFmt": "13:18:59",
-          "maxFmt": "13:36:45",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:18:59"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:29:17"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "13:36:45"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 58092,
-          "medianFmt": "16:08:12",
-          "minFmt": "16:08:12",
-          "maxFmt": "16:08:12",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:08:12"
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         }
@@ -2849,60 +2498,6 @@
           ]
         },
         {
-          "ageGroup": "F70-74",
-          "medianSec": 52634,
-          "medianFmt": "14:37:14",
-          "minFmt": "13:57:46",
-          "maxFmt": "16:16:57",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:16:57"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:37:14"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:57:46"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 53034,
-          "medianFmt": "14:43:54",
-          "minFmt": "14:43:54",
-          "maxFmt": "14:43:54",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:43:54"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
           "ageGroup": "M18-24",
           "medianSec": 31379,
           "medianFmt": "8:42:59",
@@ -3174,16 +2769,16 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 42215,
-          "medianFmt": "11:43:35",
-          "minFmt": "11:40:28",
+          "medianSec": 45793,
+          "medianFmt": "12:43:13",
+          "minFmt": "11:43:35",
           "maxFmt": "13:42:51",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "11:40:28"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -3196,60 +2791,6 @@
               "slots": 1,
               "finishers": 11,
               "qFmt": "11:43:35"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 50672,
-          "medianFmt": "14:04:32",
-          "minFmt": "14:02:42",
-          "maxFmt": "14:44:58",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:02:42"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:44:58"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "14:04:32"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 58811,
-          "medianFmt": "16:20:11",
-          "minFmt": "16:20:11",
-          "maxFmt": "16:20:11",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:20:11"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         }
@@ -3417,21 +2958,6 @@
           ]
         },
         {
-          "ageGroup": "F70-74",
-          "medianSec": 55478,
-          "medianFmt": "15:24:38",
-          "minFmt": "15:24:38",
-          "maxFmt": "15:24:38",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:24:38"
-            }
-          ]
-        },
-        {
           "ageGroup": "M18-24",
           "medianSec": 33232,
           "medianFmt": "9:13:52",
@@ -3593,21 +3119,6 @@
               "slots": 1,
               "finishers": 7,
               "qFmt": "13:24:40"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 60913,
-          "medianFmt": "16:55:13",
-          "minFmt": "16:55:13",
-          "maxFmt": "16:55:13",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:55:13"
             }
           ]
         }
@@ -3873,10 +3384,10 @@
         },
         {
           "ageGroup": "F65-69",
-          "medianSec": 48573,
-          "medianFmt": "13:29:33",
+          "medianSec": 47604,
+          "medianFmt": "13:13:24",
           "minFmt": "13:13:24",
-          "maxFmt": "15:50:55",
+          "maxFmt": "13:13:24",
           "perYear": [
             {
               "year": "2025",
@@ -3888,40 +3399,13 @@
               "year": "2023",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:29:33"
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "15:50:55"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 53197,
-          "medianFmt": "14:46:37",
-          "minFmt": "14:03:26",
-          "maxFmt": "15:29:48",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:29:48"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
               "year": "2022",
               "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:03:26"
+              "finishers": 4,
+              "qFmt": null
             }
           ]
         },
@@ -4197,10 +3681,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 50927,
-          "medianFmt": "14:08:47",
+          "medianSec": 48216,
+          "medianFmt": "13:23:36",
           "minFmt": "12:38:25",
-          "maxFmt": "15:10:16",
+          "maxFmt": "14:08:47",
           "perYear": [
             {
               "year": "2025",
@@ -4212,40 +3696,13 @@
               "year": "2023",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "15:10:16"
+              "qFmt": null
             },
             {
               "year": "2022",
               "slots": 1,
               "finishers": 6,
               "qFmt": "14:08:47"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 51435.5,
-          "medianFmt": "14:17:16",
-          "minFmt": "13:22:40",
-          "maxFmt": "15:11:51",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 2,
-              "finishers": 4,
-              "qFmt": "13:22:40"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:11:51"
             }
           ]
         }
@@ -4506,60 +3963,6 @@
               "slots": 1,
               "finishers": 7,
               "qFmt": "12:26:49"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 53154.5,
-          "medianFmt": "14:45:55",
-          "minFmt": "14:17:47",
-          "maxFmt": "15:14:02",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:14:02"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:17:47"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 52048,
-          "medianFmt": "14:27:28",
-          "minFmt": "14:23:21",
-          "maxFmt": "14:31:35",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:23:21"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:31:35"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -4837,14 +4240,14 @@
           "ageGroup": "M70-74",
           "medianSec": 45763,
           "medianFmt": "12:42:43",
-          "minFmt": "12:42:04",
-          "maxFmt": "12:54:53",
+          "minFmt": "12:42:43",
+          "maxFmt": "12:42:43",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "12:42:04"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -4856,7 +4259,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "12:54:53"
+              "qFmt": null
             }
           ]
         }
@@ -4879,10 +4282,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 43482,
-          "medianFmt": "12:04:42",
+          "medianSec": 39109,
+          "medianFmt": "10:51:49",
           "minFmt": "10:51:49",
-          "maxFmt": "12:34:46",
+          "maxFmt": "10:51:49",
           "perYear": [
             {
               "year": "2025",
@@ -4894,13 +4297,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:34:46"
+              "qFmt": null
             },
             {
               "year": "2022",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:04:42"
+              "qFmt": null
             }
           ]
         },
@@ -5095,10 +4498,10 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 48921,
-          "medianFmt": "13:35:21",
+          "medianSec": 46057.5,
+          "medianFmt": "12:47:38",
           "minFmt": "11:59:54",
-          "maxFmt": "14:16:54",
+          "maxFmt": "13:35:21",
           "perYear": [
             {
               "year": "2025",
@@ -5116,7 +4519,7 @@
               "year": "2022",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "14:16:54"
+              "qFmt": null
             }
           ]
         },
@@ -5124,14 +4527,14 @@
           "ageGroup": "F65-69",
           "medianSec": 51255,
           "medianFmt": "14:14:15",
-          "minFmt": "13:10:50",
-          "maxFmt": "16:35:48",
+          "minFmt": "14:14:15",
+          "maxFmt": "14:14:15",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "16:35:48"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -5143,60 +4546,6 @@
               "year": "2022",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "13:10:50"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 55717,
-          "medianFmt": "15:28:37",
-          "minFmt": "15:25:45",
-          "maxFmt": "15:54:35",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:25:45"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:28:37"
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:54:35"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 57756,
-          "medianFmt": "16:02:36",
-          "minFmt": "16:02:36",
-          "maxFmt": "16:02:36",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:02:36"
-            },
-            {
-              "year": "2022",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -5446,10 +4795,10 @@
         },
         {
           "ageGroup": "M65-69",
-          "medianSec": 41714,
-          "medianFmt": "11:35:14",
+          "medianSec": 40412.5,
+          "medianFmt": "11:13:33",
           "minFmt": "10:51:51",
-          "maxFmt": "13:06:57",
+          "maxFmt": "11:35:14",
           "perYear": [
             {
               "year": "2025",
@@ -5461,7 +4810,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:06:57"
+              "qFmt": null
             },
             {
               "year": "2022",
@@ -5473,10 +4822,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 51566.5,
-          "medianFmt": "14:19:27",
+          "medianSec": 49388,
+          "medianFmt": "13:43:08",
           "minFmt": "13:43:08",
-          "maxFmt": "14:55:45",
+          "maxFmt": "13:43:08",
           "perYear": [
             {
               "year": "2025",
@@ -5488,40 +4837,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:55:45"
+              "qFmt": null
             },
             {
               "year": "2022",
               "slots": 0,
               "finishers": 0,
               "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 58259,
-          "medianFmt": "16:10:59",
-          "minFmt": "16:09:43",
-          "maxFmt": "16:12:15",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "16:12:15"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:09:43"
             }
           ]
         }
@@ -5787,10 +5109,10 @@
         },
         {
           "ageGroup": "F65-69",
-          "medianSec": 48119,
-          "medianFmt": "13:21:59",
+          "medianSec": 46293,
+          "medianFmt": "12:51:33",
           "minFmt": "12:21:07",
-          "maxFmt": "15:38:03",
+          "maxFmt": "13:21:59",
           "perYear": [
             {
               "year": "2025",
@@ -5802,40 +5124,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:38:03"
+              "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
               "finishers": 5,
               "qFmt": "12:21:07"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 51716,
-          "medianFmt": "14:21:56",
-          "minFmt": "14:21:56",
-          "maxFmt": "14:21:56",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:21:56"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -6111,22 +5406,22 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 50015,
-          "medianFmt": "13:53:35",
+          "medianSec": 43853,
+          "medianFmt": "12:10:53",
           "minFmt": "12:10:53",
-          "maxFmt": "13:58:41",
+          "maxFmt": "12:10:53",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:58:41"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:53:35"
+              "qFmt": null
             },
             {
               "year": "2023",
@@ -6138,10 +5433,10 @@
         },
         {
           "ageGroup": "M75-79",
-          "medianSec": 49606,
-          "medianFmt": "13:46:46",
+          "medianSec": 44007,
+          "medianFmt": "12:13:27",
           "minFmt": "12:13:27",
-          "maxFmt": "15:41:02",
+          "maxFmt": "12:13:27",
           "perYear": [
             {
               "year": "2025",
@@ -6153,40 +5448,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:41:02"
+              "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "13:46:46"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 51007,
-          "medianFmt": "14:10:07",
-          "minFmt": "14:10:07",
-          "maxFmt": "14:10:07",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:10:07"
             }
           ]
         }
@@ -6420,60 +5688,6 @@
               "slots": 1,
               "finishers": 17,
               "qFmt": "11:55:39"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 45394,
-          "medianFmt": "12:36:34",
-          "minFmt": "11:27:41",
-          "maxFmt": "12:42:22",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:36:34"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "11:27:41"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:42:22"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 47888.5,
-          "medianFmt": "13:18:09",
-          "minFmt": "13:05:40",
-          "maxFmt": "13:30:37",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "13:05:40"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:30:37"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -6749,22 +5963,22 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 47766,
-          "medianFmt": "13:16:06",
+          "medianSec": 41232,
+          "medianFmt": "11:27:12",
           "minFmt": "11:27:12",
-          "maxFmt": "13:46:29",
+          "maxFmt": "11:27:12",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "13:46:29"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "13:16:06"
+              "qFmt": null
             },
             {
               "year": "2023",
@@ -6793,10 +6007,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 36738,
-          "medianFmt": "10:12:18",
+          "medianSec": 35305.5,
+          "medianFmt": "9:48:26",
           "minFmt": "9:24:33",
-          "maxFmt": "12:21:53",
+          "maxFmt": "10:12:18",
           "perYear": [
             {
               "year": "2026",
@@ -6814,7 +6028,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "12:21:53"
+              "qFmt": null
             }
           ]
         },
@@ -7009,16 +6223,16 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 44359,
-          "medianFmt": "12:19:19",
+          "medianSec": 42638.5,
+          "medianFmt": "11:50:39",
           "minFmt": "11:21:58",
-          "maxFmt": "12:57:47",
+          "maxFmt": "12:19:19",
           "perYear": [
             {
               "year": "2026",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:57:47"
+              "qFmt": null
             },
             {
               "year": "2025",
@@ -7031,33 +6245,6 @@
               "slots": 1,
               "finishers": 10,
               "qFmt": "12:19:19"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 46021,
-          "medianFmt": "12:47:01",
-          "minFmt": "11:53:47",
-          "maxFmt": "12:54:57",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:54:57"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "11:53:47"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "12:47:01"
             }
           ]
         },
@@ -7333,10 +6520,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 46455,
-          "medianFmt": "12:54:15",
+          "medianSec": 43196,
+          "medianFmt": "11:59:56",
           "minFmt": "11:59:56",
-          "maxFmt": "14:38:53",
+          "maxFmt": "11:59:56",
           "perYear": [
             {
               "year": "2026",
@@ -7348,39 +6535,12 @@
               "year": "2025",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "14:38:53"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "12:54:15"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 44960,
-          "medianFmt": "12:29:20",
-          "minFmt": "12:29:20",
-          "maxFmt": "12:29:20",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
-              "year": "2025",
+              "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "12:29:20"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -7620,16 +6780,16 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 45409,
-          "medianFmt": "12:36:49",
+          "medianSec": 43183.5,
+          "medianFmt": "11:59:44",
           "minFmt": "11:22:38",
-          "maxFmt": "13:43:20",
+          "maxFmt": "12:36:49",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:43:20"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -7642,33 +6802,6 @@
               "slots": 1,
               "finishers": 5,
               "qFmt": "12:36:49"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 53902,
-          "medianFmt": "14:58:22",
-          "minFmt": "14:02:43",
-          "maxFmt": "16:17:05",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:17:05"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:58:22"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "14:02:43"
             }
           ]
         },
@@ -7941,87 +7074,6 @@
               "qFmt": "10:52:41"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 43546,
-          "medianFmt": "12:05:46",
-          "minFmt": "11:57:06",
-          "maxFmt": "12:34:06",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "11:57:06"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:34:06"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "12:05:46"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 49986,
-          "medianFmt": "13:53:06",
-          "minFmt": "13:53:06",
-          "maxFmt": "13:53:06",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:53:06"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 53939,
-          "medianFmt": "14:58:59",
-          "minFmt": "14:58:59",
-          "maxFmt": "14:58:59",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:58:59"
-            }
-          ]
         }
       ]
     },
@@ -8187,21 +7239,6 @@
           ]
         },
         {
-          "ageGroup": "F70-74",
-          "medianSec": 53263,
-          "medianFmt": "14:47:43",
-          "minFmt": "14:47:43",
-          "maxFmt": "14:47:43",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "14:47:43"
-            }
-          ]
-        },
-        {
           "ageGroup": "M18-24",
           "medianSec": 31951,
           "medianFmt": "8:52:31",
@@ -8348,36 +7385,6 @@
               "slots": 3,
               "finishers": 22,
               "qFmt": "11:32:37"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 46354,
-          "medianFmt": "12:52:34",
-          "minFmt": "12:52:34",
-          "maxFmt": "12:52:34",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:52:34"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 45290,
-          "medianFmt": "12:34:50",
-          "minFmt": "12:34:50",
-          "maxFmt": "12:34:50",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "12:34:50"
             }
           ]
         }
@@ -8643,10 +7650,10 @@
         },
         {
           "ageGroup": "F65-69",
-          "medianSec": 51184.5,
-          "medianFmt": "14:13:05",
+          "medianSec": 47300,
+          "medianFmt": "13:08:20",
           "minFmt": "13:08:20",
-          "maxFmt": "15:17:49",
+          "maxFmt": "13:08:20",
           "perYear": [
             {
               "year": "2025",
@@ -8658,7 +7665,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "15:17:49"
+              "qFmt": null
             },
             {
               "year": "2023",
@@ -8937,60 +7944,6 @@
               "qFmt": "11:58:27"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 44946,
-          "medianFmt": "12:29:06",
-          "minFmt": "12:28:18",
-          "maxFmt": "14:12:57",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:28:18"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:12:57"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "12:29:06"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 55447.5,
-          "medianFmt": "15:24:08",
-          "minFmt": "14:51:58",
-          "maxFmt": "15:56:17",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:56:17"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:51:58"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
         }
       ]
     },
@@ -9254,16 +8207,16 @@
         },
         {
           "ageGroup": "F65-69",
-          "medianSec": 55195,
-          "medianFmt": "15:19:55",
+          "medianSec": 51397,
+          "medianFmt": "14:16:37",
           "minFmt": "14:16:37",
-          "maxFmt": "15:51:07",
+          "maxFmt": "14:16:37",
           "perYear": [
             {
               "year": "2026",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:51:07"
+              "qFmt": null
             },
             {
               "year": "2025",
@@ -9275,7 +8228,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "15:19:55"
+              "qFmt": null
             }
           ]
         },
@@ -9370,7 +8323,7 @@
             {
               "year": "2026",
               "slots": 2,
-              "finishers": 216,
+              "finishers": 217,
               "qFmt": "9:25:45"
             },
             {
@@ -9551,10 +8504,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 48265,
-          "medianFmt": "13:24:25",
+          "medianSec": 47305.5,
+          "medianFmt": "13:08:26",
           "minFmt": "12:52:26",
-          "maxFmt": "14:29:41",
+          "maxFmt": "13:24:25",
           "perYear": [
             {
               "year": "2026",
@@ -9566,40 +8519,13 @@
               "year": "2025",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:29:41"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 9,
               "qFmt": "13:24:25"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 53154,
-          "medianFmt": "14:45:54",
-          "minFmt": "14:45:54",
-          "maxFmt": "14:45:54",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:45:54"
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         }
@@ -9621,36 +8547,9 @@
       },
       "ageGroups": [
         {
-          "ageGroup": "F18-24",
-          "medianSec": 46997,
-          "medianFmt": "13:03:17",
-          "minFmt": "11:51:22",
-          "maxFmt": "14:15:12",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:15:12"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "11:51:22"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
           "ageGroup": "F25-29",
-          "medianSec": 44018,
-          "medianFmt": "12:13:38",
+          "medianSec": 42029,
+          "medianFmt": "11:40:29",
           "minFmt": "10:50:26",
           "maxFmt": "12:30:32",
           "perYear": [
@@ -9664,7 +8563,7 @@
               "year": "2025",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "12:13:38"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -9703,9 +8602,9 @@
         },
         {
           "ageGroup": "F35-39",
-          "medianSec": 39923,
-          "medianFmt": "11:05:23",
-          "minFmt": "10:48:22",
+          "medianSec": 41258.5,
+          "medianFmt": "11:27:39",
+          "minFmt": "11:05:23",
           "maxFmt": "11:49:54",
           "perYear": [
             {
@@ -9724,7 +8623,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "10:48:22"
+              "qFmt": null
             }
           ]
         },
@@ -9833,60 +8732,6 @@
               "slots": 1,
               "finishers": 7,
               "qFmt": "13:18:51"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 48319,
-          "medianFmt": "13:25:19",
-          "minFmt": "13:21:23",
-          "maxFmt": "13:56:28",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:21:23"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "13:56:28"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:25:19"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 54013.5,
-          "medianFmt": "15:00:14",
-          "minFmt": "14:41:58",
-          "maxFmt": "15:18:29",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:41:58"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:18:29"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -10162,10 +9007,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 49877,
-          "medianFmt": "13:51:17",
+          "medianSec": 49095,
+          "medianFmt": "13:38:15",
           "minFmt": "13:38:15",
-          "maxFmt": "14:04:19",
+          "maxFmt": "13:38:15",
           "perYear": [
             {
               "year": "2026",
@@ -10183,33 +9028,6 @@
               "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "14:04:19"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 56776,
-          "medianFmt": "15:46:16",
-          "minFmt": "15:46:16",
-          "maxFmt": "15:46:16",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:46:16"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -10476,9 +9294,9 @@
         },
         {
           "ageGroup": "F65-69",
-          "medianSec": 54450,
-          "medianFmt": "15:07:30",
-          "minFmt": "12:40:00",
+          "medianSec": 54759,
+          "medianFmt": "15:12:39",
+          "minFmt": "15:12:39",
           "maxFmt": "15:12:39",
           "perYear": [
             {
@@ -10491,39 +9309,12 @@
               "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "12:40:00"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:07:30"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 57215,
-          "medianFmt": "15:53:35",
-          "minFmt": "15:53:35",
-          "maxFmt": "15:53:35",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
-              "year": "2024",
+              "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:53:35"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -10800,9 +9591,9 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 45455,
-          "medianFmt": "12:37:35",
-          "minFmt": "11:46:36",
+          "medianSec": 45883.5,
+          "medianFmt": "12:44:44",
+          "minFmt": "12:37:35",
           "maxFmt": "12:51:52",
           "perYear": [
             {
@@ -10821,60 +9612,6 @@
               "year": "2023",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "11:46:36"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 48444,
-          "medianFmt": "13:27:24",
-          "minFmt": "13:27:24",
-          "maxFmt": "13:27:24",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:27:24"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 59467,
-          "medianFmt": "16:31:07",
-          "minFmt": "16:31:07",
-          "maxFmt": "16:31:07",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:31:07"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -11114,9 +9851,9 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 44428,
-          "medianFmt": "12:20:28",
-          "minFmt": "12:15:56",
+          "medianSec": 44438.5,
+          "medianFmt": "12:20:39",
+          "minFmt": "12:20:28",
           "maxFmt": "12:20:49",
           "perYear": [
             {
@@ -11129,94 +9866,13 @@
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "12:15:56"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 6,
               "qFmt": "12:20:49"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 48140.5,
-          "medianFmt": "13:22:21",
-          "minFmt": "12:30:23",
-          "maxFmt": "14:14:18",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:14:18"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:30:23"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 44590,
-          "medianFmt": "12:23:10",
-          "minFmt": "12:23:10",
-          "maxFmt": "12:23:10",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "12:23:10"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 60172,
-          "medianFmt": "16:42:52",
-          "minFmt": "16:42:52",
-          "maxFmt": "16:42:52",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:42:52"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -11492,55 +10148,28 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 50440,
-          "medianFmt": "14:00:40",
+          "medianSec": 44898,
+          "medianFmt": "12:28:18",
           "minFmt": "12:28:18",
-          "maxFmt": "15:23:34",
+          "maxFmt": "12:28:18",
           "perYear": [
             {
               "year": "2026",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "15:23:34"
+              "qFmt": null
             },
             {
               "year": "2025",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:00:40"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 7,
               "qFmt": "12:28:18"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 61196,
-          "medianFmt": "16:59:56",
-          "minFmt": "16:59:56",
-          "maxFmt": "16:59:56",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:59:56"
             }
           ]
         }
@@ -11565,14 +10194,14 @@
           "ageGroup": "F18-24",
           "medianSec": 41487,
           "medianFmt": "11:31:27",
-          "minFmt": "11:08:03",
-          "maxFmt": "11:57:12",
+          "minFmt": "11:31:27",
+          "maxFmt": "11:31:27",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "11:57:12"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -11584,7 +10213,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "11:08:03"
+              "qFmt": null
             }
           ]
         },
@@ -11752,16 +10381,16 @@
         },
         {
           "ageGroup": "F55-59",
-          "medianSec": 44003,
-          "medianFmt": "12:13:23",
+          "medianSec": 43663,
+          "medianFmt": "12:07:43",
           "minFmt": "12:02:03",
-          "maxFmt": "14:30:21",
+          "maxFmt": "12:13:23",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:30:21"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -11774,33 +10403,6 @@
               "slots": 2,
               "finishers": 9,
               "qFmt": "12:02:03"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 50253,
-          "medianFmt": "13:57:33",
-          "minFmt": "12:49:54",
-          "maxFmt": "14:55:42",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:57:33"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:49:54"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "14:55:42"
             }
           ]
         },
@@ -12049,8 +10651,8 @@
         },
         {
           "ageGroup": "M65-69",
-          "medianSec": 42576,
-          "medianFmt": "11:49:36",
+          "medianSec": 43555.5,
+          "medianFmt": "12:05:56",
           "minFmt": "11:29:59",
           "maxFmt": "12:41:52",
           "perYear": [
@@ -12070,61 +10672,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "11:49:36"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 52866,
-          "medianFmt": "14:41:06",
-          "minFmt": "13:53:32",
-          "maxFmt": "15:28:40",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 2,
-              "finishers": 2,
-              "qFmt": "13:53:32"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:28:40"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 53734.5,
-          "medianFmt": "14:55:35",
-          "minFmt": "14:28:16",
-          "maxFmt": "15:22:53",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:28:16"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:22:53"
             }
           ]
         }
@@ -12147,10 +10695,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 39928,
-          "medianFmt": "11:05:28",
+          "medianSec": 39925.5,
+          "medianFmt": "11:05:26",
           "minFmt": "11:05:23",
-          "maxFmt": "12:41:56",
+          "maxFmt": "11:05:28",
           "perYear": [
             {
               "year": "2025",
@@ -12168,7 +10716,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "12:41:56"
+              "qFmt": null
             }
           ]
         },
@@ -12336,8 +10884,8 @@
         },
         {
           "ageGroup": "F55-59",
-          "medianSec": 42506,
-          "medianFmt": "11:48:26",
+          "medianSec": 42859.5,
+          "medianFmt": "11:54:20",
           "minFmt": "11:41:56",
           "maxFmt": "12:06:43",
           "perYear": [
@@ -12345,7 +10893,7 @@
               "year": "2025",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "11:48:26"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -12358,87 +10906,6 @@
               "slots": 1,
               "finishers": 13,
               "qFmt": "12:06:43"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 49758,
-          "medianFmt": "13:49:18",
-          "minFmt": "12:22:42",
-          "maxFmt": "15:14:12",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "13:49:18"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:22:42"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:14:12"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 58265,
-          "medianFmt": "16:11:05",
-          "minFmt": "16:11:05",
-          "maxFmt": "16:11:05",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:11:05"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 55737,
-          "medianFmt": "15:28:57",
-          "minFmt": "15:28:57",
-          "maxFmt": "15:28:57",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:28:57"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -12711,33 +11178,6 @@
               "qFmt": "11:51:59"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 54104,
-          "medianFmt": "15:01:44",
-          "minFmt": "15:01:44",
-          "maxFmt": "15:01:44",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:01:44"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
         }
       ]
     },
@@ -12974,10 +11414,10 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 45338,
-          "medianFmt": "12:35:38",
+          "medianSec": 45166.5,
+          "medianFmt": "12:32:47",
           "minFmt": "12:29:55",
-          "maxFmt": "13:52:02",
+          "maxFmt": "12:35:38",
           "perYear": [
             {
               "year": "2026",
@@ -12995,34 +11435,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:52:02"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 55036,
-          "medianFmt": "15:17:16",
-          "minFmt": "14:42:34",
-          "maxFmt": "15:51:58",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:51:58"
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:42:34"
             }
           ]
         },
@@ -13295,60 +11708,6 @@
               "qFmt": "12:02:46"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 54536,
-          "medianFmt": "15:08:56",
-          "minFmt": "13:59:00",
-          "maxFmt": "16:09:09",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:08:56"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:59:00"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:09:09"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 55398.5,
-          "medianFmt": "15:23:19",
-          "minFmt": "13:52:36",
-          "maxFmt": "16:54:01",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:52:36"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:54:01"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
         }
       ]
     },
@@ -13369,10 +11728,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 38994,
-          "medianFmt": "10:49:54",
+          "medianSec": 37868,
+          "medianFmt": "10:31:08",
           "minFmt": "10:12:22",
-          "maxFmt": "13:10:02",
+          "maxFmt": "10:49:54",
           "perYear": [
             {
               "year": "2025",
@@ -13390,7 +11749,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "13:10:02"
+              "qFmt": null
             }
           ]
         },
@@ -13558,8 +11917,8 @@
         },
         {
           "ageGroup": "F55-59",
-          "medianSec": 42114,
-          "medianFmt": "11:41:54",
+          "medianSec": 41264.5,
+          "medianFmt": "11:27:45",
           "minFmt": "11:11:40",
           "maxFmt": "11:43:49",
           "perYear": [
@@ -13579,7 +11938,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "11:41:54"
+              "qFmt": null
             }
           ]
         },
@@ -13587,8 +11946,8 @@
           "ageGroup": "F60-64",
           "medianSec": 44916,
           "medianFmt": "12:28:36",
-          "minFmt": "12:24:37",
-          "maxFmt": "14:50:40",
+          "minFmt": "12:28:36",
+          "maxFmt": "12:28:36",
           "perYear": [
             {
               "year": "2025",
@@ -13600,40 +11959,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:50:40"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "12:24:37"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 57100,
-          "medianFmt": "15:51:40",
-          "minFmt": "15:35:03",
-          "maxFmt": "16:08:17",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:35:03"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:08:17"
+              "finishers": 3,
+              "qFmt": null
             }
           ]
         },
@@ -13882,10 +12214,10 @@
         },
         {
           "ageGroup": "M65-69",
-          "medianSec": 44471,
-          "medianFmt": "12:21:11",
+          "medianSec": 43261.5,
+          "medianFmt": "12:01:02",
           "minFmt": "11:40:52",
-          "maxFmt": "14:20:05",
+          "maxFmt": "12:21:11",
           "perYear": [
             {
               "year": "2025",
@@ -13903,60 +12235,6 @@
               "year": "2023",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "14:20:05"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 55640,
-          "medianFmt": "15:27:20",
-          "minFmt": "14:01:06",
-          "maxFmt": "16:53:34",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:01:06"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:53:34"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 58783,
-          "medianFmt": "16:19:43",
-          "minFmt": "16:19:43",
-          "maxFmt": "16:19:43",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:19:43"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             }
           ]
@@ -14225,14 +12503,14 @@
           "ageGroup": "F65-69",
           "medianSec": 45738,
           "medianFmt": "12:42:18",
-          "minFmt": "12:37:25",
-          "maxFmt": "14:56:48",
+          "minFmt": "12:42:18",
+          "maxFmt": "12:42:18",
           "perYear": [
             {
               "year": "2026",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "12:37:25"
+              "qFmt": null
             },
             {
               "year": "2025",
@@ -14244,34 +12522,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "14:56:48"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 52795,
-          "medianFmt": "14:39:55",
-          "minFmt": "14:20:30",
-          "maxFmt": "16:18:13",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:20:30"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "16:18:13"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:39:55"
+              "qFmt": null
             }
           ]
         },
@@ -14547,8 +12798,8 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 45205,
-          "medianFmt": "12:33:25",
+          "medianSec": 44604,
+          "medianFmt": "12:23:24",
           "minFmt": "12:05:16",
           "maxFmt": "12:41:32",
           "perYear": [
@@ -14562,40 +12813,13 @@
               "year": "2025",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "12:33:25"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 10,
               "qFmt": "12:41:32"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 53577,
-          "medianFmt": "14:52:57",
-          "minFmt": "12:31:16",
-          "maxFmt": "15:41:39",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:31:16"
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:41:39"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:52:57"
             }
           ]
         }
@@ -14748,21 +12972,6 @@
           ]
         },
         {
-          "ageGroup": "F65-69",
-          "medianSec": 44687,
-          "medianFmt": "12:24:47",
-          "minFmt": "12:24:47",
-          "maxFmt": "12:24:47",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:24:47"
-            }
-          ]
-        },
-        {
           "ageGroup": "M18-24",
           "medianSec": 31262,
           "medianFmt": "8:41:02",
@@ -14911,36 +13120,6 @@
               "qFmt": "10:51:06"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 42731,
-          "medianFmt": "11:52:11",
-          "minFmt": "11:52:11",
-          "maxFmt": "11:52:11",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "11:52:11"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 55510,
-          "medianFmt": "15:25:10",
-          "minFmt": "15:25:10",
-          "maxFmt": "15:25:10",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:25:10"
-            }
-          ]
         }
       ]
     },
@@ -14961,16 +13140,16 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 50474,
-          "medianFmt": "14:01:14",
+          "medianSec": 34898,
+          "medianFmt": "9:41:38",
           "minFmt": "9:41:38",
-          "maxFmt": "14:24:51",
+          "maxFmt": "9:41:38",
           "perYear": [
             {
               "year": "2023",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "14:01:14"
+              "qFmt": null
             },
             {
               "year": "2022",
@@ -14982,7 +13161,7 @@
               "year": "2019",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:24:51"
+              "qFmt": null
             }
           ]
         },
@@ -15152,53 +13331,26 @@
           "ageGroup": "F55-59",
           "medianSec": 45133,
           "medianFmt": "12:32:13",
-          "minFmt": "11:13:22",
-          "maxFmt": "15:05:18",
+          "minFmt": "12:32:13",
+          "maxFmt": "12:32:13",
           "perYear": [
             {
               "year": "2023",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "15:05:18"
+              "qFmt": null
             },
             {
               "year": "2022",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "11:13:22"
+              "qFmt": null
             },
             {
               "year": "2019",
               "slots": 1,
               "finishers": 11,
               "qFmt": "12:32:13"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 52201,
-          "medianFmt": "14:30:01",
-          "minFmt": "11:05:29",
-          "maxFmt": "16:22:35",
-          "perYear": [
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:22:35"
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "11:05:29"
-            },
-            {
-              "year": "2019",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "14:30:01"
             }
           ]
         },
@@ -15447,16 +13599,16 @@
         },
         {
           "ageGroup": "M65-69",
-          "medianSec": 48874,
-          "medianFmt": "13:34:34",
+          "medianSec": 39603,
+          "medianFmt": "11:00:03",
           "minFmt": "11:00:03",
-          "maxFmt": "13:44:53",
+          "maxFmt": "11:00:03",
           "perYear": [
             {
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "13:44:53"
+              "qFmt": null
             },
             {
               "year": "2022",
@@ -15468,61 +13620,7 @@
               "year": "2019",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "13:34:34"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 47652,
-          "medianFmt": "13:14:12",
-          "minFmt": "13:14:12",
-          "maxFmt": "13:14:12",
-          "perYear": [
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
-            },
-            {
-              "year": "2022",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:14:12"
-            },
-            {
-              "year": "2019",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 56263,
-          "medianFmt": "15:37:43",
-          "minFmt": "15:37:43",
-          "maxFmt": "15:37:43",
-          "perYear": [
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2022",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2019",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:37:43"
             }
           ]
         }
@@ -15545,10 +13643,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 37194,
-          "medianFmt": "10:19:54",
+          "medianSec": 36744.5,
+          "medianFmt": "10:12:25",
           "minFmt": "10:04:55",
-          "maxFmt": "11:04:54",
+          "maxFmt": "10:19:54",
           "perYear": [
             {
               "year": "2026",
@@ -15566,7 +13664,7 @@
               "year": "2024",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "11:04:54"
+              "qFmt": null
             }
           ]
         },
@@ -15761,16 +13859,16 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 45673,
-          "medianFmt": "12:41:13",
+          "medianSec": 43218,
+          "medianFmt": "12:00:18",
           "minFmt": "11:19:23",
-          "maxFmt": "13:03:54",
+          "maxFmt": "12:41:13",
           "perYear": [
             {
               "year": "2026",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "13:03:54"
+              "qFmt": null
             },
             {
               "year": "2025",
@@ -15783,33 +13881,6 @@
               "slots": 1,
               "finishers": 5,
               "qFmt": "12:41:13"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 54951,
-          "medianFmt": "15:15:51",
-          "minFmt": "15:15:51",
-          "maxFmt": "15:15:51",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:15:51"
-            },
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -16082,33 +14153,6 @@
               "qFmt": "11:10:59"
             }
           ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 48252.5,
-          "medianFmt": "13:24:13",
-          "minFmt": "12:36:20",
-          "maxFmt": "14:12:05",
-          "perYear": [
-            {
-              "year": "2026",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:12:05"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "12:36:20"
-            }
-          ]
         }
       ]
     },
@@ -16318,10 +14362,10 @@
         },
         {
           "ageGroup": "F55-59",
-          "medianSec": 48677,
-          "medianFmt": "13:31:17",
+          "medianSec": 48025,
+          "medianFmt": "13:20:25",
           "minFmt": "13:09:33",
-          "maxFmt": "14:30:13",
+          "maxFmt": "13:31:17",
           "perYear": [
             {
               "year": "2025",
@@ -16339,34 +14383,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:30:13"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F60-64",
-          "medianSec": 51076,
-          "medianFmt": "14:11:16",
-          "minFmt": "14:04:26",
-          "maxFmt": "15:03:05",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "14:04:26"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:11:16"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "15:03:05"
+              "qFmt": null
             }
           ]
         },
@@ -16615,55 +14632,28 @@
         },
         {
           "ageGroup": "M65-69",
-          "medianSec": 48439,
-          "medianFmt": "13:27:19",
-          "minFmt": "13:23:55",
+          "medianSec": 48661,
+          "medianFmt": "13:31:01",
+          "minFmt": "13:31:01",
           "maxFmt": "13:31:01",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:27:19"
+              "qFmt": null
             },
             {
               "year": "2024",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:23:55"
+              "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
               "finishers": 7,
               "qFmt": "13:31:01"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M70-74",
-          "medianSec": 61856,
-          "medianFmt": "17:10:56",
-          "minFmt": "17:10:56",
-          "maxFmt": "17:10:56",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "17:10:56"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         }
@@ -16686,10 +14676,10 @@
       "ageGroups": [
         {
           "ageGroup": "F18-24",
-          "medianSec": 40741,
-          "medianFmt": "11:19:01",
+          "medianSec": 39392,
+          "medianFmt": "10:56:32",
           "minFmt": "10:34:03",
-          "maxFmt": "11:59:54",
+          "maxFmt": "11:19:01",
           "perYear": [
             {
               "year": "2025",
@@ -16707,7 +14697,7 @@
               "year": "2023",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "11:59:54"
+              "qFmt": null
             }
           ]
         },
@@ -16924,87 +14914,6 @@
               "slots": 1,
               "finishers": 7,
               "qFmt": "10:58:57"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 44297,
-          "medianFmt": "12:18:17",
-          "minFmt": "12:04:00",
-          "maxFmt": "12:32:34",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "12:04:00"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 4,
-              "qFmt": "12:32:34"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            }
-          ]
-        },
-        {
-          "ageGroup": "F70-74",
-          "medianSec": 57809,
-          "medianFmt": "16:03:29",
-          "minFmt": "16:03:29",
-          "maxFmt": "16:03:29",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:03:29"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F75-79",
-          "medianSec": 58957,
-          "medianFmt": "16:22:37",
-          "minFmt": "16:22:37",
-          "maxFmt": "16:22:37",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:22:37"
-            },
-            {
-              "year": "2023",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
             }
           ]
         },
@@ -17280,10 +15189,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 55040,
-          "medianFmt": "15:17:20",
+          "medianSec": 48057,
+          "medianFmt": "13:20:57",
           "minFmt": "13:20:57",
-          "maxFmt": "16:12:33",
+          "maxFmt": "13:20:57",
           "perYear": [
             {
               "year": "2025",
@@ -17295,67 +15204,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 2,
-              "qFmt": "16:12:33"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:17:20"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 56048,
-          "medianFmt": "15:34:08",
-          "minFmt": "15:25:55",
-          "maxFmt": "15:42:21",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "15:25:55"
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
               "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:42:21"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M80-84",
-          "medianSec": 58366,
-          "medianFmt": "16:12:46",
-          "minFmt": "16:12:46",
-          "maxFmt": "16:12:46",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
-            },
-            {
-              "year": "2024",
-              "slots": 0,
-              "finishers": 0,
-              "qFmt": null
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:12:46"
             }
           ]
         }
@@ -17594,16 +15449,16 @@
         },
         {
           "ageGroup": "F60-64",
-          "medianSec": 47712,
-          "medianFmt": "13:15:12",
+          "medianSec": 47130,
+          "medianFmt": "13:05:30",
           "minFmt": "12:55:48",
-          "maxFmt": "13:54:21",
+          "maxFmt": "13:15:12",
           "perYear": [
             {
               "year": "2025",
               "slots": 1,
               "finishers": 4,
-              "qFmt": "13:54:21"
+              "qFmt": null
             },
             {
               "year": "2024",
@@ -17616,33 +15471,6 @@
               "slots": 2,
               "finishers": 7,
               "qFmt": "12:55:48"
-            }
-          ]
-        },
-        {
-          "ageGroup": "F65-69",
-          "medianSec": 50921,
-          "medianFmt": "14:08:41",
-          "minFmt": "13:50:09",
-          "maxFmt": "14:49:47",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "13:50:09"
-            },
-            {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 2,
-              "qFmt": "14:49:47"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 3,
-              "qFmt": "14:08:41"
             }
           ]
         },
@@ -17918,10 +15746,10 @@
         },
         {
           "ageGroup": "M70-74",
-          "medianSec": 49479,
-          "medianFmt": "13:44:39",
+          "medianSec": 47686,
+          "medianFmt": "13:14:46",
           "minFmt": "13:14:46",
-          "maxFmt": "14:10:10",
+          "maxFmt": "13:14:46",
           "perYear": [
             {
               "year": "2025",
@@ -17933,40 +15761,13 @@
               "year": "2024",
               "slots": 1,
               "finishers": 3,
-              "qFmt": "14:10:10"
-            },
-            {
-              "year": "2023",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "13:44:39"
-            }
-          ]
-        },
-        {
-          "ageGroup": "M75-79",
-          "medianSec": 58019,
-          "medianFmt": "16:06:59",
-          "minFmt": "15:22:07",
-          "maxFmt": "16:51:51",
-          "perYear": [
-            {
-              "year": "2025",
-              "slots": 0,
-              "finishers": 0,
               "qFmt": null
             },
             {
-              "year": "2024",
-              "slots": 1,
-              "finishers": 1,
-              "qFmt": "16:51:51"
-            },
-            {
               "year": "2023",
               "slots": 1,
               "finishers": 1,
-              "qFmt": "15:22:07"
+              "qFmt": null
             }
           ]
         }
