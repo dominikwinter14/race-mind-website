@@ -1588,6 +1588,23 @@ strong { font-weight: 600; }
   margin-top: 0.5rem;
 }
 
+.form-privacy {
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+.form-privacy a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.form-privacy a:hover {
+  color: var(--foreground);
+}
+
 .contact-success {
   padding: 2rem;
   background: rgba(34, 197, 94, 0.1);

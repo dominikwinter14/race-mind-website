@@ -9,9 +9,7 @@
   <link rel="alternate" hreflang="de" href="https://race-mind.com/">
   <link rel="alternate" hreflang="en" href="https://race-mind.com/index-en.html">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="concept.css">
 </head>
@@ -614,10 +612,7 @@
       <div class="contact-form-wrapper">
         <h2 class="section-title reveal">Contact</h2>
         <p class="contact-sub reveal">Questions, feedback or interested in a collaboration? Get in touch!</p>
-        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
-          <input type="hidden" name="subject" value="New message from race-mind.com">
-          <input type="hidden" name="from_name" value="RaceMind Website">
+        <form class="contact-form reveal" data-source="contact">
           <input type="checkbox" name="botcheck" style="display:none">
           <div class="form-row">
             <div class="form-group">
@@ -634,6 +629,7 @@
             <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-privacy">By submitting this form you agree to your details being processed in order to handle your enquiry. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
         </form>
         <div class="contact-success" id="contactSuccess" style="display:none">
           <p>Thank you for your message! We’ll get back to you as soon as possible.</p>

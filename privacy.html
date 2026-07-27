@@ -9,9 +9,7 @@
   <link rel="alternate" hreflang="en" href="https://race-mind.com/privacy.html">
   <link rel="alternate" hreflang="de" href="https://race-mind.com/datenschutz.html">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="subpage">
@@ -41,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.0 &middot; Last updated: April 2026</p>
+      <p class="legal-meta">Version 1.1 &middot; Last updated: July 2026</p>
 
       <hr>
 
@@ -128,11 +126,21 @@
         <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR. The legitimate interest lies in the secure and error-free provision of the Website.</li>
       </ul>
 
+      <p><strong>Audience Measurement with Cloudflare Web Analytics</strong></p>
+      <p>On individual pages of our Website (home page, Kona calculator, partner page) we use Cloudflare Web Analytics, a service provided by Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA. It collects aggregated usage data such as the page visited, the previously visited page (referrer), approximate load times, and browser and device type.</p>
+      <p>Cloudflare Web Analytics operates <strong>without cookies</strong> and neither stores nor reads any information on your device. No fingerprinting takes place, and no profiles are built across multiple visits or across websites. Your IP address is processed only transiently to attribute the page view and is not stored permanently.</p>
+      <ul>
+        <li><strong>Purpose:</strong> Understanding the reach and use of our Website in order to tailor content and services to actual demand.</li>
+        <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR. The legitimate interest lies in the statistical evaluation of usage behaviour to improve our offering. Consent under Sec. 25(1) TDDDG is not required, as no information is accessed on your device.</li>
+        <li><strong>Objection:</strong> You may object to this processing at any time under Art. 21 GDPR (see section 9).</li>
+      </ul>
+
       <p><strong>Contact Form and Email Contact</strong></p>
       <p>If you send us inquiries via the contact form on the Website or by email, your details from the inquiry form (name, email address) including the message you entered are stored for the purpose of processing your request and in case of follow-up questions. We do not share this data without your consent.</p>
+      <p>Your message is stored directly in our own database at Supabase (server location EU/Ireland); no external form service is involved. To prevent spam and automated bulk submissions, we additionally store a checksum (hash) of your IP address generated with a secret key. The IP address itself is not stored and cannot be reconstructed from this checksum.</p>
       <ul>
-        <li><strong>Purpose:</strong> Processing and responding to your individual inquiry.</li>
-        <li><strong>Legal basis:</strong> If your inquiry relates to the conclusion of a contract (e.g., questions about subscriptions or app usage), the legal basis is Art. 6(1)(b) GDPR (performance of a contract or pre-contractual measures). In all other cases, processing is based on our legitimate interest in effectively handling inquiries directed to us under Art. 6(1)(f) GDPR.</li>
+        <li><strong>Purpose:</strong> Processing and responding to your individual inquiry, and protecting the form against abuse.</li>
+        <li><strong>Legal basis:</strong> If your inquiry relates to the conclusion of a contract (e.g., questions about subscriptions or app usage), the legal basis is Art. 6(1)(b) GDPR (performance of a contract or pre-contractual measures). In all other cases, processing is based on our legitimate interest in effectively handling inquiries directed to us and in protecting against spam under Art. 6(1)(f) GDPR.</li>
         <li><strong>Retention:</strong> The data you enter in the contact form remains with us until you request deletion, revoke your consent to storage, or the purpose for data storage no longer applies (e.g., after your request has been fully processed). Mandatory statutory provisions &ndash; in particular retention periods &ndash; remain unaffected.</li>
       </ul>
 
@@ -152,6 +160,7 @@
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
           <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
           <tr><td>Display of weather forecast in weekly planning (IP-based geolocation)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (providing relevant training context information)</td></tr>
+          <tr><td>Audience measurement on the Website (Cloudflare Web Analytics)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (cookie-free statistics to improve our offering)</td></tr>
         </tbody>
       </table>
       <p>Your consent for processing health data is obtained as a mandatory step during onboarding. Since the App&rsquo;s core functionality (training planning, analysis, injury management) requires processing health-related data, consent is a prerequisite for using the App.</p>
@@ -176,6 +185,7 @@
           <tr><td><strong>Garmin International, Inc.</strong></td><td>Training import, workout push to watch (only when connected)</td><td>USA</td><td>You authorize access directly with Garmin (OAuth); EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>intervals.icu Ltd</strong></td><td>Training import (only when connected)</td><td>UK (operator); data processing in Germany/Finland</td><td>You authorize access directly (OAuth); EU data processing; UK adequacy decision</td></tr>
           <tr><td><strong>GitHub Inc. (GitHub Pages)</strong></td><td>Website hosting and server log files</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
+          <tr><td><strong>Cloudflare, Inc.</strong></td><td>Cookie-free audience measurement on individual Website pages (Cloudflare Web Analytics)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain registration and DNS for race-mind.com</td><td>Germany</td><td>Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push notification delivery (relay to Apple APNs and Google FCM)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
@@ -330,7 +340,10 @@
       <hr>
 
       <h2>11. Cookies and Tracking</h2>
-      <p>The App and the Website use <strong>no cookies</strong> and <strong>no tracking</strong>. Integration of PostHog (product analytics) is planned for a future release of the App. Before activation, you will be informed separately and asked for consent.</p>
+      <p>The App and the Website use <strong>no cookies</strong>. We do not employ cross-device tracking, advertising networks, or profiling.</p>
+      <p>On individual pages of the Website we use Cloudflare Web Analytics for <strong>cookie-free audience measurement</strong>, which neither stores nor reads any information on your device (see section 3.4). No consent banner is required for this.</p>
+      <p>Fonts are served from our own server; no connection to external font services takes place.</p>
+      <p>Integration of PostHog (product analytics) is planned for a future release of the App. Before activation, you will be informed separately and asked for consent.</p>
 
       <hr>
 

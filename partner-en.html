@@ -9,9 +9,7 @@
   <link rel="alternate" hreflang="de" href="https://race-mind.com/partner.html">
   <link rel="alternate" hreflang="en" href="https://race-mind.com/partner-en.html">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
   <meta name="robots" content="index,follow">
   <style>
@@ -257,10 +255,7 @@
       <div class="contact-form-wrapper" style="max-width: 760px; margin: 0 auto;">
         <h2 class="section-title reveal">Apply now</h2>
         <p class="contact-sub reveal" style="text-align: center;">Tell us briefly who you are and why you want to recommend RaceMind. We'll get back to you within 7 days.</p>
-        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="950269e0-9199-49cd-b350-7c328ddf008b">
-          <input type="hidden" name="subject" value="New partner application from race-mind.com">
-          <input type="hidden" name="from_name" value="RaceMind Partner Application">
+        <form class="contact-form reveal" data-source="partner">
           <input type="checkbox" name="botcheck" style="display:none">
           <div class="form-row">
             <div class="form-group">
@@ -287,6 +282,7 @@
             <textarea id="message" name="message" rows="8" required placeholder="Briefly: what do you do, why does RaceMind fit your community, what convinces you about the app?"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit application</button>
+          <p class="form-privacy">By submitting this form you agree to your details being processed in order to handle your enquiry. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
         </form>
         <div class="contact-success" id="contactSuccess" style="display:none">
           <p>Thanks for your application! We'll get back to you within 7 days.</p>

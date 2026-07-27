@@ -73,71 +73,85 @@
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
+  // ── Contact form ──
+  //
+  // Posts to our own Supabase edge function instead of a third-party form
+  // relay, so visitor name/email/message never leave our EU project. The
+  // endpoint is public (deployed with --no-verify-jwt) and needs no key —
+  // it does its own honeypot check, validation and per-IP rate limiting.
 
-  // ── Beta signup form (Web3Forms) ──
+  const CONTACT_ENDPOINT = 'https://pmrtfviekuvbgjzfokzb.supabase.co/functions/v1/contact-submit';
 
-  const betaForm = document.querySelector('.beta-signup-form');
-  if (betaForm) {
-    betaForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = betaForm.querySelector('button[type="submit"]');
-      const originalText = btn.textContent;
-      btn.textContent = 'Wird gesendet\u2026';
-      btn.disabled = true;
-
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: new FormData(betaForm),
-        });
-
-        if (res.ok) {
-          betaForm.innerHTML = '<p style="color: var(--success); text-align: center; padding: 1rem 0; font-weight: 500;">Du bist dabei! Wir melden uns bei dir. \u2705</p>';
-        } else {
-          throw new Error('failed');
-        }
-      } catch {
-        btn.textContent = 'Fehler \u2013 erneut versuchen';
-        btn.disabled = false;
-        setTimeout(() => {
-          btn.textContent = originalText;
-        }, 3000);
-      }
-    });
-  }
-
-  // ── Contact form (Web3Forms) ──
+  const CONTACT_TEXT = {
+    de: {
+      sending: 'Wird gesendet…',
+      error: 'Fehler – erneut versuchen',
+      tooMany: 'Zu viele Nachrichten – später erneut',
+    },
+    en: {
+      sending: 'Sending…',
+      error: 'Error – please try again',
+      tooMany: 'Too many messages – try again later',
+    },
+  };
 
   const contactForm = document.querySelector('.contact-form');
   const contactSuccess = document.getElementById('contactSuccess');
 
   if (contactForm) {
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'de';
+    const t = CONTACT_TEXT[lang];
+
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
-      btn.textContent = 'Wird gesendet\u2026';
+      btn.textContent = t.sending;
       btn.disabled = true;
 
+      const fd = new FormData(contactForm);
+      const source = contactForm.dataset.source === 'partner' ? 'partner' : 'contact';
+
+      // The partner application asks for two extra fields. The backend stores a
+      // single message body, so fold them in rather than dropping them.
+      const extras = [
+        ['Social-Handle / Website', fd.get('handle')],
+        [lang === 'en' ? 'Reach / audience' : 'Reichweite / Zielgruppe', fd.get('reach')],
+      ].filter(([, value]) => value);
+
+      const message = extras.length
+        ? extras.map(([label, value]) => label + ': ' + value).join('\n') + '\n\n' + (fd.get('message') || '')
+        : String(fd.get('message') || '');
+
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch(CONTACT_ENDPOINT, {
           method: 'POST',
-          body: new FormData(contactForm),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: fd.get('name'),
+            email: fd.get('email'),
+            message,
+            source,
+            lang,
+            botcheck: fd.get('botcheck') || '',
+          }),
         });
 
         if (res.ok) {
           contactForm.style.display = 'none';
           contactSuccess.style.display = 'block';
-        } else {
-          throw new Error('failed');
+          return;
         }
+
+        btn.textContent = res.status === 429 ? t.tooMany : t.error;
       } catch {
-        btn.textContent = 'Fehler \u2013 erneut versuchen';
-        btn.disabled = false;
-        setTimeout(() => {
-          btn.textContent = originalText;
-        }, 3000);
+        btn.textContent = t.error;
       }
+
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = originalText;
+      }, 3000);
     });
   }
 })();
