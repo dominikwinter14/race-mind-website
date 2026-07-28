@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; Race Time Projection: What&rsquo;s in you on race day?</title>
+  <meta name="description" content="Tell us where you stand today and see a realistic race time &ndash; from 5k to Ironman. Calculated with the VDOT model, Critical Swim Speed and the physical power-velocity equation.">
+  <link rel="canonical" href="https://race-mind.com/race-time-en.html">
+  <link rel="alternate" hreflang="de" href="https://race-mind.com/race-time.html">
+  <link rel="alternate" hreflang="en" href="https://race-mind.com/race-time-en.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RaceMind">
+  <meta property="og:title" content="Race Time Projection &ndash; what&rsquo;s in you on race day?">
+  <meta property="og:description" content="Where do you stand today, and what is realistic on race day? From 5k to Ironman, in two steps.">
+  <meta property="og:url" content="https://race-mind.com/race-time-en.html">
+  <meta property="og:image" content="https://race-mind.com/images/races/default_triathlon_1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* ── Race time projection ── */
+    .rt-main { padding-top: 7rem; }
+    .rt-hero { text-align: center; padding: 2rem 0 1rem; }
+    .rt-eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .rt-title { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.05; margin-bottom: 0.75rem; }
+    .rt-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+    .rt-card {
+      max-width: 720px; margin: 2rem auto 0;
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg); padding: 2rem;
+    }
+    .rt-step-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .rt-step-label span.rt-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      background: var(--primary); color: #000; font-size: 0.8rem; letter-spacing: 0;
+    }
+    .rt-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .rt-card-sub { color: var(--muted); font-size: 0.92rem; line-height: 1.55; margin-bottom: 1.5rem; }
+
+    /* Distance chips */
+    .rt-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
+    @media (max-width: 640px) { .rt-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    /* Two distance tiles per row only fit under ~400px once the card gives back
+       its padding — otherwise "Halbmarathon" is clipped mid-word. */
+    @media (max-width: 420px) {
+      .rt-card { padding: 1.25rem; }
+      .rt-chip { padding: 0.7rem 0.6rem; }
+      .rt-chip-name { font-size: 0.85rem; }
+      .rt-chip-hint { font-size: 0.68rem; }
+    }
+    /* Below 360px two columns clip "Halbmarathon" mid-word no matter how much
+       padding comes back, so the tiles go full width instead. */
+    @media (max-width: 360px) { .rt-chips { grid-template-columns: 1fr; } }
+    .rt-chip {
+      display: flex; flex-direction: column; gap: 0.15rem; text-align: left;
+      padding: 0.75rem 0.85rem; border-radius: var(--radius);
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--foreground); font-family: inherit; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .rt-chip:hover { border-color: rgba(255,255,255,0.25); }
+    .rt-chip.is-active { border-color: var(--primary); background: rgba(255,138,0,0.1); }
+    .rt-chip-name { font-size: 0.92rem; font-weight: 600; }
+    .rt-chip-hint { font-size: 0.72rem; color: var(--muted); }
+
+    /* Discipline blocks */
+    .rt-disc { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .rt-disc:first-child { border-top: none; padding-top: 0; }
+    .rt-disc-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .rt-disc-head h3 { font-size: 1.05rem; font-weight: 700; }
+    .rt-seg { display: inline-flex; background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.8rem; padding: 0.2rem; }
+    .rt-seg-btn {
+      border: none; background: none; color: var(--muted); font-family: inherit;
+      font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.7rem; border-radius: 0.65rem; cursor: pointer;
+    }
+    .rt-seg-btn.is-active { background: var(--surface-light); color: var(--foreground); }
+
+    .rt-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .rt-fields { grid-template-columns: 1fr; } }
+    .rt-field { display: flex; flex-direction: column; }
+    .rt-field--full { grid-column: 1 / -1; }
+    .rt-field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.45rem; color: var(--foreground); }
+    .rt-field select, .rt-field input {
+      width: 100%; padding: 0.85rem 1rem; background: var(--surface-light);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
+      color: var(--foreground); font-family: inherit; font-size: 0.95rem;
+      transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
+    }
+    .rt-field select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23949494' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    .rt-field select:focus, .rt-field input:focus { outline: none; border-color: var(--primary); }
+    .rt-field input::placeholder { color: var(--muted); opacity: 0.5; }
+    .rt-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+    .rt-assume { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-top: 1.5rem; }
+
+    /* Result */
+    .rt-placeholder { max-width: 720px; margin: 1.25rem auto 0; text-align: center; color: var(--muted); font-size: 0.95rem; }
+    .rt-result { display: none; }
+    .rt-result.is-visible { display: block; animation: rtFade 0.35s ease; }
+    @keyframes rtFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .rt-big-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-align: center; }
+    .rt-big {
+      font-size: clamp(2.75rem, 11vw, 4.25rem); font-weight: 800; line-height: 1;
+      margin: 0.6rem 0 0.35rem; letter-spacing: -0.02em; text-align: center;
+    }
+    .rt-range { color: var(--muted); font-size: 0.95rem; text-align: center; }
+
+    .rt-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; }
+    .rt-meta-item {
+      font-size: 0.78rem; color: var(--muted);
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.07);
+      padding: 0.35rem 0.7rem; border-radius: 0.7rem;
+    }
+    .rt-meta-item--warn { color: var(--primary); border-color: rgba(255,138,0,0.3); background: rgba(255,138,0,0.08); }
+
+    .rt-splits { margin-top: 1.75rem; }
+    .rt-split { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; }
+    .rt-split-name { color: var(--muted); }
+    .rt-split-val { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .rt-split--muted .rt-split-val { font-weight: 400; color: var(--muted); }
+
+    .rt-derived { margin-top: 1.5rem; }
+    .rt-derived summary { cursor: pointer; font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+    .rt-derived-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.9rem; }
+    .rt-derived-name { color: var(--muted); flex: 1 1 auto; min-width: 0; }
+    .rt-derived-val { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: auto; }
+    .rt-conf { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 0.5rem; white-space: nowrap; }
+    .rt-conf--high { background: rgba(34,197,94,0.12); color: #4ADE80; }
+    .rt-conf--medium { background: rgba(255,138,0,0.12); color: var(--primary); }
+    .rt-conf--low { background: rgba(148,148,148,0.15); color: var(--muted); }
+
+    .rt-verdict { margin-top: 1.5rem; padding: 1rem 1.1rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.5; }
+    .rt-verdict--yes { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); }
+    .rt-verdict--close { background: rgba(255,138,0,0.1); border: 1px solid rgba(255,138,0,0.3); }
+    .rt-verdict--no { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); }
+
+    .rt-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .rt-actions .btn { flex: 1; min-width: 160px; }
+    .rt-result-cta { width: 100%; margin-top: 0.9rem; }
+
+    /* Step 2 */
+    .rt-step2 { display: none; }
+    .rt-step2.is-visible { display: block; }
+
+    /* Explainer + FAQ */
+    .rt-explain { max-width: 720px; margin: 3.5rem auto 0; }
+    .rt-explain h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; text-align: center; }
+    .rt-how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    @media (max-width: 700px) { .rt-how { grid-template-columns: 1fr; } }
+    .rt-how-step {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .rt-how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .rt-how-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+    .rt-how-step code { font-size: 0.78rem; color: var(--secondary); display: block; margin-top: 0.6rem; word-break: break-word; }
+    .rt-explain details {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+    }
+    .rt-explain summary { cursor: pointer; font-weight: 600; }
+    .rt-explain details p { color: var(--muted); line-height: 1.65; margin-top: 0.75rem; font-size: 0.92rem; }
+    .rt-cta-row { text-align: center; margin: 3rem auto 0; }
+    .rt-cta-line { color: var(--foreground); font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
+
+    .rt-toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%);
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.12);
+      color: var(--foreground); padding: 0.75rem 1.25rem; border-radius: var(--radius);
+      font-size: 0.9rem; transition: transform 0.3s ease; z-index: 200;
+    }
+    .rt-toast.is-visible { transform: translateX(-50%) translateY(0); }
+    canvas#rtCanvas { display: none; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate is this projection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As accurate as what you tell us. A single distance-and-time entry says a lot about your current level, but nothing about your form on race day – that also depends on training, fuelling, weather and course. So we don't show a single number. We show a range, and we tell you per discipline how confident the estimate is."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is it calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In two steps. First we convert your entry into your threshold values: threshold pace for running, threshold power for cycling, critical speed for swimming. For running we use the VDOT model developed by Jack Daniels and Jimmy Gilbert, for swimming the Critical Swim Speed concept, and for cycling the physical power-velocity equation including air resistance and rolling resistance. In the second step we translate those threshold values into a race time for your distance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "And where does the second step come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fraction of your threshold output you can hold over a race distance falls as the race gets longer and rises with your training level. Those factors are our own modelling, calibrated against real race results and refined continuously. They don't come from a single publication, and we won't pretend otherwise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you know how much faster I'll get by race day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "How much endurance performance improves depends mostly on training age. In beginners, double-digit gains within a few months are well documented (Bacon et al., PLOS ONE 2013). In long-term trained athletes progress is far slower and comes through different adaptations – in marathon world record holder Paula Radcliffe, maximal oxygen uptake stayed flat across twelve years while her running economy improved by 15 % (Jones, 2006). That gradient is what we model, scaled by the training volume you plan to do. The same research also shows how differently people respond to identical training – which is why you get a range and not a single number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my time change once I fill in step 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because step 1 has to assume what step 2 knows. Without your training volume and experience we assume a mid-level athlete, and without a specific race we assume a neutral course. Once you add both, not just the race-day projection gets sharper – so does the read on where you stand today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a sports watch or training data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. One distance and the matching time is enough. If you already know your threshold values you can enter them directly – then we skip the conversion and the projection gets more precise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this replace a training plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This page tells you where you stand and what's realistically within reach. Getting you there is the app's job: a plan that adapts to your volume, your recovery and your race, and readjusts after every session."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index-en.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="index-en.html#features">Features</a>
+        <a href="index-en.html#pricing">Pricing</a>
+        <a href="events-en.html">Races</a>
+        <a href="race-time-en.html" class="active">Race Time</a>
+        <a href="kona-check-en.html">Kona Check</a>
+        <a href="index-en.html#contact">Contact</a>
+        <a href="index-en.html#download" class="btn btn-sm">Get Started</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="rt-main">
+    <div class="container">
+
+      <div class="rt-hero">
+        <div class="lang-toggle" style="justify-content:center; margin-bottom: 1rem;">
+          <a href="race-time.html">DE</a>
+          <a href="race-time-en.html" class="active">EN</a>
+        </div>
+        <span class="rt-eyebrow">Race Time Projection</span>
+        <h1 class="rt-title">What&rsquo;s in you on <span class="gradient-text">race day</span>?</h1>
+        <p class="rt-sub">
+          Tell us in two minutes where you stand today. You get your derived threshold values,
+          a realistic race time for your distance and the range around it &ndash; no sports watch,
+          no sign-up.
+        </p>
+      </div>
+
+      <!-- ── Step 1 ── -->
+      <div class="rt-card">
+        <div class="rt-step-label"><span class="rt-step-num">1</span> First read</div>
+        <h2>Where do you stand right now?</h2>
+        <p class="rt-card-sub">
+          Pick your distance and enter whatever you know best for each discipline &ndash; a rough
+          range is enough. We recalculate on every change.
+        </p>
+
+        <div class="rt-chips" id="rtDistances"></div>
+        <div id="rtDisciplines"></div>
+        <p class="rt-assume" id="rtAssume"></p>
+      </div>
+
+      <!-- ── Result ── -->
+      <p class="rt-placeholder" id="rtPlaceholder">Pick your distance and tell us where you stand.</p>
+      <div class="rt-card rt-result" id="rtResult">
+        <p class="rt-big-label" id="rtBigLabel"></p>
+        <p class="rt-big gradient-text" id="rtBigTime"></p>
+        <p class="rt-range" id="rtRange"></p>
+        <div class="rt-meta" id="rtMeta"></div>
+
+        <div class="rt-splits" id="rtSplits"></div>
+
+        <details class="rt-derived">
+          <summary>Your derived values</summary>
+          <div id="rtDerived"></div>
+        </details>
+
+        <div class="rt-verdict" id="rtVerdict" style="display:none;"></div>
+
+        <div class="rt-actions">
+          <button class="btn btn-primary" id="rtShareBtn">Save as image</button>
+          <button class="btn btn-secondary" id="rtCopyBtn">Copy link</button>
+        </div>
+        <a href="index-en.html#download" class="btn btn-brand rt-result-cta">Start with RaceMind</a>
+      </div>
+
+      <!-- ── Step 2 ── -->
+      <div class="rt-card rt-step2" id="rtStep2">
+        <div class="rt-step-label"><span class="rt-step-num">2</span> Sharpen the projection</div>
+        <h2>Your race, your volume</h2>
+        <p class="rt-card-sub">
+          This turns the snapshot into a race-day projection: with the course, the time you have
+          left and the volume you actually train.
+        </p>
+
+        <div class="rt-fields">
+          <div class="rt-field rt-field--full" id="rtRaceField">
+            <label for="rtRace">Race</label>
+            <select id="rtRace"><option value="">No specific race</option></select>
+            <p class="rt-hint">Takes the date and course factor from our race calendar.</p>
+          </div>
+          <div class="rt-field">
+            <label for="rtDate">Race date</label>
+            <input id="rtDate" type="date">
+          </div>
+          <div class="rt-field">
+            <label for="rtGoal">Target time (optional)</label>
+            <input id="rtGoal" type="text" autocomplete="off" placeholder="3:45">
+          </div>
+          <div class="rt-field">
+            <label for="rtHoursNow">Weekly hours today</label>
+            <input id="rtHoursNow" type="text" inputmode="decimal" placeholder="6">
+          </div>
+          <div class="rt-field">
+            <label for="rtHoursPlan">Weekly hours planned</label>
+            <input id="rtHoursPlan" type="text" inputmode="decimal" placeholder="8">
+          </div>
+          <div class="rt-field rt-field--full">
+            <label for="rtExp">How long have you done endurance sport?</label>
+            <select id="rtExp"><option value="">Please choose</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── How we calculate ── -->
+      <div class="rt-explain">
+        <h2>How we calculate</h2>
+        <div class="rt-how">
+          <div class="rt-how-step">
+            <h3>1. Entry &rarr; threshold values</h3>
+            <p>
+              Your entry is converted into the intensity you can hold for roughly an hour &ndash;
+              threshold pace, threshold power, critical swim speed.
+            </p>
+            <code>VDOT = VO&#8322;(v) / %max(t)</code>
+          </div>
+          <div class="rt-how-step">
+            <h3>2. Threshold &rarr; race time</h3>
+            <p>
+              The longer the race, the smaller the fraction of threshold you hold. On the bike,
+              physics joins in: air resistance, rolling resistance, mass.
+            </p>
+            <code>P = (&frac12;&middot;&rho;&middot;CdA&middot;v&sup3; + Crr&middot;m&middot;g&middot;v) / &eta;</code>
+          </div>
+          <div class="rt-how-step">
+            <h3>3. Today &rarr; race day</h3>
+            <p>
+              Expected progress depends on training age, volume and the time you have left &ndash;
+              with a ceiling per level and distance.
+            </p>
+            <code>1 &minus; e<sup>&minus;rate&middot;months</sup></code>
+          </div>
+        </div>
+
+        <h2>Frequently asked</h2>
+        <details open>
+          <summary>How accurate is this projection?</summary>
+          <p>
+            As accurate as what you tell us. A single distance-and-time entry says a lot about your
+            current level, but nothing about your form on race day &ndash; that also depends on
+            training, fuelling, weather and course. So we don&rsquo;t show a single number. We show a
+            range, and we tell you per discipline how confident the estimate is.
+          </p>
+        </details>
+        <details>
+          <summary>How is it calculated?</summary>
+          <p>
+            In two steps. First we convert your entry into your threshold values: threshold pace for
+            running, threshold power for cycling, critical speed for swimming. For running we use the
+            VDOT model developed by Jack Daniels and Jimmy Gilbert, for swimming the Critical Swim
+            Speed concept, and for cycling the physical power-velocity equation including air
+            resistance and rolling resistance. In the second step we translate those threshold values
+            into a race time for your distance.
+          </p>
+        </details>
+        <details>
+          <summary>And where does the second step come from?</summary>
+          <p>
+            The fraction of your threshold output you can hold over a race distance falls as the race
+            gets longer and rises with your training level. Those factors are our own modelling,
+            calibrated against real race results and refined continuously. They don&rsquo;t come from
+            a single publication, and we won&rsquo;t pretend otherwise.
+          </p>
+        </details>
+        <details>
+          <summary>How do you know how much faster I&rsquo;ll get by race day?</summary>
+          <p>
+            How much endurance performance improves depends mostly on training age. In beginners,
+            double-digit gains within a few months are well documented (Bacon et al., PLOS ONE 2013).
+            In long-term trained athletes progress is far slower and comes through different
+            adaptations &ndash; in marathon world record holder Paula Radcliffe, maximal oxygen uptake
+            stayed flat across twelve years while her running economy improved by 15&nbsp;% (Jones,
+            2006). That gradient is what we model, scaled by the training volume you plan to do. The
+            same research also shows how differently people respond to identical training &ndash;
+            which is why you get a range and not a single number.
+          </p>
+        </details>
+        <details>
+          <summary>Why does my time change once I fill in step 2?</summary>
+          <p>
+            Because step 1 has to assume what step 2 knows. Without your training volume and
+            experience we assume a mid-level athlete, and without a specific race we assume a neutral
+            course. Once you add both, not just the race-day projection gets sharper &ndash; so does
+            the read on where you stand today.
+          </p>
+        </details>
+        <details>
+          <summary>Do I need a sports watch or training data?</summary>
+          <p>
+            No. One distance and the matching time is enough. If you already know your threshold
+            values you can enter them directly &ndash; then we skip the conversion and the projection
+            gets more precise.
+          </p>
+        </details>
+        <details>
+          <summary>Does this replace a training plan?</summary>
+          <p>
+            No. This page tells you where you stand and what&rsquo;s realistically within reach.
+            Getting you there is the app&rsquo;s job: a plan that adapts to your volume, your recovery
+            and your race, and readjusts after every session.
+          </p>
+        </details>
+      </div>
+
+      <div class="rt-cta-row">
+        <p class="rt-cta-line">Now you know what&rsquo;s in you. All that&rsquo;s missing is the plan.</p>
+        <a href="index-en.html#download" class="btn btn-brand btn-lg">Start with RaceMind</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer" style="margin-top: 5rem;">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="index-en.html"><img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind"></a>
+      </div>
+      <div class="footer-links">
+        <a href="events-en.html">Races</a>
+        <a href="kona-check-en.html">Kona Check</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="impressum.html">Imprint</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="rt-toast" id="rtToast"></div>
+  <canvas id="rtCanvas" width="1080" height="1350"></canvas>
+
+  <script src="script.js"></script>
+  <script type="module" src="js/race-time.js"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
+</body>
+</html>

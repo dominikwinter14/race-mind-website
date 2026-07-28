@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; Zielzeit-Prognose: Was ist an deinem Renntag drin?</title>
+  <meta name="description" content="Trage ein, wo du heute stehst, und sieh deine realistische Zielzeit &ndash; f&uuml;r 5 km bis Ironman. Berechnet mit dem VDOT-Modell, Critical Swim Speed und der physikalischen Leistungs-Geschwindigkeits-Gleichung.">
+  <link rel="canonical" href="https://race-mind.com/race-time.html">
+  <link rel="alternate" hreflang="de" href="https://race-mind.com/race-time.html">
+  <link rel="alternate" hreflang="en" href="https://race-mind.com/race-time-en.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RaceMind">
+  <meta property="og:title" content="Zielzeit-Prognose &ndash; was ist an deinem Renntag drin?">
+  <meta property="og:description" content="Wo stehst du heute, und was ist am Renntag realistisch? Von 5 km bis Ironman, in zwei Schritten.">
+  <meta property="og:url" content="https://race-mind.com/race-time.html">
+  <meta property="og:image" content="https://race-mind.com/images/races/default_triathlon_1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* ── Zielzeit-Prognose ── */
+    .rt-main { padding-top: 7rem; }
+    .rt-hero { text-align: center; padding: 2rem 0 1rem; }
+    .rt-eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .rt-title { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.05; margin-bottom: 0.75rem; }
+    .rt-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+    .rt-card {
+      max-width: 720px; margin: 2rem auto 0;
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg); padding: 2rem;
+    }
+    .rt-step-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .rt-step-label span.rt-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%;
+      background: var(--primary); color: #000; font-size: 0.8rem; letter-spacing: 0;
+    }
+    .rt-card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .rt-card-sub { color: var(--muted); font-size: 0.92rem; line-height: 1.55; margin-bottom: 1.5rem; }
+
+    /* Distance chips */
+    .rt-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
+    @media (max-width: 640px) { .rt-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    /* Two distance tiles per row only fit under ~400px once the card gives back
+       its padding — otherwise "Halbmarathon" is clipped mid-word. */
+    @media (max-width: 420px) {
+      .rt-card { padding: 1.25rem; }
+      .rt-chip { padding: 0.7rem 0.6rem; }
+      .rt-chip-name { font-size: 0.85rem; }
+      .rt-chip-hint { font-size: 0.68rem; }
+    }
+    /* Below 360px two columns clip "Halbmarathon" mid-word no matter how much
+       padding comes back, so the tiles go full width instead. */
+    @media (max-width: 360px) { .rt-chips { grid-template-columns: 1fr; } }
+    .rt-chip {
+      display: flex; flex-direction: column; gap: 0.15rem; text-align: left;
+      padding: 0.75rem 0.85rem; border-radius: var(--radius);
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--foreground); font-family: inherit; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .rt-chip:hover { border-color: rgba(255,255,255,0.25); }
+    .rt-chip.is-active { border-color: var(--primary); background: rgba(255,138,0,0.1); }
+    .rt-chip-name { font-size: 0.92rem; font-weight: 600; }
+    .rt-chip-hint { font-size: 0.72rem; color: var(--muted); }
+
+    /* Discipline blocks */
+    .rt-disc { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .rt-disc:first-child { border-top: none; padding-top: 0; }
+    .rt-disc-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .rt-disc-head h3 { font-size: 1.05rem; font-weight: 700; }
+    .rt-seg { display: inline-flex; background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.8rem; padding: 0.2rem; }
+    .rt-seg-btn {
+      border: none; background: none; color: var(--muted); font-family: inherit;
+      font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.7rem; border-radius: 0.65rem; cursor: pointer;
+    }
+    .rt-seg-btn.is-active { background: var(--surface-light); color: var(--foreground); }
+
+    .rt-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .rt-fields { grid-template-columns: 1fr; } }
+    .rt-field { display: flex; flex-direction: column; }
+    .rt-field--full { grid-column: 1 / -1; }
+    .rt-field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.45rem; color: var(--foreground); }
+    .rt-field select, .rt-field input {
+      width: 100%; padding: 0.85rem 1rem; background: var(--surface-light);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
+      color: var(--foreground); font-family: inherit; font-size: 0.95rem;
+      transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
+    }
+    .rt-field select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23949494' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+    }
+    .rt-field select:focus, .rt-field input:focus { outline: none; border-color: var(--primary); }
+    .rt-field input::placeholder { color: var(--muted); opacity: 0.5; }
+    .rt-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+    .rt-assume { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-top: 1.5rem; }
+
+    /* Result */
+    .rt-placeholder { max-width: 720px; margin: 1.25rem auto 0; text-align: center; color: var(--muted); font-size: 0.95rem; }
+    .rt-result { display: none; }
+    .rt-result.is-visible { display: block; animation: rtFade 0.35s ease; }
+    @keyframes rtFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .rt-big-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-align: center; }
+    .rt-big {
+      font-size: clamp(2.75rem, 11vw, 4.25rem); font-weight: 800; line-height: 1;
+      margin: 0.6rem 0 0.35rem; letter-spacing: -0.02em; text-align: center;
+    }
+    .rt-range { color: var(--muted); font-size: 0.95rem; text-align: center; }
+
+    .rt-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1.25rem; }
+    .rt-meta-item {
+      font-size: 0.78rem; color: var(--muted);
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.07);
+      padding: 0.35rem 0.7rem; border-radius: 0.7rem;
+    }
+    .rt-meta-item--warn { color: var(--primary); border-color: rgba(255,138,0,0.3); background: rgba(255,138,0,0.08); }
+
+    .rt-splits { margin-top: 1.75rem; }
+    .rt-split { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; }
+    .rt-split-name { color: var(--muted); }
+    .rt-split-val { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .rt-split--muted .rt-split-val { font-weight: 400; color: var(--muted); }
+
+    .rt-derived { margin-top: 1.5rem; }
+    .rt-derived summary { cursor: pointer; font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+    .rt-derived-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.9rem; }
+    .rt-derived-name { color: var(--muted); flex: 1 1 auto; min-width: 0; }
+    .rt-derived-val { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: auto; }
+    .rt-conf { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 0.5rem; white-space: nowrap; }
+    .rt-conf--high { background: rgba(34,197,94,0.12); color: #4ADE80; }
+    .rt-conf--medium { background: rgba(255,138,0,0.12); color: var(--primary); }
+    .rt-conf--low { background: rgba(148,148,148,0.15); color: var(--muted); }
+
+    .rt-verdict { margin-top: 1.5rem; padding: 1rem 1.1rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.5; }
+    .rt-verdict--yes { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); }
+    .rt-verdict--close { background: rgba(255,138,0,0.1); border: 1px solid rgba(255,138,0,0.3); }
+    .rt-verdict--no { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); }
+
+    .rt-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .rt-actions .btn { flex: 1; min-width: 160px; }
+    .rt-result-cta { width: 100%; margin-top: 0.9rem; }
+
+    /* Step 2 */
+    .rt-step2 { display: none; }
+    .rt-step2.is-visible { display: block; }
+
+    /* Explainer + FAQ */
+    .rt-explain { max-width: 720px; margin: 3.5rem auto 0; }
+    .rt-explain h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; text-align: center; }
+    .rt-how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    @media (max-width: 700px) { .rt-how { grid-template-columns: 1fr; } }
+    .rt-how-step {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .rt-how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .rt-how-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+    .rt-how-step code { font-size: 0.78rem; color: var(--secondary); display: block; margin-top: 0.6rem; word-break: break-word; }
+    .rt-explain details {
+      background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+    }
+    .rt-explain summary { cursor: pointer; font-weight: 600; }
+    .rt-explain details p { color: var(--muted); line-height: 1.65; margin-top: 0.75rem; font-size: 0.92rem; }
+    .rt-cta-row { text-align: center; margin: 3rem auto 0; }
+    .rt-cta-line { color: var(--foreground); font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
+
+    .rt-toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%);
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.12);
+      color: var(--foreground); padding: 0.75rem 1.25rem; border-radius: var(--radius);
+      font-size: 0.9rem; transition: transform 0.3s ease; z-index: 200;
+    }
+    .rt-toast.is-visible { transform: translateX(-50%) translateY(0); }
+    canvas#rtCanvas { display: none; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie genau ist diese Prognose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "So genau wie deine Angaben. Aus einer einzelnen Distanz-Zeit-Angabe lässt sich dein Leistungsniveau gut schätzen, aber nicht deine Renntagsform – die hängt zusätzlich von Training, Verpflegung, Wetter und Strecke ab. Deshalb zeigen wir kein einzelnes Ergebnis, sondern eine Bandbreite und geben pro Disziplin an, wie sicher die Schätzung ist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie wird gerechnet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In zwei Schritten. Zuerst rechnen wir deine Angabe auf deine Schwellenwerte um: Schwellenpace beim Laufen, Schwellenleistung beim Radfahren, kritische Geschwindigkeit beim Schwimmen. Fürs Laufen nutzen wir das VDOT-Modell von Jack Daniels und Jimmy Gilbert, fürs Schwimmen das Critical-Swim-Speed-Konzept und fürs Rad die physikalische Leistungs-Geschwindigkeits-Gleichung mit Luftwiderstand und Rollreibung. Im zweiten Schritt übersetzen wir diese Schwellenwerte in eine Rennzeit für deine Distanz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Und woher kommt der zweite Schritt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Welchen Anteil deiner Schwellenleistung du über eine Renndistanz halten kannst, sinkt mit der Länge des Rennens und steigt mit deinem Trainingsstand. Diese Faktoren sind unsere eigene Modellierung, kalibriert an realen Rennergebnissen und laufend nachgeschärft. Sie stammen nicht aus einer einzelnen Publikation, und wir tun auch nicht so, als wäre das der Fall."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Woher wisst ihr, wie viel schneller ich bis zum Renntag werde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wie stark sich Ausdauerleistung verbessert, hängt vor allem vom Trainingsalter ab. Bei Einsteigern sind zweistellige Zuwächse innerhalb weniger Monate gut belegt (Bacon et al., PLOS ONE 2013), bei langjährig Trainierten geht es deutlich langsamer und über andere Anpassungen – bei der Marathon-Weltrekordlerin Paula Radcliffe blieb die maximale Sauerstoffaufnahme über zwölf Jahre konstant, während sich ihre Laufökonomie um 15 % verbesserte (Jones, 2006). Genau diese Abstufung bilden wir ab, skaliert mit deinem geplanten Trainingsumfang. Dieselbe Forschung zeigt aber auch, wie unterschiedlich Menschen auf identisches Training reagieren – deshalb bekommst du eine Bandbreite und keine einzelne Zahl."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum ändert sich meine Zeit, wenn ich Schritt 2 ausfülle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weil Schritt 1 annehmen muss, was Schritt 2 weiß. Ohne Angaben zu Trainingsumfang und Erfahrung rechnen wir mit einem mittleren Trainingsstand, ohne konkretes Rennen mit einer neutralen Strecke. Sobald du beides ergänzt, wird nicht nur die Renntagsprognose genauer, sondern auch die Einschätzung deines heutigen Stands."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich eine Sportuhr oder Trainingsdaten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Eine Distanz und die dazugehörige Zeit genügen. Wenn du deine Schwellenwerte kennst, kannst du sie direkt eintragen – dann überspringen wir die Umrechnung und die Prognose wird präziser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ersetzt das einen Trainingsplan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Diese Seite sagt dir, wo du stehst und was realistisch erreichbar ist. Wie du dahin kommst, ist die Aufgabe der App: ein Plan, der sich an deinen Umfang, deine Erholung und dein Rennen anpasst und nach jeder Einheit nachjustiert."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Preise</a>
+        <a href="events.html">Rennen</a>
+        <a href="race-time.html" class="active">Zielzeit</a>
+        <a href="kona-check.html">Kona-Check</a>
+        <a href="index.html#contact">Kontakt</a>
+        <a href="index.html#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="rt-main">
+    <div class="container">
+
+      <div class="rt-hero">
+        <div class="lang-toggle" style="justify-content:center; margin-bottom: 1rem;">
+          <a href="race-time.html" class="active">DE</a>
+          <a href="race-time-en.html">EN</a>
+        </div>
+        <span class="rt-eyebrow">Zielzeit-Prognose</span>
+        <h1 class="rt-title">Was ist an deinem <span class="gradient-text">Renntag</span> drin?</h1>
+        <p class="rt-sub">
+          Trage in zwei Minuten ein, wo du heute stehst. Du bekommst deine abgeleiteten
+          Schwellenwerte, eine realistische Zielzeit f&uuml;r deine Distanz und die Bandbreite
+          drumherum &ndash; ohne Sportuhr, ohne Anmeldung.
+        </p>
+      </div>
+
+      <!-- ── Schritt 1 ── -->
+      <div class="rt-card">
+        <div class="rt-step-label"><span class="rt-step-num">1</span> Erste Einsch&auml;tzung</div>
+        <h2>Wo stehst du gerade?</h2>
+        <p class="rt-card-sub">
+          W&auml;hle deine Distanz und trage pro Disziplin ein, was du am besten wei&szlig;t &ndash;
+          ein grober Bereich reicht. Wir rechnen bei jeder &Auml;nderung neu.
+        </p>
+
+        <div class="rt-chips" id="rtDistances"></div>
+        <div id="rtDisciplines"></div>
+        <p class="rt-assume" id="rtAssume"></p>
+      </div>
+
+      <!-- ── Ergebnis ── -->
+      <p class="rt-placeholder" id="rtPlaceholder">W&auml;hle deine Distanz und trage ein, wo du stehst.</p>
+      <div class="rt-card rt-result" id="rtResult">
+        <p class="rt-big-label" id="rtBigLabel"></p>
+        <p class="rt-big gradient-text" id="rtBigTime"></p>
+        <p class="rt-range" id="rtRange"></p>
+        <div class="rt-meta" id="rtMeta"></div>
+
+        <div class="rt-splits" id="rtSplits"></div>
+
+        <details class="rt-derived">
+          <summary>Deine abgeleiteten Werte</summary>
+          <div id="rtDerived"></div>
+        </details>
+
+        <div class="rt-verdict" id="rtVerdict" style="display:none;"></div>
+
+        <div class="rt-actions">
+          <button class="btn btn-primary" id="rtShareBtn">Als Bild speichern</button>
+          <button class="btn btn-secondary" id="rtCopyBtn">Link kopieren</button>
+        </div>
+        <a href="index.html#download" class="btn btn-brand rt-result-cta">Jetzt mit RaceMind starten</a>
+      </div>
+
+      <!-- ── Schritt 2 ── -->
+      <div class="rt-card rt-step2" id="rtStep2">
+        <div class="rt-step-label"><span class="rt-step-num">2</span> Prognose sch&auml;rfen</div>
+        <h2>Dein Rennen, dein Umfang</h2>
+        <p class="rt-card-sub">
+          Jetzt wird aus der Momentaufnahme eine Renntagsprognose: mit Strecke, verbleibender
+          Zeit und dem Umfang, den du wirklich trainierst.
+        </p>
+
+        <div class="rt-fields">
+          <div class="rt-field rt-field--full" id="rtRaceField">
+            <label for="rtRace">Rennen</label>
+            <select id="rtRace"><option value="">Kein bestimmtes Rennen</option></select>
+            <p class="rt-hint">&Uuml;bernimmt Datum und Kursfaktor aus unserem Rennkalender.</p>
+          </div>
+          <div class="rt-field">
+            <label for="rtDate">Renndatum</label>
+            <input id="rtDate" type="date">
+          </div>
+          <div class="rt-field">
+            <label for="rtGoal">Zielzeit (optional)</label>
+            <input id="rtGoal" type="text" autocomplete="off" placeholder="3:45">
+          </div>
+          <div class="rt-field">
+            <label for="rtHoursNow">Wochenstunden heute</label>
+            <input id="rtHoursNow" type="text" inputmode="decimal" placeholder="6">
+          </div>
+          <div class="rt-field">
+            <label for="rtHoursPlan">Wochenstunden geplant</label>
+            <input id="rtHoursPlan" type="text" inputmode="decimal" placeholder="8">
+          </div>
+          <div class="rt-field rt-field--full">
+            <label for="rtExp">Seit wann machst du Ausdauersport?</label>
+            <select id="rtExp"><option value="">Bitte w&auml;hlen</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── So rechnen wir ── -->
+      <div class="rt-explain">
+        <h2>So rechnen wir</h2>
+        <div class="rt-how">
+          <div class="rt-how-step">
+            <h3>1. Eingabe &rarr; Schwellenwerte</h3>
+            <p>
+              Deine Angabe wird auf die Intensit&auml;t umgerechnet, die du etwa eine Stunde
+              halten kannst &ndash; Schwellenpace, Schwellenleistung, kritische Geschwindigkeit.
+            </p>
+            <code>VDOT = VO&#8322;(v) / %max(t)</code>
+          </div>
+          <div class="rt-how-step">
+            <h3>2. Schwellenwerte &rarr; Rennzeit</h3>
+            <p>
+              Je l&auml;nger das Rennen, desto kleiner der Anteil der Schwelle, den du h&auml;ltst.
+              Beim Rad kommt die Physik dazu: Luftwiderstand, Rollreibung, Masse.
+            </p>
+            <code>P = (&frac12;&middot;&rho;&middot;CdA&middot;v&sup3; + Crr&middot;m&middot;g&middot;v) / &eta;</code>
+          </div>
+          <div class="rt-how-step">
+            <h3>3. Heute &rarr; Renntag</h3>
+            <p>
+              Die erwartete Entwicklung h&auml;ngt an Trainingsalter, Umfang und verbleibender Zeit
+              &ndash; mit einer Obergrenze je Level und Distanz.
+            </p>
+            <code>1 &minus; e<sup>&minus;rate&middot;Monate</sup></code>
+          </div>
+        </div>
+
+        <h2>H&auml;ufige Fragen</h2>
+        <details open>
+          <summary>Wie genau ist diese Prognose?</summary>
+          <p>
+            So genau wie deine Angaben. Aus einer einzelnen Distanz-Zeit-Angabe l&auml;sst sich dein
+            Leistungsniveau gut sch&auml;tzen, aber nicht deine Renntagsform &ndash; die h&auml;ngt
+            zus&auml;tzlich von Training, Verpflegung, Wetter und Strecke ab. Deshalb zeigen wir kein
+            einzelnes Ergebnis, sondern eine Bandbreite und geben pro Disziplin an, wie sicher die
+            Sch&auml;tzung ist.
+          </p>
+        </details>
+        <details>
+          <summary>Wie wird gerechnet?</summary>
+          <p>
+            In zwei Schritten. Zuerst rechnen wir deine Angabe auf deine Schwellenwerte um:
+            Schwellenpace beim Laufen, Schwellenleistung beim Radfahren, kritische Geschwindigkeit
+            beim Schwimmen. F&uuml;rs Laufen nutzen wir das VDOT-Modell von Jack Daniels und Jimmy
+            Gilbert, f&uuml;rs Schwimmen das Critical-Swim-Speed-Konzept und f&uuml;rs Rad die
+            physikalische Leistungs-Geschwindigkeits-Gleichung mit Luftwiderstand und Rollreibung.
+            Im zweiten Schritt &uuml;bersetzen wir diese Schwellenwerte in eine Rennzeit f&uuml;r
+            deine Distanz.
+          </p>
+        </details>
+        <details>
+          <summary>Und woher kommt der zweite Schritt?</summary>
+          <p>
+            Welchen Anteil deiner Schwellenleistung du &uuml;ber eine Renndistanz halten kannst,
+            sinkt mit der L&auml;nge des Rennens und steigt mit deinem Trainingsstand. Diese Faktoren
+            sind unsere eigene Modellierung, kalibriert an realen Rennergebnissen und laufend
+            nachgesch&auml;rft. Sie stammen nicht aus einer einzelnen Publikation, und wir tun auch
+            nicht so, als w&auml;re das der Fall.
+          </p>
+        </details>
+        <details>
+          <summary>Woher wisst ihr, wie viel schneller ich bis zum Renntag werde?</summary>
+          <p>
+            Wie stark sich Ausdauerleistung verbessert, h&auml;ngt vor allem vom Trainingsalter ab.
+            Bei Einsteigern sind zweistellige Zuw&auml;chse innerhalb weniger Monate gut belegt
+            (Bacon et al., PLOS ONE 2013), bei langj&auml;hrig Trainierten geht es deutlich langsamer
+            und &uuml;ber andere Anpassungen &ndash; bei der Marathon-Weltrekordlerin Paula Radcliffe
+            blieb die maximale Sauerstoffaufnahme &uuml;ber zw&ouml;lf Jahre konstant, w&auml;hrend
+            sich ihre Lauf&ouml;konomie um 15&nbsp;% verbesserte (Jones, 2006). Genau diese Abstufung
+            bilden wir ab, skaliert mit deinem geplanten Trainingsumfang. Dieselbe Forschung zeigt
+            aber auch, wie unterschiedlich Menschen auf identisches Training reagieren &ndash;
+            deshalb bekommst du eine Bandbreite und keine einzelne Zahl.
+          </p>
+        </details>
+        <details>
+          <summary>Warum &auml;ndert sich meine Zeit, wenn ich Schritt 2 ausf&uuml;lle?</summary>
+          <p>
+            Weil Schritt 1 annehmen muss, was Schritt 2 wei&szlig;. Ohne Angaben zu Trainingsumfang
+            und Erfahrung rechnen wir mit einem mittleren Trainingsstand, ohne konkretes Rennen mit
+            einer neutralen Strecke. Sobald du beides erg&auml;nzt, wird nicht nur die
+            Renntagsprognose genauer, sondern auch die Einsch&auml;tzung deines heutigen Stands.
+          </p>
+        </details>
+        <details>
+          <summary>Brauche ich eine Sportuhr oder Trainingsdaten?</summary>
+          <p>
+            Nein. Eine Distanz und die dazugeh&ouml;rige Zeit gen&uuml;gen. Wenn du deine
+            Schwellenwerte kennst, kannst du sie direkt eintragen &ndash; dann &uuml;berspringen wir
+            die Umrechnung und die Prognose wird pr&auml;ziser.
+          </p>
+        </details>
+        <details>
+          <summary>Ersetzt das einen Trainingsplan?</summary>
+          <p>
+            Nein. Diese Seite sagt dir, wo du stehst und was realistisch erreichbar ist. Wie du
+            dahin kommst, ist die Aufgabe der App: ein Plan, der sich an deinen Umfang, deine
+            Erholung und dein Rennen anpasst und nach jeder Einheit nachjustiert.
+          </p>
+        </details>
+      </div>
+
+      <div class="rt-cta-row">
+        <p class="rt-cta-line">Du wei&szlig;t jetzt, was drin ist. Jetzt fehlt nur der Plan dorthin.</p>
+        <a href="index.html#download" class="btn btn-brand btn-lg">Jetzt mit RaceMind starten</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer" style="margin-top: 5rem;">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="index.html"><img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind"></a>
+      </div>
+      <div class="footer-links">
+        <a href="events.html">Rennen</a>
+        <a href="kona-check.html">Kona-Check</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <div class="rt-toast" id="rtToast"></div>
+  <canvas id="rtCanvas" width="1080" height="1350"></canvas>
+
+  <script src="script.js"></script>
+  <script type="module" src="js/race-time.js"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
+</body>
+</html>

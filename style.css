@@ -1418,7 +1418,9 @@ strong { font-weight: 600; }
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
 }
 
 .footer-links a {
@@ -1704,7 +1706,16 @@ strong { font-weight: 600; }
   }
 }
 
-@media (max-width: 768px) {
+/* The nav carries six links plus the CTA since the tool pages joined it, so it
+   needs to tighten earlier and collapse into the hamburger above the general
+   768px mobile breakpoint. */
+@media (max-width: 1080px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -1739,7 +1750,9 @@ strong { font-weight: 600; }
   .nav-toggle.open span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
+}
 
+@media (max-width: 768px) {
   .hero--fullbleed {
     min-height: auto;
     padding: 7rem 0 3rem;
@@ -1965,6 +1978,21 @@ strong { font-weight: 600; }
 .page-content li {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+}
+
+/* German compounds ("Datenschutzerklärung", "Geschäftsbedingungen") are single
+   words wider than a 320px column and would push the whole page sideways.
+   hyphens breaks them properly where the browser has a dictionary, break-word
+   guarantees they never overflow where it does not. */
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content p,
+.page-content li,
+.page-content th,
+.page-content td {
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .page-content table {
@@ -2400,6 +2428,7 @@ a.race-card-image {
 
 .race-card-metrics {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
@@ -2663,6 +2692,14 @@ a.race-card-image {
   .sort-box {
     width: 100%;
     justify-content: space-between;
+  }
+
+  /* A <select> sizes itself to its widest option ("Datum (aufsteigend)"), which
+     next to its label needs 337px — more than a 320px screen has. Let it shrink
+     instead of pushing the whole page sideways. */
+  .sort-box #sortSelect {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   /* List Card Mobile Responsiveness */
