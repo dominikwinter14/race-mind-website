@@ -549,6 +549,19 @@
     // Mirrors the on-page result card: same order, same wording, same colours.
     function fnt(weight, size) { return weight + ' ' + size + 'px "Lexend Deca", sans-serif'; }
 
+    // Logo for the share image header. Falls back to the text wordmark if it fails to load.
+    var logoImg = null;
+    (function preloadLogo() {
+      fetch('logo-full.svg').then(function (r) { return r.ok ? r.text() : null; }).then(function (svg) {
+        if (!svg) return;
+        // Give the SVG an intrinsic size – Safari refuses to rasterise size-less SVGs onto a canvas.
+        var sized = svg.replace('<svg', '<svg width="1482" height="782"');
+        var img = new Image();
+        img.onload = function () { logoImg = img; };
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sized);
+      }).catch(function () {});
+    })();
+
     function wrapLines(ctx, text, maxW) {
       var words = String(text).split(' '), lines = [], line = '';
       for (var i = 0; i < words.length; i++) {
@@ -563,7 +576,7 @@
     function drawShare() {
       if (!current) return null;
       var c = $('kcCanvas'), ctx = c.getContext('2d');
-      var W = 1080, HEADER_H = 210, FOOTER_H = 130;
+      var W = 1080, H = 1350, HEADER_H = 236, FOOTER_H = 116; // fixed 4:5 for social feeds
       var CARD_X = 56, CARD_W = W - CARD_X * 2, PAD = 56;
       var X = CARD_X + PAD, CW = CARD_W - PAD * 2;
       c.width = W;
@@ -685,7 +698,6 @@
       });
 
       // ── paint pass ──
-      var H = Math.max(1350, HEADER_H + PAD * 2 + contentH + FOOTER_H);
       c.height = H; // resets the context state, so everything below re-sets its own styles
 
       var g = ctx.createLinearGradient(0, 0, W, H);
@@ -695,12 +707,18 @@
       rg.addColorStop(0, 'rgba(255,138,0,0.16)'); rg.addColorStop(1, 'rgba(255,138,0,0)');
       ctx.fillStyle = rg; ctx.fillRect(0, 0, W, 820);
 
-      // header wordmark
+      // header: logo (falls back to the text wordmark) + section label
       ctx.textAlign = 'center';
-      ctx.fillStyle = '#FF8A00'; ctx.font = fnt(700, 34);
-      ctx.fillText('R A C E M I N D', W / 2, 116);
-      ctx.fillStyle = '#949494'; ctx.font = fnt(500, 26);
-      ctx.fillText('KONA-CHECK', W / 2, 158);
+      if (logoImg) {
+        var lw = 248, lh = lw * logoImg.height / logoImg.width;
+        ctx.drawImage(logoImg, (W - lw) / 2, 38, lw, lh);
+      } else {
+        ctx.fillStyle = '#FF8A00'; ctx.font = fnt(700, 34);
+        ctx.fillText('R A C E M I N D', W / 2, 116);
+      }
+      ctx.fillStyle = '#949494'; ctx.font = fnt(500, 26); ctx.letterSpacing = '2px';
+      ctx.fillText('RACEMIND KONA-CHECK', W / 2, 210);
+      ctx.letterSpacing = '0px';
 
       // result card
       var cardH = H - HEADER_H - FOOTER_H;
@@ -708,12 +726,20 @@
       roundRect(ctx, CARD_X, HEADER_H, CARD_W, cardH, 36); ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 2; ctx.stroke();
 
-      var y = HEADER_H + Math.max(PAD, (cardH - contentH) / 2);
+      // content is centred in the card; long results (verdict box) shrink to keep the 4:5 frame
+      var scale = Math.min(1, (cardH - PAD * 2) / contentH);
+      var cardMid = HEADER_H + cardH / 2;
+      ctx.save();
+      if (scale < 1) {
+        ctx.translate(W / 2, cardMid); ctx.scale(scale, scale); ctx.translate(-W / 2, -cardMid);
+      }
+      var y = cardMid - contentH / 2;
       ops.forEach(function (op) { if (op.draw) op.draw(y); y += op.h; });
+      ctx.restore();
 
       // footer url
       ctx.textAlign = 'center'; ctx.fillStyle = '#666666'; ctx.font = fnt(500, 30);
-      ctx.fillText('race-mind.com/kona-check', W / 2, H - 62);
+      ctx.fillText('race-mind.com/kona-check', W / 2, H - 52);
       return c;
     }
     function roundRect(ctx, x, y, w, h, r) {
