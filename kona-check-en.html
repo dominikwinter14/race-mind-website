@@ -509,28 +509,35 @@
       result.classList.add('is-visible');
     }
 
+    // Shared by the DOM verdict and the share image so both stay in sync.
+    function verdictParts(agData, t) {
+      var diff = t - agData.medianSec;
+      if (diff <= 0) return {
+        cls: 'kc-verdict--yes', color: '34,197,94', title: 'Strong — that is enough.',
+        body: 'At ' + fmt(t) + ' you would typically have stayed under the qualifying time in '
+          + 'recent years (' + fmtDiff(diff) + ' faster than the median).'
+      };
+      if (diff <= 600) return {
+        cls: 'kc-verdict--close', color: '255,138,0', title: 'Close.',
+        body: fmt(t) + ' is about ' + fmtDiff(diff) + ' above the typical qualifying time — '
+          + 'doable on a fast day or via roll-down.'
+      };
+      return {
+        cls: 'kc-verdict--no', color: '239,68,68', title: 'Still some way to go.',
+        body: fmt(t) + ' is about ' + fmtDiff(diff) + ' above the typical qualifying time. '
+          + 'Plenty of time to work on it.'
+      };
+    }
+
     function renderVerdict(agData) {
       var v = $('kcVerdict');
       var t = parseTime(timeInp.value);
       if (!t) { v.style.display = 'none'; return; }
-      var m = agData.medianSec;
-      var diff = t - m;
+      var p = verdictParts(agData, t);
       v.style.display = 'block';
       v.classList.remove('kc-verdict--yes', 'kc-verdict--close', 'kc-verdict--no');
-      if (diff <= 0) {
-        v.classList.add('kc-verdict--yes');
-        v.innerHTML = '<strong>Strong — that is enough.</strong> At ' + fmt(t)
-          + ' you would typically have stayed under the qualifying time in recent years ('
-          + fmtDiff(diff) + ' faster than the median).';
-      } else if (diff <= 600) {
-        v.classList.add('kc-verdict--close');
-        v.innerHTML = '<strong>Close.</strong> ' + fmt(t) + ' is about ' + fmtDiff(diff)
-          + ' above the typical qualifying time — doable on a fast day or via roll-down.';
-      } else {
-        v.classList.add('kc-verdict--no');
-        v.innerHTML = '<strong>Still some way to go.</strong> ' + fmt(t) + ' is about ' + fmtDiff(diff)
-          + ' above the typical qualifying time. Plenty of time to work on it.';
-      }
+      v.classList.add(p.cls);
+      v.innerHTML = '<strong>' + p.title + '</strong> ' + p.body;
     }
 
     function showToast(msg) {
@@ -539,86 +546,175 @@
     }
 
     // ── Share image (canvas) ──
+    // Mirrors the on-page result card: same order, same wording, same colours.
+    function fnt(weight, size) { return weight + ' ' + size + 'px "Lexend Deca", sans-serif'; }
+
+    function wrapLines(ctx, text, maxW) {
+      var words = String(text).split(' '), lines = [], line = '';
+      for (var i = 0; i < words.length; i++) {
+        var test = line ? line + ' ' + words[i] : words[i];
+        if (line && ctx.measureText(test).width > maxW) { lines.push(line); line = words[i]; }
+        else line = test;
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
     function drawShare() {
       if (!current) return null;
       var c = $('kcCanvas'), ctx = c.getContext('2d');
-      var W = c.width, H = c.height;
-      // background
-      var g = ctx.createLinearGradient(0, 0, W, H);
-      g.addColorStop(0, '#0a0a0a'); g.addColorStop(1, '#050505');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      // accent glow
-      var rg = ctx.createRadialGradient(W / 2, 380, 40, W / 2, 380, 520);
-      rg.addColorStop(0, 'rgba(255,138,0,0.18)'); rg.addColorStop(1, 'rgba(255,138,0,0)');
-      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, 800);
+      var W = 1080, HEADER_H = 210, FOOTER_H = 130;
+      var CARD_X = 56, CARD_W = W - CARD_X * 2, PAD = 56;
+      var X = CARD_X + PAD, CW = CARD_W - PAD * 2;
+      c.width = W;
 
-      ctx.textAlign = 'center';
-      // wordmark
-      ctx.fillStyle = '#FF8A00'; ctx.font = '700 34px "Lexend Deca", sans-serif';
-      ctx.fillText('R A C E M I N D', W / 2, 130);
-      ctx.fillStyle = '#949494'; ctx.font = '500 26px "Lexend Deca", sans-serif';
-      ctx.fillText('KONA-CHECK', W / 2, 172);
+      // ── measure pass: collect draw ops with their heights ──
+      var ops = [], contentH = 0;
+      function push(h, draw) { ops.push({ h: h, draw: draw }); contentH += h; }
+      function gap(h) { push(h, null); }
 
-      // race name
-      ctx.fillStyle = '#FFFFFF'; ctx.font = '700 52px "Lexend Deca", sans-serif';
-      wrapText(ctx, current.race.raceName, W / 2, 300, W - 160, 62);
+      // race name + age-group badge
+      ctx.font = fnt(700, 32);
+      var badgeW = ctx.measureText(current.ag).width + 48, badgeH = 56;
+      ctx.font = fnt(700, 54);
+      var nameLines = wrapLines(ctx, $('kcResRace').textContent, CW);
+      var lastW = ctx.measureText(nameLines[nameLines.length - 1]).width;
+      var badgeInline = lastW + 20 + badgeW <= CW;
+      var nameLh = 68;
+      push(nameLines.length * nameLh + (badgeInline ? 0 : badgeH + 16), function (y) {
+        ctx.textAlign = 'left'; ctx.fillStyle = '#FFFFFF'; ctx.font = fnt(700, 54);
+        nameLines.forEach(function (ln, i) { ctx.fillText(ln, X, y + 52 + i * nameLh); });
+        var bx = badgeInline ? X + lastW + 20 : X;
+        var by = badgeInline ? y + (nameLines.length - 1) * nameLh + 8 : y + nameLines.length * nameLh + 4;
+        ctx.fillStyle = '#FF8A00'; roundRect(ctx, bx, by, badgeW, badgeH, 16); ctx.fill();
+        ctx.fillStyle = '#000000'; ctx.font = fnt(700, 32); ctx.textAlign = 'center';
+        ctx.fillText(current.ag, bx + badgeW / 2, by + badgeH / 2 + 11);
+      });
+      gap(30);
 
-      // AG badge
-      ctx.fillStyle = '#FF8A00';
-      roundRect(ctx, W / 2 - 90, 390, 180, 58, 16); ctx.fill();
-      ctx.fillStyle = '#000'; ctx.font = '700 34px "Lexend Deca", sans-serif';
-      ctx.fillText(current.ag, W / 2, 430);
+      // "Typische Kona-Qualizeit" label + big time, centred in the card
+      var MID = X + CW / 2;
+      var bigLabel = document.querySelector('.kc-big-label').textContent.toUpperCase();
+      push(40, function (y) {
+        ctx.textAlign = 'center'; ctx.fillStyle = '#949494'; ctx.font = fnt(600, 28);
+        ctx.letterSpacing = '3px';
+        ctx.fillText(bigLabel, MID, y + 28);
+        ctx.letterSpacing = '0px';
+      });
 
-      // label
-      ctx.fillStyle = '#949494'; ctx.font = '600 30px "Lexend Deca", sans-serif';
-      ctx.fillText('TYPICAL KONA QUALIFYING TIME', W / 2, 560);
-      // big time
-      var grad = ctx.createLinearGradient(W / 2 - 300, 0, W / 2 + 300, 0);
-      grad.addColorStop(0, '#FF8A00'); grad.addColorStop(1, '#00D1FF');
-      ctx.fillStyle = grad; ctx.font = '800 150px "Lexend Deca", sans-serif';
-      ctx.fillText(current.agData.medianFmt, W / 2, 700);
-      // range
-      ctx.fillStyle = '#949494'; ctx.font = '400 30px "Lexend Deca", sans-serif';
-      ctx.fillText(current.agData.minFmt + '  –  ' + current.agData.maxFmt
-        + '  (' + current.race.years.join(', ') + ')', W / 2, 760);
+      // big gradient time
+      var bigTime = $('kcResTime').textContent;
+      push(162, function (y) {
+        ctx.textAlign = 'left'; ctx.font = fnt(800, 140);
+        var w = ctx.measureText(bigTime).width;
+        var tx = MID - w / 2;
+        var tg = ctx.createLinearGradient(tx, y + 20, tx + w, y + 140);
+        tg.addColorStop(0, '#FF8A00'); tg.addColorStop(1, '#00D1FF');
+        ctx.fillStyle = tg;
+        ctx.fillText(bigTime, tx, y + 132);
+      });
 
-      // user time verdict
+      // range line
+      ctx.font = fnt(400, 30);
+      var rangeLines = wrapLines(ctx, $('kcResRange').textContent, CW);
+      push(rangeLines.length * 42, function (y) {
+        ctx.textAlign = 'center'; ctx.fillStyle = '#949494'; ctx.font = fnt(400, 30);
+        rangeLines.forEach(function (ln, i) { ctx.fillText(ln, MID, y + 30 + i * 42); });
+      });
+
+      // verdict box (only when a goal time is entered)
       var t = parseTime(timeInp.value);
-      var y = 900;
       if (t) {
-        var diff = t - current.agData.medianSec;
-        var col = diff <= 0 ? '#22C55E' : (diff <= 600 ? '#FF8A00' : '#EF4444');
-        var label = diff <= 0 ? 'QUALIFIED' : (diff <= 600 ? 'CLOSE' : 'NOT YET');
-        ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.fillStyle = 'rgba(255,255,255,0.03)';
-        roundRect(ctx, 120, y, W - 240, 190, 24); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = '#949494'; ctx.font = '600 28px "Lexend Deca", sans-serif';
-        ctx.fillText('YOUR GOAL TIME', W / 2, y + 62);
-        ctx.fillStyle = '#FFFFFF'; ctx.font = '800 76px "Lexend Deca", sans-serif';
-        ctx.fillText(fmt(t), W / 2, y + 138);
-        ctx.fillStyle = col; ctx.font = '700 30px "Lexend Deca", sans-serif';
-        ctx.fillText(label, W / 2, y + 176);
-        y += 230;
+        var vp = verdictParts(current.agData, t);
+        ctx.font = fnt(400, 30);
+        var vLines = wrapLines(ctx, vp.body, CW - 64);
+        var vh = 34 + 44 + vLines.length * 42 + 34;
+        gap(36);
+        push(vh, function (y) {
+          ctx.fillStyle = 'rgba(' + vp.color + ',0.10)';
+          roundRect(ctx, X, y, CW, vh, 24); ctx.fill();
+          ctx.strokeStyle = 'rgba(' + vp.color + ',0.35)'; ctx.lineWidth = 2; ctx.stroke();
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#FFFFFF'; ctx.font = fnt(700, 32);
+          ctx.fillText(vp.title, X + 32, y + 34 + 32);
+          ctx.fillStyle = '#E6E6E6'; ctx.font = fnt(400, 30);
+          vLines.forEach(function (ln, i) { ctx.fillText(ln, X + 32, y + 34 + 44 + 30 + i * 42); });
+        });
       }
 
-      // target
-      ctx.fillStyle = '#FFFFFF'; ctx.font = '500 32px "Lexend Deca", sans-serif';
-      ctx.fillText('Goal: IRONMAN World Championship · Kona', W / 2, t ? y + 10 : 960);
+      // per-year table
+      var head = [].slice.call($('kcYears').querySelectorAll('thead th')).map(function (th) {
+        return th.textContent.toUpperCase();
+      });
+      var rows = [].slice.call($('kcYears').querySelectorAll('tbody tr')).map(function (tr) {
+        return [].slice.call(tr.children).map(function (td) { return td.textContent; });
+      });
+      var colR = [0, 0.46, 0.68, 1]; // right edges (fraction of CW) for columns 2–4
+      var ROW_H = 76;
+      gap(44);
+      push(60, function (y) {
+        ctx.fillStyle = '#949494'; ctx.font = fnt(600, 26); ctx.letterSpacing = '2px';
+        ctx.textAlign = 'left'; ctx.fillText(head[0], X, y + 32);
+        ctx.textAlign = 'right';
+        for (var i = 1; i < head.length; i++) ctx.fillText(head[i], X + CW * colR[i], y + 32);
+        ctx.letterSpacing = '0px';
+        ctx.strokeStyle = 'rgba(255,255,255,0.14)'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(X, y + 56); ctx.lineTo(X + CW, y + 56); ctx.stroke();
+      });
+      rows.forEach(function (r) {
+        push(ROW_H, function (y) {
+          ctx.fillStyle = '#FFFFFF'; ctx.font = fnt(400, 34);
+          ctx.textAlign = 'left'; ctx.fillText(r[0], X, y + 46);
+          ctx.textAlign = 'right';
+          ctx.fillText(r[1], X + CW * colR[1], y + 46);
+          ctx.fillText(r[2], X + CW * colR[2], y + 46);
+          ctx.font = fnt(700, 34);
+          ctx.fillText(r[3], X + CW * colR[3], y + 46);
+          ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(X, y + ROW_H - 6); ctx.lineTo(X + CW, y + ROW_H - 6); ctx.stroke();
+        });
+      });
+
+      // disclaimer note
+      gap(32);
+      ctx.font = fnt(400, 26);
+      var noteLines = wrapLines(ctx, $('kcNote').textContent, CW);
+      push(noteLines.length * 38, function (y) {
+        ctx.textAlign = 'left'; ctx.fillStyle = '#949494'; ctx.font = fnt(400, 26);
+        noteLines.forEach(function (ln, i) { ctx.fillText(ln, X, y + 26 + i * 38); });
+      });
+
+      // ── paint pass ──
+      var H = Math.max(1350, HEADER_H + PAD * 2 + contentH + FOOTER_H);
+      c.height = H; // resets the context state, so everything below re-sets its own styles
+
+      var g = ctx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, '#0A0A0A'); g.addColorStop(1, '#050505');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      var rg = ctx.createRadialGradient(W / 2, 300, 40, W / 2, 300, 560);
+      rg.addColorStop(0, 'rgba(255,138,0,0.16)'); rg.addColorStop(1, 'rgba(255,138,0,0)');
+      ctx.fillStyle = rg; ctx.fillRect(0, 0, W, 820);
+
+      // header wordmark
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#FF8A00'; ctx.font = fnt(700, 34);
+      ctx.fillText('R A C E M I N D', W / 2, 116);
+      ctx.fillStyle = '#949494'; ctx.font = fnt(500, 26);
+      ctx.fillText('KONA-CHECK', W / 2, 158);
+
+      // result card
+      var cardH = H - HEADER_H - FOOTER_H;
+      ctx.fillStyle = '#1A1C1E';
+      roundRect(ctx, CARD_X, HEADER_H, CARD_W, cardH, 36); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 2; ctx.stroke();
+
+      var y = HEADER_H + Math.max(PAD, (cardH - contentH) / 2);
+      ops.forEach(function (op) { if (op.draw) op.draw(y); y += op.h; });
 
       // footer url
-      ctx.fillStyle = '#666'; ctx.font = '500 30px "Lexend Deca", sans-serif';
-      ctx.fillText('race-mind.com/kona-check', W / 2, H - 70);
+      ctx.textAlign = 'center'; ctx.fillStyle = '#666666'; ctx.font = fnt(500, 30);
+      ctx.fillText('race-mind.com/kona-check', W / 2, H - 62);
       return c;
-    }
-    function wrapText(ctx, text, x, y, maxW, lh) {
-      var words = text.split(' '), line = '', lines = [];
-      for (var i = 0; i < words.length; i++) {
-        var test = line + words[i] + ' ';
-        if (ctx.measureText(test).width > maxW && line) { lines.push(line.trim()); line = words[i] + ' '; }
-        else line = test;
-      }
-      lines.push(line.trim());
-      var startY = y - ((lines.length - 1) * lh) / 2;
-      lines.forEach(function (ln, i) { ctx.fillText(ln, x, startY + i * lh); });
     }
     function roundRect(ctx, x, y, w, h, r) {
       ctx.beginPath();
