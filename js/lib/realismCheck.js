@@ -226,15 +226,15 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
         const sw = prognosis.adjusted_swim_hours ?? prognosis.swim_prognose_hours ?? 0;
         const bk = prognosis.adjusted_bike_hours ?? prognosis.bike_prognose_hours ?? 0;
         const rn = prognosis.adjusted_run_hours ?? prognosis.run_prognose_hours ?? 0;
-        const adjTotal = round2(sw + T1h + bk + T2h + rn);
+        const adjTotal = round4(sw + T1h + bk + T2h + rn);
         prognosis.total_prognose_hours = adjTotal > 0 ? adjTotal : null;
         prognosis.adjusted_total_hours = adjTotal > 0 ? adjTotal : null;
         const overallConf = worstOf(prognosis.confidence_run, prognosis.confidence_bike, prognosis.confidence_swim);
         prognosis.confidence_overall = overallConf;
         const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
         const spreadPct = BASE_SPREAD[overallConf] ?? 0.10;
-        prognosis.best_case_hours = round2(adjTotal * (1 - spreadPct));
-        prognosis.worst_case_hours = round2(adjTotal * (1 + spreadPct * 1.5));
+        prognosis.best_case_hours = round4(adjTotal * (1 - spreadPct));
+        prognosis.worst_case_hours = round4(adjTotal * (1 + spreadPct * 1.5));
         prognosis.adjusted_best_hours = prognosis.best_case_hours;
         prognosis.adjusted_worst_hours = prognosis.worst_case_hours;
     }
@@ -377,20 +377,20 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
     }
     // ── Total ──
     const rawTotal = (swimHours ?? 0) + T1h + (bikeHours ?? 0) + T2h + (runHours ?? 0);
-    const adjSwim = swimHours ? round2(swimHours * courseFactors.swim) : null;
-    const adjBike = bikeHours ? round2(bikeHours * courseFactors.bike) : null;
-    const adjRun = runHours ? round2(runHours * courseFactors.run) : null;
-    const adjTotal = round2((adjSwim ?? 0) + T1h + (adjBike ?? 0) + T2h + (adjRun ?? 0));
+    const adjSwim = swimHours ? round4(swimHours * courseFactors.swim) : null;
+    const adjBike = bikeHours ? round4(bikeHours * courseFactors.bike) : null;
+    const adjRun = runHours ? round4(runHours * courseFactors.run) : null;
+    const adjTotal = round4((adjSwim ?? 0) + T1h + (adjBike ?? 0) + T2h + (adjRun ?? 0));
     const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
     const overallConfidence = worstOf(runConfidence, bikeConfidence, swimConfidence);
     const spreadPct = BASE_SPREAD[overallConfidence] ?? 0.10;
-    const bestCase = round2(adjTotal * (1 - spreadPct));
-    const worstCase = round2(adjTotal * (1 + spreadPct * 1.5));
+    const bestCase = round4(adjTotal * (1 - spreadPct));
+    const worstCase = round4(adjTotal * (1 + spreadPct * 1.5));
     return {
         swim_prognose_hours: swimHours,
         bike_prognose_hours: bikeHours,
         run_prognose_hours: runHours,
-        total_prognose_hours: rawTotal > 0 ? round2(rawTotal) : null,
+        total_prognose_hours: rawTotal > 0 ? round4(rawTotal) : null,
         adjusted_swim_hours: adjSwim,
         adjusted_bike_hours: adjBike,
         adjusted_run_hours: adjRun,
@@ -512,7 +512,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         const raw = monthsToRace > 0 ? 1 - Math.exp(-rate * monthsToRace * timeFactor) : 0;
         const tb = Math.min(0.015, 0.15 * raw);
         const impr = Math.min(raw + tb, totalCap);
-        return round2(adjTotal * (1 - impr));
+        return round4(adjTotal * (1 - impr));
     };
     let projectedBest;
     let projectedProb;
@@ -523,9 +523,9 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projectedWorst = precomputedProjection.projectedWorst;
     }
     else {
-        projectedBest = bestCase ? round2(bestCase * (1 - Math.min(rawImprovement * 1.3 + taperBonus, totalCap * 1.2))) : null;
-        projectedProb = round2(adjTotal * (1 - maxImprovement));
-        projectedWorst = worstCase ? round2(worstCase * (1 - Math.min(rawImprovement * 0.4 + taperBonus * 0.5, totalCap * 0.5))) : null;
+        projectedBest = bestCase ? round4(bestCase * (1 - Math.min(rawImprovement * 1.3 + taperBonus, totalCap * 1.2))) : null;
+        projectedProb = round4(adjTotal * (1 - maxImprovement));
+        projectedWorst = worstCase ? round4(worstCase * (1 - Math.min(rawImprovement * 0.4 + taperBonus * 0.5, totalCap * 0.5))) : null;
     }
     // ── GAP ANALYSIS ──
     if (!goalTimeHours) {
@@ -747,24 +747,37 @@ export function deriveRunThreshold(input, level) {
     if (distKm < MIN_DIST_KM)
         return null;
     if (distKm < 5) {
-        const factor = lerp(1.20, 1.15, (distKm - 1) / 3);
+        // Riegel-projected onto the 5k table column inside vdotToThreshold — the
+        // old flat 1.15–1.20 pace factors jumped ~16 s/km against the VDOT branch
+        // at exactly 5 km. 'sprint' label kept: a projected sub-5k effort stays
+        // lower-confidence than a true 5–10k PB.
         input._corridor = 'sprint';
-        return round2(paceSecKm * factor);
+        return vdotToThreshold(distM, durationSec);
     }
     if (distKm <= 10) {
         input._corridor = 'vdot';
         return vdotToThreshold(distM, durationSec);
     }
     if (distKm <= 15) {
-        const factor = lerp(1.03, 1.01, (distKm - 11) / 4);
+        // Blend from the VDOT projection (exact at 10 km) out to the flat tempo
+        // factor at 15 km. The flat factor alone is fitness-blind and sat up to
+        // ~6 s/km away from the VDOT branch right across the 10 km seam.
+        const tempo = paceSecKm * lerp(1.03, 1.01, (distKm - 11) / 4);
+        const viaVdot = vdotToThreshold(distM, durationSec);
+        const w = (distKm - 10) / 5;
         input._corridor = 'tempo';
-        return round2(paceSecKm * factor);
+        return round2(viaVdot == null ? tempo : viaVdot * (1 - w) + tempo * w);
     }
     if (distKm <= 21.1) {
         input._corridor = 'threshold';
         return round2(paceSecKm * 1.00);
     }
-    const marathonFactor = lerp(0.92, 0.87, (distKm - 22) / 20);
+    // Continuous bridge from the half-marathon anchor (×1.00 at 21.1 km) to the
+    // marathon anchor (×0.87 at 42.195 km, the inverse of the intermediate
+    // RUN_RACE_FACTOR so the marathon round trip holds), clamped beyond. The old
+    // lerp started at ×0.92 from 22 km — an 8% threshold cliff right past the
+    // half-marathon distance.
+    const marathonFactor = lerp(1.00, 0.87, Math.min(1, (distKm - 21.1) / (42.195 - 21.1)));
     input._corridor = 'endurance';
     return round2(paceSecKm * marathonFactor);
 }
@@ -892,21 +905,25 @@ export function deriveSwimCSS(input, level) {
 // ══════════════════════════════════════════════════════════
 // VDOT LOOKUP
 // ══════════════════════════════════════════════════════════
+/** Riegel exponent for projecting a performance to a nearby distance —
+ *  T2 = T1 × (D2/D1)^1.06 (Riegel 1981, holds well 1.5k–marathon). */
+const RIEGEL_EXPONENT = 1.06;
 function vdotToThreshold(distM, durationSec) {
-    const DIST_5K_10K_BOUNDARY = 7500;
-    let vdot;
-    if (distM <= DIST_5K_10K_BOUNDARY) {
-        const distFactor = distM / 5000;
-        const adjustedSec = durationSec / distFactor;
-        vdot = interpolateVDOT(VDOT_TABLE, 1, adjustedSec);
-    }
-    else {
-        const distFactor = distM / 10000;
-        const adjustedSec = durationSec / distFactor;
-        vdot = interpolateVDOT(VDOT_TABLE, 2, adjustedSec);
-    }
-    if (!vdot)
+    // Riegel-project the effort onto BOTH canonical table distances and blend
+    // the resulting VDOTs by where the input sits between 5 and 10 km. At
+    // exactly 5000/10000 m the projection is the identity, so table lookups
+    // stay byte-identical for true 5k/10k PBs; in between the blend replaces
+    // the old hard branch at 7500 m, which flipped the same effort between the
+    // two columns and jumped the threshold by up to ~24 s/km. Below 5 km the
+    // weight clamps to pure 5k projection (sprint corridor).
+    const t5 = durationSec * Math.pow(5000 / distM, RIEGEL_EXPONENT);
+    const t10 = durationSec * Math.pow(10000 / distM, RIEGEL_EXPONENT);
+    const vdot5 = interpolateVDOT(VDOT_TABLE, 1, t5);
+    const vdot10 = interpolateVDOT(VDOT_TABLE, 2, t10);
+    if (vdot5 == null || vdot10 == null)
         return null;
+    const w = Math.min(1, Math.max(0, (distM - 5000) / 5000));
+    const vdot = vdot5 * (1 - w) + vdot10 * w;
     return interpolateFromVDOT(VDOT_TABLE, vdot, 3);
 }
 function interpolateVDOT(table, timeCol, timeSec) {
@@ -1091,6 +1108,12 @@ export async function writePrognosisToSupabase({ supabase, userId, prognosis, })
 // ══════════════════════════════════════════════════════════
 // SHARED HELPERS
 // ══════════════════════════════════════════════════════════
+/** For race-TIME hours: consumers render min:sec (hours*3600) and a 0.01h
+ *  grid quantizes to 36s steps — visible next to the 5k/10k round-trip
+ *  identity. Weekly-volume hours and paces keep round2. */
+export function round4(n) {
+    return Math.round(n * 10000) / 10000;
+}
 export function round2(n) {
     return Math.round(n * 100) / 100;
 }
