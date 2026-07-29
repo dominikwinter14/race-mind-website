@@ -502,7 +502,7 @@
         if (y.finishers < 5) tiny = true;
         var tr = document.createElement('tr');
         tr.innerHTML = '<td>' + y.year + '</td><td>' + y.finishers + '</td><td>' + y.slots
-          + '</td><td class="kc-cut">' + y.qFmt + '</td>';
+          + '</td><td class="kc-cut">' + (y.qFmt || '–') + '</td>';
         tb.appendChild(tr);
       });
 
