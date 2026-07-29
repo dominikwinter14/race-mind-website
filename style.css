@@ -701,6 +701,9 @@ strong { font-weight: 600; }
 .feature-bullets {
   list-style: none;
   margin-top: 0.75rem;
+  /* Bullet dot is absolutely positioned at left:0, so the text must be
+     left-aligned too — otherwise dot and text drift apart on wrapped lines. */
+  text-align: left;
 }
 
 .feature-bullets li {
@@ -1136,6 +1139,20 @@ strong { font-weight: 600; }
   margin: 2.5rem auto 0;
 }
 
+/* Three-column variant (partner tiers) */
+.pricing-grid--tiers {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1100px;
+}
+
+/* Three columns need ~900px; below that stack instead of squeezing the text */
+@media (max-width: 900px) {
+  .pricing-grid--tiers {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+
 .pricing-card {
   background: var(--card);
   border-radius: var(--radius-lg);
@@ -1177,22 +1194,32 @@ strong { font-weight: 600; }
 .pricing-amount {
   display: flex;
   align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.35rem;
 }
 
 .pricing-price {
   font-size: 2.5rem;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .pricing-period {
   font-size: 1rem;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .pricing-monthly {
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+/* Card centers its children (align-items: center), which would shrink-wrap the
+   list. Stretch it so bullets line up on the card's padding edge. */
+.pricing-card .feature-bullets {
+  align-self: stretch;
 }
 
 .pricing-card .btn {
@@ -1863,6 +1890,11 @@ strong { font-weight: 600; }
   .pricing-grid {
     grid-template-columns: 1fr;
     max-width: 400px;
+    gap: 1.25rem;
+  }
+
+  .pricing-card {
+    padding: 2rem 1.5rem;
   }
 
   .info-table {
