@@ -58,7 +58,11 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
       assumeLevel: 'Gerechnet mit mittlerem Trainingsstand und neutraler Strecke. Schritt 2 ersetzt beide Annahmen.',
       assumeLevelOnly: 'Gerechnet mit mittlerem Trainingsstand. Schritt 2 ersetzt diese Annahme.',
       assumeCourseOnly: 'Gerechnet mit neutraler Strecke. Wähle in Schritt 2 dein Rennen.',
-      raceNone: 'Kein bestimmtes Rennen', raceCourse: 'Kursfaktor',
+      raceCourse: 'Kursfaktor',
+      raceOther: 'Anderes Rennen', raceNoMatch: 'Kein Treffer für „%q“',
+      raceHintDefault: 'Übernimmt Datum und Kursfaktor aus unserem Rennkalender.',
+      raceHintOther: 'Dein Rennen kennen wir nicht – wir rechnen mit einer neutralen Strecke. Trag das Renndatum bitte selbst ein.',
+      raceHintPicked: 'Datum und Kursfaktor kommen aus unserem Rennkalender.',
       shareErr: 'Bild konnte nicht erstellt werden',
       shareOk: 'Bild gespeichert – teilbar auf Instagram & Co.',
       copyOk: 'Link kopiert',
@@ -99,7 +103,11 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
       assumeLevel: 'Calculated with a mid-level athlete and a neutral course. Step 2 replaces both assumptions.',
       assumeLevelOnly: 'Calculated with a mid-level athlete. Step 2 replaces that assumption.',
       assumeCourseOnly: 'Calculated with a neutral course. Pick your race in step 2.',
-      raceNone: 'No specific race', raceCourse: 'Course factor',
+      raceCourse: 'Course factor',
+      raceOther: 'Another race', raceNoMatch: 'No match for “%q”',
+      raceHintDefault: 'Takes the date and course factor from our race calendar.',
+      raceHintOther: 'We don’t know your race – we calculate with a neutral course. Please enter the race date yourself.',
+      raceHintPicked: 'Date and course factor come from our race calendar.',
       shareErr: 'Could not create the image',
       shareOk: 'Image saved – ready for Instagram & co.',
       copyOk: 'Link copied',
@@ -383,34 +391,17 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
     if (!state.raceType) { step2.classList.remove('is-visible'); return; }
     step2.classList.add('is-visible');
 
-    var raceWrap = $('rtRaceField');
-    var matching = RACES.filter(function (r) { return r.race_type === state.raceType; });
-    if (matching.length) {
-      raceWrap.style.display = '';
-      var sel = $('rtRace');
-      if (sel.options.length <= 1) {
-        matching.forEach(function (r) {
-          var o = document.createElement('option');
-          o.value = r.slug;
-          o.textContent = (IS_EN ? r.name_en : r.name) + (r.date ? ' · ' + fmtDate(r.date) : '');
-          sel.appendChild(o);
-        });
-      } else {
-        // Distance changed — rebuild the list for the new race type.
-        while (sel.options.length > 1) sel.remove(1);
-        matching.forEach(function (r) {
-          var o = document.createElement('option');
-          o.value = r.slug;
-          o.textContent = (IS_EN ? r.name_en : r.name) + (r.date ? ' · ' + fmtDate(r.date) : '');
-          sel.appendChild(o);
-        });
-        sel.value = '';
-        state.raceSlug = '';
-      }
-    } else {
-      raceWrap.style.display = 'none';
-      state.raceSlug = '';
+    // The field stays available even when we know no race for this distance:
+    // "Anderes Rennen" is exactly the case someone in that situation is in.
+    var prevType = comboRaceType;
+    comboRaceType = state.raceType;
+    if (prevType && prevType !== state.raceType && state.raceSlug !== OTHER) {
+      // Distance changed — a slug from the old distance no longer applies.
+      // OTHER survives: it says nothing about the distance.
+      setRace('');
     }
+    renderComboInput();
+
     // The goal field is read as mm:ss for 5k/10k and as h:mm above that, so the
     // placeholder has to show which of the two the field expects.
     var GOAL_PH = {
@@ -418,6 +409,224 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
       sprint_tri: '1:20', olympic_tri: '2:45', half_ironman: '5:30', ironman: '11:30',
     };
     $('rtGoal').placeholder = GOAL_PH[state.raceType] || '3:45';
+  }
+
+  // ── Race combobox ──
+  //
+  // Sentinel for "my race is not in your calendar". It never matches a slug, so
+  // selectedRace() returns null for it and the projection runs on a neutral
+  // course — same maths as an empty field, but the athlete has *said* so, and
+  // the hint can tell them the date is now theirs to fill in.
+  var OTHER = '__other__';
+
+  var comboRaceType = null;   // distance the list was last built for
+  var comboOpen = false;
+  var comboItems = [];        // [{ slug, label, date }] currently rendered
+  var comboIndex = -1;        // keyboard cursor into comboItems
+
+  /** Diacritic- and case-insensitive so "vitoria" finds "Vitoria-Gasteiz". */
+  function norm(s) {
+    return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function raceLabel(r) { return IS_EN ? r.name_en : r.name; }
+
+  function racesForType() {
+    return RACES.filter(function (r) { return r.race_type === comboRaceType; });
+  }
+
+  /** Writes the slug into the state and keeps input, hint and date in step. */
+  function setRace(slug, opts) {
+    state.raceSlug = slug;
+    var race = selectedRace();
+    if (race && race.date && !(opts && opts.keepDate)) {
+      state.date = race.date;
+      $('rtDate').value = race.date;
+    }
+    renderComboInput();
+  }
+
+  function renderComboInput() {
+    var input = $('rtRaceInput');
+    var hint = $('rtRaceHint');
+    var race = selectedRace();
+    if (race) {
+      input.value = raceLabel(race);
+      hint.textContent = T.raceHintPicked;
+    } else if (state.raceSlug === OTHER) {
+      input.value = T.raceOther;
+      hint.textContent = T.raceHintOther;
+    } else {
+      input.value = '';
+      hint.textContent = T.raceHintDefault;
+    }
+  }
+
+  function closeCombo() {
+    comboOpen = false;
+    comboIndex = -1;
+    $('rtRaceList').hidden = true;
+    $('rtCombo').classList.remove('is-open');
+    $('rtRaceInput').setAttribute('aria-expanded', 'false');
+    $('rtRaceInput').removeAttribute('aria-activedescendant');
+  }
+
+  /**
+   * `query` empty means "show everything" — that is the state right after the
+   * field is focused, and the one a mouse user gets from the chevron.
+   */
+  function openCombo(query) {
+    var list = $('rtRaceList');
+    var q = norm(String(query || '').trim());
+    // A picked race leaves its own name in the input. Treating that as a filter
+    // would narrow the list to the single entry already chosen, so a click on
+    // the chevron could never reach the others.
+    var picked = selectedRace();
+    if (picked && q === norm(raceLabel(picked))) q = '';
+    if (state.raceSlug === OTHER && q === norm(T.raceOther)) q = '';
+
+    var hits = q
+      ? racesForType().filter(function (r) {
+          return norm(r.name).indexOf(q) !== -1 || norm(r.name_en).indexOf(q) !== -1;
+        })
+      : racesForType();
+
+    comboItems = hits.map(function (r) {
+      return { slug: r.slug, label: raceLabel(r), date: r.date };
+    });
+    comboItems.push({ slug: OTHER, label: T.raceOther, date: '' });
+
+    list.innerHTML = '';
+    if (!hits.length && q) {
+      var empty = document.createElement('li');
+      empty.className = 'rt-combo-empty';
+      empty.textContent = T.raceNoMatch.replace('%q', String(query).trim());
+      list.appendChild(empty);
+    }
+    comboItems.forEach(function (item, i) {
+      if (item.slug === OTHER && hits.length) {
+        var sep = document.createElement('li');
+        sep.className = 'rt-combo-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        list.appendChild(sep);
+      }
+      var li = document.createElement('li');
+      li.className = 'rt-combo-opt';
+      li.id = 'rtRaceOpt' + i;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', item.slug === state.raceSlug ? 'true' : 'false');
+      li.textContent = item.label;
+      if (item.date) {
+        var d = document.createElement('span');
+        d.className = 'rt-combo-opt-date';
+        d.textContent = fmtDate(item.date);
+        li.appendChild(d);
+      }
+      // mousedown, not click: the input's blur handler closes the list first.
+      li.addEventListener('mousedown', function (ev) {
+        ev.preventDefault();
+        pickCombo(i);
+      });
+      list.appendChild(li);
+    });
+
+    comboOpen = true;
+    comboIndex = -1;
+    list.hidden = false;
+    $('rtCombo').classList.add('is-open');
+    $('rtRaceInput').setAttribute('aria-expanded', 'true');
+  }
+
+  function highlightCombo(i) {
+    var list = $('rtRaceList');
+    var opts = list.querySelectorAll('.rt-combo-opt');
+    for (var k = 0; k < opts.length; k++) opts[k].classList.remove('is-active');
+    if (i < 0 || i >= opts.length) {
+      $('rtRaceInput').removeAttribute('aria-activedescendant');
+      return;
+    }
+    opts[i].classList.add('is-active');
+    opts[i].scrollIntoView({ block: 'nearest' });
+    $('rtRaceInput').setAttribute('aria-activedescendant', opts[i].id);
+  }
+
+  function pickCombo(i) {
+    var item = comboItems[i];
+    if (!item) return;
+    closeCombo();
+    if (item.slug === OTHER) {
+      // Switching to "another race" must not silently keep the date of the race
+      // just abandoned — the hint asks for a date, so leaving one there
+      // contradicts it. Only a date WE filled in is dropped: if it no longer
+      // matches the outgoing race, the athlete typed it and it is theirs.
+      var outgoing = selectedRace();
+      if (outgoing && outgoing.date === state.date) {
+        state.date = '';
+        $('rtDate').value = '';
+      }
+      setRace(OTHER, { keepDate: true });
+    } else {
+      setRace(item.slug);
+    }
+    recalc();
+  }
+
+  function bindCombo() {
+    var input = $('rtRaceInput');
+    var list = $('rtRaceList');
+
+    input.addEventListener('focus', function () { openCombo(''); });
+    $('rtRaceToggle').addEventListener('mousedown', function (ev) {
+      ev.preventDefault();
+      if (comboOpen) { closeCombo(); return; }
+      input.focus();
+      openCombo('');
+    });
+
+    input.addEventListener('input', function (e) {
+      // Typing over a selection means the athlete is looking for something
+      // else — drop the old pick so a half-typed name cannot be mistaken for
+      // a confirmed one.
+      if (state.raceSlug) { state.raceSlug = ''; $('rtRaceHint').textContent = T.raceHintDefault; recalc(); }
+      openCombo(e.target.value);
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!comboOpen) { openCombo(input.value); return; }
+        var next = comboIndex + (e.key === 'ArrowDown' ? 1 : -1);
+        comboIndex = Math.max(0, Math.min(comboItems.length - 1, next));
+        highlightCombo(comboIndex);
+      } else if (e.key === 'Enter') {
+        if (comboOpen) {
+          e.preventDefault();
+          // Enter without an arrow-key cursor takes the only sensible single
+          // candidate, if there is exactly one.
+          pickCombo(comboIndex >= 0 ? comboIndex : (comboItems.length === 2 ? 0 : -1));
+        }
+      } else if (e.key === 'Escape') {
+        if (comboOpen) { e.preventDefault(); closeCombo(); }
+      }
+    });
+
+    input.addEventListener('blur', function () {
+      closeCombo();
+      // Leaving text behind that matches nothing would look like a selection.
+      renderComboInput();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (comboOpen && !$('rtCombo').contains(e.target)) closeCombo();
+    });
+    list.addEventListener('mousemove', function (e) {
+      var opt = e.target.closest ? e.target.closest('.rt-combo-opt') : null;
+      if (!opt) return;
+      var opts = list.querySelectorAll('.rt-combo-opt');
+      for (var k = 0; k < opts.length; k++) {
+        if (opts[k] === opt) { comboIndex = k; highlightCombo(k); break; }
+      }
+    });
   }
 
   function fmtDate(iso) {
@@ -432,7 +641,7 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
    * factors to a marathon while the dropdown shows "no specific race".
    */
   function selectedRace() {
-    if (!state.raceSlug) return null;
+    if (!state.raceSlug || state.raceSlug === OTHER) return null;
     var hit = RACES.filter(function (r) { return r.slug === state.raceSlug; })[0];
     return hit && hit.race_type === state.raceType ? hit : null;
   }
@@ -878,15 +1087,7 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
   // ── Wiring ──
 
   function bindStep2() {
-    $('rtRace').addEventListener('change', function (e) {
-      state.raceSlug = e.target.value;
-      var race = selectedRace();
-      if (race && race.date) {
-        state.date = race.date;
-        $('rtDate').value = race.date;
-      }
-      recalc();
-    });
+    bindCombo();
     $('rtDate').addEventListener('change', function (e) {
       state.date = e.target.value;
       recalc();
@@ -906,19 +1107,25 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
   }
 
   function restoreStep2Fields() {
-    $('rtDate').value = state.date;
     $('rtGoal').value = state.goal;
     $('rtHoursNow').value = state.hoursNow;
     $('rtHoursPlan').value = state.hoursPlan;
     $('rtExp').value = state.exp;
-    if (state.raceSlug) {
-      var sel = $('rtRace');
-      sel.value = state.raceSlug;
-      // A slug the current distance does not offer leaves the select on
-      // selectedIndex -1, which renders as an empty box rather than falling
-      // back to "no specific race". Reset it and drop the slug from the state.
-      if (!sel.value) { sel.selectedIndex = 0; state.raceSlug = ''; }
+    // A slug the calendar cannot resolve — a stale shared link, a race whose
+    // date has passed since, or a slug paired with the wrong distance — must
+    // not sit in the state where it would go straight back into the share URL.
+    if (state.raceSlug && state.raceSlug !== OTHER && !selectedRace()) {
+      state.raceSlug = '';
     }
+    renderComboInput();
+    // A link from a race detail page carries the slug but no date — only the
+    // change handler used to copy it over, and that never fires on a deep link.
+    // Without this the race sits selected while "Renndatum" stays empty, and
+    // the remaining time that drives the whole race-day projection is missing.
+    // An explicit ?date= wins: a shared link may deliberately differ.
+    var race = selectedRace();
+    if (!state.date && race && race.date) state.date = race.date;
+    $('rtDate').value = state.date;
   }
 
   function init() {

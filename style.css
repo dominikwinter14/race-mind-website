@@ -2553,6 +2553,13 @@ a.race-card-image {
   gap: 1.25rem;
 }
 
+/* The buttons used to sit in the right-hand column, so they only ever spanned
+   the width of the coach tip. As a grid item across both columns they get the
+   full card width — and four of them then fit in one row. */
+.race-card-details-grid > .race-card-footer {
+  grid-column: 1 / -1;
+}
+
 .race-card-description h4,
 .race-card-coaching h4 {
   font-size: 0.85rem;
@@ -2581,25 +2588,23 @@ a.race-card-image {
   margin: 0;
 }
 
-.race-card-coaching ul {
-  padding-left: 1.1rem;
-  margin: 0;
+/* 0.85rem matches .race-detail-hint: without bullets the ten cards that carry
+   three tips need the gap to tell them apart. */
+.race-card-coaching p {
+  margin: 0 0 0.85rem;
   font-size: 0.82rem;
   line-height: 1.6;
   color: var(--muted);
 }
 
-.race-card-coaching li {
-  margin-bottom: 0.4rem;
-}
-
-.race-card-coaching li::marker {
-  color: var(--primary);
+.race-card-coaching p:last-child {
+  margin-bottom: 0;
 }
 
 .race-card-footer {
   margin-top: 0.75rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   width: 100%;
 }
@@ -2609,10 +2614,13 @@ a.race-card-image {
   padding: 0;
 }
 
+/* `1 1 auto`, not `1`: with four nowrap buttons an equal-share basis pushes the
+   row past the card between 768px and roughly 1100px. Sizing from the content
+   lets the last one wrap to its own line instead. */
 .race-card-footer .btn {
   font-size: 0.85rem;
   padding: 0.8rem 1.1rem;
-  flex: 1;
+  flex: 1 1 auto;
   text-align: center;
   white-space: nowrap;
 }

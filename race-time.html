@@ -107,6 +107,34 @@
     .rt-field select:focus, .rt-field input:focus { outline: none; border-color: var(--primary); }
     .rt-field input::placeholder { color: var(--muted); opacity: 0.5; }
     .rt-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+
+    /* Race combobox: input + filtered listbox. A plain <select> with 46 marathons
+       gives no way to find out that your race is missing without scrolling all
+       of them, and no way to say so once you have. */
+    .rt-combo { position: relative; }
+    .rt-combo-input { padding-right: 2.5rem !important; }
+    .rt-combo-toggle {
+      position: absolute; top: 0; right: 0; height: 100%; width: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; padding: 0; cursor: pointer; color: var(--muted);
+    }
+    .rt-combo-toggle svg { width: 16px; height: 16px; transition: transform 0.2s; }
+    .rt-combo.is-open .rt-combo-toggle svg { transform: rotate(180deg); }
+    .rt-combo-list {
+      position: absolute; z-index: 20; top: calc(100% + 0.35rem); left: 0; right: 0;
+      max-height: 16rem; overflow-y: auto; list-style: none; margin: 0; padding: 0.3rem;
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius); box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    .rt-combo-opt {
+      padding: 0.6rem 0.7rem; border-radius: 0.6rem; cursor: pointer;
+      font-size: 0.9rem; line-height: 1.35;
+    }
+    .rt-combo-opt:hover, .rt-combo-opt.is-active { background: rgba(255,255,255,0.08); }
+    .rt-combo-opt[aria-selected="true"] { color: var(--primary); }
+    .rt-combo-opt-date { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+    .rt-combo-sep { height: 1px; margin: 0.3rem 0.2rem; background: rgba(255,255,255,0.09); }
+    .rt-combo-empty { padding: 0.6rem 0.7rem; font-size: 0.82rem; color: var(--muted); }
     .rt-assume { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-top: 1.5rem; }
 
     /* Result */
@@ -169,13 +197,19 @@
     }
     .rt-how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
     .rt-how-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
-    .rt-how-step code { font-size: 0.78rem; color: var(--secondary); display: block; margin-top: 0.6rem; word-break: break-word; }
     .rt-explain details {
       background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem;
     }
     .rt-explain summary { cursor: pointer; font-weight: 600; }
     .rt-explain details p { color: var(--muted); line-height: 1.65; margin-top: 0.75rem; font-size: 0.92rem; }
+    .rt-explain details p + p { margin-top: 0.85rem; }
+    /* Citations sit apart from the prose: smaller, dimmer, no wrap-around. */
+    .rt-explain details p.rt-refs {
+      font-size: 0.8rem; opacity: 0.75; line-height: 1.6;
+      margin-top: 1rem; padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
     .rt-cta-row { text-align: center; margin: 3rem auto 0; }
     .rt-cta-line { color: var(--foreground); font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
 
@@ -214,7 +248,7 @@
       "name": "Und woher kommt der zweite Schritt?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Welchen Anteil deiner Schwellenleistung du über eine Renndistanz halten kannst, sinkt mit der Länge des Rennens und steigt mit deinem Trainingsstand. Diese Faktoren sind unsere eigene Modellierung, kalibriert an realen Rennergebnissen und laufend nachgeschärft. Sie stammen nicht aus einer einzelnen Publikation, und wir tun auch nicht so, als wäre das der Fall."
+        "text": "Dass der haltbare Anteil deiner Schwelle mit der Renndauer sinkt, ist gut untersucht. Péronnet und Thibault haben 1989 gezeigt, dass die aufrechterhaltbare aerobe Leistung ab etwa sieben Minuten Belastung mit dem Logarithmus der Renndauer abnimmt – nicht linear. Deshalb kostet der Sprung von der Mittel- auf die Langdistanz mehr, als die doppelte Strecke vermuten lässt. Wie weit oben du dabei liegst, hängt an deinem Trainingsstand: Joyner beschrieb 1991, dass gut trainierte Läufer den Marathon nahe ihrem Laktatschwellen-Tempo bestreiten, während Ungetrainte deutlich darunter bleiben. Fürs Schwimmen nutzen wir die kritische Geschwindigkeit, die Wakayoshi und Kollegen 1992 als Feldmaß für das maximale Laktat-Steady-State bestätigt haben. Die konkreten Zahlen pro Level und Distanz sind damit eingerahmt, aber nicht abgeleitet: Wir kalibrieren sie an realen Rennergebnissen und schärfen sie laufend nach. Auf dem Rad folgen wir zudem der etablierten Wattmesser-Praxis – rund 70 % der Schwellenleistung auf der Langdistanz, entsprechend mehr auf den kurzen. Das ist Erfahrungswissen aus der Trainingspraxis und keine einzelne Studie, und wir tun auch nicht so, als wäre es eine."
       }
     },
     {
@@ -342,9 +376,18 @@
 
         <div class="rt-fields">
           <div class="rt-field rt-field--full" id="rtRaceField">
-            <label for="rtRace">Rennen</label>
-            <select id="rtRace"><option value="">Kein bestimmtes Rennen</option></select>
-            <p class="rt-hint">&Uuml;bernimmt Datum und Kursfaktor aus unserem Rennkalender.</p>
+            <label for="rtRaceInput">Rennen</label>
+            <div class="rt-combo" id="rtCombo">
+              <input id="rtRaceInput" class="rt-combo-input" type="text" autocomplete="off"
+                     role="combobox" aria-expanded="false" aria-controls="rtRaceList"
+                     aria-autocomplete="list" aria-haspopup="listbox"
+                     placeholder="Rennen suchen &ndash; oder leer lassen">
+              <button type="button" class="rt-combo-toggle" id="rtRaceToggle" aria-label="Rennliste &ouml;ffnen" tabindex="-1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="rt-combo-list" id="rtRaceList" role="listbox" aria-label="Rennen" hidden></ul>
+            </div>
+            <p class="rt-hint" id="rtRaceHint">&Uuml;bernimmt Datum und Kursfaktor aus unserem Rennkalender.</p>
           </div>
           <div class="rt-field">
             <label for="rtDate">Renndatum</label>
@@ -379,7 +422,6 @@
               Deine Angabe wird auf die Intensit&auml;t umgerechnet, die du etwa eine Stunde
               halten kannst &ndash; Schwellenpace, Schwellenleistung, kritische Geschwindigkeit.
             </p>
-            <code>VDOT = VO&#8322;(v) / %max(t)</code>
           </div>
           <div class="rt-how-step">
             <h3>2. Schwellenwerte &rarr; Rennzeit</h3>
@@ -387,15 +429,13 @@
               Je l&auml;nger das Rennen, desto kleiner der Anteil der Schwelle, den du h&auml;ltst.
               Beim Rad kommt die Physik dazu: Luftwiderstand, Rollreibung, Masse.
             </p>
-            <code>P = (&frac12;&middot;&rho;&middot;CdA&middot;v&sup3; + Crr&middot;m&middot;g&middot;v) / &eta;</code>
           </div>
           <div class="rt-how-step">
             <h3>3. Heute &rarr; Renntag</h3>
             <p>
-              Die erwartete Entwicklung h&auml;ngt an Trainingsalter, Umfang und verbleibender Zeit
-              &ndash; mit einer Obergrenze je Level und Distanz.
+              Die erwartete Entwicklung h&auml;ngt an deiner Erfahrung, deinem Umfang und der
+              verbleibenden Zeit &ndash; mit einer Obergrenze je Level und Distanz.
             </p>
-            <code>1 &minus; e<sup>&minus;rate&middot;Monate</sup></code>
           </div>
         </div>
 
@@ -425,11 +465,29 @@
         <details>
           <summary>Und woher kommt der zweite Schritt?</summary>
           <p>
-            Welchen Anteil deiner Schwellenleistung du &uuml;ber eine Renndistanz halten kannst,
-            sinkt mit der L&auml;nge des Rennens und steigt mit deinem Trainingsstand. Diese Faktoren
-            sind unsere eigene Modellierung, kalibriert an realen Rennergebnissen und laufend
-            nachgesch&auml;rft. Sie stammen nicht aus einer einzelnen Publikation, und wir tun auch
-            nicht so, als w&auml;re das der Fall.
+            Dass der haltbare Anteil deiner Schwelle mit der Renndauer sinkt, ist gut untersucht.
+            P&eacute;ronnet und Thibault haben 1989 gezeigt, dass die aufrechterhaltbare aerobe
+            Leistung ab etwa sieben Minuten Belastung mit dem <em>Logarithmus</em> der Renndauer
+            abnimmt &ndash; nicht linear. Deshalb kostet der Sprung von der Mittel- auf die
+            Langdistanz mehr, als die doppelte Strecke vermuten l&auml;sst. Wie weit oben du dabei
+            liegst, h&auml;ngt an deinem Trainingsstand: Joyner beschrieb 1991, dass gut trainierte
+            L&auml;ufer den Marathon nahe ihrem Laktatschwellen-Tempo bestreiten, w&auml;hrend
+            Ungetrainte deutlich darunter bleiben. F&uuml;rs Schwimmen nutzen wir die kritische
+            Geschwindigkeit, die Wakayoshi und Kollegen 1992 als Feldma&szlig; f&uuml;r das
+            maximale Laktat-Steady-State best&auml;tigt haben.
+          </p>
+          <p>
+            Die <em>konkreten</em> Zahlen pro Level und Distanz sind damit eingerahmt, aber nicht
+            abgeleitet: Wir kalibrieren sie an realen Rennergebnissen und sch&auml;rfen sie laufend
+            nach. Auf dem Rad folgen wir zudem der etablierten Wattmesser-Praxis &ndash; rund 70 %
+            der Schwellenleistung auf der Langdistanz, entsprechend mehr auf den kurzen. Das ist
+            Erfahrungswissen aus der Trainingspraxis und keine einzelne Studie, und wir tun auch
+            nicht so, als w&auml;re es eine.
+          </p>
+          <p class="rt-refs">
+            P&eacute;ronnet &amp; Thibault, <em>J Appl Physiol</em> 67(1):453&ndash;465, 1989 &middot;
+            Joyner, <em>J Appl Physiol</em> 70(2):683&ndash;687, 1991 &middot;
+            Wakayoshi et al., <em>Eur J Appl Physiol</em> 64(2):153&ndash;157, 1992
           </p>
         </details>
         <details>

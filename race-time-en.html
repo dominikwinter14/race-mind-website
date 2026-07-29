@@ -107,6 +107,34 @@
     .rt-field select:focus, .rt-field input:focus { outline: none; border-color: var(--primary); }
     .rt-field input::placeholder { color: var(--muted); opacity: 0.5; }
     .rt-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; }
+
+    /* Race combobox: input + filtered listbox. A plain <select> with 46 marathons
+       gives no way to find out that your race is missing without scrolling all
+       of them, and no way to say so once you have. */
+    .rt-combo { position: relative; }
+    .rt-combo-input { padding-right: 2.5rem !important; }
+    .rt-combo-toggle {
+      position: absolute; top: 0; right: 0; height: 100%; width: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; padding: 0; cursor: pointer; color: var(--muted);
+    }
+    .rt-combo-toggle svg { width: 16px; height: 16px; transition: transform 0.2s; }
+    .rt-combo.is-open .rt-combo-toggle svg { transform: rotate(180deg); }
+    .rt-combo-list {
+      position: absolute; z-index: 20; top: calc(100% + 0.35rem); left: 0; right: 0;
+      max-height: 16rem; overflow-y: auto; list-style: none; margin: 0; padding: 0.3rem;
+      background: var(--surface-light); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius); box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    .rt-combo-opt {
+      padding: 0.6rem 0.7rem; border-radius: 0.6rem; cursor: pointer;
+      font-size: 0.9rem; line-height: 1.35;
+    }
+    .rt-combo-opt:hover, .rt-combo-opt.is-active { background: rgba(255,255,255,0.08); }
+    .rt-combo-opt[aria-selected="true"] { color: var(--primary); }
+    .rt-combo-opt-date { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+    .rt-combo-sep { height: 1px; margin: 0.3rem 0.2rem; background: rgba(255,255,255,0.09); }
+    .rt-combo-empty { padding: 0.6rem 0.7rem; font-size: 0.82rem; color: var(--muted); }
     .rt-assume { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin-top: 1.5rem; }
 
     /* Result */
@@ -169,13 +197,19 @@
     }
     .rt-how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
     .rt-how-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
-    .rt-how-step code { font-size: 0.78rem; color: var(--secondary); display: block; margin-top: 0.6rem; word-break: break-word; }
     .rt-explain details {
       background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.75rem;
     }
     .rt-explain summary { cursor: pointer; font-weight: 600; }
     .rt-explain details p { color: var(--muted); line-height: 1.65; margin-top: 0.75rem; font-size: 0.92rem; }
+    .rt-explain details p + p { margin-top: 0.85rem; }
+    /* Citations sit apart from the prose: smaller, dimmer, no wrap-around. */
+    .rt-explain details p.rt-refs {
+      font-size: 0.8rem; opacity: 0.75; line-height: 1.6;
+      margin-top: 1rem; padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
     .rt-cta-row { text-align: center; margin: 3rem auto 0; }
     .rt-cta-line { color: var(--foreground); font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
 
@@ -214,7 +248,7 @@
       "name": "And where does the second step come from?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The fraction of your threshold output you can hold over a race distance falls as the race gets longer and rises with your training level. Those factors are our own modelling, calibrated against real race results and refined continuously. They don't come from a single publication, and we won't pretend otherwise."
+        "text": "That the sustainable fraction of your threshold falls with race duration is well studied. Péronnet and Thibault showed in 1989 that sustainable aerobic power declines with the logarithm of race duration beyond roughly seven minutes – not linearly. That is why stepping up from middle to long distance costs more than doubling the distance suggests. How high you sit within that decline depends on your training level: Joyner described in 1991 how well-trained runners race the marathon close to their lactate threshold pace, while untrained runners stay well below it. For swimming we use critical swim speed, which Wakayoshi and colleagues confirmed in 1992 as a field measure of the maximal lactate steady state. The specific numbers per level and distance are framed by this work, not derived from it: we calibrate them against real race results and keep refining them. On the bike we also follow established power-meter practice – around 70% of threshold power over the long distance, correspondingly more over the short ones. That is practical coaching knowledge rather than a single study, and we won't pretend otherwise."
       }
     },
     {
@@ -342,9 +376,18 @@
 
         <div class="rt-fields">
           <div class="rt-field rt-field--full" id="rtRaceField">
-            <label for="rtRace">Race</label>
-            <select id="rtRace"><option value="">No specific race</option></select>
-            <p class="rt-hint">Takes the date and course factor from our race calendar.</p>
+            <label for="rtRaceInput">Race</label>
+            <div class="rt-combo" id="rtCombo">
+              <input id="rtRaceInput" class="rt-combo-input" type="text" autocomplete="off"
+                     role="combobox" aria-expanded="false" aria-controls="rtRaceList"
+                     aria-autocomplete="list" aria-haspopup="listbox"
+                     placeholder="Search for your race &ndash; or leave empty">
+              <button type="button" class="rt-combo-toggle" id="rtRaceToggle" aria-label="Open race list" tabindex="-1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="rt-combo-list" id="rtRaceList" role="listbox" aria-label="Races" hidden></ul>
+            </div>
+            <p class="rt-hint" id="rtRaceHint">Takes the date and course factor from our race calendar.</p>
           </div>
           <div class="rt-field">
             <label for="rtDate">Race date</label>
@@ -379,7 +422,6 @@
               Your entry is converted into the intensity you can hold for roughly an hour &ndash;
               threshold pace, threshold power, critical swim speed.
             </p>
-            <code>VDOT = VO&#8322;(v) / %max(t)</code>
           </div>
           <div class="rt-how-step">
             <h3>2. Threshold &rarr; race time</h3>
@@ -387,15 +429,13 @@
               The longer the race, the smaller the fraction of threshold you hold. On the bike,
               physics joins in: air resistance, rolling resistance, mass.
             </p>
-            <code>P = (&frac12;&middot;&rho;&middot;CdA&middot;v&sup3; + Crr&middot;m&middot;g&middot;v) / &eta;</code>
           </div>
           <div class="rt-how-step">
             <h3>3. Today &rarr; race day</h3>
             <p>
-              Expected progress depends on training age, volume and the time you have left &ndash;
-              with a ceiling per level and distance.
+              Expected progress depends on your experience, your volume and the time you have
+              left &ndash; with a ceiling per level and distance.
             </p>
-            <code>1 &minus; e<sup>&minus;rate&middot;months</sup></code>
           </div>
         </div>
 
@@ -423,10 +463,28 @@
         <details>
           <summary>And where does the second step come from?</summary>
           <p>
-            The fraction of your threshold output you can hold over a race distance falls as the race
-            gets longer and rises with your training level. Those factors are our own modelling,
-            calibrated against real race results and refined continuously. They don&rsquo;t come from
-            a single publication, and we won&rsquo;t pretend otherwise.
+            That the sustainable fraction of your threshold falls with race duration is well
+            studied. P&eacute;ronnet and Thibault showed in 1989 that sustainable aerobic power
+            declines with the <em>logarithm</em> of race duration beyond roughly seven minutes
+            &ndash; not linearly. That is why stepping up from middle to long distance costs more
+            than doubling the distance suggests. How high you sit within that decline depends on
+            your training level: Joyner described in 1991 how well-trained runners race the marathon
+            close to their lactate threshold pace, while untrained runners stay well below it. For
+            swimming we use critical swim speed, which Wakayoshi and colleagues confirmed in 1992 as
+            a field measure of the maximal lactate steady state.
+          </p>
+          <p>
+            The <em>specific</em> numbers per level and distance are framed by this work, not
+            derived from it: we calibrate them against real race results and keep refining them. On
+            the bike we also follow established power-meter practice &ndash; around 70&nbsp;% of
+            threshold power over the long distance, correspondingly more over the short ones. That
+            is practical coaching knowledge rather than a single study, and we won&rsquo;t pretend
+            otherwise.
+          </p>
+          <p class="rt-refs">
+            P&eacute;ronnet &amp; Thibault, <em>J Appl Physiol</em> 67(1):453&ndash;465, 1989 &middot;
+            Joyner, <em>J Appl Physiol</em> 70(2):683&ndash;687, 1991 &middot;
+            Wakayoshi et al., <em>Eur J Appl Physiol</em> 64(2):153&ndash;157, 1992
           </p>
         </details>
         <details>
