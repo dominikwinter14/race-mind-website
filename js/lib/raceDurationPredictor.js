@@ -21,77 +21,98 @@ const RACE_DISTANCES = {
     half_ironman: { swim: 1900, bike: 90000, run: 21100, t1_min: 4, t2_min: 2 },
     ironman: { swim: 3800, bike: 180000, run: 42195, t1_min: 5, t2_min: 3 },
 };
-// NOTE: no '5k'/'10k' rows — pure short-course run races go through the VDOT
-// table below instead. A ≤1 factor on threshold SPEED means "slower than
-// threshold", but 5k/10k race pace is FASTER than threshold pace; the factor
-// approach predicted a 22:12 5k for an athlete whose entered PB was 20:00.
-// The tri run splits keep their factors: they encode post-swim/bike fatigue,
-// which no open-run table can.
+// NOTE: no open-run rows at all anymore — 5k/10k/HM/marathon go through the
+// VDOT table below instead (a ≤1 factor on threshold SPEED means "slower than
+// threshold", which told a 20:00-5k athlete they'd race 22:12 and a 1:31
+// half-marathoner they'd race 1:40). Only the tri run splits keep factors:
+// they encode post-swim/bike fatigue, which no open-run table can.
+// Short-course values recalibrated 2026-07-30 — the old sprint/olympic
+// factors sat 14-16% above a fresh open race, real age-group splits sit
+// closer to +8-12%.
 const RUN_RACE_FACTOR = {
-    half_marathon: { beginner: 0.87, intermediate: 0.91, advanced: 0.94 },
-    marathon: { beginner: 0.83, intermediate: 0.87, advanced: 0.90 },
-    sprint_tri: { beginner: 0.88, intermediate: 0.92, advanced: 0.95 },
-    olympic_tri: { beginner: 0.85, intermediate: 0.90, advanced: 0.93 },
+    sprint_tri: { beginner: 0.91, intermediate: 0.95, advanced: 0.98 },
+    olympic_tri: { beginner: 0.88, intermediate: 0.93, advanced: 0.96 },
     half_ironman: { beginner: 0.78, intermediate: 0.83, advanced: 0.87 },
     ironman: { beginner: 0.72, intermediate: 0.77, advanced: 0.81 },
 };
+// Short-course IFs likewise raised 2026-07-30 (trained athletes ride sprints
+// near 0.95+, olympics near 0.85-0.90); long course matches standard guidance
+// and is unchanged.
 const BIKE_RACE_IF = {
-    sprint_tri: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 },
-    olympic_tri: { beginner: 0.78, intermediate: 0.83, advanced: 0.87 },
+    sprint_tri: { beginner: 0.86, intermediate: 0.91, advanced: 0.94 },
+    olympic_tri: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 },
     half_ironman: { beginner: 0.72, intermediate: 0.77, advanced: 0.81 },
     ironman: { beginner: 0.66, intermediate: 0.72, advanced: 0.76 },
 };
+// Raised 2026-07-30: the old 0.88/0.92/0.95 compounded with OW_FACTOR to
+// +17% over CSS — with a wetsuit most athletes race within 5-10% of CSS.
 const SWIM_CSS_FACTOR = {
-    beginner: 0.88, intermediate: 0.92, advanced: 0.95,
+    beginner: 0.91, intermediate: 0.95, advanced: 0.97,
 };
 const CDA_BY_LEVEL = {
     beginner: 0.35, intermediate: 0.28, advanced: 0.24,
 };
 const OW_FACTOR = 1.08;
 const B_RACE_TIME_MULTIPLIER = 1.05;
-// ── Daniels-Gilbert VDOT (5k/10k prediction) ──
+// ── Daniels-Gilbert VDOT (open-run prediction) ──
 //
 // Same data as VDOT_TABLE in lib/realismCheck.ts — columns
-// [vdot, 5k_sec, 10k_sec, threshold_sec_km]. Kept as a copy because
-// realismCheck has no edge mirror while this file does; the sync-mirror test
-// in __tests__/lib/race-duration-predictor.test.ts trips when the copies drift.
+// [vdot, 5k_sec, 10k_sec, hm_sec, marathon_sec, threshold_sec_km]. Kept as a
+// copy because realismCheck has no edge mirror while this file does; the
+// sync-mirror test in __tests__/lib/race-duration-predictor.test.ts trips
+// when the copies drift.
 //
-// Prediction runs the derivation backwards: threshold pace → VDOT (column 3,
-// inverted) → race seconds (column 1/2). Because deriveRunThreshold maps a
-// 5–10km PB onto the same piecewise-linear grid, the round trip is the
-// identity: enter a 20:00 5k, get a 20:00 5k predicted. Level is deliberately
-// not a parameter — the threshold already encodes the athlete's fitness.
+// Prediction runs the derivation backwards: threshold pace → VDOT (column 5,
+// inverted) → race seconds (columns 1-4). Because deriveRunThreshold maps a
+// PB at any canonical distance onto the same piecewise-linear grid, the round
+// trip is the identity: enter a 20:00 5k (or 1:31 HM), get the same time
+// predicted. Level is not a parameter for 5k/10k/HM — the threshold already
+// encodes the athlete's fitness. The marathon multiplies in a level margin
+// (mileage realization, see MARATHON_LEVEL_MARGIN in realismCheck), which
+// deriveRunThreshold divides back out for entered marathon PBs.
 const VDOT_RUN_TABLE = [
-    [30, 1841, 3829, 384],
-    [33, 1700, 3534, 356],
-    [35, 1619, 3362, 340],
-    [37, 1545, 3207, 325],
-    [40, 1446, 3001, 306],
-    [42, 1388, 2878, 294],
-    [45, 1309, 2713, 278],
-    [48, 1238, 2568, 264],
-    [50, 1196, 2480, 255],
-    [52, 1157, 2398, 247],
-    [55, 1102, 2286, 236],
-    [58, 1053, 2184, 226],
-    [60, 1023, 2122, 220],
-    [63, 981, 2035, 212],
-    [65, 955, 1982, 206],
-    [70, 896, 1861, 194],
-    [75, 844, 1755, 184],
-    [80, 798, 1662, 174],
-    [85, 757, 1579, 166],
+    [30, 1841, 3829, 8477, 17389, 384],
+    [33, 1700, 3534, 7831, 16114, 356],
+    [35, 1619, 3362, 7453, 15366, 340],
+    [37, 1545, 3207, 7111, 14687, 325],
+    [40, 1446, 3001, 6654, 13777, 306],
+    [42, 1388, 2878, 6382, 13233, 294],
+    [45, 1309, 2713, 6014, 12496, 278],
+    [48, 1238, 2568, 5688, 11839, 264],
+    [50, 1196, 2480, 5491, 11440, 255],
+    [52, 1157, 2398, 5308, 11068, 247],
+    [55, 1102, 2286, 5056, 10555, 236],
+    [58, 1053, 2184, 4828, 10089, 226],
+    [60, 1023, 2122, 4689, 9802, 220],
+    [63, 981, 2035, 4494, 9403, 212],
+    [65, 955, 1982, 4374, 9155, 206],
+    [70, 896, 1861, 4103, 8593, 194],
+    [75, 844, 1755, 3866, 8099, 184],
+    [80, 798, 1662, 3657, 7663, 174],
+    [85, 757, 1579, 3471, 7275, 166],
 ];
-/** Race seconds for a canonical 5k (col 1) or 10k (col 2) from threshold pace,
+// Mirrors MARATHON_LEVEL_MARGIN in lib/realismCheck.ts — keep identical
+// (parity-tested). Applied on top of the pure Daniels marathon time.
+const MARATHON_LEVEL_MARGIN = {
+    beginner: 1.08, intermediate: 1.05, advanced: 1.02,
+};
+// Open-run race types → their VDOT_RUN_TABLE time column + canonical distance.
+const VDOT_RACE_COL = {
+    '5k': { col: 1, baseDist: 5000 },
+    '10k': { col: 2, baseDist: 10000 },
+    half_marathon: { col: 3, baseDist: 21097.5 },
+    marathon: { col: 4, baseDist: 42195 },
+};
+/** Race seconds for a canonical distance column from threshold pace,
  *  clamped to the table's VDOT range at both ends. */
 function raceSecondsFromThreshold(thresholdSecKm, col) {
     const t = VDOT_RUN_TABLE;
-    // Column 3 falls monotonically with VDOT — walk the segments directly.
-    if (thresholdSecKm >= t[0][3])
+    // Column 5 falls monotonically with VDOT — walk the segments directly.
+    if (thresholdSecKm >= t[0][5])
         return t[0][col];
     for (let i = 0; i < t.length - 1; i++) {
-        if (thresholdSecKm <= t[i][3] && thresholdSecKm >= t[i + 1][3]) {
-            const frac = (t[i][3] - thresholdSecKm) / (t[i][3] - t[i + 1][3]);
+        if (thresholdSecKm <= t[i][5] && thresholdSecKm >= t[i + 1][5]) {
+            const frac = (t[i][5] - thresholdSecKm) / (t[i][5] - t[i + 1][5]);
             return t[i][col] + frac * (t[i + 1][col] - t[i][col]);
         }
     }
@@ -121,12 +142,15 @@ export function predictRaceDuration(thresholds, opts) {
     if (dist.run > 0) {
         const tp = thresholds.run_threshold_pace_sec_km;
         if (tp && tp > 0) {
-            if (opts.raceType === '5k' || opts.raceType === '10k') {
-                // Short course: VDOT round trip, see VDOT_RUN_TABLE. Non-canonical
+            const vdotRace = VDOT_RACE_COL[opts.raceType];
+            if (vdotRace) {
+                // Open run: VDOT round trip, see VDOT_RUN_TABLE. Non-canonical
                 // distances (race_config course lengths) scale off the table time.
-                const baseDist = opts.raceType === '5k' ? 5000 : 10000;
-                const raceSec = raceSecondsFromThreshold(tp, opts.raceType === '5k' ? 1 : 2);
-                runHours = (raceSec / 3600) * (dist.run / baseDist);
+                let raceSec = raceSecondsFromThreshold(tp, vdotRace.col);
+                if (opts.raceType === 'marathon') {
+                    raceSec *= MARATHON_LEVEL_MARGIN[opts.level] ?? 1.05;
+                }
+                runHours = (raceSec / 3600) * (dist.run / vdotRace.baseDist);
             }
             else {
                 const factor = RUN_RACE_FACTOR[opts.raceType]?.[opts.level] ?? 0.85;

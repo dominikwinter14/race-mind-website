@@ -19,7 +19,7 @@ const RACE_TYPE_DISTANCES = {
     '10k': { swim: 0, bike: 0, run: 10000, t1_min: 0, t2_min: 0 },
     '5k': { swim: 0, bike: 0, run: 5000, t1_min: 0, t2_min: 0 },
 };
-// [vdot, 5k_sec, 10k_sec, threshold_pace_sec_km]
+// [vdot, 5k_sec, 10k_sec, hm_sec, marathon_sec, threshold_pace_sec_km]
 //
 // Generated from the published Daniels-Gilbert equations (Oxygen Power, 1979):
 //   VO2(v)   = -4.60 + 0.182258*v + 0.000104*v^2        (v in m/min)
@@ -39,26 +39,37 @@ const RACE_TYPE_DISTANCES = {
 // different threshold depending on whether they entered 10 km or 11 km.
 // Regenerate with scripts/vdot-table.mjs if this ever needs revisiting.
 const VDOT_TABLE = [
-    [30, 1841, 3829, 384],
-    [33, 1700, 3534, 356],
-    [35, 1619, 3362, 340],
-    [37, 1545, 3207, 325],
-    [40, 1446, 3001, 306],
-    [42, 1388, 2878, 294],
-    [45, 1309, 2713, 278],
-    [48, 1238, 2568, 264],
-    [50, 1196, 2480, 255],
-    [52, 1157, 2398, 247],
-    [55, 1102, 2286, 236],
-    [58, 1053, 2184, 226],
-    [60, 1023, 2122, 220],
-    [63, 981, 2035, 212],
-    [65, 955, 1982, 206],
-    [70, 896, 1861, 194],
-    [75, 844, 1755, 184],
-    [80, 798, 1662, 174],
-    [85, 757, 1579, 166],
+    [30, 1841, 3829, 8477, 17389, 384],
+    [33, 1700, 3534, 7831, 16114, 356],
+    [35, 1619, 3362, 7453, 15366, 340],
+    [37, 1545, 3207, 7111, 14687, 325],
+    [40, 1446, 3001, 6654, 13777, 306],
+    [42, 1388, 2878, 6382, 13233, 294],
+    [45, 1309, 2713, 6014, 12496, 278],
+    [48, 1238, 2568, 5688, 11839, 264],
+    [50, 1196, 2480, 5491, 11440, 255],
+    [52, 1157, 2398, 5308, 11068, 247],
+    [55, 1102, 2286, 5056, 10555, 236],
+    [58, 1053, 2184, 4828, 10089, 226],
+    [60, 1023, 2122, 4689, 9802, 220],
+    [63, 981, 2035, 4494, 9403, 212],
+    [65, 955, 1982, 4374, 9155, 206],
+    [70, 896, 1861, 4103, 8593, 194],
+    [75, 844, 1755, 3866, 8099, 184],
+    [80, 798, 1662, 3657, 7663, 174],
+    [85, 757, 1579, 3471, 7275, 166],
 ];
+// Marathon realization margin on top of pure Daniels equivalence. Daniels
+// assumes marathon-appropriate mileage; recreational runners underperform the
+// equivalent time by mileage tier (Vickers & Vertosick 2016, n≈2500: HM
+// predictions from shorter races hold, marathons run ~5-10 min slower).
+// Applied symmetrically: prediction multiplies the Daniels time by this,
+// deriveRunThreshold divides an entered marathon PB by it — round trip stays
+// the identity for every level. Mirrored in both race-duration predictors
+// (parity-tested); change all three together.
+export const MARATHON_LEVEL_MARGIN = {
+    beginner: 1.08, intermediate: 1.05, advanced: 1.02,
+};
 // ══════════════════════════════════════════════════════════
 // ENTRY POINT 1: Manuelles Onboarding → Prognose + Realism
 // ══════════════════════════════════════════════════════════
@@ -741,45 +752,30 @@ export function deriveRunThreshold(input, level) {
     }
     if (!distM || !durationSec)
         return null;
-    const paceSecKm = (durationSec / distM) * 1000;
     const distKm = distM / 1000;
     const MIN_DIST_KM = 1;
     if (distKm < MIN_DIST_KM)
         return null;
+    // Every distance now runs through the same Daniels-Gilbert grid that the
+    // race-duration predictors invert, so entering a PB at ANY of the four
+    // canonical distances and predicting that same distance is the identity
+    // (the old flat factors told a 1:31 half-marathoner they'd run 1:40).
+    // Corridor labels still grade the evidence for the confidence mapping:
     if (distKm < 5) {
-        // Riegel-projected onto the 5k table column inside vdotToThreshold — the
-        // old flat 1.15–1.20 pace factors jumped ~16 s/km against the VDOT branch
-        // at exactly 5 km. 'sprint' label kept: a projected sub-5k effort stays
-        // lower-confidence than a true 5–10k PB.
+        // 'sprint': a projected sub-5k effort stays lower-confidence than a
+        // measured 5k+ PB even though it uses the same table.
         input._corridor = 'sprint';
-        return vdotToThreshold(distM, durationSec);
+        return vdotToThreshold(distM, durationSec, level);
     }
-    if (distKm <= 10) {
+    if (distKm <= 21.0975) {
         input._corridor = 'vdot';
-        return vdotToThreshold(distM, durationSec);
+        return vdotToThreshold(distM, durationSec, level);
     }
-    if (distKm <= 15) {
-        // Blend from the VDOT projection (exact at 10 km) out to the flat tempo
-        // factor at 15 km. The flat factor alone is fitness-blind and sat up to
-        // ~6 s/km away from the VDOT branch right across the 10 km seam.
-        const tempo = paceSecKm * lerp(1.03, 1.01, (distKm - 11) / 4);
-        const viaVdot = vdotToThreshold(distM, durationSec);
-        const w = (distKm - 10) / 5;
-        input._corridor = 'tempo';
-        return round2(viaVdot == null ? tempo : viaVdot * (1 - w) + tempo * w);
-    }
-    if (distKm <= 21.1) {
-        input._corridor = 'threshold';
-        return round2(paceSecKm * 1.00);
-    }
-    // Continuous bridge from the half-marathon anchor (×1.00 at 21.1 km) to the
-    // marathon anchor (×0.87 at 42.195 km, the inverse of the intermediate
-    // RUN_RACE_FACTOR so the marathon round trip holds), clamped beyond. The old
-    // lerp started at ×0.92 from 22 km — an 8% threshold cliff right past the
-    // half-marathon distance.
-    const marathonFactor = lerp(1.00, 0.87, Math.min(1, (distKm - 21.1) / (42.195 - 21.1)));
+    // 'endurance': beyond the half marathon the level-dependent realization
+    // margin (see enduranceMargin) is divided out — still a measured race, but
+    // the mileage assumption keeps it below 'vdot' confidence.
     input._corridor = 'endurance';
-    return round2(paceSecKm * marathonFactor);
+    return vdotToThreshold(distM, durationSec, level);
 }
 // ══════════════════════════════════════════════════════════
 // DERIVE: Bike → FTP (watts)
@@ -908,23 +904,49 @@ export function deriveSwimCSS(input, level) {
 /** Riegel exponent for projecting a performance to a nearby distance —
  *  T2 = T1 × (D2/D1)^1.06 (Riegel 1981, holds well 1.5k–marathon). */
 const RIEGEL_EXPONENT = 1.06;
-function vdotToThreshold(distM, durationSec) {
-    // Riegel-project the effort onto BOTH canonical table distances and blend
-    // the resulting VDOTs by where the input sits between 5 and 10 km. At
-    // exactly 5000/10000 m the projection is the identity, so table lookups
-    // stay byte-identical for true 5k/10k PBs; in between the blend replaces
-    // the old hard branch at 7500 m, which flipped the same effort between the
-    // two columns and jumped the threshold by up to ~24 s/km. Below 5 km the
-    // weight clamps to pure 5k projection (sprint corridor).
-    const t5 = durationSec * Math.pow(5000 / distM, RIEGEL_EXPONENT);
-    const t10 = durationSec * Math.pow(10000 / distM, RIEGEL_EXPONENT);
-    const vdot5 = interpolateVDOT(VDOT_TABLE, 1, t5);
-    const vdot10 = interpolateVDOT(VDOT_TABLE, 2, t10);
-    if (vdot5 == null || vdot10 == null)
+// Canonical table distances and their time columns in VDOT_TABLE.
+const VDOT_ANCHORS = [
+    { distM: 5000, col: 1 },
+    { distM: 10000, col: 2 },
+    { distM: 21097.5, col: 3 },
+    { distM: 42195, col: 4 },
+];
+const VDOT_THRESHOLD_COL = 5;
+/** Marathon margin faded in between HM and marathon distance: an entered HM
+ *  is pure Daniels (1.0), an entered marathon carries the full level margin,
+ *  anything between (and beyond, clamped) lerps. Keeps the 21.1 km seam
+ *  continuous and makes derivation the exact inverse of prediction. */
+function enduranceMargin(distM, level) {
+    const t = Math.min(1, Math.max(0, (distM - 21097.5) / (42195 - 21097.5)));
+    return lerp(1.0, MARATHON_LEVEL_MARGIN[level] ?? 1.05, t);
+}
+function vdotToThreshold(distM, durationSec, level) {
+    // Riegel-project the (margin-adjusted) effort onto the two bracketing
+    // canonical distances and blend the resulting VDOTs by where the input sits
+    // between them. At an exact anchor the projection is the identity, so table
+    // lookups stay byte-identical for true PBs; in between the blend keeps the
+    // threshold continuous (the old hard branches jumped up to ~24 s/km).
+    // Below 5 km the weight clamps to pure 5k projection (sprint corridor),
+    // beyond the marathon to pure marathon projection.
+    const adjustedSec = durationSec / enduranceMargin(distM, level);
+    let lo = VDOT_ANCHORS[0];
+    let hi = VDOT_ANCHORS[VDOT_ANCHORS.length - 1];
+    for (let i = 0; i < VDOT_ANCHORS.length - 1; i++) {
+        if (distM <= VDOT_ANCHORS[i + 1].distM) {
+            lo = VDOT_ANCHORS[i];
+            hi = VDOT_ANCHORS[i + 1];
+            break;
+        }
+    }
+    const tLo = adjustedSec * Math.pow(lo.distM / distM, RIEGEL_EXPONENT);
+    const tHi = adjustedSec * Math.pow(hi.distM / distM, RIEGEL_EXPONENT);
+    const vdotLo = interpolateVDOT(VDOT_TABLE, lo.col, tLo);
+    const vdotHi = interpolateVDOT(VDOT_TABLE, hi.col, tHi);
+    if (vdotLo == null || vdotHi == null)
         return null;
-    const w = Math.min(1, Math.max(0, (distM - 5000) / 5000));
-    const vdot = vdot5 * (1 - w) + vdot10 * w;
-    return interpolateFromVDOT(VDOT_TABLE, vdot, 3);
+    const w = Math.min(1, Math.max(0, (distM - lo.distM) / (hi.distM - lo.distM)));
+    const vdot = vdotLo * (1 - w) + vdotHi * w;
+    return interpolateFromVDOT(VDOT_TABLE, vdot, VDOT_THRESHOLD_COL);
 }
 function interpolateVDOT(table, timeCol, timeSec) {
     for (let i = 0; i < table.length - 1; i++) {
