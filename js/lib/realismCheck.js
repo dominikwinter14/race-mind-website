@@ -279,6 +279,18 @@ export function getMissingDisciplines(baseline, raceType) {
 function inRange(v, min, max) {
     return typeof v === 'number' && v >= min && v <= max;
 }
+/**
+ * Range check for optional metrics: a missing value passes, a present one
+ * must be in range. Used for the efficiency factors — they depend on device
+ * data the athlete may simply not have (bike EF = NP/HR needs a power meter,
+ * run/swim EF need a HR strap), so their absence must not block the fast path.
+ * A present-but-absurd value still counts as implausible.
+ */
+function inRangeIfPresent(v, min, max) {
+    if (v === null || v === undefined)
+        return true;
+    return inRange(v, min, max);
+}
 export function isBaselinePlausible(baseline, raceType) {
     if (!baseline)
         return { ok: false, reason: 'baseline_null' };
@@ -288,8 +300,8 @@ export function isBaselinePlausible(baseline, raceType) {
     if (!inRange(baseline.current_run_threshold_pace_sec_km, 150, 480)) {
         return { ok: false, reason: `run_threshold_pace_out_of_range:${baseline.current_run_threshold_pace_sec_km}` };
     }
-    // Run EF required
-    if (!inRange(baseline.current_run_ef, 0.5, 3.5)) {
+    // Run EF optional (needs HR data) — only sanity-checked when present
+    if (!inRangeIfPresent(baseline.current_run_ef, 0.5, 3.5)) {
         return { ok: false, reason: `run_ef_out_of_range:${baseline.current_run_ef}` };
     }
     if (isTriRace) {
@@ -301,12 +313,12 @@ export function isBaselinePlausible(baseline, raceType) {
         if (!inRange(baseline.current_css_pace_100m, 60, 210)) {
             return { ok: false, reason: `css_out_of_range:${baseline.current_css_pace_100m}` };
         }
-        // Bike EF required
-        if (!inRange(baseline.current_bike_ef, 0.5, 4.0)) {
+        // Bike EF optional (NP/HR needs a power meter) — sanity-checked when present
+        if (!inRangeIfPresent(baseline.current_bike_ef, 0.5, 4.0)) {
             return { ok: false, reason: `bike_ef_out_of_range:${baseline.current_bike_ef}` };
         }
-        // Swim EF required
-        if (!inRange(baseline.current_swim_ef, 0.3, 5.0)) {
+        // Swim EF optional (speed/HR needs HR in the water) — sanity-checked when present
+        if (!inRangeIfPresent(baseline.current_swim_ef, 0.3, 5.0)) {
             return { ok: false, reason: `swim_ef_out_of_range:${baseline.current_swim_ef}` };
         }
     }
