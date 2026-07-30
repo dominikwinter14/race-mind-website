@@ -3,12 +3,12 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["FWDHP49G44.de.racemind.app"],
+        "appIDs": ["X29FL6W9L6.de.racemind.app"],
         "paths": ["/friend/*", "/r/*"]
       }
     ]
   },
   "webcredentials": {
-    "apps": ["FWDHP49G44.de.racemind.app"]
+    "apps": ["X29FL6W9L6.de.racemind.app"]
   }
 }
