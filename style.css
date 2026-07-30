@@ -2885,6 +2885,13 @@ a.race-card-image {
   align-items: start;
 }
 
+/* A grid item's automatic minimum size is its min-content width, so the nowrap Kona table
+   stretched the 1fr track past the viewport and the whole page scrolled sideways on phones.
+   min-width: 0 lets the track shrink so .rk-table-wrap can do the scrolling instead. */
+.race-detail-content {
+  min-width: 0;
+}
+
 .race-detail-back {
   display: inline-block;
   margin-bottom: 1.5rem;

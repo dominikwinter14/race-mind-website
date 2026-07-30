@@ -109,6 +109,12 @@
     .kc-years th:first-child, .kc-years td:first-child { text-align: left; }
     .kc-years th { color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
     .kc-years td.kc-cut { font-weight: 700; color: var(--foreground); }
+    /* Four columns at 320px (iPhone SE) overshoot the viewport by a few pixels and make the
+       whole page scroll sideways. Tightening the cell padding is enough to keep it contained. */
+    @media (max-width: 360px) {
+      .kc-years { font-size: 0.82rem; }
+      .kc-years th, .kc-years td { padding: 0.55rem 0.25rem; }
+    }
 
     /* Actions */
     .kc-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
