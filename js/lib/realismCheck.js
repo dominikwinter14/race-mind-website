@@ -39,6 +39,15 @@ const RACE_TYPE_DISTANCES = {
 // different threshold depending on whether they entered 10 km or 11 km.
 // Regenerate with scripts/vdot-table.mjs if this ever needs revisiting.
 const VDOT_TABLE = [
+    [12, 3756, 7802, 16869, 33876, 754],
+    [14, 3361, 6995, 15196, 30576, 679],
+    [16, 3042, 6338, 13825, 27880, 618],
+    [18, 2779, 5793, 12681, 25634, 567],
+    [20, 2559, 5334, 11712, 23735, 525],
+    [22, 2372, 4943, 10881, 22106, 488],
+    [24, 2211, 4606, 10160, 20693, 457],
+    [26, 2071, 4313, 9529, 19455, 430],
+    [28, 1949, 4056, 8972, 18362, 406],
     [30, 1841, 3829, 8477, 17389, 384],
     [33, 1700, 3534, 7831, 16114, 356],
     [35, 1619, 3362, 7453, 15366, 340],
@@ -58,6 +67,7 @@ const VDOT_TABLE = [
     [75, 844, 1755, 3866, 8099, 184],
     [80, 798, 1662, 3657, 7663, 174],
     [85, 757, 1579, 3471, 7275, 166],
+    [90, 721, 1505, 3306, 6927, 159],
 ];
 // Marathon realization margin on top of pure Daniels equivalence. Daniels
 // assumes marathon-appropriate mileage; recreational runners underperform the
@@ -296,8 +306,15 @@ export function isBaselinePlausible(baseline, raceType) {
         return { ok: false, reason: 'baseline_null' };
     const isTriRace = raceType === 'ironman' || raceType === 'half_ironman'
         || raceType === 'olympic_tri' || raceType === 'sprint_tri';
-    // Run threshold pace required: 2:30–8:00/km → 150–480 sec
-    if (!inRange(baseline.current_run_threshold_pace_sec_km, 150, 480)) {
+    // Run threshold pace required: 2:30–10:00/km → 150–600 sec.
+    // The upper bound was 480 (8:00/km) and rejected legitimately slow athletes:
+    // a sprint-tri beginner with a COMPLETE Garmin import and 9:02/km threshold
+    // pace was pushed through the manual fitness questionnaire instead of the
+    // fast path (Sentry REACT-NATIVE-3T, 2026-07-30) — same failure mode as the
+    // EF gate. 10:00/km is where running turns into walking, so the bound still
+    // catches genuine garbage, and threshold_check shows the value pre-filled and
+    // editable, so an implausible-but-passing value gets corrected there anyway.
+    if (!inRange(baseline.current_run_threshold_pace_sec_km, 150, 600)) {
         return { ok: false, reason: `run_threshold_pace_out_of_range:${baseline.current_run_threshold_pace_sec_km}` };
     }
     // Run EF optional (needs HR data) — only sanity-checked when present

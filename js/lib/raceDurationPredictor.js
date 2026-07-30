@@ -26,14 +26,25 @@ const RACE_DISTANCES = {
 // threshold", which told a 20:00-5k athlete they'd race 22:12 and a 1:31
 // half-marathoner they'd race 1:40). Only the tri run splits keep factors:
 // they encode post-swim/bike fatigue, which no open-run table can.
-// Short-course values recalibrated 2026-07-30 — the old sprint/olympic
-// factors sat 14-16% above a fresh open race, real age-group splits sit
-// closer to +8-12%.
+//
+// Recalibrated 2026-07-30 (second pass), IM-anchored. No published table maps
+// tri run pace onto threshold speed — Millet & Vleck 2000 documents the
+// post-cycling economy loss but gives no per-level values. What CAN be checked
+// is the shape: expressed as "seconds/km slower than the equivalent OPEN race
+// at the same distance" (Daniels reference), the ironman row landed on common
+// coaching guidance (+25-50 s/km) while the shorter distances drifted
+// progressively above it — sprint sat at +21-41 s/km against a +5-15 corridor.
+// Only cells OUTSIDE the corridor were moved; olympic advanced, IM intermediate
+// and IM advanced were already inside and are untouched. Beginners stay
+// deliberately below the corridor (it describes a trained age-grouper, and the
+// optimistic direction is the dangerous one).
+// Keep byte-identical with the edge copy (race-duration-parity.test.ts).
 const RUN_RACE_FACTOR = {
-    sprint_tri: { beginner: 0.91, intermediate: 0.95, advanced: 0.98 },
-    olympic_tri: { beginner: 0.88, intermediate: 0.93, advanced: 0.96 },
-    half_ironman: { beginner: 0.78, intermediate: 0.83, advanced: 0.87 },
-    ironman: { beginner: 0.72, intermediate: 0.77, advanced: 0.81 },
+    //                                                     implied s/km vs the open race
+    sprint_tri: { beginner: 0.930, intermediate: 0.965, advanced: 1.00 }, // +35 / +25 / +16
+    olympic_tri: { beginner: 0.880, intermediate: 0.930, advanced: 0.96 }, // +42 / +26 / +18
+    half_ironman: { beginner: 0.820, intermediate: 0.865, advanced: 0.89 }, // +51 / +35 / +26
+    ironman: { beginner: 0.730, intermediate: 0.775, advanced: 0.81 }, // +57 / +44 / +38
 };
 // Short-course IFs likewise raised 2026-07-30 (trained athletes ride sprints
 // near 0.95+, olympics near 0.85-0.90); long course matches standard guidance
@@ -52,8 +63,34 @@ const SWIM_CSS_FACTOR = {
 const CDA_BY_LEVEL = {
     beginner: 0.35, intermediate: 0.28, advanced: 0.24,
 };
+/** Course reality factor: the power balance below solves for a flat, windless
+ * course ridden in a constant position. A real race has wind asymmetry (the
+ * headwind half costs more time than the tailwind half returns), corners,
+ * aid stations, position changes and accumulating fatigue. Dividing by this
+ * converts the ideal-physics time into a race time.
+ *
+ * Adopted 2026-07-30 from update-baseline.ts, which had it all along while
+ * this file did not — the two disagreed by ~28 min on an Ironman bike split
+ * for identical inputs. Long course is penalised most: more hours exposed,
+ * and more of them spent out of the aero position. */
+const BIKE_COURSE_REALITY = {
+    ironman: 0.92,
+    half_ironman: 0.95,
+    olympic_tri: 0.97,
+    sprint_tri: 0.97,
+};
+const BIKE_COURSE_REALITY_DEFAULT = 0.92;
 const OW_FACTOR = 1.08;
-const B_RACE_TIME_MULTIPLIER = 1.05;
+const B_RACE_TIME_MULTIPLIER = 1.05; // legacy, no effort field
+// §17.2 duration relaxation per effort — buffer for what the race takes out of
+// the week, not a pace prediction. Keep identical with the edge copy; the app
+// copy lacked this entirely, so the two predictors disagreed by up to 1.1 h on
+// an Ironman whenever an effort was passed.
+const B_RACE_EFFORT_MULTIPLIER = {
+    all_out: 1.15,
+    tempo: 1.08,
+    training: 1.0,
+};
 // ── Daniels-Gilbert VDOT (open-run prediction) ──
 //
 // Same data as VDOT_TABLE in lib/realismCheck.ts — columns
@@ -71,6 +108,15 @@ const B_RACE_TIME_MULTIPLIER = 1.05;
 // (mileage realization, see MARATHON_LEVEL_MARGIN in realismCheck), which
 // deriveRunThreshold divides back out for entered marathon PBs.
 const VDOT_RUN_TABLE = [
+    [12, 3756, 7802, 16869, 33876, 754],
+    [14, 3361, 6995, 15196, 30576, 679],
+    [16, 3042, 6338, 13825, 27880, 618],
+    [18, 2779, 5793, 12681, 25634, 567],
+    [20, 2559, 5334, 11712, 23735, 525],
+    [22, 2372, 4943, 10881, 22106, 488],
+    [24, 2211, 4606, 10160, 20693, 457],
+    [26, 2071, 4313, 9529, 19455, 430],
+    [28, 1949, 4056, 8972, 18362, 406],
     [30, 1841, 3829, 8477, 17389, 384],
     [33, 1700, 3534, 7831, 16114, 356],
     [35, 1619, 3362, 7453, 15366, 340],
@@ -90,6 +136,7 @@ const VDOT_RUN_TABLE = [
     [75, 844, 1755, 3866, 8099, 184],
     [80, 798, 1662, 3657, 7663, 174],
     [85, 757, 1579, 3471, 7275, 166],
+    [90, 721, 1505, 3306, 6927, 159],
 ];
 // Mirrors MARATHON_LEVEL_MARGIN in lib/realismCheck.ts — keep identical
 // (parity-tested). Applied on top of the pure Daniels marathon time.
@@ -198,10 +245,13 @@ export function predictRaceDuration(thresholds, opts) {
     const transition = (dist.t1_min + dist.t2_min) / 60;
     let total = runHours + bikeHours + swimHours + transition;
     if (opts.isBRace) {
-        total *= B_RACE_TIME_MULTIPLIER;
-        runHours *= B_RACE_TIME_MULTIPLIER;
-        bikeHours *= B_RACE_TIME_MULTIPLIER;
-        swimHours *= B_RACE_TIME_MULTIPLIER;
+        const mult = opts.bRaceEffort
+            ? B_RACE_EFFORT_MULTIPLIER[opts.bRaceEffort]
+            : B_RACE_TIME_MULTIPLIER;
+        total *= mult;
+        runHours *= mult;
+        bikeHours *= mult;
+        swimHours *= mult;
     }
     return {
         // 4 decimals, not 2: consumers render min:sec (hours*3600), and a 0.01h
@@ -237,7 +287,8 @@ function predictBikeHours(ftp, weight, distanceM, raceType, level) {
             break;
     }
     const speedKmH = v * 3.6;
-    return (distanceM / 1000) / speedKmH;
+    const idealHours = (distanceM / 1000) / speedKmH;
+    return idealHours / (BIKE_COURSE_REALITY[raceType] ?? BIKE_COURSE_REALITY_DEFAULT);
 }
 function fallbackRunHours(raceType, level, distanceM) {
     const baseDist = RACE_DISTANCES[raceType]?.run ?? distanceM;
