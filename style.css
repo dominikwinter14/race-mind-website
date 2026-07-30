@@ -3057,6 +3057,8 @@ a.race-card-image {
 }
 
 .race-kona .rk-table td.rk-cut { font-weight: 700; color: var(--foreground); }
+/* Roll-down scenario — readable, but visibly secondary to the actual qualifying time. */
+.race-kona .rk-table td.rk-roll { color: #c9c9c9; }
 .race-kona .rk-table td.rk-range { color: var(--muted); }
 .race-kona .rk-table tr.is-active td { background: rgba(255, 138, 0, 0.12); }
 

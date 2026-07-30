@@ -74,6 +74,20 @@
     }
     .kc-big-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
     .kc-range { color: var(--muted); font-size: 0.95rem; }
+
+    /* Roll-down scenario — the assumed acceptance rate is part of the sentence, not a footnote. */
+    .kc-roll {
+      margin-top: 1rem; padding: 0.85rem 1rem; border-radius: var(--radius);
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.92rem; line-height: 1.7; color: var(--muted);
+    }
+    .kc-roll select {
+      background: rgba(255,255,255,0.06); color: var(--foreground);
+      border: 1px solid rgba(255,255,255,0.14); border-radius: 0.55rem;
+      padding: 0.15rem 0.4rem; font: inherit; font-weight: 600;
+    }
+    .kc-roll select:focus { outline: none; border-color: var(--primary); }
+    .kc-roll-time { color: var(--foreground); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
     .kc-target {
       display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1rem;
       font-size: 0.9rem; color: var(--foreground);
@@ -136,7 +150,7 @@
       "name": "Woher kommen die Zahlen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Grundlage sind die öffentlichen IRONMAN-Ergebnisse der letzten Jahre pro Rennen und die offizielle IRONMAN-Qualifikationsmethode ab 2026: Jede Altersklasse bekommt einen automatischen WM-Slot für die Siegerin bzw. den Sieger, die restlichen Slots gehen nach normalisierter Leistung (Age-Grading gegen den Kona-Standard der jeweiligen Altersklasse) an die schnellsten Zeiten im Feld. Die angezeigte Qualizeit ist die langsamste Zeit, die typischerweise noch einen Slot bekommen hätte."
+        "text": "Grundlage sind die öffentlichen IRONMAN-Ergebnisse der letzten Jahre pro Rennen und die offizielle IRONMAN-Qualifikationsmethode: Jede Altersklasse bekommt einen automatischen WM-Slot für die Siegerin bzw. den Sieger, die restlichen Slots werden nach normalisierter Leistung (Age-Grading gegen den Kona-Standard der jeweiligen Altersklasse) vergeben – seit der Änderung im November 2025 in getrennten Pools für Frauen und Männer, deren Größe dem Starteranteil des jeweiligen Geschlechts im Rennen entspricht. Die angezeigte Qualizeit ist die langsamste Zeit, die typischerweise noch einen Slot bekommen hätte."
       }
     },
     {
@@ -160,7 +174,7 @@
       "name": "Was ist Roll-down?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nicht jeder qualifizierte Athlet nimmt seinen WM-Slot an. Freie Slots wandern dann innerhalb der Altersklasse nach unten zum nächstschnellsten – das ist der Roll-down. Deshalb reicht real oft auch eine etwas langsamere Zeit als die reine Qualizeit noch für Kona."
+        "text": "Nicht jeder qualifizierte Athlet nimmt seinen WM-Slot an. Ein abgelehnter Siegerinnen- bzw. Sieger-Slot geht zunächst an Platz 2, dann an Platz 3 und fällt danach in den Leistungs-Pool des jeweiligen Geschlechts. Deshalb reicht real oft auch eine etwas langsamere Zeit als die reine Qualizeit. Wie viele Slots tatsächlich angenommen werden, veröffentlicht Ironman nicht pro Altersklasse – bekannt ist nur, dass 15 % der automatischen Frauen-Slots und 3 % der Männer-Slots weitergereicht wurden. Die Roll-down-Zeit im Rechner ist deshalb ein Szenario mit einer selbst gewählten Quote, keine Messung."
       }
     },
     {
@@ -246,6 +260,16 @@
           <div class="kc-big gradient-text" id="kcResTime"></div>
           <div class="kc-range" id="kcResRange"></div>
 
+          <div class="kc-roll" id="kcRoll">
+            Wenn
+            <select id="kcRollRate" aria-label="Angenommene Annahmequote">
+              <option value="90">9 von 10</option>
+              <option value="80" selected>8 von 10</option>
+              <option value="70">7 von 10</option>
+            </select>
+            ihren Slot annehmen, <span id="kcRollOut"></span>
+          </div>
+
           <div class="kc-verdict" id="kcVerdict" style="display:none;"></div>
 
           <table class="kc-years" id="kcYears">
@@ -309,11 +333,13 @@
           <summary>Woher kommen die Zahlen?</summary>
           <p>
             Grundlage sind die &ouml;ffentlichen IRONMAN-Ergebnisse der letzten Jahre pro Rennen und die
-            offizielle IRONMAN-Qualifikationsmethode ab 2026: Jede Altersklasse bekommt einen automatischen
-            WM-Slot f&uuml;r die Siegerin bzw. den Sieger, die restlichen Slots gehen nach normalisierter
-            Leistung (Age-Grading gegen den &bdquo;Kona-Standard&ldquo; der jeweiligen Altersklasse) an die
-            schnellsten Zeiten im Feld. Die angezeigte Qualizeit ist die langsamste Zeit, die typischerweise
-            noch einen Slot bekommen h&auml;tte.
+            offizielle IRONMAN-Qualifikationsmethode: Jede Altersklasse bekommt einen automatischen
+            WM-Slot f&uuml;r die Siegerin bzw. den Sieger, die restlichen Slots werden nach normalisierter
+            Leistung (Age-Grading gegen den &bdquo;Kona-Standard&ldquo; der jeweiligen Altersklasse)
+            vergeben &ndash; seit der &Auml;nderung im November 2025 in getrennten Pools f&uuml;r Frauen und
+            M&auml;nner, deren Gr&ouml;&szlig;e dem Starteranteil des jeweiligen Geschlechts im Rennen
+            entspricht. Die angezeigte Qualizeit ist die langsamste Zeit, die typischerweise noch einen Slot
+            bekommen h&auml;tte.
           </p>
         </details>
         <details>
@@ -336,9 +362,14 @@
         <details>
           <summary>Was ist Roll-down?</summary>
           <p>
-            Nicht jeder qualifizierte Athlet nimmt seinen WM-Slot an. Freie Slots wandern dann innerhalb
-            der Altersklasse nach unten zum n&auml;chstschnellsten &ndash; das ist der Roll-down. Deshalb
-            reicht real oft auch eine etwas langsamere Zeit als die reine Qualizeit noch f&uuml;r Kona.
+            Nicht jeder qualifizierte Athlet nimmt seinen WM-Slot an. Ein abgelehnter Siegerinnen- bzw.
+            Sieger-Slot geht zun&auml;chst an Platz 2, dann an Platz 3 und f&auml;llt danach in den
+            Leistungs-Pool des jeweiligen Geschlechts. Deshalb reicht real oft auch eine etwas langsamere
+            Zeit als die reine Qualizeit. Wie viele Slots tats&auml;chlich angenommen werden,
+            ver&ouml;ffentlicht Ironman nicht pro Altersklasse &ndash; bekannt ist nur, dass 15 % der
+            automatischen Frauen-Slots und 3 % der M&auml;nner-Slots weitergereicht wurden. Die
+            Roll-down-Zeit oben ist deshalb ein Szenario mit der Quote, die du selbst w&auml;hlst, keine
+            Messung.
           </p>
         </details>
         <details>
@@ -389,7 +420,25 @@
       'Australien':'🇦🇺','Neuseeland':'🇳🇿'
     };
     var $ = function (id) { return document.getElementById(id); };
-    var raceSel = $('kcRace'), agSel = $('kcAg'), timeInp = $('kcTime');
+    var raceSel = $('kcRace'), agSel = $('kcAg'), timeInp = $('kcTime'), rollSel = $('kcRollRate');
+
+    // Roll-down time for the selected acceptance rate. That rate is an ASSUMPTION the page
+    // states out loud (see the FAQ): IRONMAN publishes no per-age-group acceptance data, so
+    // this is a scenario, never a measurement. Falls back to the plain cutoff if absent.
+    function rollTimeFor(agData) {
+      var m = agData.rollMedianFmt || {};
+      return m[rollSel.value] || agData.medianFmt;
+    }
+    function rollLabel() { return rollSel.options[rollSel.selectedIndex].textContent; }
+    // In a 40-slot field the extra places from roll-down land wherever the age-graded ranking is
+    // densest, so in roughly half the age groups the cutoff does not move at all. Saying that
+    // plainly beats repeating the same time twice.
+    function renderRoll(agData) {
+      var t = rollTimeFor(agData);
+      $('kcRollOut').innerHTML = t === agData.medianFmt
+        ? 'verschiebt der Roll-down die Qualizeit in dieser Altersklasse typischerweise nicht.'
+        : 'reicht über den Roll-down auch <span class="kc-roll-time">' + t + '</span>.';
+    }
     var result = $('kcResult'), placeholder = $('kcPlaceholder');
     var DATA = null;
 
@@ -493,6 +542,7 @@
       $('kcResTime').textContent = agData.medianFmt;
       $('kcResRange').textContent = 'Spanne der Ausgaben ' + r.years.join(', ') + ': '
         + agData.minFmt + ' – ' + agData.maxFmt;
+      renderRoll(agData);
 
       // per-year table
       var tb = $('kcYears').querySelector('tbody');
@@ -508,7 +558,7 @@
 
       $('kcNote').textContent = tiny
         ? 'Hinweis: In dieser Altersklasse finishten nur wenige Athlet:innen – die Qualizeit entspricht nahezu der Siegerzeit und ist entsprechend unsicher.'
-        : 'Schätzung auf Basis der offiziellen Qualifikationsmethode und öffentlicher Ergebnisse. Keine Garantie – Roll-down und Feldstärke verändern den realen Cutoff.';
+        : 'Schätzung auf Basis der offiziellen Qualifikationsmethode und öffentlicher Ergebnisse. Keine Garantie – die Feldstärke verändert den realen Cutoff. Die Roll-down-Zeit ist ein Szenario mit der oben gewählten Quote: Ironman veröffentlicht nicht, wie viele Slots pro Altersklasse angenommen werden.';
 
       renderVerdict(agData);
       placeholder.style.display = 'none';
@@ -523,10 +573,16 @@
         body: 'Mit ' + fmt(t) + ' wärst du in den letzten Jahren typischerweise unter der Qualizeit '
           + 'geblieben (' + fmtDiff(diff) + ' schneller als der Median).'
       };
+      var rollSec = parseTime(rollTimeFor(agData));
+      if (rollSec && t <= rollSec) return {
+        cls: 'kc-verdict--close', color: '255,138,0', title: 'Über den Roll-down drin.',
+        body: fmt(t) + ' liegt ca. ' + fmtDiff(diff) + ' über der Qualizeit – wenn ' + rollLabel()
+          + ' ihren Slot annehmen, reicht das trotzdem.'
+      };
       if (diff <= 600) return {
         cls: 'kc-verdict--close', color: '255,138,0', title: 'Knapp dran.',
         body: fmt(t) + ' liegt ca. ' + fmtDiff(diff) + ' über der typischen Qualizeit – an einem '
-          + 'schnellen Tag oder über Roll-down gut möglich.'
+          + 'schnellen Tag gut möglich.'
       };
       return {
         cls: 'kc-verdict--no', color: '239,68,68', title: 'Noch ein Stück Weg.',
@@ -640,6 +696,18 @@
         ctx.textAlign = 'center'; ctx.fillStyle = '#949494'; ctx.font = fnt(400, 30);
         rangeLines.forEach(function (ln, i) { ctx.fillText(ln, MID, y + 30 + i * 42); });
       });
+
+      // roll-down line — assumption stated in the text, never as a bare number. Omitted when
+      // roll-down does not move this age group's cutoff, so the image never repeats the time.
+      var rollTime = rollTimeFor(current.agData);
+      if (rollTime !== current.agData.medianFmt) {
+        var rollLines = wrapLines(ctx, 'Mit Roll-down, wenn ' + rollLabel() + ' annehmen: ' + rollTime, CW);
+        gap(10);
+        push(rollLines.length * 42, function (y) {
+          ctx.textAlign = 'center'; ctx.fillStyle = '#C9C9C9'; ctx.font = fnt(400, 30);
+          rollLines.forEach(function (ln, i) { ctx.fillText(ln, MID, y + 30 + i * 42); });
+        });
+      }
 
       // verdict box (only when a goal time is entered)
       var t = parseTime(timeInp.value);
@@ -793,6 +861,11 @@
       writeParams(); render();
     });
     agSel.addEventListener('change', function () { writeParams(); render(); });
+    rollSel.addEventListener('change', function () {
+      if (!current) return;
+      renderRoll(current.agData);
+      renderVerdict(current.agData);
+    });
     timeInp.addEventListener('input', function () {
       writeParams();
       if (current) renderVerdict(current.agData);
