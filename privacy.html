@@ -87,7 +87,7 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Training activities and performance data</td><td>Training analysis, plan optimization</td></tr>
-          <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, workout push to watch</td></tr>
+          <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name); daily wellness summaries (resting heart rate, steps, stress level, Body Battery, SpO&#8322;, respiration rate); sleep (duration, score, quality); heart rate variability (HRV) &ndash; see Section 6.8</td><td>Training analysis, baseline calculation, training readiness, workout push to watch</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Heart rate variability (HRV SDNN), resting heart rate, sleep duration and stages</td><td>Recovery assessment, training readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Heart rate variability (HRV RMSSD), resting heart rate, sleep sessions and stages</td><td>Recovery assessment, training readiness</td></tr>
         </tbody>
@@ -262,6 +262,56 @@
         <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR &ndash; Legitimate interest (providing relevant training context information such as precipitation and wind that supports your training decisions).</li>
       </ul>
 
+      <h3 id="garmin">6.8 Garmin Connect</h3>
+      <p>If you connect Garmin Connect, you authorize the connection <strong>directly with Garmin</strong> (OAuth). We never receive your Garmin password. Connecting is <strong>entirely optional</strong> &mdash; every other feature of the App works without it.</p>
+
+      <p><strong>What data we receive</strong></p>
+      <ul>
+        <li><strong>Training activities</strong> &ndash; sport type, start time, duration, distance, pace and speed, heart rate, power, cadence, elevation, lap data, the measurement series recorded during the activity, and the name of the recording device</li>
+        <li><strong>Daily wellness summaries</strong> &ndash; resting heart rate, steps, average stress level, Body Battery, pulse oximetry (SpO&#8322;), and average respiration rate</li>
+        <li><strong>Sleep</strong> &ndash; duration, sleep score, and sleep quality</li>
+        <li><strong>Heart rate variability (HRV)</strong> &ndash; overnight average</li>
+        <li><strong>Connection data</strong> &ndash; your Garmin user ID and the OAuth access token that authorizes us to retrieve data on your behalf</li>
+      </ul>
+      <p>Garmin transmits this data to our server (Supabase Edge Function, EU) by <strong>push notification</strong> as soon as a new activity or daily summary becomes available. We do not query your Garmin account on a schedule. Which data types are transmitted depends on the permissions you grant during authorization at Garmin.</p>
+
+      <p><strong>How we use this data</strong></p>
+      <ul>
+        <li><strong>Training analysis</strong> &ndash; metrics such as Efficiency Factor, Drift, and Pacing, and your Performance Score (see Section 6.2)</li>
+        <li><strong>Thresholds and load</strong> &ndash; your Garmin activities update the threshold values and load metrics (e.g., FTP, threshold pace, critical swim speed, training load, personal bests) from which your <strong>training plan</strong> is calculated. The plan structure itself is computed deterministically on our servers; Garmin raw data is <strong>not</strong> transmitted to Google Gemini for this purpose.</li>
+        <li><strong>Training Readiness</strong> &ndash; HRV, resting heart rate, and sleep data feed into the daily recovery indicator (see Section 6.4)</li>
+        <li><strong>Workout push</strong> &ndash; if you use this feature, we transmit planned workouts <em>back</em> to your Garmin account so they appear on your watch</li>
+      </ul>
+
+      <p><strong>Processing with AI (Google Gemini)</strong></p>
+      <p>For the qualitative interpretation of a session and for coach chat responses, we transmit the relevant training context to Google Gemini (USA, EU Standard Contractual Clauses). This includes values that originate from your Garmin data &mdash; for example duration, distance, pace, heart rate zones, calculated metrics, and recovery status. In this process:</p>
+      <ul>
+        <li><strong>No</strong> real names are sent to Gemini (only anonymized user IDs)</li>
+        <li>The <strong>original payload</strong> transmitted by Garmin is not forwarded to Gemini</li>
+        <li>Data is used solely for text generation and is not used by Google for its own purposes</li>
+        <li>AI-generated content is labeled accordingly in the App (see Section 6.5)</li>
+      </ul>
+
+      <p><strong>Storage</strong></p>
+      <ul>
+        <li>Activities are stored in our database (Supabase, EU/Ireland) in the <code>activity_logs</code> table; wellness data (resting heart rate, sleep, HRV, stress, Body Battery, SpO&#8322;, respiration) is stored in <code>wellness_daily</code>, each linked to your user ID.</li>
+        <li>For daily wellness summaries we additionally retain the <strong>original payload transmitted by Garmin</strong>, so that subsequent corrections and recalculations remain possible.</li>
+        <li>Incoming Garmin events are held for up to <strong>30 days</strong> in a technical queue (<code>wearable_sync_events</code>) so that failed imports can be replayed. They are deleted afterwards.</li>
+        <li>Your Garmin access token is stored in your profile and is deleted when you disconnect.</li>
+        <li>All further retention periods follow Section 7.</li>
+      </ul>
+
+      <p><strong>Disconnecting and deletion</strong></p>
+      <ul>
+        <li>You can disconnect at any time in the App under <strong>Settings &rarr; Connections &rarr; Garmin Connect</strong>. We then revoke our access authorization at Garmin, delete your Garmin tokens and your Garmin user ID, and stop processing further Garmin data.</li>
+        <li>You can also revoke the authorization directly at Garmin by removing RaceMind at <a href="https://connect.garmin.com" target="_blank" rel="noopener">connect.garmin.com</a> &rarr; Account Settings &rarr; Connected Apps. Garmin then notifies us and we mark the connection as terminated.</li>
+        <li>If you only change individual permissions at Garmin (for example, allow activities but not health data), Garmin notifies us of the change and we only process the categories that are still permitted.</li>
+        <li>When you delete your account, we actively revoke our access authorization at Garmin and delete all imported data (see Section 7).</li>
+      </ul>
+      <ul>
+        <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent; for health-related data (heart rate, HRV, sleep, SpO&#8322;) additionally Art. 9(2)(a) GDPR &ndash; Explicit consent</li>
+      </ul>
+
       <hr>
 
       <h2>7. Data Retention</h2>
@@ -292,7 +342,7 @@
       <ul>
         <li><strong>Row Level Security (RLS):</strong> Every database query is restricted to the user&rsquo;s own ID. You can only access your own data.</li>
         <li><strong>Encryption:</strong> All data is encrypted in transit (TLS/HTTPS) and at rest (database encryption).</li>
-        <li><strong>OAuth 2.0:</strong> Strava, Garmin Connect, and Intervals.icu connections use industry-standard OAuth authentication. We store only access tokens, not your passwords.</li>
+        <li><strong>OAuth:</strong> Strava, Garmin Connect, and Intervals.icu connections use industry-standard OAuth authorization (the protocol version depends on the respective provider). We store only access tokens, not your passwords.</li>
         <li><strong>Anonymous authentication:</strong> Before account linking, the App operates with an anonymous session &ndash; no email or personal identification required.</li>
       </ul>
 

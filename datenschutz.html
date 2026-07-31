@@ -87,7 +87,7 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename)</td><td>Trainingsanalyse, Baseline-Berechnung, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Trainingsaktivit&auml;ten und Leistungsdaten</td><td>Trainingsanalyse, Planoptimierung</td></tr>
-          <tr><td><strong>Garmin Connect</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename)</td><td>Trainingsanalyse, Baseline-Berechnung, Workout-Push an die Uhr</td></tr>
+          <tr><td><strong>Garmin Connect</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename); t&auml;gliche Wellness-Zusammenfassungen (Ruhepuls, Schritte, Stresslevel, Body Battery, SpO&#8322;, Atemfrequenz); Schlaf (Dauer, Score, Qualit&auml;t); Herzfrequenzvariabilit&auml;t (HRV) &ndash; siehe Abschnitt 6.8</td><td>Trainingsanalyse, Baseline-Berechnung, Training Readiness, Workout-Push an die Uhr</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Herzfrequenzvariabilit&auml;t (HRV SDNN), Ruhepuls, Schlafdauer und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Herzfrequenzvariabilit&auml;t (HRV RMSSD), Ruhepuls, Schlafsitzungen und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
         </tbody>
@@ -259,6 +259,56 @@
         <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO &ndash; Berechtigtes Interesse (Bereitstellung relevanter Trainingskontext-Informationen wie Niederschlag und Wind, die deine Trainingsentscheidungen unterst&uuml;tzen).</li>
       </ul>
 
+      <h3 id="garmin">6.8 Garmin Connect</h3>
+      <p>Wenn du Garmin Connect verbindest, autorisierst du die Verbindung <strong>direkt bei Garmin</strong> (OAuth). Dein Garmin-Passwort erhalten wir zu keinem Zeitpunkt. Die Verbindung ist <strong>vollst&auml;ndig optional</strong> &mdash; alle &uuml;brigen Funktionen der App arbeiten auch ohne sie.</p>
+
+      <p><strong>Welche Daten wir erhalten</strong></p>
+      <ul>
+        <li><strong>Trainingsaktivit&auml;ten</strong> &ndash; Sportart, Startzeit, Dauer, Distanz, Pace und Geschwindigkeit, Herzfrequenz, Leistung, Trittfrequenz, H&ouml;henmeter, Lap-Daten, die w&auml;hrend der Aktivit&auml;t aufgezeichneten Messreihen sowie den Namen des aufzeichnenden Ger&auml;ts</li>
+        <li><strong>T&auml;gliche Wellness-Zusammenfassungen</strong> &ndash; Ruhepuls, Schritte, durchschnittliches Stresslevel, Body Battery, Sauerstoffs&auml;ttigung (SpO&#8322;) und durchschnittliche Atemfrequenz</li>
+        <li><strong>Schlaf</strong> &ndash; Dauer, Schlaf-Score und Schlafqualit&auml;t</li>
+        <li><strong>Herzfrequenzvariabilit&auml;t (HRV)</strong> &ndash; Durchschnitt der vergangenen Nacht</li>
+        <li><strong>Verbindungsdaten</strong> &ndash; deine Garmin-Nutzer-ID und das OAuth-Zugangstoken, mit dem wir in deinem Namen Daten abrufen d&uuml;rfen</li>
+      </ul>
+      <p>Garmin &uuml;bermittelt diese Daten per <strong>Push-Benachrichtigung</strong> an unseren Server (Supabase Edge Function, EU), sobald eine neue Aktivit&auml;t oder Tageszusammenfassung vorliegt. Wir fragen dein Garmin-Konto nicht regelm&auml;&szlig;ig ab. Welche Datenarten &uuml;bermittelt werden, h&auml;ngt von den Berechtigungen ab, die du bei der Autorisierung bei Garmin erteilst.</p>
+
+      <p><strong>Wof&uuml;r wir die Daten nutzen</strong></p>
+      <ul>
+        <li><strong>Trainingsanalyse</strong> &ndash; Kennzahlen wie Efficiency Factor, Drift und Pacing sowie dein Performance Score (siehe Abschnitt 6.2)</li>
+        <li><strong>Schwellenwerte und Belastung</strong> &ndash; deine Garmin-Aktivit&auml;ten aktualisieren die Schwellenwerte und Belastungskennzahlen (z.&nbsp;B. FTP, Schwellenpace, kritische Schwimmgeschwindigkeit, Trainingsbelastung, Bestzeiten), aus denen dein <strong>Trainingsplan</strong> berechnet wird. Die Planstruktur selbst entsteht deterministisch auf unseren Servern; Garmin-Rohdaten werden dabei <strong>nicht</strong> an Google Gemini &uuml;bermittelt.</li>
+        <li><strong>Training Readiness</strong> &ndash; HRV, Ruhepuls und Schlafdaten flie&szlig;en in den t&auml;glichen Erholungsindikator ein (siehe Abschnitt 6.4)</li>
+        <li><strong>Workout-Push</strong> &ndash; wenn du diese Funktion nutzt, &uuml;bermitteln wir geplante Einheiten <em>zur&uuml;ck</em> an dein Garmin-Konto, damit sie auf deiner Uhr erscheinen</li>
+      </ul>
+
+      <p><strong>Verarbeitung mit KI (Google Gemini)</strong></p>
+      <p>F&uuml;r die qualitative Einordnung einer Einheit und f&uuml;r Antworten im Coach-Chat &uuml;bermitteln wir den relevanten Trainingskontext an Google Gemini (USA, EU-Standardvertragsklauseln). Dazu geh&ouml;ren auch Werte, die aus deinen Garmin-Daten stammen &mdash; etwa Dauer, Distanz, Pace, Herzfrequenzzonen, berechnete Kennzahlen und Erholungsstatus. Dabei gilt:</p>
+      <ul>
+        <li><strong>Keine</strong> Klarnamen an Gemini (nur anonymisierte Nutzer-IDs)</li>
+        <li>Der von Garmin &uuml;bermittelte <strong>Originaldatensatz</strong> wird nicht an Gemini weitergegeben</li>
+        <li>Die Daten werden ausschlie&szlig;lich zur Textgenerierung verwendet und nicht von Google f&uuml;r eigene Zwecke genutzt</li>
+        <li>KI-generierte Inhalte sind in der App entsprechend gekennzeichnet (siehe Abschnitt 6.5)</li>
+      </ul>
+
+      <p><strong>Speicherung</strong></p>
+      <ul>
+        <li>Aktivit&auml;ten werden in unserer Datenbank (Supabase, EU/Irland) in der Tabelle <code>activity_logs</code> gespeichert, Wellness-Daten (Ruhepuls, Schlaf, HRV, Stress, Body Battery, SpO&#8322;, Atemfrequenz) in <code>wellness_daily</code> &ndash; jeweils verkn&uuml;pft mit deiner Nutzer-ID.</li>
+        <li>Bei den t&auml;glichen Wellness-Zusammenfassungen bewahren wir zus&auml;tzlich den <strong>von Garmin &uuml;bermittelten Originaldatensatz</strong> auf, damit sp&auml;tere Korrekturen und Neuberechnungen m&ouml;glich bleiben.</li>
+        <li>Eingehende Garmin-Ereignisse liegen bis zu <strong>30 Tage</strong> in einer technischen Warteschlange (<code>wearable_sync_events</code>), damit fehlgeschlagene Importe wiederholt werden k&ouml;nnen. Danach werden sie gel&ouml;scht.</li>
+        <li>Dein Garmin-Zugangstoken liegt in deinem Profil und wird beim Trennen der Verbindung gel&ouml;scht.</li>
+        <li>Alle weiteren Speicherfristen richten sich nach Abschnitt 7.</li>
+      </ul>
+
+      <p><strong>Verbindung trennen und L&ouml;schung</strong></p>
+      <ul>
+        <li>Du kannst die Verbindung jederzeit in der App unter <strong>Einstellungen &rarr; Verbindungen &rarr; Garmin Connect</strong> trennen. Wir widerrufen dann unsere Zugriffsberechtigung bei Garmin, l&ouml;schen deine Garmin-Tokens sowie deine Garmin-Nutzer-ID und verarbeiten keine weiteren Garmin-Daten.</li>
+        <li>Du kannst die Autorisierung auch direkt bei Garmin widerrufen, indem du RaceMind unter <a href="https://connect.garmin.com" target="_blank" rel="noopener">connect.garmin.com</a> &rarr; Kontoeinstellungen &rarr; Verbundene Apps entfernst. Garmin benachrichtigt uns in diesem Fall, und wir markieren die Verbindung als beendet.</li>
+        <li>&Auml;nderst du bei Garmin nur einzelne Berechtigungen (erlaubst du z.&nbsp;B. Aktivit&auml;ten, aber keine Gesundheitsdaten), teilt Garmin uns die &Auml;nderung mit und wir verarbeiten nur noch die weiterhin erlaubten Kategorien.</li>
+        <li>Wenn du deinen Account l&ouml;schst, widerrufen wir unsere Zugriffsberechtigung aktiv bei Garmin und l&ouml;schen alle importierten Daten (siehe Abschnitt 7).</li>
+      </ul>
+      <ul>
+        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &ndash; Einwilligung; f&uuml;r gesundheitsbezogene Daten (Herzfrequenz, HRV, Schlaf, SpO&#8322;) zus&auml;tzlich Art. 9 Abs. 2 lit. a DSGVO &ndash; Ausdr&uuml;ckliche Einwilligung</li>
+      </ul>
+
       <hr>
 
       <h2>7. Speicherdauer</h2>
@@ -287,7 +337,7 @@
       <ul>
         <li><strong>Row Level Security (RLS):</strong> Jede Datenbankabfrage ist auf die eigene Nutzer-ID beschr&auml;nkt. Du kannst nur auf deine eigenen Daten zugreifen.</li>
         <li><strong>Verschl&uuml;sselung:</strong> Alle Daten werden bei der &Uuml;bertragung (TLS/HTTPS) und in der Datenbank (Encryption at Rest) verschl&uuml;sselt.</li>
-        <li><strong>OAuth 2.0:</strong> Strava-, Garmin-Connect- und Intervals.icu-Verbindungen nutzen branchen&uuml;bliche OAuth-Authentifizierung. Wir speichern nur Zugangs-Tokens, nicht deine Passw&ouml;rter.</li>
+        <li><strong>OAuth:</strong> Strava-, Garmin-Connect- und Intervals.icu-Verbindungen nutzen branchen&uuml;bliche OAuth-Autorisierung (die Protokollversion h&auml;ngt vom jeweiligen Anbieter ab). Wir speichern nur Zugangs-Tokens, nicht deine Passw&ouml;rter.</li>
         <li><strong>Anonyme Authentifizierung:</strong> Vor der Account-Verkn&uuml;pfung arbeitet die App mit einer anonymen Sitzung &ndash; keine E-Mail oder pers&ouml;nliche Identifikation erforderlich.</li>
       </ul>
 

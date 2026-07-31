@@ -1941,6 +1941,13 @@ strong { font-weight: 600; }
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Deep links into the legal pages (e.g. privacy.html#garmin) would otherwise
+   scroll the heading underneath the fixed nav bar. */
+.page-content h2[id],
+.page-content h3[id] {
+  scroll-margin-top: 6rem;
+}
+
 .page-content {
   padding-top: 7rem;
   padding-bottom: 4rem;
