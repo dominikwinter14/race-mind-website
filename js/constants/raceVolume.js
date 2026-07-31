@@ -49,6 +49,30 @@ export const HOURS_FLOOR = {
     half_ironman: 4,
     ironman: 5,
 };
+/**
+ * Weekly goal hours from which the run-only cross_focus lever ("also bike")
+ * actually produces a bike ride, per race type × athlete level.
+ *
+ * There is NO such threshold in the engine — it is emergent: cross-training gets
+ * ~13 % of the weekly budget under cross_focus (SPORT_HOUR_RATIOS 0.90/0.10 +
+ * RACE_TILT_OVERRIDE.cross_focus), and deriveSessionStructure DROPS the ride
+ * again when it lands below CROSS_FOCUS_MIN_RIDE_MIN (30 min), handing the
+ * budget back to run. Two things move that point: the long run (the longer the
+ * race, the more it reserves) and the rest-day rule (minRestDaysPerWeek gives
+ * non-advanced athletes 2 rest days up to 5h, which concentrates the budget into
+ * fewer, longer sessions) — hence the level dimension.
+ *
+ * Measured against deriveSessionStructure on a build week; the drift guard
+ * supabase/functions/_test/cross-training-threshold.test.ts re-derives these
+ * numbers from the engine and fails if they move. Used only for the planconfig
+ * hint text — the engine stays the source of truth for what gets scheduled.
+ */
+export const CROSS_TRAINING_MIN_HOURS = {
+    '5k': { beginner: 4, intermediate: 5, advanced: 5 },
+    '10k': { beginner: 5, intermediate: 5, advanced: 5 },
+    half_marathon: { beginner: 5, intermediate: 6, advanced: 6 },
+    marathon: { beginner: 5, intermediate: 6, advanced: 7 },
+};
 // Client mirror of the engine FOCUS_WINDOW_WEEKS (_shared/current-state.ts) —
 // the race-nearest specificity window. A general-phase plateau only exists in
 // the weeks before it, so this sizes the plateau preview + the picker gate.
