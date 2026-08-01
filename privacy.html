@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.1 &middot; Last updated: July 2026</p>
+      <p class="legal-meta">Version 1.2 &middot; Last updated: August 2026</p>
 
       <hr>
 
@@ -103,7 +103,7 @@
           <tr><td><strong>Technical data</strong></td><td>Device type, operating system, app version, error reports (crash logs via Sentry)</td></tr>
           <tr><td><strong>Usage data</strong></td><td>Timestamps of app usage, onboarding progress</td></tr>
           <tr><td><strong>Anonymous session</strong></td><td>An anonymous session ID is created at app launch (no personal identification)</td></tr>
-          <tr><td><strong>Approximate location data</strong></td><td>When you open the weekly planning screen, your IP address is converted into an approximate location (city/region level) <strong>exclusively on our server</strong> using the locally hosted MaxMind GeoLite2 database. The IP address is not transmitted to any third party and is not stored persistently. See Section 6.7 for details.</td></tr>
+          <tr><td><strong>Approximate location data</strong></td><td>When you open the weekly planning screen, your IP address is converted into an approximate location (city/region level) <strong>exclusively on our own server</strong>. The IP address is not transmitted to any third party and is not stored persistently. See Section 6.7 for details.</td></tr>
         </tbody>
       </table>
 
@@ -232,7 +232,7 @@
       <p><strong>How the data is processed:</strong></p>
       <ul>
         <li>Health data is read directly from Apple Health / Health Connect on your device via the respective platform APIs</li>
-        <li>Daily summaries (HRV, resting HR, sleep duration) are transmitted to our database (Supabase, EU) and stored in the <code>wellness_daily</code> table, linked to your user ID</li>
+        <li>Daily summaries (HRV, resting HR, sleep duration) are transmitted to our database (Supabase, EU) and stored there, linked to your user ID</li>
         <li>If you also have Intervals.icu connected, health data from that source takes priority; Apple Health / Health Connect data only fills in missing values</li>
         <li>The <strong>raw values</strong> from Apple Health / Health Connect (HRV, resting heart rate, sleep stages) are <strong>never</strong> shared with third parties, used for advertising, or sent directly to AI services. Training metrics derived from them (e.g., thresholds, recovery status) may be included in AI-based coaching text generation (see Section 6.1). Injury information you enter during onboarding may also be included in those texts.</li>
         <li>On first connection, the App backfills the last 14 days of health data to establish a stable baseline</li>
@@ -252,11 +252,11 @@
       <h3>6.7 Weather Forecast in Weekly Planning</h3>
       <p>On the weekly planning screen, we display a 7-day weather forecast for your approximate location to help you plan your training accordingly. For this, we process location data at city/region level:</p>
       <ul>
-        <li>When you open the weekly planning screen, the App calls an Edge Function on our server (Supabase, EU). The Edge Function reads the <strong>IP address</strong> from the incoming HTTP request.</li>
-        <li>The IP address is processed <strong>exclusively on our server</strong>: we derive an approximate location (latitude/longitude, city) using the locally hosted <strong>MaxMind GeoLite2 database</strong>. The IP address never leaves our infrastructure and is not transmitted to any third party. Accuracy is typically at city or regional level, not at street level.</li>
-        <li>The resulting coordinates are sent to <strong>Open-Meteo</strong> (Switzerland) to retrieve the 7-day weather forecast. No IP address is transmitted to Open-Meteo; only the derived coordinates are sent.</li>
-        <li>We do not store the IP address, the derived coordinates, or the city name persistently in our database. The data is processed exclusively at runtime during the weather lookup. In case of an error logged by the Edge Function, the IP address may be temporarily logged in our error monitoring (Sentry, EU).</li>
-        <li>The weather forecast is an optional convenience feature. You can disable it at any time under <strong>Settings &rarr; App &rarr; Weather forecast</strong>. When disabled, the Edge Function is not called and your IP address is not processed for geolocation.</li>
+        <li>When you open weekly planning, our server (Supabase, EU) reads the <strong>IP address</strong> of your request.</li>
+        <li>We derive your approximate location (coordinates and city) from that IP address <strong>exclusively on our own server</strong>. The IP address never leaves our infrastructure and is not transmitted to any third party. Accuracy is typically at city or regional level, not at street level.</li>
+        <li>We send <strong>Open-Meteo</strong> (Switzerland) only the derived coordinates in order to retrieve the 7-day forecast. Your IP address is not transmitted there.</li>
+        <li>We do not store the IP address, the derived coordinates, or the city name permanently. They are processed only during the lookup. If an error occurs, the IP address may be temporarily logged in our error monitoring (Sentry, EU).</li>
+        <li>The weather forecast is an optional convenience feature. You can disable it at any time under <strong>Settings &rarr; App &rarr; Weather forecast</strong>. Your IP address is then not processed for geolocation.</li>
       </ul>
       <ul>
         <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR &ndash; Legitimate interest (providing relevant training context information such as precipitation and wind that supports your training decisions).</li>
@@ -273,7 +273,7 @@
         <li><strong>Heart rate variability (HRV)</strong> &ndash; overnight average</li>
         <li><strong>Connection data</strong> &ndash; your Garmin user ID and the OAuth access token that authorizes us to retrieve data on your behalf</li>
       </ul>
-      <p>Garmin transmits this data to our server (Supabase Edge Function, EU) by <strong>push notification</strong> as soon as a new activity or daily summary becomes available. We do not query your Garmin account on a schedule. Which data types are transmitted depends on the permissions you grant during authorization at Garmin.</p>
+      <p>Garmin transmits this data to our server (Supabase, EU) by <strong>push notification</strong> as soon as a new activity or daily summary becomes available. We do not query your Garmin account on a schedule. Which data types are transmitted depends on the permissions you grant during authorization at Garmin.</p>
 
       <p><strong>How we use this data</strong></p>
       <ul>
@@ -294,9 +294,9 @@
 
       <p><strong>Storage</strong></p>
       <ul>
-        <li>Activities are stored in our database (Supabase, EU/Ireland) in the <code>activity_logs</code> table; wellness data (resting heart rate, sleep, HRV, respiration) is stored in <code>wellness_daily</code>, each linked to your user ID.</li>
+        <li>Activities and wellness data (resting heart rate, sleep, HRV, respiration) are stored in our database (Supabase, EU/Ireland), each linked to your user ID.</li>
         <li>For daily wellness summaries we additionally retain the <strong>original payload transmitted by Garmin</strong>, so that subsequent corrections and recalculations remain possible.</li>
-        <li>Incoming Garmin events are held for up to <strong>30 days</strong> in a technical queue (<code>wearable_sync_events</code>) so that failed imports can be replayed. They are deleted afterwards.</li>
+        <li>Incoming Garmin events are held for up to <strong>14 days</strong> in a technical queue so that failed imports can be replayed. They are deleted afterwards. The measurement series recorded during an activity are deleted immediately after processing.</li>
         <li>Your Garmin access token is stored in your profile and is deleted when you disconnect.</li>
         <li>All further retention periods follow Section 7.</li>
       </ul>
@@ -333,7 +333,7 @@
           -->
         </tbody>
       </table>
-      <p>After account deletion, all personal data is fully removed within <strong>30 days</strong> (cascade delete across all linked tables).</p>
+      <p>After account deletion, all personal data is fully removed within <strong>30 days</strong>.</p>
 
       <hr>
 

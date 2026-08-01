@@ -39,7 +39,7 @@
       </div>
 
       <h1>Datenschutzerkl&auml;rung</h1>
-      <p class="legal-meta">Version 1.1 &middot; Stand: Juli 2026</p>
+      <p class="legal-meta">Version 1.2 &middot; Stand: August 2026</p>
 
       <hr>
 
@@ -103,7 +103,7 @@
           <tr><td><strong>Technische Daten</strong></td><td>Ger&auml;tetyp, Betriebssystem, App-Version, Fehlerberichte (Crash-Logs via Sentry)</td></tr>
           <tr><td><strong>Nutzungsdaten</strong></td><td>Zeitpunkt der App-Nutzung, Onboarding-Fortschritt</td></tr>
           <tr><td><strong>Anonyme Sitzung</strong></td><td>Bei App-Start wird eine anonyme Sitzungs-ID erzeugt (ohne pers&ouml;nliche Identifikation)</td></tr>
-          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>Beim Aufruf der Wochenplanung wird deine IP-Adresse <strong>ausschlie&szlig;lich auf unserem Server</strong> mithilfe der lokalen MaxMind GeoLite2-Datenbank in einen ungef&auml;hren Standort (Stadt-/Regionsebene) umgerechnet. Die IP-Adresse wird nicht an Dritte &uuml;bermittelt und nicht persistent gespeichert. Details siehe Abschnitt 6.7.</td></tr>
+          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>Beim Aufruf der Wochenplanung wird deine IP-Adresse <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> in einen ungef&auml;hren Standort (Stadt-/Regionsebene) umgerechnet. Die IP-Adresse wird nicht an Dritte &uuml;bermittelt und nicht persistent gespeichert. Details siehe Abschnitt 6.7.</td></tr>
         </tbody>
       </table>
 
@@ -228,7 +228,7 @@
       <p><strong>Wie die Daten verarbeitet werden:</strong></p>
       <ul>
         <li>Gesundheitsdaten werden direkt &uuml;ber die jeweiligen Plattform-APIs von Apple Health / Health Connect auf deinem Ger&auml;t ausgelesen</li>
-        <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (Supabase, EU) &uuml;bertragen und in der Tabelle <code>wellness_daily</code> gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
+        <li>Tageszusammenfassungen (HRV, Ruhepuls, Schlafdauer) werden an unsere Datenbank (Supabase, EU) &uuml;bertragen und dort gespeichert, verkn&uuml;pft mit deiner Nutzer-ID</li>
         <li>Wenn du zus&auml;tzlich Intervals.icu verbunden hast, haben Gesundheitsdaten aus dieser Quelle Vorrang; Apple Health / Health Connect f&uuml;llt nur fehlende Werte auf</li>
         <li>Die <strong>Rohwerte</strong> aus Apple Health / Health Connect (HRV, Ruhepuls, Schlafphasen) werden <strong>niemals</strong> an Dritte weitergegeben, f&uuml;r Werbung verwendet oder direkt an KI-Dienste gesendet. Daraus berechnete Trainingskennzahlen (z.&nbsp;B. Schwellenwerte, Erholungsstatus) k&ouml;nnen in die KI-gest&uuml;tzte Coaching-Text-Erstellung einflie&szlig;en (siehe Abschnitt 6.1). Verletzungsangaben aus dem Onboarding k&ouml;nnen ebenfalls in diese Texte einflie&szlig;en.</li>
         <li>Bei der ersten Verbindung werden die letzten 14 Tage an Gesundheitsdaten nachgeholt, um eine stabile Baseline zu etablieren</li>
@@ -249,11 +249,11 @@
       <h3>6.7 Wettervorschau in der Wochenplanung</h3>
       <p>Im Bildschirm der Wochenplanung zeigen wir dir eine 7-Tage-Wettervorschau f&uuml;r deinen ungef&auml;hren Standort, damit du dein Training entsprechend planen kannst. Daf&uuml;r verarbeiten wir Standortdaten auf Stadt-/Regionsebene:</p>
       <ul>
-        <li>Beim &Ouml;ffnen des Wochenplanungs-Bildschirms ruft die App eine Edge-Function auf unserem Server (Supabase, EU) auf. Die Edge-Function liest die <strong>IP-Adresse</strong> aus dem eingehenden HTTP-Request.</li>
-        <li>Die IP-Adresse wird <strong>ausschlie&szlig;lich auf unserem Server verarbeitet</strong>: wir leiten daraus den ungef&auml;hren Standort (L&auml;nge/Breite, Stadt) ab, und zwar mithilfe der lokal vorgehaltenen <strong>MaxMind GeoLite2-Datenbank</strong>. Die IP-Adresse verl&auml;sst dabei zu keinem Zeitpunkt unsere Infrastruktur und wird an keinen Dritten &uuml;bermittelt. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
-        <li>Die so ermittelten Koordinaten werden an <strong>Open-Meteo</strong> (Schweiz) gesendet, um die 7-Tage-Wettervorschau abzurufen. An Open-Meteo wird keine IP-Adresse &uuml;bermittelt, sondern ausschlie&szlig;lich die zuvor ermittelten Koordinaten.</li>
-        <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen persistent in unserer Datenbank. Die Daten werden ausschlie&szlig;lich w&auml;hrend des Wetter-Abrufs zur Laufzeit verarbeitet. Im Fehlerfall (z.&nbsp;B. wenn die Edge-Function einen Fehler protokolliert) kann die IP-Adresse in unserem Fehler-Monitoring (Sentry, EU) tempor&auml;r geloggt werden.</li>
-        <li>Die Wettervorschau ist eine optionale Komfortfunktion. Du kannst sie jederzeit unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> deaktivieren. Bei deaktivierter Wettervorschau wird die Edge-Function nicht aufgerufen, deine IP-Adresse wird also nicht zur Geolokalisierung verarbeitet.</li>
+        <li>Beim &Ouml;ffnen der Wochenplanung liest unser Server (Supabase, EU) die <strong>IP-Adresse</strong> deiner Anfrage aus.</li>
+        <li>Aus der IP-Adresse leiten wir <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> deinen ungef&auml;hren Standort ab (Koordinaten und Stadt). Die IP-Adresse verl&auml;sst dabei zu keinem Zeitpunkt unsere Infrastruktur und wird an keinen Dritten &uuml;bermittelt. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
+        <li>An <strong>Open-Meteo</strong> (Schweiz) senden wir nur die so ermittelten Koordinaten, um die 7-Tage-Vorhersage abzurufen. Deine IP-Adresse wird dorthin nicht &uuml;bermittelt.</li>
+        <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen dauerhaft. Sie werden ausschlie&szlig;lich w&auml;hrend des Abrufs verarbeitet. Tritt dabei ein Fehler auf, kann die IP-Adresse vor&uuml;bergehend in unserem Fehler-Monitoring (Sentry, EU) protokolliert werden.</li>
+        <li>Die Wettervorschau ist eine optionale Komfortfunktion. Du kannst sie jederzeit unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> deaktivieren. Dann wird deine IP-Adresse nicht zur Standortbestimmung verarbeitet.</li>
       </ul>
       <ul>
         <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO &ndash; Berechtigtes Interesse (Bereitstellung relevanter Trainingskontext-Informationen wie Niederschlag und Wind, die deine Trainingsentscheidungen unterst&uuml;tzen).</li>
@@ -270,7 +270,7 @@
         <li><strong>Herzfrequenzvariabilit&auml;t (HRV)</strong> &ndash; Durchschnitt der vergangenen Nacht</li>
         <li><strong>Verbindungsdaten</strong> &ndash; deine Garmin-Nutzer-ID und das OAuth-Zugangstoken, mit dem wir in deinem Namen Daten abrufen d&uuml;rfen</li>
       </ul>
-      <p>Garmin &uuml;bermittelt diese Daten per <strong>Push-Benachrichtigung</strong> an unseren Server (Supabase Edge Function, EU), sobald eine neue Aktivit&auml;t oder Tageszusammenfassung vorliegt. Wir fragen dein Garmin-Konto nicht regelm&auml;&szlig;ig ab. Welche Datenarten &uuml;bermittelt werden, h&auml;ngt von den Berechtigungen ab, die du bei der Autorisierung bei Garmin erteilst.</p>
+      <p>Garmin &uuml;bermittelt diese Daten per <strong>Push-Benachrichtigung</strong> an unseren Server (Supabase, EU), sobald eine neue Aktivit&auml;t oder Tageszusammenfassung vorliegt. Wir fragen dein Garmin-Konto nicht regelm&auml;&szlig;ig ab. Welche Datenarten &uuml;bermittelt werden, h&auml;ngt von den Berechtigungen ab, die du bei der Autorisierung bei Garmin erteilst.</p>
 
       <p><strong>Wof&uuml;r wir die Daten nutzen</strong></p>
       <ul>
@@ -291,9 +291,9 @@
 
       <p><strong>Speicherung</strong></p>
       <ul>
-        <li>Aktivit&auml;ten werden in unserer Datenbank (Supabase, EU/Irland) in der Tabelle <code>activity_logs</code> gespeichert, Wellness-Daten (Ruhepuls, Schlaf, HRV, Atemfrequenz) in <code>wellness_daily</code> &ndash; jeweils verkn&uuml;pft mit deiner Nutzer-ID.</li>
+        <li>Aktivit&auml;ten und Wellness-Daten (Ruhepuls, Schlaf, HRV, Atemfrequenz) werden in unserer Datenbank (Supabase, EU/Irland) gespeichert, jeweils verkn&uuml;pft mit deiner Nutzer-ID.</li>
         <li>Bei den t&auml;glichen Wellness-Zusammenfassungen bewahren wir zus&auml;tzlich den <strong>von Garmin &uuml;bermittelten Originaldatensatz</strong> auf, damit sp&auml;tere Korrekturen und Neuberechnungen m&ouml;glich bleiben.</li>
-        <li>Eingehende Garmin-Ereignisse liegen bis zu <strong>30 Tage</strong> in einer technischen Warteschlange (<code>wearable_sync_events</code>), damit fehlgeschlagene Importe wiederholt werden k&ouml;nnen. Danach werden sie gel&ouml;scht.</li>
+        <li>Eingehende Garmin-Ereignisse liegen bis zu <strong>14 Tage</strong> in einer technischen Warteschlange, damit fehlgeschlagene Importe wiederholt werden k&ouml;nnen. Danach werden sie gel&ouml;scht. Die w&auml;hrend einer Aktivit&auml;t aufgezeichneten Messreihen l&ouml;schen wir bereits unmittelbar nach der Verarbeitung.</li>
         <li>Dein Garmin-Zugangstoken liegt in deinem Profil und wird beim Trennen der Verbindung gel&ouml;scht.</li>
         <li>Alle weiteren Speicherfristen richten sich nach Abschnitt 7.</li>
       </ul>
@@ -328,7 +328,7 @@
           <tr><td>Zahlungsdaten</td><td>Verwaltet durch Apple/Google und RevenueCat; wir speichern keine Zahlungsinformationen direkt</td></tr>
         </tbody>
       </table>
-      <p>Nach Kontol&ouml;schung werden alle personenbezogenen Daten innerhalb von <strong>30 Tagen</strong> vollst&auml;ndig gel&ouml;scht (Cascade-Delete &uuml;ber alle verkn&uuml;pften Tabellen).</p>
+      <p>Nach Kontol&ouml;schung werden alle personenbezogenen Daten innerhalb von <strong>30 Tagen</strong> vollst&auml;ndig gel&ouml;scht.</p>
 
       <hr>
 
