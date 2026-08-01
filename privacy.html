@@ -87,7 +87,7 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Training activities and performance data</td><td>Training analysis, plan optimization</td></tr>
-          <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name); daily wellness summaries (resting heart rate, steps, stress level, Body Battery, SpO&#8322;, respiration rate); sleep (duration, score, quality); heart rate variability (HRV) &ndash; see Section 6.8</td><td>Training analysis, baseline calculation, training readiness, workout push to watch</td></tr>
+          <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name); daily wellness summaries (resting heart rate, steps, respiration rate); sleep (duration, score, quality); heart rate variability (HRV) &ndash; see Section 6.8</td><td>Training analysis, baseline calculation, training readiness, workout push to watch</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Heart rate variability (HRV SDNN), resting heart rate, sleep duration and stages</td><td>Recovery assessment, training readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Heart rate variability (HRV RMSSD), resting heart rate, sleep sessions and stages</td><td>Recovery assessment, training readiness</td></tr>
         </tbody>
@@ -268,7 +268,7 @@
       <p><strong>What data we receive</strong></p>
       <ul>
         <li><strong>Training activities</strong> &ndash; sport type, start time, duration, distance, pace and speed, heart rate, power, cadence, elevation, lap data, the measurement series recorded during the activity, and the name of the recording device</li>
-        <li><strong>Daily wellness summaries</strong> &ndash; resting heart rate, steps, average stress level, Body Battery, pulse oximetry (SpO&#8322;), and average respiration rate</li>
+        <li><strong>Daily wellness summaries</strong> &ndash; resting heart rate, steps, and average respiration rate. Garmin also transmits stress level, Body Battery and pulse oximetry (SpO&#8322;) in the same category; we discard these values on receipt and do not store them.</li>
         <li><strong>Sleep</strong> &ndash; duration, sleep score, and sleep quality</li>
         <li><strong>Heart rate variability (HRV)</strong> &ndash; overnight average</li>
         <li><strong>Connection data</strong> &ndash; your Garmin user ID and the OAuth access token that authorizes us to retrieve data on your behalf</li>
@@ -294,7 +294,7 @@
 
       <p><strong>Storage</strong></p>
       <ul>
-        <li>Activities are stored in our database (Supabase, EU/Ireland) in the <code>activity_logs</code> table; wellness data (resting heart rate, sleep, HRV, stress, Body Battery, SpO&#8322;, respiration) is stored in <code>wellness_daily</code>, each linked to your user ID.</li>
+        <li>Activities are stored in our database (Supabase, EU/Ireland) in the <code>activity_logs</code> table; wellness data (resting heart rate, sleep, HRV, respiration) is stored in <code>wellness_daily</code>, each linked to your user ID.</li>
         <li>For daily wellness summaries we additionally retain the <strong>original payload transmitted by Garmin</strong>, so that subsequent corrections and recalculations remain possible.</li>
         <li>Incoming Garmin events are held for up to <strong>30 days</strong> in a technical queue (<code>wearable_sync_events</code>) so that failed imports can be replayed. They are deleted afterwards.</li>
         <li>Your Garmin access token is stored in your profile and is deleted when you disconnect.</li>
@@ -309,7 +309,7 @@
         <li>When you delete your account, we actively revoke our access authorization at Garmin and delete all imported data (see Section 7).</li>
       </ul>
       <ul>
-        <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent; for health-related data (heart rate, HRV, sleep, SpO&#8322;) additionally Art. 9(2)(a) GDPR &ndash; Explicit consent</li>
+        <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent; for health-related data (heart rate, HRV, sleep) additionally Art. 9(2)(a) GDPR &ndash; Explicit consent</li>
       </ul>
 
       <hr>

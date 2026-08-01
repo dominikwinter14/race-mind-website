@@ -87,7 +87,7 @@
         <tbody>
           <tr><td><strong>Strava</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename)</td><td>Trainingsanalyse, Baseline-Berechnung, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Trainingsaktivit&auml;ten und Leistungsdaten</td><td>Trainingsanalyse, Planoptimierung</td></tr>
-          <tr><td><strong>Garmin Connect</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename); t&auml;gliche Wellness-Zusammenfassungen (Ruhepuls, Schritte, Stresslevel, Body Battery, SpO&#8322;, Atemfrequenz); Schlaf (Dauer, Score, Qualit&auml;t); Herzfrequenzvariabilit&auml;t (HRV) &ndash; siehe Abschnitt 6.8</td><td>Trainingsanalyse, Baseline-Berechnung, Training Readiness, Workout-Push an die Uhr</td></tr>
+          <tr><td><strong>Garmin Connect</strong></td><td>Trainingsaktivit&auml;ten (Dauer, Distanz, Pace, Herzfrequenz, Leistung, Lap-Daten, H&ouml;henmeter, Trittfrequenz, Ger&auml;tename); t&auml;gliche Wellness-Zusammenfassungen (Ruhepuls, Schritte, Atemfrequenz); Schlaf (Dauer, Score, Qualit&auml;t); Herzfrequenzvariabilit&auml;t (HRV) &ndash; siehe Abschnitt 6.8</td><td>Trainingsanalyse, Baseline-Berechnung, Training Readiness, Workout-Push an die Uhr</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Herzfrequenzvariabilit&auml;t (HRV SDNN), Ruhepuls, Schlafdauer und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Herzfrequenzvariabilit&auml;t (HRV RMSSD), Ruhepuls, Schlafsitzungen und Schlafphasen</td><td>Erholungssteuerung, Training Readiness</td></tr>
         </tbody>
@@ -265,7 +265,7 @@
       <p><strong>Welche Daten wir erhalten</strong></p>
       <ul>
         <li><strong>Trainingsaktivit&auml;ten</strong> &ndash; Sportart, Startzeit, Dauer, Distanz, Pace und Geschwindigkeit, Herzfrequenz, Leistung, Trittfrequenz, H&ouml;henmeter, Lap-Daten, die w&auml;hrend der Aktivit&auml;t aufgezeichneten Messreihen sowie den Namen des aufzeichnenden Ger&auml;ts</li>
-        <li><strong>T&auml;gliche Wellness-Zusammenfassungen</strong> &ndash; Ruhepuls, Schritte, durchschnittliches Stresslevel, Body Battery, Sauerstoffs&auml;ttigung (SpO&#8322;) und durchschnittliche Atemfrequenz</li>
+        <li><strong>T&auml;gliche Wellness-Zusammenfassungen</strong> &ndash; Ruhepuls, Schritte und durchschnittliche Atemfrequenz. Garmin &uuml;bermittelt in derselben Kategorie auch Stresslevel, Body Battery und Sauerstoffs&auml;ttigung (SpO&#8322;); diese Werte verwerfen wir beim Empfang und speichern sie nicht.</li>
         <li><strong>Schlaf</strong> &ndash; Dauer, Schlaf-Score und Schlafqualit&auml;t</li>
         <li><strong>Herzfrequenzvariabilit&auml;t (HRV)</strong> &ndash; Durchschnitt der vergangenen Nacht</li>
         <li><strong>Verbindungsdaten</strong> &ndash; deine Garmin-Nutzer-ID und das OAuth-Zugangstoken, mit dem wir in deinem Namen Daten abrufen d&uuml;rfen</li>
@@ -291,7 +291,7 @@
 
       <p><strong>Speicherung</strong></p>
       <ul>
-        <li>Aktivit&auml;ten werden in unserer Datenbank (Supabase, EU/Irland) in der Tabelle <code>activity_logs</code> gespeichert, Wellness-Daten (Ruhepuls, Schlaf, HRV, Stress, Body Battery, SpO&#8322;, Atemfrequenz) in <code>wellness_daily</code> &ndash; jeweils verkn&uuml;pft mit deiner Nutzer-ID.</li>
+        <li>Aktivit&auml;ten werden in unserer Datenbank (Supabase, EU/Irland) in der Tabelle <code>activity_logs</code> gespeichert, Wellness-Daten (Ruhepuls, Schlaf, HRV, Atemfrequenz) in <code>wellness_daily</code> &ndash; jeweils verkn&uuml;pft mit deiner Nutzer-ID.</li>
         <li>Bei den t&auml;glichen Wellness-Zusammenfassungen bewahren wir zus&auml;tzlich den <strong>von Garmin &uuml;bermittelten Originaldatensatz</strong> auf, damit sp&auml;tere Korrekturen und Neuberechnungen m&ouml;glich bleiben.</li>
         <li>Eingehende Garmin-Ereignisse liegen bis zu <strong>30 Tage</strong> in einer technischen Warteschlange (<code>wearable_sync_events</code>), damit fehlgeschlagene Importe wiederholt werden k&ouml;nnen. Danach werden sie gel&ouml;scht.</li>
         <li>Dein Garmin-Zugangstoken liegt in deinem Profil und wird beim Trennen der Verbindung gel&ouml;scht.</li>
@@ -306,7 +306,7 @@
         <li>Wenn du deinen Account l&ouml;schst, widerrufen wir unsere Zugriffsberechtigung aktiv bei Garmin und l&ouml;schen alle importierten Daten (siehe Abschnitt 7).</li>
       </ul>
       <ul>
-        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &ndash; Einwilligung; f&uuml;r gesundheitsbezogene Daten (Herzfrequenz, HRV, Schlaf, SpO&#8322;) zus&auml;tzlich Art. 9 Abs. 2 lit. a DSGVO &ndash; Ausdr&uuml;ckliche Einwilligung</li>
+        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &ndash; Einwilligung; f&uuml;r gesundheitsbezogene Daten (Herzfrequenz, HRV, Schlaf) zus&auml;tzlich Art. 9 Abs. 2 lit. a DSGVO &ndash; Ausdr&uuml;ckliche Einwilligung</li>
       </ul>
 
       <hr>
