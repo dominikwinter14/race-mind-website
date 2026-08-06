@@ -20,6 +20,36 @@ const RACE_DISTANCES = {
     olympic_tri: { swim: 1500, bike: 40000, run: 10000, t1_min: 3, t2_min: 2 },
     half_ironman: { swim: 1900, bike: 90000, run: 21100, t1_min: 4, t2_min: 2 },
     ironman: { swim: 3800, bike: 180000, run: 42195, t1_min: 5, t2_min: 3 },
+    // Open run of an athlete-chosen length (B-race only). The 10 km is a
+    // placeholder shape — the real distance arrives via opts.distances.run.
+    run_race: { swim: 0, bike: 0, run: 10000, t1_min: 0, t2_min: 0 },
+};
+/** Transition minutes per level (2026-08-06). The t1_min/t2_min in
+ *  RACE_DISTANCES were a single value per race type — a first-timer wrestling
+ *  a wetsuit off in an unfamiliar transition area got the same 3 minutes as
+ *  someone racing off elastic laces and pre-mounted shoes. Every other split in
+ *  this file is level-keyed (RUN_RACE_FACTOR, BIKE_RACE_IF, SWIM_CSS_FACTOR);
+ *  the transition was the last one that was not, and it read optimistic for the
+ *  exact group least able to afford an optimistic prediction.
+ *
+ *  The intermediate row IS the old flat value, so nothing moves for that level.
+ *  Beginners go up ~50%, advanced down ~40%. Long course carries more because
+ *  the transition includes a change tent, not just a helmet swap.
+ *  Kept byte-identical with the edge copy (race-duration-parity.test.ts). */
+const TRANSITION_MIN = {
+    //              ── T1 ──                        ── T2 ──         (total, min)
+    sprint_tri: { beginner: { t1: 3.0, t2: 1.5 }, // 4.5
+        intermediate: { t1: 2.0, t2: 1.0 }, // 3.0 (unchanged)
+        advanced: { t1: 1.25, t2: 0.5 } }, // 1.75
+    olympic_tri: { beginner: { t1: 4.5, t2: 3.0 }, // 7.5
+        intermediate: { t1: 3.0, t2: 2.0 }, // 5.0 (unchanged)
+        advanced: { t1: 2.0, t2: 1.25 } }, // 3.25
+    half_ironman: { beginner: { t1: 6.0, t2: 3.0 }, // 9.0
+        intermediate: { t1: 4.0, t2: 2.0 }, // 6.0 (unchanged)
+        advanced: { t1: 2.5, t2: 1.25 } }, // 3.75
+    ironman: { beginner: { t1: 7.5, t2: 4.5 }, // 12.0
+        intermediate: { t1: 5.0, t2: 3.0 }, // 8.0 (unchanged)
+        advanced: { t1: 3.5, t2: 2.0 } }, // 5.5
 };
 // NOTE: no open-run rows at all anymore — 5k/10k/HM/marathon go through the
 // VDOT table below instead (a ≤1 factor on threshold SPEED means "slower than
@@ -150,6 +180,50 @@ const VDOT_RACE_COL = {
     half_marathon: { col: 3, baseDist: 21097.5 },
     marathon: { col: 4, baseDist: 42195 },
 };
+/** Riegel's endurance exponent: t2 = t1 · (d2/d1)^1.06. Replaced a plain linear
+ *  ratio on 2026-08-06 — see the edge copy for the full rationale. Short version:
+ *  scaling an anchor time linearly says pace does not fade with distance, which
+ *  put a 30 km race 8 minutes fast off the 10k column and 10 minutes slow off the
+ *  marathon column. Canonical distances are unaffected (ratio 1). */
+const RIEGEL_EXPONENT = 1.06;
+/** Anchors by distance, for open runs with no column of their own (run_race).
+ *  Nearest is measured in LOG space — the Riegel correction acts on the ratio. */
+const RUN_ANCHORS = [
+    { col: 1, baseDist: 5000 },
+    { col: 2, baseDist: 10000 },
+    { col: 3, baseDist: 21097.5 },
+    { col: 4, baseDist: 42195 },
+];
+function nearestRunAnchor(distanceM) {
+    let best = RUN_ANCHORS[0];
+    let bestGap = Infinity;
+    for (const a of RUN_ANCHORS) {
+        const gap = Math.abs(Math.log(distanceM / a.baseDist));
+        if (gap < bestGap) {
+            bestGap = gap;
+            best = a;
+        }
+    }
+    return best;
+}
+/** Marathon margin faded in between HM and marathon distance — mirrors
+ *  enduranceMargin in lib/realismCheck.ts, which already had to solve this for
+ *  the DERIVATION direction (turning a PB at any distance into a threshold).
+ *
+ *  Why a fade and not a flat per-type constant: the margin models the amateur
+ *  marathon shortfall (mileage realization, the wall). Keyed on race_type it was
+ *  invisible, because only 'marathon' ever carried it. Keyed on an athlete-chosen
+ *  distance it becomes a cliff — a 42.1 km race would get none of it and a
+ *  42.195 km race all 5%. Fading it in over the HM→marathon stretch keeps the
+ *  seam continuous and makes prediction the exact inverse of derivation.
+ *
+ *  Canonical distances are unaffected: at 42195 m the lerp is 1 (full margin,
+ *  exactly as before) and at or below 21097.5 m it is 0 (no margin, as before). */
+function enduranceMargin(distanceM, level) {
+    const t = Math.min(1, Math.max(0, (distanceM - 21097.5) / (42195 - 21097.5)));
+    const full = MARATHON_LEVEL_MARGIN[level] ?? 1.05;
+    return 1.0 + t * (full - 1.0);
+}
 /** Race seconds for a canonical distance column from threshold pace,
  *  clamped to the table's VDOT range at both ends. */
 function raceSecondsFromThreshold(thresholdSecKm, col) {
@@ -174,6 +248,8 @@ const FALLBACK_HOURS = {
     olympic_tri: { beginner: 3.5, intermediate: 2.75, advanced: 2.25 },
     half_ironman: { beginner: 6.5, intermediate: 5.5, advanced: 4.75 },
     ironman: { beginner: 14, intermediate: 12, advanced: 10 },
+    // Per the 10 km row above, Riegel-scaled to the real distance.
+    run_race: { beginner: 1.0, intermediate: 0.8, advanced: 0.6 },
 };
 // ── Main ──
 export function predictRaceDuration(thresholds, opts) {
@@ -189,15 +265,19 @@ export function predictRaceDuration(thresholds, opts) {
     if (dist.run > 0) {
         const tp = thresholds.run_threshold_pace_sec_km;
         if (tp && tp > 0) {
-            const vdotRace = VDOT_RACE_COL[opts.raceType];
+            // An open run with no column of its own (run_race) borrows the nearest
+            // one by ratio; everything else keeps the column its race_type names.
+            const vdotRace = VDOT_RACE_COL[opts.raceType]
+                ?? (opts.raceType === 'run_race' ? nearestRunAnchor(dist.run) : undefined);
             if (vdotRace) {
-                // Open run: VDOT round trip, see VDOT_RUN_TABLE. Non-canonical
-                // distances (race_config course lengths) scale off the table time.
-                let raceSec = raceSecondsFromThreshold(tp, vdotRace.col);
-                if (opts.raceType === 'marathon') {
-                    raceSec *= MARATHON_LEVEL_MARGIN[opts.level] ?? 1.05;
-                }
-                runHours = (raceSec / 3600) * (dist.run / vdotRace.baseDist);
+                // Open run: VDOT round trip, see VDOT_RUN_TABLE. Off-distance races
+                // (race_config course lengths, athlete-chosen B-race distances) scale
+                // off the table time with Riegel's exponent, not linearly.
+                // Column 4 is the PURE Daniels marathon; the amateur margin is applied
+                // separately, keyed on the actual distance rather than on the race_type.
+                const raceSec = raceSecondsFromThreshold(tp, vdotRace.col)
+                    * enduranceMargin(dist.run, opts.level);
+                runHours = (raceSec / 3600) * Math.pow(dist.run / vdotRace.baseDist, RIEGEL_EXPONENT);
             }
             else {
                 const factor = RUN_RACE_FACTOR[opts.raceType]?.[opts.level] ?? 0.85;
@@ -293,9 +373,11 @@ function predictBikeHours(ftp, weight, distanceM, raceType, level) {
 function fallbackRunHours(raceType, level, distanceM) {
     const baseDist = RACE_DISTANCES[raceType]?.run ?? distanceM;
     const baseHours = FALLBACK_HOURS[raceType]?.[level] ?? 3.0;
-    if (['5k', '10k', 'half_marathon', 'marathon'].includes(raceType)) {
-        return baseDist > 0 ? baseHours * (distanceM / baseDist) : baseHours;
+    if (['5k', '10k', 'half_marathon', 'marathon', 'run_race'].includes(raceType)) {
+        return baseDist > 0 ? baseHours * Math.pow(distanceM / baseDist, RIEGEL_EXPONENT) : baseHours;
     }
+    // Tri run legs stay linear: the override is a course-length tweak of a few
+    // percent, never a chosen distance.
     return baseHours * 0.35 * (distanceM / baseDist);
 }
 function fallbackBikeHours(raceType, level, distanceM) {
@@ -310,12 +392,15 @@ function fallbackSwimHours(raceType, level, distanceM) {
 }
 function resolveDistances(opts) {
     const base = RACE_DISTANCES[opts.raceType] ?? RACE_DISTANCES.marathon;
+    // Level-keyed transition, falling back to the flat row for any race type
+    // without a TRANSITION_MIN entry (open runs, bike races — all zero anyway).
+    const t = TRANSITION_MIN[opts.raceType]?.[opts.level];
     return {
         swim: opts.distances?.swim ?? base.swim,
         bike: opts.distances?.bike ?? base.bike,
         run: opts.distances?.run ?? base.run,
-        t1_min: base.t1_min,
-        t2_min: base.t2_min,
+        t1_min: t?.t1 ?? base.t1_min,
+        t2_min: t?.t2 ?? base.t2_min,
     };
 }
 function round4(n) {

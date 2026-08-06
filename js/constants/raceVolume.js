@@ -19,6 +19,10 @@ export const RACE_PARAMS = {
     olympic_tri: { hMin: 3, hNorm: 6, hCap: 9, raceRateMult: 0.95 },
     half_ironman: { hMin: 4, hNorm: 8, hCap: 12, raceRateMult: 0.85 },
     ironman: { hMin: 8, hNorm: 12, hCap: 18, raceRateMult: 0.75 },
+    // Bike races are B-races, so these only ever shape the improvement projection
+    // to the race date, never a volume slider. Mid-field values: a rider training
+    // for something else improves on the bike at roughly a half-marathon rate.
+    bike_race: { hMin: 3, hNorm: 6, hCap: 10, raceRateMult: 0.95 },
 };
 /**
  * Slider / plan-engine ceiling per race type. Mirrors MAX_HOURS in

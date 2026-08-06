@@ -459,9 +459,9 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
 // Edge function copy in supabase/functions/_shared/update-baseline.ts must stay
 // byte-identical — enforced by __tests__/lib/race-constants-sync.test.ts.
 const PROJECTION_CAPS = {
-    beginner: { '5k': 0.24, '10k': 0.22, half_marathon: 0.20, marathon: 0.18, sprint_tri: 0.21, olympic_tri: 0.19, half_ironman: 0.17, ironman: 0.16 },
-    intermediate: { '5k': 0.18, '10k': 0.16, half_marathon: 0.14, marathon: 0.12, sprint_tri: 0.15, olympic_tri: 0.13, half_ironman: 0.10, ironman: 0.08 },
-    advanced: { '5k': 0.14, '10k': 0.12, half_marathon: 0.10, marathon: 0.08, sprint_tri: 0.11, olympic_tri: 0.09, half_ironman: 0.07, ironman: 0.06 },
+    beginner: { '5k': 0.24, '10k': 0.22, half_marathon: 0.20, marathon: 0.18, sprint_tri: 0.21, olympic_tri: 0.19, half_ironman: 0.17, ironman: 0.16, bike_race: 0.18 },
+    intermediate: { '5k': 0.18, '10k': 0.16, half_marathon: 0.14, marathon: 0.12, sprint_tri: 0.15, olympic_tri: 0.13, half_ironman: 0.10, ironman: 0.08, bike_race: 0.12 },
+    advanced: { '5k': 0.14, '10k': 0.12, half_marathon: 0.10, marathon: 0.08, sprint_tri: 0.11, olympic_tri: 0.09, half_ironman: 0.07, ironman: 0.06, bike_race: 0.08 },
 };
 // ══════════════════════════════════════════════════════════
 // UNIVERSAL: Realism Check (exported for Live-Updates)
