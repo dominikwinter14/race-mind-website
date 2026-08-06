@@ -1,65 +1,5 @@
 [
   {
-    "slug": "norseman-xtreme-triathlon",
-    "name": "Norseman Xtreme Triathlon",
-    "name_en": "Norseman Xtreme Triathlon",
-    "race_type": "ironman",
-    "date": "2026-08-01",
-    "course_factor_swim": 1.2,
-    "course_factor_bike": 1.45,
-    "course_factor_run": 1.6
-  },
-  {
-    "slug": "rostock-nachtmarathon",
-    "name": "Rostock Nachtmarathon",
-    "name_en": "Rostock Night Marathon",
-    "race_type": "marathon",
-    "date": "2026-08-01",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "frankfurt-city-triathlon",
-    "name": "Frankfurt City Triathlon",
-    "name_en": "Frankfurt City Triathlon",
-    "race_type": "half_ironman",
-    "date": "2026-08-02",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "ironman-canada-ottawa",
-    "name": "IRONMAN Canada-Ottawa",
-    "name_en": "IRONMAN Canada-Ottawa",
-    "race_type": "ironman",
-    "date": "2026-08-02",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1.02,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "ostseeman-gluecksburg",
-    "name": "Ostseeman Glücksburg",
-    "name_en": "OstseeMan Glücksburg",
-    "race_type": "ironman",
-    "date": "2026-08-02",
-    "course_factor_swim": 1.05,
-    "course_factor_bike": 1,
-    "course_factor_run": 1.02
-  },
-  {
-    "slug": "alpe-d-huez-triathlon-l",
-    "name": "Alpe d'Huez Triathlon L",
-    "name_en": "Alpe d'Huez Triathlon L",
-    "race_type": "half_ironman",
-    "date": "2026-08-05",
-    "course_factor_swim": 1.15,
-    "course_factor_bike": 1.85,
-    "course_factor_run": 1.15
-  },
-  {
     "slug": "embrunman",
     "name": "Embrunman",
     "name_en": "Embrunman",
@@ -1430,6 +1370,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "challenge-walchsee",
+    "name": "Challenge Walchsee",
+    "name_en": "Challenge Walchsee",
+    "race_type": "half_ironman",
+    "date": "2027-06-27",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.06,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-70-3-elsinore",
     "name": "Ironman 70.3 Elsinore",
     "name_en": "Ironman 70.3 Elsinore",
@@ -1520,6 +1470,16 @@
     "course_factor_run": 0.98
   },
   {
+    "slug": "roemerman-ladenburg",
+    "name": "RömerMan Ladenburg",
+    "name_en": "RömerMan Ladenburg",
+    "race_type": "half_ironman",
+    "date": "2027-07-17",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-lake-placid",
     "name": "IRONMAN Lake Placid",
     "name_en": "IRONMAN Lake Placid",
@@ -1528,6 +1488,26 @@
     "course_factor_swim": 0.98,
     "course_factor_bike": 1.12,
     "course_factor_run": 1.06
+  },
+  {
+    "slug": "rostock-nachtmarathon",
+    "name": "Rostock Nachtmarathon",
+    "name_en": "Rostock Night Marathon",
+    "race_type": "marathon",
+    "date": "2027-07-31",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "ostseeman-gluecksburg",
+    "name": "Ostseeman Glücksburg",
+    "name_en": "OstseeMan Glücksburg",
+    "race_type": "ironman",
+    "date": "2027-08-01",
+    "course_factor_swim": 1.05,
+    "course_factor_bike": 1,
+    "course_factor_run": 1.02
   },
   {
     "slug": "ironman-70-3-nice",
