@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; 7 Tage kostenlos</title>
+  <meta name="description" content="Dein digitaler Coach f&uuml;r Triathlon und Laufen. Plan, Analyse und Antworten &ndash; 7 Tage kostenlos, ohne Zahlungsdaten.">
+
+  <!-- Ad landing page: must not compete with the homepage in search results,
+       and must not be indexed under half a dozen ?v= variants. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="../fonts.css">
+
+  <script>
+    // The hero shot differs per ?v= variant and it is the LCP element. A
+    // static <link rel=preload> would either fetch the wrong file or make the
+    // other variant download two. Deciding here — before the parser reaches
+    // <body> — starts exactly one fetch, at the earliest possible moment.
+    //
+    // HERO_BY_VARIANT must stay in sync with VARIANTS[x].heroImg further down;
+    // the check in _scripts/verify-lander.js fails the build if it drifts.
+    (function () {
+      var HERO_BY_VARIANT = {
+        triathlon: '../images/mockup-hero.webp',
+        marathon: '../images/hero-dash-marathon.webp',
+        halbmarathon: '../images/hero-dash-halbmarathon.webp',
+        coach: '../images/hero-coachchat.webp'
+      };
+      var DEFAULT_VARIANT = 'triathlon';
+      var v = (new URLSearchParams(location.search).get('v') || '').toLowerCase();
+      var href = HERO_BY_VARIANT[v] || HERO_BY_VARIANT[DEFAULT_VARIANT];
+
+      window.__heroImg = href;
+      var l = document.createElement('link');
+      l.rel = 'preload';
+      l.as = 'image';
+      l.href = href;
+      l.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(l);
+    })();
+  </script>
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       Self-contained on purpose. The main style.css is 3.3k lines;
+       a paid-traffic lander pays for every one of them in LCP on a
+       mobile connection. Tokens mirror style.css / constants/colors.ts.
+       ══════════════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #FF8A00;
+      --primary-dark: #FF6B00;
+      --secondary: #00D1FF;
+      --bg: #050505;
+      --surface: #111111;
+      --card: #1A1C1E;
+      --muted: #949494;
+      --foreground: #FFFFFF;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 1rem;
+      --container: 1120px;
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: 'Lexend Deca', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* height:auto is not optional here: the width/height attributes below are
+       layout hints, and without it the browser applies the height literally —
+       every phone mockup rendered 4–8 % too tall. */
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ─────────── Header: logo only. No nav — an ad lander has one exit. ─────────── */
+
+    .topbar {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .topbar-logo { height: 26px; width: auto; }
+
+    .topbar-trust {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* ─────────── Hero ─────────── */
+
+    .hero {
+      position: relative;
+      padding: 3rem 0 3.5rem;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.16;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow--orange {
+      width: 480px; height: 480px;
+      background: var(--primary);
+      top: -180px; left: -140px;
+    }
+
+    .hero-glow--cyan {
+      width: 420px; height: 420px;
+      background: var(--secondary);
+      top: 80px; right: -180px;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      border: 1px solid rgba(255, 138, 0, 0.3);
+      background: rgba(255, 138, 0, 0.08);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 1.25rem;
+      /* min-width is set at runtime from the widest rotating label, so the
+         chip does not resize on every swap. */
+      text-align: center;
+    }
+
+    #heroEyebrowText {
+      display: inline-block;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    #heroEyebrowText.is-out { opacity: 0; transform: translateY(-4px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      #heroEyebrowText { transition: none; }
+    }
+
+    /* Scope line — who this is actually for. The homepage carries the same
+       statement above the fold; a lander that drops it makes every visitor
+       guess whether their distance is covered. */
+    .hero-scope {
+      font-size: 0.84rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin: -0.9rem 0 1.6rem;
+    }
+
+    .hero-scope strong { color: rgba(255, 255, 255, 0.8); font-weight: 500; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      margin: -1px; padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 6.5vw, 3.1rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    /* Ticked-off marker in the headline. An SVG, not the ✅ emoji: that glyph
+       is green (a third colour next to the orange/cyan gradient it sits in),
+       and it renders differently on every platform. */
+    .h1-check {
+      display: inline-block;
+      width: 0.78em;
+      height: 0.78em;
+      vertical-align: 0.02em;
+      margin-left: 0.16em;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .h1-check svg { width: 100%; height: 100%; display: block; }
+
+    .hero-sub {
+      font-size: clamp(0.98rem, 2.6vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 1.75rem;
+      max-width: 34em;
+    }
+
+    /* ─────────── CTA ─────────── */
+
+    .cta-block { max-width: 27rem; }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 1.05rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #0A0A0A;
+      font-family: inherit;
+      font-size: 1.02rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 10px 34px rgba(255, 138, 0, 0.28);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(255, 138, 0, 0.36); }
+    .cta:active { transform: translateY(0); }
+    .cta-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* Secondary store link for the OS we did not detect. Deliberately quiet:
+       the whole point of detection is that there is one obvious button. */
+    .cta-alt {
+      display: block;
+      margin-top: 0.7rem;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .cta-alt u { text-decoration-color: rgba(255, 255, 255, 0.25); text-underline-offset: 3px; }
+    .cta-alt:hover { color: var(--foreground); }
+
+    .cta-reassure {
+      margin-top: 0.85rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .cta-reassure strong { color: var(--foreground); font-weight: 600; }
+
+    /* ─────────── Rating row ─────────── */
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .rating-stars { color: var(--primary); font-size: 0.95rem; letter-spacing: 0.06em; }
+
+    .rating-text { font-size: 0.8rem; font-weight: 300; color: var(--muted); }
+
+    /* ─────────── Hero shot ─────────── */
+
+    .hero-shot {
+      position: relative;
+      justify-self: center;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .hero-shot img { border-radius: 1.5rem; }
+
+    /* ─────────── Compat strip ─────────── */
+
+    .compat {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .compat-label {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .compat-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem 2.25rem;
+    }
+
+    /* Same treatment as style.css:483 — the source logos are a mix of white
+       (Garmin), near-black (Suunto #231F20) and brand orange (Strava). Only
+       brightness(0) invert(1) flattens all three to the same white. */
+    .compat-logos img {
+      height: 22px;
+      width: auto;
+      opacity: 0.55;
+      filter: brightness(0) invert(1);
+    }
+
+    /* ─────────── Sections ─────────── */
+
+    .section { padding: 3.5rem 0; }
+    .section--alt { background: var(--surface); }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.9rem;
+    }
+
+    .lead {
+      font-size: 0.98rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 1.5rem;
+    }
+
+    .lead strong { color: var(--foreground); font-weight: 500; }
+
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .bullets li {
+      position: relative;
+      padding-left: 1.75rem;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .bullets strong { color: var(--foreground); font-weight: 600; }
+
+    .shot { justify-self: center; max-width: 280px; width: 100%; }
+    .shot img { border-radius: 1.5rem; }
+
+    /* ─────────── Feature grid ─────────── */
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .feature-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 138, 0, 0.1);
+      border: 1px solid rgba(255, 138, 0, 0.22);
+      color: var(--primary);
+    }
+
+    .feature-icon svg { width: 19px; height: 19px; }
+
+    .feature h3 { font-size: 0.98rem; font-weight: 600; line-height: 1.35; }
+
+    .feature p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.55;
+    }
+
+    .features-more {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .features-more strong { color: rgba(255, 255, 255, 0.85); font-weight: 500; }
+
+    /* ─────────── Reviews ─────────── */
+
+    .section-head { text-align: center; margin-bottom: 2rem; }
+    .section-head h2 { margin-bottom: 0.5rem; }
+    .section-head p { font-size: 0.9rem; font-weight: 300; color: var(--muted); }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .review {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .review-stars { color: var(--primary); font-size: 0.82rem; letter-spacing: 0.05em; }
+
+    .review-source {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .review-source svg { width: 13px; height: 13px; }
+
+    .review-text {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .review-meta { display: flex; align-items: center; gap: 0.55rem; }
+
+    .review-avatar {
+      width: 26px; height: 26px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #0A0A0A;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-name { font-size: 0.78rem; font-weight: 500; }
+
+    /* ─────────── Price anchor ─────────── */
+
+    .anchor {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      max-width: 52rem;
+      margin: 0 auto;
+    }
+
+    .anchor-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      text-align: center;
+    }
+
+    .anchor-item--hl {
+      border-color: rgba(255, 138, 0, 0.45);
+      background: rgba(255, 138, 0, 0.06);
+    }
+
+    .anchor-what { font-size: 0.8rem; font-weight: 300; color: var(--muted); margin-bottom: 0.3rem; }
+    .anchor-price { font-size: 1.15rem; font-weight: 700; }
+    .anchor-item--hl .anchor-price { color: var(--primary); }
+
+    .anchor-note {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ─────────── Closing CTA ─────────── */
+
+    .close { position: relative; text-align: center; overflow: hidden; }
+    .close .container { position: relative; z-index: 1; }
+    .close .cta-block { margin: 0 auto; }
+    .close h2 { margin-bottom: 0.75rem; }
+    .close .lead { margin-left: auto; margin-right: auto; max-width: 32em; }
+
+    /* ─────────── Footer ─────────── */
+
+    .footer {
+      padding: 2rem 0 6.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--foreground); }
+    .footer-copy { font-size: 0.72rem; font-weight: 300; color: rgba(255, 255, 255, 0.35); }
+
+    /* ─────────── Sticky mobile CTA ─────────── */
+
+    .sticky {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 40;
+      padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+      background: rgba(5, 5, 5, 0.92);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      transform: translateY(110%);
+      transition: transform 0.25s ease;
+    }
+
+    .sticky.is-visible { transform: translateY(0); }
+
+    /* Both live at the bottom edge. The consent dialog wins until it is
+       answered, otherwise they stack on top of each other on mobile. */
+    body.consent-open .sticky { transform: translateY(110%); }
+
+    .sticky .cta { padding: 0.9rem 1.25rem; font-size: 0.95rem; box-shadow: none; }
+    .sticky .cta:hover { transform: none; }
+
+    .sticky-note {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    @media (min-width: 900px) { .sticky { display: none; } .footer { padding-bottom: 2rem; } }
+
+    /* ─────────── Consent banner ─────────── */
+
+    .consent {
+      position: fixed;
+      left: 1rem; right: 1rem;
+      bottom: 1rem;
+      z-index: 60;
+      max-width: 30rem;
+      margin: 0 auto;
+      padding: 1.1rem 1.15rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .consent[hidden] { display: none; }
+    .consent p { font-size: 0.78rem; font-weight: 300; color: rgba(255, 255, 255, 0.75); line-height: 1.55; }
+    .consent a { color: var(--primary); text-decoration: none; }
+
+    .consent-actions { display: flex; gap: 0.55rem; margin-top: 0.9rem; }
+
+    .consent-btn {
+      flex: 1;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.65rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--foreground);
+    }
+
+    .consent-btn--accept { background: var(--foreground); color: var(--bg); border-color: var(--foreground); }
+
+    /* ─────────── Reveal ─────────── */
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+    /* ─────────── Tablet ─────────── */
+
+    @media (min-width: 600px) and (max-width: 899px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .reviews { grid-template-columns: repeat(2, 1fr); }
+      .anchor { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─────────── Desktop ─────────── */
+
+    @media (min-width: 900px) {
+      .hero { padding: 4.5rem 0 4rem; }
+      .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; }
+      .hero-shot { max-width: 320px; justify-self: end; }
+      .section { padding: 5rem 0; }
+      .split { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+      .split--flip .shot { order: -1; }
+      .features { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .reviews { grid-template-columns: repeat(3, 1fr); }
+      .anchor { grid-template-columns: repeat(3, 1fr); align-items: center; }
+      .anchor-item--hl { padding: 1.6rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════ TOPBAR ════════════ -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <img src="../logo-full.svg" alt="RaceMind" class="topbar-logo">
+      <p class="topbar-trust" id="topbarTrust"></p>
+    </div>
+  </header>
+
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero">
+    <div class="hero-glow hero-glow--orange"></div>
+    <div class="hero-glow hero-glow--cyan"></div>
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-eyebrow" id="heroEyebrow"><span id="heroEyebrowText"></span></span>
+        <h1 id="heroTitle"></h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <p class="hero-scope" id="heroScope"></p>
+
+        <div class="cta-block">
+          <a href="#" class="cta" data-cta="hero" id="ctaHero">
+            <svg class="cta-icon" id="ctaHeroIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"></svg>
+            <span id="ctaHeroLabel"></span>
+          </a>
+          <a href="#" class="cta-alt" data-cta="hero-alt" id="ctaHeroAlt"></a>
+          <p class="cta-reassure" id="ctaReassure"></p>
+        </div>
+
+        <div class="rating">
+          <span class="rating-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-text" id="ratingText"></span>
+        </div>
+      </div>
+
+      <div class="hero-shot">
+        <!-- No src here on purpose: the head script already started the fetch
+             for this variant's shot. width/height keep the box reserved so
+             nothing shifts when it lands. -->
+        <!-- 320x667 matches the three dashboard exports (1004x2094); it only
+             reserves space until the file lands, then the real ratio wins. -->
+        <img id="heroImg" alt="" width="320" height="667" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ COMPAT ════════════ -->
+  <section class="compat">
+    <div class="container">
+      <p class="compat-label" id="compatLabel"></p>
+      <div class="compat-logos">
+        <!-- Real brand assets only where we have them. logo-garmin.svg,
+             logo-polar.svg and logo-coros.svg are hand-drawn <text> stand-ins
+             in system-ui, not the actual wordmarks — the .webp files are the
+             real logos and all three carry alpha, so the monochrome filter
+             works on them exactly like on a vector. -->
+        <img src="../images/logo-garmin.webp" alt="Garmin" loading="lazy">
+        <img src="../images/logo-coros.webp" alt="COROS" loading="lazy">
+        <img src="../images/logo-polar.webp" alt="Polar" loading="lazy">
+        <img src="../images/logo-suunto.svg" alt="Suunto" loading="lazy">
+        <img src="../images/logo-strava.svg" alt="Strava" loading="lazy">
+        <!-- No real asset exists for these two yet; both are text stand-ins. -->
+        <img src="../images/logo-apple-watch.svg" alt="Apple Watch" loading="lazy">
+        <img src="../images/logo-intervals.svg" alt="intervals.icu" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ ANGLE ════════════ -->
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <h2 id="angleTitle"></h2>
+        <p class="lead" id="angleLead"></p>
+        <ul class="bullets" id="angleBullets"></ul>
+      </div>
+      <div class="shot reveal">
+        <!-- No src: three of four variants show the coach chat here, so a static
+             one would be a wasted fetch. The variant script fills it in. -->
+        <img id="angleImg" alt="" loading="lazy" width="280" height="559">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FEATURE OVERVIEW ════════════ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="featuresTitle"></h2>
+        <p id="featuresSub"></p>
+      </div>
+      <div class="features reveal" id="features"></div>
+      <p class="features-more reveal" id="featuresMore"></p>
+    </div>
+  </section>
+
+  <!-- ════════════ REVIEWS ════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="reviewsTitle"></h2>
+        <p id="reviewsSub"></p>
+      </div>
+      <div class="reviews reveal" id="reviews"></div>
+    </div>
+  </section>
+
+  <!-- ════════════ PRICE ANCHOR ════════════ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2 id="anchorTitle"></h2>
+        <p id="anchorSub"></p>
+      </div>
+      <div class="anchor reveal" id="anchor"></div>
+      <p class="anchor-note reveal" id="anchorNote"></p>
+    </div>
+  </section>
+
+  <!-- ════════════ CLOSING CTA ════════════ -->
+  <section class="section close">
+    <div class="hero-glow hero-glow--orange" style="top: -220px; left: 50%; transform: translateX(-50%);"></div>
+    <div class="container">
+      <h2 class="reveal" id="closeTitle"></h2>
+      <p class="lead reveal" id="closeLead"></p>
+      <div class="cta-block reveal">
+        <a href="#" class="cta" data-cta="footer" id="ctaClose">
+          <svg class="cta-icon" id="ctaCloseIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"></svg>
+          <span id="ctaCloseLabel"></span>
+        </a>
+        <a href="#" class="cta-alt" data-cta="footer-alt" id="ctaCloseAlt"></a>
+        <p class="cta-reassure" id="ctaCloseReassure"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links" id="footerLinks"></div>
+      <div class="footer-links">
+        <a href="#" id="consentReopen"></a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind</p>
+    </div>
+  </footer>
+
+  <!-- ════════════ STICKY MOBILE CTA ════════════ -->
+  <div class="sticky" id="sticky">
+    <a href="#" class="cta" data-cta="sticky" id="ctaSticky">
+      <svg class="cta-icon" id="ctaStickyIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"></svg>
+      <span id="ctaStickyLabel"></span>
+    </a>
+    <p class="sticky-note" id="stickyNote"></p>
+  </div>
+
+  <!-- ════════════ CONSENT ════════════ -->
+  <div class="consent" id="consent" hidden role="dialog" aria-labelledby="consentText">
+    <p id="consentText"></p>
+    <div class="consent-actions">
+      <button type="button" class="consent-btn" id="consentDecline"></button>
+      <button type="button" class="consent-btn consent-btn--accept" id="consentAccept"></button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ══════════════════════════════════════════════════════════════
+       ①  CONFIG — the only lines you normally touch
+       ══════════════════════════════════════════════════════════════ */
+
+    // Meta Business Manager → Datenquellen → Datensätze.
+    var META_PIXEL_ID = '1550617516546355';
+
+    // App Store Connect → App Analytics → Kampagnen. Without a provider
+    // token Apple ignores ?ct=, so we omit the params entirely rather
+    // than append dead ones. Leave empty until you generate a link there.
+    var APPLE_PROVIDER_TOKEN = '';
+
+    var IOS_URL = 'https://apps.apple.com/app/race-mind/id6759935305';
+    var PLAY_URL = 'https://play.google.com/store/apps/details?id=com.racemind.app';
+
+    var APPLE_ICON = 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z';
+    var PLAY_ICON = 'M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z';
+
+    /* ══════════════════════════════════════════════════════════════
+       ②  CONTEXT — language, OS, ad variant
+       ══════════════════════════════════════════════════════════════ */
+
+    var params = new URLSearchParams(window.location.search);
+    var isDE = (navigator.language || '').toLowerCase().indexOf('de') === 0;
+    document.documentElement.lang = isDE ? 'de' : 'en';
+
+    var ua = navigator.userAgent || '';
+    // iPadOS 13+ reports as Macintosh; the touch-point check separates a
+    // real Mac (0) from an iPad pretending to be one.
+    var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(ua);
+    // Desktop gets iOS as the lead button (larger share) but both are visible.
+    var leadPlatform = isAndroid ? 'android' : 'ios';
+
+    // Validated against VARIANTS once that object exists — a hardcoded list
+    // here would silently fall out of date every time a variant is added.
+    var DEFAULT_VARIANT = 'triathlon';
+    var variant = (params.get('v') || DEFAULT_VARIANT).toLowerCase();
+
+    /* ══════════════════════════════════════════════════════════════
+       ③  COPY
+       ══════════════════════════════════════════════════════════════ */
+
+    var SHARED = {
+      de: {
+        topbarTrust: 'Made in Germany &middot; DSGVO-konform',
+        heroScope: 'F&uuml;r <strong>Laufen und Triathlon</strong> &middot; 5&nbsp;km bis Langdistanz',
+        ctaLabelIOS: '7 Tage kostenlos starten',
+        ctaLabelAndroid: '7 Tage kostenlos starten',
+        ctaAltIOS: 'Du hast ein iPhone? <u>Im App&nbsp;Store laden</u>',
+        ctaAltAndroid: 'Du hast ein Android-Ger&auml;t? <u>Bei Google&nbsp;Play laden</u>',
+        reassure: '<strong>Ohne Zahlungsdaten.</strong> Jederzeit k&uuml;ndbar.',
+        rating: '5,0 im App&nbsp;Store &amp; bei Google&nbsp;Play',
+        compatLabel: 'Verbindet sich mit',
+
+        featuresTitle: 'Was drin ist, <span class="gradient-text">wenn du startest.</span>',
+        featuresSub: 'Kein Chatbot auf einem PDF-Plan &ndash; eine Trainingssteuerung mit einem Coach davor.',
+        // Pool, not a list. Each variant picks six — see VARIANTS[x].features.
+        // A tile is left out when the section above already made that point,
+        // otherwise the grid repeats the angle bullets almost word for word.
+        features: {
+          plan: {
+            icon: 'calendar',
+            title: 'Ein Plan, der sich anpasst',
+            text: 'Periodisiert auf dein Ziel. F&auml;llt eine Woche auseinander, wird sie neu geplant statt nach hinten geschoben &ndash; ohne Nachholen.'
+          },
+          coach: {
+            icon: 'chat',
+            title: 'Ein Coach, der antwortet und handelt',
+            text: 'Rund um die Uhr, mit deinen Daten im Kontext. &bdquo;Verschieb mein Intervalltraining auf Donnerstag&ldquo; &ndash; erledigt.'
+          },
+          forecast: {
+            icon: 'target',
+            title: 'Zielzeit-Prognose ab Tag 1',
+            text: 'Du siehst sofort, ob dein Ziel realistisch ist. Die Prognose wird mit jeder Einheit genauer.'
+          },
+          analysis: {
+            icon: 'chart',
+            title: 'Klartext nach jeder Einheit',
+            text: 'Was sie gebracht hat und worauf es beim n&auml;chsten Mal ankommt &ndash; statt Kurven, die du selbst deuten musst.'
+          },
+          watch: {
+            icon: 'watch',
+            title: 'Einheit direkt auf die Uhr',
+            text: 'Strukturierte Workouts mit Pace, Intervallen und Herzfrequenz landen auf deiner Garmin. Kein Abtippen.'
+          },
+          raceday: {
+            icon: 'flag',
+            title: 'Race Day inklusive',
+            text: 'Pacing- und Verpflegungsplan f&uuml;r den Wettkampftag &ndash; abgestimmt auf Strecke und Zielzeit.'
+          },
+          library: {
+            icon: 'library',
+            title: '&Uuml;ber 300 Einheiten',
+            text: 'Schwimmen, Radfahren, Laufen, Kraft und Mobility &ndash; jede mit Aufbau, Zweck und Zielbereich.'
+          },
+          readiness: {
+            icon: 'sun',
+            title: 'Readiness-Check jeden Morgen',
+            text: '&bdquo;Heute kannst du pushen&ldquo; oder &bdquo;Nimm es locker&ldquo; &ndash; statt HRV-Charts, die du selbst interpretierst.'
+          },
+          comeback: {
+            icon: 'shield',
+            title: 'Zur&uuml;ck nach Krankheit',
+            text: 'Progressiver Weg zur&uuml;ck statt Neustart &ndash; konservativ genug, um R&uuml;ckf&auml;lle zu vermeiden.'
+          }
+        },
+        featuresMore: 'Dazu: <strong>Coach Review</strong> jeden Sonntag &middot; optionales <strong>Cycle Tracking</strong> &middot; gemeinsam trainieren mit Freund:innen &middot; Wetter direkt in der Wochenplanung.',
+
+        reviewsSub: 'Ein Auszug aus den Bewertungen im App&nbsp;Store &amp; bei Google&nbsp;Play',
+
+        anchorTitle: 'Was Trainingsplanung <span class="gradient-text">sonst kostet.</span>',
+        anchorSub: 'Derselbe Anspruch, drei Preisschilder.',
+        anchorItems: [
+          { what: 'Statischer PDF-Plan', price: '30&ndash;80&nbsp;&euro; einmalig', hl: false },
+          { what: 'RaceMind', price: 'ab 6,66&nbsp;&euro; / Monat', hl: true },
+          { what: 'Pers&ouml;nlicher Coach', price: '150&ndash;400&nbsp;&euro; / Monat', hl: false }
+        ],
+        anchorNote: 'Early-Adopter-Preis &ndash; er gilt lebenslang f&uuml;r alle, die jetzt einsteigen. 79,99&nbsp;&euro; im Jahr oder 9,99&nbsp;&euro; im Monat.',
+
+        closeTitle: 'Dein Ziel. Dein Rennen. <span class="gradient-text">Dein Coach.</span>',
+        closeLead: 'Die ersten 7 Tage kosten nichts und verlangen keine Zahlungsdaten. Nach dem Onboarding steht dein Plan.',
+        stickyNote: '7 Tage kostenlos &middot; ohne Zahlungsdaten',
+
+        footer: [
+          { href: '/', label: 'Zur Website' },
+          { href: '/datenschutz.html', label: 'Datenschutz' },
+          { href: '/impressum.html', label: 'Impressum' }
+        ],
+
+        consentText: 'Wir messen mit dem Meta-Pixel, welche Anzeigen funktionieren. Das setzt Cookies und &uuml;bertr&auml;gt Daten an Meta. Nur mit deiner Einwilligung &ndash; die App und diese Seite funktionieren auch ohne. Details in der <a href="/datenschutz.html">Datenschutzerkl&auml;rung</a>.',
+        consentAccept: 'Einverstanden',
+        consentDecline: 'Ablehnen',
+        consentReopen: 'Tracking-Einstellungen'
+      },
+      en: {
+        topbarTrust: 'Made in Germany &middot; GDPR-compliant',
+        heroScope: 'For <strong>running and triathlon</strong> &middot; 5&nbsp;km to full distance',
+        ctaLabelIOS: 'Start 7 days free',
+        ctaLabelAndroid: 'Start 7 days free',
+        ctaAltIOS: 'On iPhone? <u>Get it on the App&nbsp;Store</u>',
+        ctaAltAndroid: 'On Android? <u>Get it on Google&nbsp;Play</u>',
+        reassure: '<strong>No payment details.</strong> Cancel anytime.',
+        rating: '5.0 on the App&nbsp;Store &amp; Google&nbsp;Play',
+        compatLabel: 'Works with',
+
+        featuresTitle: 'What you get <span class="gradient-text">when you start.</span>',
+        featuresSub: 'Not a chatbot bolted onto a PDF plan &ndash; a training engine with a coach in front of it.',
+        features: {
+          plan: {
+            icon: 'calendar',
+            title: 'A plan that adapts',
+            text: 'Periodised around your goal. When a week falls apart it gets replanned, not pushed back &ndash; nothing to make up.'
+          },
+          coach: {
+            icon: 'chat',
+            title: 'A coach that answers and acts',
+            text: 'Around the clock, with your data in context. &ldquo;Move my interval session to Thursday&rdquo; &ndash; done.'
+          },
+          forecast: {
+            icon: 'target',
+            title: 'Finish-time forecast from day 1',
+            text: 'You see straight away whether your goal is realistic. The forecast sharpens with every session.'
+          },
+          analysis: {
+            icon: 'chart',
+            title: 'Plain language after every session',
+            text: 'What it achieved and what matters next time &ndash; instead of charts you have to interpret yourself.'
+          },
+          watch: {
+            icon: 'watch',
+            title: 'Sent straight to your watch',
+            text: 'Structured workouts with pace, intervals and heart rate land on your Garmin. No retyping.'
+          },
+          raceday: {
+            icon: 'flag',
+            title: 'Race day included',
+            text: 'Pacing and fuelling plan for the day itself &ndash; matched to the course and your target time.'
+          },
+          library: {
+            icon: 'library',
+            title: 'Over 300 sessions',
+            text: 'Swim, bike, run, strength and mobility &ndash; each with its structure, purpose and target range.'
+          },
+          readiness: {
+            icon: 'sun',
+            title: 'A readiness check every morning',
+            text: '&ldquo;You can push today&rdquo; or &ldquo;take it easy&rdquo; &ndash; instead of HRV charts you have to read yourself.'
+          },
+          comeback: {
+            icon: 'shield',
+            title: 'Back after illness',
+            text: 'A progressive way back instead of starting over &ndash; conservative enough to avoid a relapse.'
+          }
+        },
+        featuresMore: 'Plus: a <strong>coach review</strong> every Sunday &middot; optional <strong>cycle tracking</strong> &middot; train together with friends &middot; weather right inside your week planning.',
+
+        reviewsSub: 'A selection of App&nbsp;Store and Google&nbsp;Play reviews',
+
+        anchorTitle: 'What training plans <span class="gradient-text">normally cost.</span>',
+        anchorSub: 'Same ambition, three price tags.',
+        anchorItems: [
+          { what: 'Static PDF plan', price: '&euro;30&ndash;80 one-off', hl: false },
+          { what: 'RaceMind', price: 'from &euro;6.66 / month', hl: true },
+          { what: 'Personal coach', price: '&euro;150&ndash;400 / month', hl: false }
+        ],
+        anchorNote: 'Early adopter pricing &ndash; locked in for life if you join now. &euro;79.99 per year or &euro;9.99 per month.',
+
+        closeTitle: 'Your goal. Your race. <span class="gradient-text">Your coach.</span>',
+        closeLead: 'The first 7 days are free and need no payment details. Your plan is ready right after onboarding.',
+        stickyNote: '7 days free &middot; no payment details',
+
+        footer: [
+          { href: '/index-en.html', label: 'Full website' },
+          { href: '/privacy.html', label: 'Privacy' },
+          { href: '/impressum.html', label: 'Imprint' }
+        ],
+
+        consentText: 'We use the Meta pixel to measure which ads work. It sets cookies and sends data to Meta. Only with your consent &ndash; this page and the app work without it. See our <a href="/privacy.html">privacy policy</a>.',
+        consentAccept: 'Accept',
+        consentDecline: 'Decline',
+        consentReopen: 'Tracking settings'
+      }
+    };
+
+    // Repeated in two headlines; kept in one place so the two cannot drift.
+    var CHECK = '<span class="h1-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-width="1.7"/><path d="m7.8 12.2 2.8 2.8 5.6-6"/></svg></span>';
+
+    var VARIANTS = {
+      triathlon: {
+        de: {
+          // Array, not a string: the chip rotates through these. The headline
+          // below stays distance-agnostic on purpose, so every entry fits it.
+          heroEyebrow: [
+            'Erster Sprint',
+            'Erste Olympische Distanz',
+            'Erste Mitteldistanz',
+            'Erste Langdistanz'
+          ],
+          heroTitle: 'Angemeldet' + CHECK + ' <span class="gradient-text">Und jetzt?</span>',
+          heroSub: 'Drei Sportarten, ein Ziel und eine Woche mit begrenzter Zeit. RaceMind verteilt Schwimmen, Radfahren und Laufen so, dass am Ende ein Plan steht &ndash; nicht drei, die um dieselben Tage k&auml;mpfen.',
+          heroImg: '../images/mockup-hero.webp',
+          heroImgAlt: 'RaceMind App: Countdown zum Ironman 70.3, Training Readiness und die Einheiten der Woche',
+          angleTitle: 'Ist dein Trainingsplan <span class="gradient-text">auf dich angepasst?</span>',
+          angleLead: 'Die meisten Trainingspl&auml;ne sind f&uuml;r jemand anderen geschrieben. RaceMind rechnet mit deinen Zeiten, deinem Umfang und den Tagen, an denen du wirklich kannst.',
+          angleBullets: [
+            '<strong>Alle drei Disziplinen in einem Plan</strong> &ndash; inklusive Kraft und Mobility, nicht als Anhang.',
+            '<strong>Plan passend zu deiner Zeit</strong> &ndash; kein 15-Stunden-Plan, wenn du 7 Stunden hast.',
+            '<strong>Sicher ans Ziel</strong> &ndash; die Engine drosselt bewusst: Schutz vor zu hart und zu viel.',
+            '<strong>Und ein Coach, der mitdenkt</strong> &ndash; &bdquo;Das Schwimmen f&auml;llt diese Woche aus&ldquo;: Er verteilt neu, statt es zu streichen.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind Coach-Chat: Frage zum Training, Antwort mit dem eigenen Plan im Kontext',
+          reviewsTitle: 'Andere standen genau hier.'
+        },
+        en: {
+          heroEyebrow: [
+            'First sprint',
+            'First olympic distance',
+            'First half distance',
+            'First full distance'
+          ],
+          heroTitle: 'Signed up' + CHECK + ' <span class="gradient-text">Now what?</span>',
+          heroSub: 'Three sports, one goal and a week with limited time. RaceMind balances swim, bike and run into a single plan &ndash; not three fighting over the same days.',
+          heroImg: '../images/mockup-hero.webp',
+          heroImgAlt: 'RaceMind app: countdown to an Ironman 70.3, training readiness and this week\'s sessions',
+          angleTitle: 'Is your training plan <span class="gradient-text">built around you?</span>',
+          angleLead: 'Most training plans were written for somebody else. RaceMind works from your times, your volume and the days you can actually train.',
+          angleBullets: [
+            '<strong>All three disciplines in one plan</strong> &ndash; strength and mobility included, not bolted on.',
+            '<strong>A plan that fits your week</strong> &ndash; no 15-hour plan when you have 7.',
+            '<strong>Safely to the finish</strong> &ndash; the engine holds back on purpose: protection from too hard, too much.',
+            '<strong>And a coach that thinks along</strong> &ndash; &ldquo;No pool this week&rdquo;: it redistributes instead of dropping the session.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind coach chat: a training question answered with your own plan in context',
+          reviewsTitle: 'Others stood exactly where you are.'
+        },
+        reviews: ['paprika', 'erol', 'mmaus'],
+        // Skips `coach`: bullet 4 and the screenshot beside it are the chat.
+        features: ['plan', 'forecast', 'analysis', 'raceday', 'watch', 'library']
+      },
+
+      marathon: {
+        de: {
+          heroEyebrow: [
+            'Erster Marathon',
+            'Unter 4 Stunden',
+            'Unter 3:30',
+            'Unter 3 Stunden'
+          ],
+          heroTitle: 'Du hast dein Ziel. <span class="gradient-text">Wir haben den Weg.</span>',
+          heroSub: 'Zwischen heute und dem Renntag liegen Monate voller Entscheidungen: Wie lang wird der Long Run? Wann kommt Tempo dazu? Und reicht das, was du gerade machst? RaceMind beantwortet das Woche f&uuml;r Woche.',
+          heroImg: '../images/hero-dash-marathon.webp',
+          heroImgAlt: 'RaceMind App: Countdown zum Baden-Marathon, Training Readiness und die Einheiten der Woche',
+          angleTitle: 'Ist dein Trainingsplan <span class="gradient-text">auf dich angepasst?</span>',
+          angleLead: 'Die meisten Marathonpl&auml;ne sind f&uuml;r jemand anderen geschrieben. RaceMind rechnet mit deinen Zeiten, deinem Umfang und den Tagen, an denen du wirklich kannst.',
+          angleBullets: [
+            '<strong>Zielzeit-Prognose ab Tag 1</strong> &ndash; du siehst fr&uuml;h, ob Sub 4, Sub 3:30 oder erstmal Ankommen realistisch ist.',
+            '<strong>Sicher ans Ziel</strong> &ndash; die Engine drosselt bewusst: Schutz vor zu hart und zu viel.',
+            '<strong>Plan passend zu deiner Zeit</strong> &ndash; kein 6-Tage-Plan, wenn du an vier Tagen kannst.',
+            '<strong>Und ein Coach, der antwortet</strong> &ndash; &bdquo;Der Long Run war zu hart, was jetzt?&ldquo;: sofort, mit deinen Daten im Kontext.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind Coach-Chat: Frage zum Training, Antwort mit dem eigenen Plan im Kontext',
+          reviewsTitle: 'Andere jagen dieselbe Zeit.'
+        },
+        en: {
+          heroEyebrow: [
+            'First marathon',
+            'Under 4 hours',
+            'Under 3:30',
+            'Under 3 hours'
+          ],
+          heroTitle: 'You\'ve got the goal. <span class="gradient-text">We\'ve got the way.</span>',
+          heroSub: 'Between today and race day sit months of decisions: how long should the long run be? When does tempo work start? And is what you are doing right now enough? RaceMind answers that week by week.',
+          heroImg: '../images/hero-dash-marathon.webp',
+          heroImgAlt: 'RaceMind app: countdown to a marathon, training readiness and this week\'s sessions',
+          angleTitle: 'Is your training plan <span class="gradient-text">built around you?</span>',
+          angleLead: 'Most marathon plans were written for somebody else. RaceMind works from your times, your volume and the days you can actually train.',
+          angleBullets: [
+            '<strong>Finish-time forecast from day 1</strong> &ndash; you see early whether sub 4, sub 3:30 or simply finishing is realistic.',
+            '<strong>Safely to the finish</strong> &ndash; the engine holds back on purpose: protection from too hard, too much.',
+            '<strong>A plan that fits your week</strong> &ndash; no six-day plan when you can train four.',
+            '<strong>And a coach that answers</strong> &ndash; &ldquo;That long run was too hard, now what?&rdquo;: right away, with your data in context.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind coach chat: a training question answered with your own plan in context',
+          reviewsTitle: 'Others are chasing the same time.'
+        },
+        reviews: ['tom', 'jap', 'mmaus'],
+        // Skips `forecast` (bullet 1) and `coach` (bullet 4 plus the screenshot).
+        // `comeback` earns its place here — a 16-week block rarely survives
+        // without one cold, and "start over" is the fear that ends it.
+        // `readiness` over `library`: the bullets above promise a plan that
+        // holds back, and the morning check is where a runner sees that happen.
+        features: ['plan', 'analysis', 'raceday', 'watch', 'readiness', 'comeback']
+      },
+
+      halbmarathon: {
+        de: {
+          heroEyebrow: [
+            'Erster Halbmarathon',
+            'Unter 2 Stunden',
+            'Unter 1:45',
+            'Neue Bestzeit'
+          ],
+          heroTitle: 'Halbmarathon. <span class="gradient-text">Neben allem anderen.</span>',
+          heroSub: '21,1&nbsp;km brauchen keine zehn Stunden pro Woche &ndash; sie brauchen die richtigen drei bis vier Einheiten. RaceMind legt sie auf die Tage, an denen du wirklich Zeit hast.',
+          heroImg: '../images/hero-dash-halbmarathon.webp',
+          heroImgAlt: 'RaceMind App: Countdown zum M&uuml;nchen Halbmarathon, Training Readiness und die Woche im &Uuml;berblick',
+          angleTitle: 'Ist dein Trainingsplan <span class="gradient-text">auf dich angepasst?</span>',
+          // The "drei bis vier Einheiten" promise used to be bullet 1. It moved
+          // into the lead when the bullets became the shared pair, because it is
+          // the only place the half-marathon angle is still stated.
+          angleLead: 'Drei bis vier Einheiten reichen f&uuml;r 21,1&nbsp;km &ndash; wenn sie zu dir passen. Entscheidend ist, dass locker wirklich locker und hart wirklich hart ist, und dass beides in deine Woche passt.',
+          angleBullets: [
+            '<strong>Zielzeit-Prognose ab Tag 1</strong> &ndash; unter 2 Stunden, unter 1:45 oder erstmal ankommen.',
+            '<strong>Sicher ans Ziel</strong> &ndash; die Engine drosselt bewusst: Schutz vor zu hart und zu viel.',
+            '<strong>Plan passend zu deiner Zeit</strong> &ndash; kein 6-Tage-Plan, wenn du an vier Tagen kannst.',
+            '<strong>Und ein Coach, der antwortet</strong> &ndash; &bdquo;Der Long Run war zu hart, was jetzt?&ldquo;: sofort, mit deinen Daten im Kontext.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind Coach-Chat: Frage zum Training, Antwort mit dem eigenen Plan im Kontext',
+          reviewsTitle: 'Andere haben es genauso gemacht.'
+        },
+        en: {
+          heroEyebrow: [
+            'First half marathon',
+            'Under 2 hours',
+            'Under 1:45',
+            'A new personal best'
+          ],
+          heroTitle: 'Half marathon. <span class="gradient-text">Around everything else.</span>',
+          heroSub: '21.1&nbsp;km do not need ten hours a week &ndash; they need the right three or four sessions. RaceMind puts them on the days you actually have.',
+          heroImg: '../images/hero-dash-halbmarathon.webp',
+          heroImgAlt: 'RaceMind app: countdown to a half marathon, training readiness and the week at a glance',
+          angleTitle: 'Is your training plan <span class="gradient-text">built around you?</span>',
+          angleLead: 'Three or four sessions are enough for 21.1&nbsp;km &ndash; if they are the right ones for you. What matters is that easy is genuinely easy and hard is genuinely hard, and that both fit into your week.',
+          angleBullets: [
+            '<strong>Finish-time forecast from day 1</strong> &ndash; under 2 hours, under 1:45, or simply finishing.',
+            '<strong>Safely to the finish</strong> &ndash; the engine holds back on purpose: protection from too hard, too much.',
+            '<strong>A plan that fits your week</strong> &ndash; no six-day plan when you can train four.',
+            '<strong>And a coach that answers</strong> &ndash; &ldquo;That long run was too hard, now what?&rdquo;: right away, with your data in context.'
+          ],
+          angleImg: '../images/hero-coachchat.webp',
+          angleImgAlt: 'RaceMind coach chat: a training question answered with your own plan in context',
+          reviewsTitle: 'Others did exactly this.'
+        },
+        reviews: ['pawa', 'ronja', 'mmaus'],
+        // Skips `forecast` (bullet 1) and `coach` (bullet 4 plus the screenshot).
+        features: ['plan', 'analysis', 'watch', 'raceday', 'library', 'readiness']
+      },
+
+      coach: {
+        de: {
+          heroEyebrow: 'Coaching ohne Coach-Preis',
+          heroTitle: 'Ein Coach w&auml;re gut. <span class="gradient-text">Aber nicht f&uuml;r 200&nbsp;&euro; im Monat.</span>',
+          heroSub: 'Zwischen PDF-Plan und Premium-Coach lag bisher nichts. RaceMind plant, analysiert und antwortet &ndash; ab 6,66&nbsp;&euro; im Monat, jederzeit k&uuml;ndbar.',
+          heroImg: '../images/hero-coachchat.webp',
+          heroImgAlt: 'RaceMind Coach-Chat mit Quick Actions',
+          angleTitle: 'Ein Coach, der antwortet. <span class="gradient-text">Und einer, der handelt.</span>',
+          angleLead: 'Ein PDF-Plan antwortet nicht. Ein menschlicher Coach antwortet &ndash; morgen. RaceMind kennt deine Daten und deinen Plan und reagiert sofort.',
+          angleBullets: [
+            '<strong>Frag, was dich gerade besch&auml;ftigt</strong> &ndash; &bdquo;Am Renntag soll es regnen &ndash; was hei&szlig;t das f&uuml;r mein Pacing?&ldquo;',
+            '<strong>Rund um die Uhr</strong> &ndash; mit deinen Daten und deinem Plan im Kontext, nicht mit Allgemeinpl&auml;tzen.',
+            '<strong>Er handelt auch</strong> &ndash; &bdquo;Verschieb mein Intervalltraining auf Donnerstag&ldquo;: erledigt.',
+            '<strong>Klartext nach jeder Einheit</strong> &ndash; was sie gebracht hat, worauf es beim n&auml;chsten Mal ankommt.'
+          ],
+          angleImg: '../images/hero-coach.webp',
+          angleImgAlt: 'Coach reagiert auf Krankheit und passt den Plan an',
+          reviewsTitle: 'Was Nutzer &uuml;ber den Coach schreiben.'
+        },
+        en: {
+          heroEyebrow: 'Coaching without the coach price',
+          heroTitle: 'A coach would help. <span class="gradient-text">Just not at &euro;200 a month.</span>',
+          heroSub: 'Until now there was nothing between a PDF plan and a premium coach. RaceMind plans, analyses and answers &ndash; from &euro;6.66 a month, cancel anytime.',
+          heroImg: '../images/hero-coachchat.webp',
+          heroImgAlt: 'RaceMind coach chat with quick actions',
+          angleTitle: 'A coach that answers. <span class="gradient-text">And one that acts.</span>',
+          angleLead: 'A PDF plan does not answer. A human coach answers &ndash; tomorrow. RaceMind knows your data and your plan, and reacts right away.',
+          angleBullets: [
+            '<strong>Ask whatever is on your mind</strong> &ndash; &ldquo;It will rain on race day &ndash; what does that mean for my pacing?&rdquo;',
+            '<strong>Around the clock</strong> &ndash; with your data and your plan in context, not generic advice.',
+            '<strong>It acts, too</strong> &ndash; &ldquo;Move my interval session to Thursday&rdquo;: done.',
+            '<strong>Plain language after every session</strong> &ndash; what it achieved, what matters next time.'
+          ],
+          angleImg: '../images/hero-coach.webp',
+          angleImgAlt: 'Coach reacts to illness and adapts the plan',
+          reviewsTitle: 'What users write about the coach.'
+        },
+        reviews: ['tom', 'jap', 'mmaus'],
+        // Skips `coach` and `analysis`: the section above is entirely about
+        // the chat and the per-session feedback.
+        features: ['plan', 'forecast', 'watch', 'raceday', 'library', 'readiness']
+      }
+    };
+
+    // Feather-style strokes, matching the compare-card icons on the main site.
+    var ICONS = {
+      calendar: '<rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8 13.5h3M8 17h6"/>',
+      chat: '<path d="M20.5 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.4-5.2A7.5 7.5 0 1 1 20.5 12.5z"/><path d="M9 11.5h6M9 14.5h3.5"/>',
+      target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>',
+      chart: '<path d="M3.5 19.5h17"/><path d="M6.5 16V11M11 16V6.5M15.5 16v-3M20 16V8.5"/>',
+      watch: '<rect x="6.5" y="6.5" width="11" height="11" rx="3"/><path d="M9 6.5 9.5 2.5h5l.5 4M9 17.5l.5 4h5l.5-4"/><path d="M12 9.8V12l1.8 1.2"/>',
+      flag: '<path d="M5 21.5V3"/><path d="M5 4.2h11.5l-2 3.6 2 3.6H5"/>',
+      library: '<path d="M4 5.5A2 2 0 0 1 6 3.5h13v14H6a2 2 0 0 0-2 2z"/><path d="M4 19.5a2 2 0 0 0 2 2h13v-4"/><path d="M8 7.5h7M8 10.5h4"/>',
+      sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/>',
+      shield: '<path d="M12 2.5 4.5 5.6v5.6c0 4.6 3.1 8.9 7.5 10.3 4.4-1.4 7.5-5.7 7.5-10.3V5.6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/>'
+    };
+
+    // Verbatim from the stores. Do not paraphrase — these are real reviews
+    // and rewriting them would make the social proof fabricated.
+    var REVIEWS = {
+      paprika: {
+        store: 'play', name: 'Paprika Chips', initial: 'P',
+        de: 'Finde die App super bisher. Ich hab nicht 15 Stunden pro Woche. Ich hab Kinder, Job, Beziehung. Will trotzdem beim Ironman am Start stehen und deswegen so wenig Zeit wie m&ouml;glich in Trainingsplanung oder dergleichen verbringen &ndash; gerade hier nimmt die App quasi alles ab.',
+        en: 'Finde die App super bisher. Ich hab nicht 15 Stunden pro Woche. Ich hab Kinder, Job, Beziehung. Will trotzdem beim Ironman am Start stehen und deswegen so wenig Zeit wie m&ouml;glich in Trainingsplanung oder dergleichen verbringen &ndash; gerade hier nimmt die App quasi alles ab.'
+      },
+      erol: {
+        store: 'play', name: 'Erol C.', initial: 'E',
+        de: 'Ich bereite mich gerade auf meine erste Mitteldistanz vor und kann mich dabei sehr gut auf die App verlassen. Sie funktioniert reibungslos und gibt mir wissenschaftlich fundierte Pl&auml;ne an die Hand, die sich dann automatisch meiner Woche und Freizeit anpassen.',
+        en: 'Ich bereite mich gerade auf meine erste Mitteldistanz vor und kann mich dabei sehr gut auf die App verlassen. Sie funktioniert reibungslos und gibt mir wissenschaftlich fundierte Pl&auml;ne an die Hand, die sich dann automatisch meiner Woche und Freizeit anpassen.'
+      },
+      mmaus: {
+        store: 'apple', name: 'MMausKinNRW', initial: 'M',
+        de: 'Sehr zufrieden und innovativer Ansatz. Der bisherige Eindruck nach drei Monaten Nutzung ist sehr gut. Eine App, die Sportler wirklich versteht. Und besser ist als alles, was ich bisher an Lauf-Apps getestet habe.',
+        en: 'Sehr zufrieden und innovativer Ansatz. Der bisherige Eindruck nach drei Monaten Nutzung ist sehr gut. Eine App, die Sportler wirklich versteht. Und besser ist als alles, was ich bisher an Lauf-Apps getestet habe.'
+      },
+      tom: {
+        store: 'play', name: 'Tom R.', initial: 'T',
+        de: 'Tolle App, die den pers&ouml;nlichen Coach ersetzt und mit der sich realistisch und gezielt auf eine Wunschzeit trainieren l&auml;sst. Sub-3 Marathon, ich komme. Toll ist auch die Workout-Bibliothek, und der Roast-me-Coachmodus deckt gnadenlos die Unstimmigkeiten im Training auf.',
+        en: 'Tolle App, die den pers&ouml;nlichen Coach ersetzt und mit der sich realistisch und gezielt auf eine Wunschzeit trainieren l&auml;sst. Sub-3 Marathon, ich komme. Toll ist auch die Workout-Bibliothek, und der Roast-me-Coachmodus deckt gnadenlos die Unstimmigkeiten im Training auf.'
+      },
+      // Shortened, never reworded: cutting a real review is honest, rewriting
+      // one is not. Full text on the homepage.
+      pawa: {
+        store: 'apple', name: 'pawa1977', initial: 'P',
+        de: 'Dank RaceMind habe ich meinen Halbmarathon in einer neuen Bestzeit gefinisht, die ich mir selbst nie zugetraut h&auml;tte! Mit zwei Kleinkindern ist mein Alltag oft chaotisch, aber die Flexibilit&auml;t der App ist Gold wert.',
+        en: 'Dank RaceMind habe ich meinen Halbmarathon in einer neuen Bestzeit gefinisht, die ich mir selbst nie zugetraut h&auml;tte! Mit zwei Kleinkindern ist mein Alltag oft chaotisch, aber die Flexibilit&auml;t der App ist Gold wert.'
+      },
+      ronja: {
+        store: 'play', name: 'Ronja S.', initial: 'R',
+        de: 'Bin vor Jahren mal einen Halbmarathon gelaufen und hab es danach nie wieder geschafft, einen Trainingsplan durchzuziehen. Habe es dann mit der App nochmal probiert und war positiv &uuml;berrascht, wie einfach und intuitiv alles funktioniert.',
+        en: 'Bin vor Jahren mal einen Halbmarathon gelaufen und hab es danach nie wieder geschafft, einen Trainingsplan durchzuziehen. Habe es dann mit der App nochmal probiert und war positiv &uuml;berrascht, wie einfach und intuitiv alles funktioniert.'
+      },
+      jap: {
+        store: 'apple', name: 'JaP1091', initial: 'J',
+        de: 'Ich trainiere neben Job und Familie und brauche vor allem Struktur. Die App nimmt mir das ab, danke.',
+        en: 'Ich trainiere neben Job und Familie und brauche vor allem Struktur. Die App nimmt mir das ab, danke.'
+      }
+    };
+
+    if (!VARIANTS[variant]) variant = DEFAULT_VARIANT;
+
+    var lang = isDE ? 'de' : 'en';
+    var t = SHARED[lang];
+    var v = VARIANTS[variant][lang];
+
+    /* ══════════════════════════════════════════════════════════════
+       ④  STORE LINKS — carry the campaign through to the stores
+       ══════════════════════════════════════════════════════════════ */
+
+    var campaign = params.get('utm_campaign') || 'meta_' + variant;
+    var source = params.get('utm_source') || 'meta';
+    var medium = params.get('utm_medium') || 'paid_social';
+    var content = params.get('utm_content') || '';
+
+    function iosUrl() {
+      // Apple only records ct= when it arrives with a valid provider token.
+      if (!APPLE_PROVIDER_TOKEN) return IOS_URL;
+      return IOS_URL + '?pt=' + encodeURIComponent(APPLE_PROVIDER_TOKEN) +
+             '&ct=' + encodeURIComponent(campaign) + '&mt=8';
+    }
+
+    function playUrl() {
+      // Play Install Referrer: one encoded query string in `referrer`.
+      var ref = 'utm_source=' + source + '&utm_medium=' + medium + '&utm_campaign=' + campaign;
+      if (content) ref += '&utm_content=' + content;
+      return PLAY_URL + '&referrer=' + encodeURIComponent(ref);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑤  META PIXEL — loaded only after consent (§25 TDDDG)
+       ══════════════════════════════════════════════════════════════ */
+
+    var CONSENT_KEY = 'rm_consent_meta';
+    var pixelReady = false;
+
+    function readConsent() {
+      try { return window.localStorage.getItem(CONSENT_KEY); }
+      catch (e) { return null; }  // Safari private mode throws on access
+    }
+
+    function writeConsent(value) {
+      try { window.localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* not fatal */ }
+    }
+
+    // Revoking has to take the cookies with it, otherwise the identifier we
+    // just promised to stop using survives the withdrawal for 90 days.
+    // fbevents.js writes `_fbp` (and `_fbc`, when the URL carries a click id)
+    // on the registrable domain, so the delete needs the same `domain` the
+    // write used — we cannot read it back, so we clear every candidate.
+    function dropPixelCookies() {
+      var host = window.location.hostname;
+      var base = host.split('.').slice(-2).join('.');
+      var scopes = ['', '; domain=' + host, '; domain=.' + host];
+      if (base !== host) scopes.push('; domain=.' + base);
+      ['_fbp', '_fbc'].forEach(function (name) {
+        scopes.forEach(function (scope) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + scope;
+        });
+      });
+    }
+
+    function loadPixel() {
+      if (pixelReady || !/^\d+$/.test(META_PIXEL_ID)) return;
+      pixelReady = true;
+
+      /* eslint-disable */
+      !function (f, b, e, v2, n, t2, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t2 = b.createElement(e); t2.async = !0; t2.src = v2;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t2, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+
+      window.fbq('init', META_PIXEL_ID);
+      window.fbq('track', 'PageView');
+      window.fbq('trackCustom', 'LanderView', { variant: variant, campaign: campaign });
+    }
+
+    function trackStoreClick(platform, placement) {
+      if (!pixelReady || !window.fbq) return;
+      // `Lead` is a standard event, so Meta can optimise delivery on it.
+      // The custom event carries the detail we want in reporting.
+      window.fbq('track', 'Lead', { content_name: variant });
+      window.fbq('trackCustom', 'StoreClick', {
+        platform: platform, placement: placement, variant: variant, campaign: campaign
+      });
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑥  RENDER
+       ══════════════════════════════════════════════════════════════ */
+
+    function set(id, html) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+    }
+
+    set('topbarTrust', t.topbarTrust);
+    set('heroScope', t.heroScope);
+    set('heroTitle', v.heroTitle);
+    set('heroSub', v.heroSub);
+    set('ratingText', t.rating);
+    set('compatLabel', t.compatLabel);
+    set('angleTitle', v.angleTitle);
+    set('angleLead', v.angleLead);
+    set('featuresTitle', t.featuresTitle);
+    set('featuresSub', t.featuresSub);
+    set('featuresMore', t.featuresMore);
+    set('reviewsTitle', v.reviewsTitle);
+    set('reviewsSub', t.reviewsSub);
+    set('anchorTitle', t.anchorTitle);
+    set('anchorSub', t.anchorSub);
+    set('anchorNote', t.anchorNote);
+    set('closeTitle', t.closeTitle);
+    set('closeLead', t.closeLead);
+    set('stickyNote', t.stickyNote);
+    set('consentText', t.consentText);
+
+    document.getElementById('consentAccept').textContent = t.consentAccept;
+    document.getElementById('consentDecline').textContent = t.consentDecline;
+
+    var heroImg = document.getElementById('heroImg');
+    heroImg.src = v.heroImg;
+    heroImg.alt = v.heroImgAlt;
+
+    var angleImg = document.getElementById('angleImg');
+    angleImg.src = v.angleImg;
+    angleImg.alt = v.angleImgAlt;
+
+    function renderBullets(id, items) {
+      document.getElementById(id).innerHTML =
+        items.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+    }
+
+    renderBullets('angleBullets', v.angleBullets);
+
+    // Feature grid — six of the nine tiles, chosen by variant
+    document.getElementById('features').innerHTML =
+      VARIANTS[variant].features.map(function (key) {
+        var f = t.features[key];
+        return '<div class="feature">' +
+          '<span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+          'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          ICONS[f.icon] + '</svg></span>' +
+          '<h3>' + f.title + '</h3>' +
+          '<p>' + f.text + '</p>' +
+        '</div>';
+      }).join('');
+
+    // Reviews
+    var STORE_META = {
+      apple: { label: 'App Store', icon: 'M16.3 12.9c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.2zM14.3 6.5c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.8-.5 2.5-1.2z' },
+      play: { label: 'Google Play', icon: 'M5 3l14 9-14 9V3z' }
+    };
+
+    document.getElementById('reviews').innerHTML =
+      VARIANTS[variant].reviews.map(function (key) {
+        var r = REVIEWS[key];
+        var s = STORE_META[r.store];
+        return '<figure class="review">' +
+          '<div class="review-top">' +
+            '<span class="review-stars" aria-label="5/5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>' +
+            '<span class="review-source"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+            '<path d="' + s.icon + '"/></svg>' + s.label + '</span>' +
+          '</div>' +
+          '<p class="review-text">' + r[lang] + '</p>' +
+          '<figcaption class="review-meta"><span class="review-avatar" aria-hidden="true">' + r.initial + '</span>' +
+          '<span class="review-name">' + r.name + '</span></figcaption>' +
+        '</figure>';
+      }).join('');
+
+    // Price anchor
+    document.getElementById('anchor').innerHTML =
+      t.anchorItems.map(function (a) {
+        return '<div class="anchor-item' + (a.hl ? ' anchor-item--hl' : '') + '">' +
+          '<p class="anchor-what">' + a.what + '</p>' +
+          '<p class="anchor-price">' + a.price + '</p></div>';
+      }).join('');
+
+    // Footer
+    document.getElementById('footerLinks').innerHTML =
+      t.footer.map(function (f) {
+        return '<a href="' + f.href + '">' + f.label + '</a>';
+      }).join('');
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑦  ROTATING EYEBROW
+       ══════════════════════════════════════════════════════════════ */
+
+    (function () {
+      var chip = document.getElementById('heroEyebrow');
+      var text = document.getElementById('heroEyebrowText');
+      var labels = v.heroEyebrow;
+
+      // A variant may just as well use a plain string.
+      if (!Array.isArray(labels)) { text.innerHTML = labels; return; }
+
+      text.innerHTML = labels[0];
+
+      // Every label is a separate claim about who this page is for, and a
+      // rotating chip announces none of them reliably. Expose the full list
+      // once to assistive tech and hide the animation from it.
+      chip.setAttribute('aria-hidden', 'true');
+      var sr = document.createElement('p');
+      sr.className = 'visually-hidden';
+      sr.textContent = labels.join(' · ');
+      chip.parentNode.insertBefore(sr, chip);
+
+      // Pin the chip to its widest label so it does not resize on each swap.
+      var probe = chip.cloneNode(true);
+      probe.style.cssText = 'position:absolute;visibility:hidden;min-width:0;white-space:nowrap';
+      document.body.appendChild(probe);
+      var probeText = probe.querySelector('span');
+      var widest = 0;
+      labels.forEach(function (l) {
+        probeText.innerHTML = l;
+        widest = Math.max(widest, probe.getBoundingClientRect().width);
+      });
+      document.body.removeChild(probe);
+      chip.style.minWidth = Math.ceil(widest) + 'px';
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var i = 0;
+      setInterval(function () {
+        // Skip the swap while the tab is hidden — otherwise every background
+        // tick still costs a layout, and the user returns mid-fade.
+        if (document.hidden) return;
+        text.classList.add('is-out');
+        setTimeout(function () {
+          i = (i + 1) % labels.length;
+          text.innerHTML = labels[i];
+          text.classList.remove('is-out');
+        }, 350);
+      }, 2600);
+    })();
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑧  CTAs
+       ══════════════════════════════════════════════════════════════ */
+
+    function wireCta(btnId, iconId, labelId, altId) {
+      var btn = document.getElementById(btnId);
+      var icon = document.getElementById(iconId);
+      var label = document.getElementById(labelId);
+
+      var isLeadIOS = leadPlatform === 'ios';
+      btn.href = isLeadIOS ? iosUrl() : playUrl();
+      icon.innerHTML = '<path d="' + (isLeadIOS ? APPLE_ICON : PLAY_ICON) + '"/>';
+      label.innerHTML = isLeadIOS ? t.ctaLabelIOS : t.ctaLabelAndroid;
+
+      btn.addEventListener('click', function () {
+        trackStoreClick(isLeadIOS ? 'ios' : 'android', btnId);
+      });
+
+      if (!altId) return;
+      var alt = document.getElementById(altId);
+
+      // On a detected phone the other store is noise — hide it. On desktop
+      // we cannot know, so both stay reachable.
+      if (isIOS || isAndroid) { alt.style.display = 'none'; return; }
+
+      alt.href = isLeadIOS ? playUrl() : iosUrl();
+      alt.innerHTML = isLeadIOS ? t.ctaAltAndroid : t.ctaAltIOS;
+      alt.addEventListener('click', function () {
+        trackStoreClick(isLeadIOS ? 'android' : 'ios', altId);
+      });
+    }
+
+    wireCta('ctaHero', 'ctaHeroIcon', 'ctaHeroLabel', 'ctaHeroAlt');
+    wireCta('ctaClose', 'ctaCloseIcon', 'ctaCloseLabel', 'ctaCloseAlt');
+    wireCta('ctaSticky', 'ctaStickyIcon', 'ctaStickyLabel', null);
+
+    set('ctaReassure', t.reassure);
+    set('ctaCloseReassure', t.reassure);
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑨  BEHAVIOUR
+       ══════════════════════════════════════════════════════════════ */
+
+    // Sticky bar: only once the hero CTA is off screen, so we never show
+    // two competing buttons at the same time.
+    var sticky = document.getElementById('sticky');
+    var heroCta = document.getElementById('ctaHero');
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        sticky.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, { rootMargin: '-80px 0px 0px 0px' }).observe(heroCta);
+
+      var revealObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-in');
+          obs.unobserve(e.target);
+        });
+      }, { threshold: 0.12 });
+
+      [].forEach.call(document.querySelectorAll('.reveal'), function (el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      sticky.classList.add('is-visible');
+      [].forEach.call(document.querySelectorAll('.reveal'), function (el) {
+        el.classList.add('is-in');
+      });
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ⑩  CONSENT GATE
+       ══════════════════════════════════════════════════════════════ */
+
+    var consent = document.getElementById('consent');
+    var stored = readConsent();
+
+    if (stored === 'granted') {
+      loadPixel();
+    } else if (stored !== 'denied' && /^\d+$/.test(META_PIXEL_ID)) {
+      consent.hidden = false;
+      document.body.classList.add('consent-open');
+    }
+
+    function answerConsent(value) {
+      writeConsent(value);
+      consent.hidden = true;
+      document.body.classList.remove('consent-open');
+      if (value === 'granted') loadPixel();
+    }
+
+    document.getElementById('consentAccept').addEventListener('click', function () {
+      answerConsent('granted');
+    });
+
+    document.getElementById('consentDecline').addEventListener('click', function () {
+      answerConsent('denied');
+    });
+
+    // Art. 7 (3) GDPR: withdrawal must be as easy as giving consent. Once the
+    // pixel script is on the page the only honest way back is to tell Meta to
+    // stop, drop the stored answer and its cookies, and reload without
+    // loading the script again.
+    var reopen = document.getElementById('consentReopen');
+    reopen.textContent = t.consentReopen;
+    reopen.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.fbq) { try { window.fbq('consent', 'revoke'); } catch (err) { /* ignore */ } }
+      try { window.localStorage.removeItem(CONSENT_KEY); } catch (err) { /* ignore */ }
+      dropPixelCookies();
+      window.location.reload();
+    });
+  })();
+  </script>
+
+  <!-- Cloudflare Web Analytics — cookieless, no consent needed -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
+</body>
+</html>
