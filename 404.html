@@ -8,7 +8,25 @@
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/fonts.css">
-  <script src="/js/store-buttons.js"></script>
+  <script>
+    /* Ads send both platforms to the same page, so the markup ships iOS
+       first. This only flags Android on <html>; the reorder and the
+       primary/secondary swap are pure CSS below. Inline and in <head> on
+       purpose — this page is self-contained, so an external file would cost
+       a round-trip before the first paint. Mirrors /js/store-buttons.js,
+       which index.html and index-en.html load. */
+    (function () {
+      var ua = navigator.userAgent || '';
+      // iPadOS 13+ reports as Macintosh; the touch-point check separates a
+      // real Mac (0) from an iPad pretending to be one.
+      var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                  (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      // Desktop keeps the shipped order: the visitor's phone is unknown there.
+      if (/Android/.test(ua) && !isIOS) {
+        document.documentElement.classList.add('is-android');
+      }
+    })();
+  </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -165,9 +183,9 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* `.is-android` on <html> (js/store-buttons.js) promotes Google Play to
-       the primary button and moves it first. iOS needs no counterpart — it is
-       the shipped default. */
+    /* `.is-android` on <html> (inline script in <head>) promotes Google Play
+       to the primary button and moves it first. iOS needs no counterpart — it
+       is the shipped default. */
 
     .is-android .store-btn--android {
       order: -2;
