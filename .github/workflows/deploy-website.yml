@@ -22,6 +22,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      # Nothing here bundles, so no build step ever resolves the reference
+      # graph. A module importing a file that was never committed 404s in the
+      # browser and takes the whole graph with it — the page renders and does
+      # nothing. Runs before the upload so that never becomes the artifact.
+      - name: Lokale Referenzen aufloesen
+        run: node .github/scripts/check-imports.mjs
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
