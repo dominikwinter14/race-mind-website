@@ -1346,6 +1346,26 @@ strong { font-weight: 600; }
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Ads send both platforms to the same page, so `.is-android` on <html>
+   (js/store-buttons.js) promotes Google Play to the primary button and moves
+   it first. iOS needs no counterpart — it is the shipped default. The
+   negative order values keep both stores ahead of any other CTA sharing the
+   row; the mirrored borders keep both buttons the same size after the swap. */
+
+.is-android .store-btn--android {
+  order: -2;
+  background: var(--foreground);
+  color: var(--bg);
+  border: none;
+}
+
+.is-android .store-btn--ios {
+  order: -1;
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .store-icon {
   width: 22px;
   height: 22px;
