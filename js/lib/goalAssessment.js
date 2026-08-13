@@ -10,12 +10,14 @@
 function round2(n) {
     return Math.round(n * 100) / 100;
 }
+// Inlined rather than imported: the parity test loads the app copy directly in
+// Deno, which can't resolve the `@/` alias, so neither twin may import a
+// formatter. Mirror of splitHoursToHM in lib/format.ts.
 function formatTime(hours) {
     if (!hours)
         return null;
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
-    return h + ':' + String(m).padStart(2, '0');
+    const totalMin = Math.floor(hours * 60 + 1e-9);
+    return Math.floor(totalMin / 60) + ':' + String(totalMin % 60).padStart(2, '0');
 }
 /** Pure goal-vs-projection classifier. Uses the projected best/probable/worst
  *  spread as the zone boundaries. See the edge copy for the full table. */

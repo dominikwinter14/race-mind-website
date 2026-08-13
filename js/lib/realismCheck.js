@@ -4,6 +4,7 @@
 // Rein synchron, kein Netzwerk, keine Secrets.
 // ══════════════════════════════════════════════════════════
 import { RACE_PARAMS } from '../constants/raceVolume.js';
+import { formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
 import { classifyGoalTime } from './goalAssessment.js';
 // ══════════════════════════════════════════════════════════
@@ -1183,9 +1184,7 @@ export function worstOf(...levels) {
 export function formatTime(hours) {
     if (!hours)
         return null;
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
-    return h + ':' + String(m).padStart(2, '0');
+    return formatHoursToHM(hours);
 }
 /** Race-aware variant of formatTime: 5k/10k render as MM:SS, all else H:MM. */
 function formatRaceClock(hours, raceType) {
