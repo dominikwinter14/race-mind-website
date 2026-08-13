@@ -20,8 +20,14 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # Third-party actions are pinned to commit SHAs, not tags. A major tag like
+    # `@v4` is movable by whoever owns the action, and moving it re-points every
+    # workflow that uses it at new code — the tj-actions/changed-files
+    # compromise in March 2025 reached ~23 000 repositories exactly that way.
+    # Renovate/Dependabot read the version from the trailing comment, so keep it
+    # in step with the sha. Same rule as race-mind/.github/workflows/test.yml.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       # Nothing here bundles, so no build step ever resolves the reference
       # graph. A module importing a file that was never committed 404s in the
@@ -30,9 +36,9 @@ jobs:
       - name: Lokale Referenzen aufloesen
         run: node .github/scripts/check-imports.mjs
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: .
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
