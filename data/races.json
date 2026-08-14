@@ -1100,10 +1100,10 @@
     "course_factor_run": 1
   },
   {
-    "slug": "mainz-marathon",
-    "name": "Mainz Marathon",
-    "name_en": "Mainz Marathon",
-    "race_type": "marathon",
+    "slug": "gutenberg-halbmarathon-mainz",
+    "name": "Gutenberg Halbmarathon Mainz",
+    "name_en": "Gutenberg Half Marathon Mainz",
+    "race_type": "half_marathon",
     "date": "2027-05-09",
     "course_factor_swim": 0,
     "course_factor_bike": 0,

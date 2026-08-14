@@ -1402,15 +1402,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/mainz-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/mainz-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/mainz-marathon-en.html"/>
+    <loc>https://race-mind.com/events/gutenberg-halbmarathon-mainz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/gutenberg-halbmarathon-mainz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/gutenberg-halbmarathon-mainz-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/mainz-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/mainz-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/mainz-marathon-en.html"/>
+    <loc>https://race-mind.com/events/gutenberg-halbmarathon-mainz-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/gutenberg-halbmarathon-mainz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/gutenberg-halbmarathon-mainz-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
