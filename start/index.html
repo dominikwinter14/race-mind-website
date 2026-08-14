@@ -617,10 +617,6 @@
 
     .sticky.is-visible { transform: translateY(0); }
 
-    /* Both live at the bottom edge. The consent dialog wins until it is
-       answered, otherwise they stack on top of each other on mobile. */
-    body.consent-open .sticky { transform: translateY(110%); }
-
     .sticky .cta { padding: 0.9rem 1.25rem; font-size: 0.95rem; box-shadow: none; }
     .sticky .cta:hover { transform: none; }
 
@@ -633,43 +629,6 @@
     }
 
     @media (min-width: 900px) { .sticky { display: none; } .footer { padding-bottom: 2rem; } }
-
-    /* ─────────── Consent banner ─────────── */
-
-    .consent {
-      position: fixed;
-      left: 1rem; right: 1rem;
-      bottom: 1rem;
-      z-index: 60;
-      max-width: 30rem;
-      margin: 0 auto;
-      padding: 1.1rem 1.15rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
-    }
-
-    .consent[hidden] { display: none; }
-    .consent p { font-size: 0.78rem; font-weight: 300; color: rgba(255, 255, 255, 0.75); line-height: 1.55; }
-    .consent a { color: var(--primary); text-decoration: none; }
-
-    .consent-actions { display: flex; gap: 0.55rem; margin-top: 0.9rem; }
-
-    .consent-btn {
-      flex: 1;
-      padding: 0.6rem 0.75rem;
-      border-radius: 0.65rem;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--foreground);
-    }
-
-    .consent-btn--accept { background: var(--foreground); color: var(--bg); border-color: var(--foreground); }
 
     /* ─────────── Reveal ─────────── */
 
@@ -842,9 +801,6 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-links" id="footerLinks"></div>
-      <div class="footer-links">
-        <a href="#" id="consentReopen"></a>
-      </div>
       <p class="footer-copy">&copy; 2026 RaceMind</p>
     </div>
   </footer>
@@ -858,14 +814,6 @@
     <p class="sticky-note" id="stickyNote"></p>
   </div>
 
-  <!-- ════════════ CONSENT ════════════ -->
-  <div class="consent" id="consent" hidden role="dialog" aria-labelledby="consentText">
-    <p id="consentText"></p>
-    <div class="consent-actions">
-      <button type="button" class="consent-btn" id="consentDecline"></button>
-      <button type="button" class="consent-btn consent-btn--accept" id="consentAccept"></button>
-    </div>
-  </div>
 
   <script>
   (function () {
@@ -875,15 +823,16 @@
        ①  CONFIG — the only lines you normally touch
        ══════════════════════════════════════════════════════════════ */
 
-    // Meta Business Manager → Datenquellen → Datensätze.
-    var META_PIXEL_ID = '1550617516546355';
-
     // App Store Connect → App Analytics → Kampagnen. Without a provider
     // token Apple ignores ?ct=, so we omit the params entirely rather
-    // than append dead ones. Leave empty until you generate a link there.
-    var APPLE_PROVIDER_TOKEN = '';
+    // than append dead ones.
+    var APPLE_PROVIDER_TOKEN = '128611094';
 
-    var IOS_URL = 'https://apps.apple.com/app/race-mind/id6759935305';
+    // The `apple-store` slug is what App Store Connect's own campaign-link
+    // generator emits. The prettier `/app/race-mind/` slug resolves to the
+    // same page, but attribution here has failed silently twice already —
+    // so this stays byte-identical to the link Apple handed us.
+    var IOS_URL = 'https://apps.apple.com/app/apple-store/id6759935305';
     var PLAY_URL = 'https://play.google.com/store/apps/details?id=com.racemind.app';
 
     var APPLE_ICON = 'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z';
@@ -1000,12 +949,7 @@
           { href: '/', label: 'Zur Website' },
           { href: '/datenschutz.html', label: 'Datenschutz' },
           { href: '/impressum.html', label: 'Impressum' }
-        ],
-
-        consentText: 'Wir messen mit dem Meta-Pixel, welche Anzeigen funktionieren. Das setzt Cookies und &uuml;bertr&auml;gt Daten an Meta. Nur mit deiner Einwilligung &ndash; die App und diese Seite funktionieren auch ohne. Details in der <a href="/datenschutz.html">Datenschutzerkl&auml;rung</a>.',
-        consentAccept: 'Einverstanden',
-        consentDecline: 'Ablehnen',
-        consentReopen: 'Tracking-Einstellungen'
+        ]
       },
       en: {
         topbarTrust: 'Made in Germany &middot; GDPR-compliant',
@@ -1088,12 +1032,7 @@
           { href: '/index-en.html', label: 'Full website' },
           { href: '/privacy.html', label: 'Privacy' },
           { href: '/impressum.html', label: 'Imprint' }
-        ],
-
-        consentText: 'We use the Meta pixel to measure which ads work. It sets cookies and sends data to Meta. Only with your consent &ndash; this page and the app work without it. See our <a href="/privacy.html">privacy policy</a>.',
-        consentAccept: 'Accept',
-        consentDecline: 'Decline',
-        consentReopen: 'Tracking settings'
+        ]
       }
     };
 
@@ -1395,26 +1334,24 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       ⑤  META PIXEL — loaded only after consent (§25 TDDDG)
+       ⑤  LEFTOVER PIXEL COOKIES
+
+       The Meta pixel is gone. Measurement now runs entirely without device
+       storage: Cloudflare counts arrivals cookielessly, Play reads the
+       `referrer` off the install, Apple reads `ct` off the store link. With
+       nothing left to consent to, the §25 TDDDG banner went with it — which
+       also frees the sticky CTA it used to push off the bottom of the screen.
+
+       What it left behind still has to go. Everyone who accepted carries an
+       `_fbp` for 90 days; dropping the banner without dropping the cookie
+       would keep an identifier alive that nobody can revoke any more.
        ══════════════════════════════════════════════════════════════ */
 
     var CONSENT_KEY = 'rm_consent_meta';
-    var pixelReady = false;
 
-    function readConsent() {
-      try { return window.localStorage.getItem(CONSENT_KEY); }
-      catch (e) { return null; }  // Safari private mode throws on access
-    }
-
-    function writeConsent(value) {
-      try { window.localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* not fatal */ }
-    }
-
-    // Revoking has to take the cookies with it, otherwise the identifier we
-    // just promised to stop using survives the withdrawal for 90 days.
-    // fbevents.js writes `_fbp` (and `_fbc`, when the URL carries a click id)
-    // on the registrable domain, so the delete needs the same `domain` the
-    // write used — we cannot read it back, so we clear every candidate.
+    // fbevents.js wrote `_fbp` (and `_fbc`, when the URL carried a click id)
+    // on the registrable domain. The delete needs the same `domain` the write
+    // used — we cannot read it back, so we clear every candidate.
     function dropPixelCookies() {
       var host = window.location.hostname;
       var base = host.split('.').slice(-2).join('.');
@@ -1427,36 +1364,18 @@
       });
     }
 
-    function loadPixel() {
-      if (pixelReady || !/^\d+$/.test(META_PIXEL_ID)) return;
-      pixelReady = true;
-
-      /* eslint-disable */
-      !function (f, b, e, v2, n, t2, s) {
-        if (f.fbq) return; n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-        t2 = b.createElement(e); t2.async = !0; t2.src = v2;
-        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t2, s);
-      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      /* eslint-enable */
-
-      window.fbq('init', META_PIXEL_ID);
-      window.fbq('track', 'PageView');
-      window.fbq('trackCustom', 'LanderView', { variant: variant, campaign: campaign });
-    }
-
-    function trackStoreClick(platform, placement) {
-      if (!pixelReady || !window.fbq) return;
-      // `Lead` is a standard event, so Meta can optimise delivery on it.
-      // The custom event carries the detail we want in reporting.
-      window.fbq('track', 'Lead', { content_name: variant });
-      window.fbq('trackCustom', 'StoreClick', {
-        platform: platform, placement: placement, variant: variant, campaign: campaign
-      });
-    }
+    // Self-terminating: only visitors who answered the old banner carry the
+    // key, and clearing it means they never run this again. Deleting cookies
+    // needs no consent, so this is safe to do unprompted on load.
+    (function sweepPixelLeftovers() {
+      try {
+        if (window.localStorage.getItem(CONSENT_KEY) === null) return;
+        window.localStorage.removeItem(CONSENT_KEY);
+      } catch (e) {
+        return;  // Safari private mode throws on access
+      }
+      dropPixelCookies();
+    })();
 
     /* ══════════════════════════════════════════════════════════════
        ⑥  RENDER
@@ -1486,10 +1405,6 @@
     set('closeTitle', t.closeTitle);
     set('closeLead', t.closeLead);
     set('stickyNote', t.stickyNote);
-    set('consentText', t.consentText);
-
-    document.getElementById('consentAccept').textContent = t.consentAccept;
-    document.getElementById('consentDecline').textContent = t.consentDecline;
 
     var heroImg = document.getElementById('heroImg');
     heroImg.src = v.heroImg;
@@ -1621,10 +1536,6 @@
       icon.innerHTML = '<path d="' + (isLeadIOS ? APPLE_ICON : PLAY_ICON) + '"/>';
       label.innerHTML = isLeadIOS ? t.ctaLabelIOS : t.ctaLabelAndroid;
 
-      btn.addEventListener('click', function () {
-        trackStoreClick(isLeadIOS ? 'ios' : 'android', btnId);
-      });
-
       if (!altId) return;
       var alt = document.getElementById(altId);
 
@@ -1634,9 +1545,6 @@
 
       alt.href = isLeadIOS ? playUrl() : iosUrl();
       alt.innerHTML = isLeadIOS ? t.ctaAltAndroid : t.ctaAltIOS;
-      alt.addEventListener('click', function () {
-        trackStoreClick(isLeadIOS ? 'android' : 'ios', altId);
-      });
     }
 
     wireCta('ctaHero', 'ctaHeroIcon', 'ctaHeroLabel', 'ctaHeroAlt');
@@ -1678,48 +1586,6 @@
       });
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       ⑩  CONSENT GATE
-       ══════════════════════════════════════════════════════════════ */
-
-    var consent = document.getElementById('consent');
-    var stored = readConsent();
-
-    if (stored === 'granted') {
-      loadPixel();
-    } else if (stored !== 'denied' && /^\d+$/.test(META_PIXEL_ID)) {
-      consent.hidden = false;
-      document.body.classList.add('consent-open');
-    }
-
-    function answerConsent(value) {
-      writeConsent(value);
-      consent.hidden = true;
-      document.body.classList.remove('consent-open');
-      if (value === 'granted') loadPixel();
-    }
-
-    document.getElementById('consentAccept').addEventListener('click', function () {
-      answerConsent('granted');
-    });
-
-    document.getElementById('consentDecline').addEventListener('click', function () {
-      answerConsent('denied');
-    });
-
-    // Art. 7 (3) GDPR: withdrawal must be as easy as giving consent. Once the
-    // pixel script is on the page the only honest way back is to tell Meta to
-    // stop, drop the stored answer and its cookies, and reload without
-    // loading the script again.
-    var reopen = document.getElementById('consentReopen');
-    reopen.textContent = t.consentReopen;
-    reopen.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (window.fbq) { try { window.fbq('consent', 'revoke'); } catch (err) { /* ignore */ } }
-      try { window.localStorage.removeItem(CONSENT_KEY); } catch (err) { /* ignore */ }
-      dropPixelCookies();
-      window.location.reload();
-    });
   })();
   </script>
 
