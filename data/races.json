@@ -1,45 +1,5 @@
 [
   {
-    "slug": "embrunman",
-    "name": "Embrunman",
-    "name_en": "Embrunman",
-    "race_type": "ironman",
-    "date": "2026-08-15",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1.5,
-    "course_factor_run": 1.15
-  },
-  {
-    "slug": "ironman-kalmar-sweden",
-    "name": "Ironman Kalmar (Sweden)",
-    "name_en": "Ironman Kalmar (Sweden)",
-    "race_type": "ironman",
-    "date": "2026-08-15",
-    "course_factor_swim": 0.99,
-    "course_factor_bike": 0.97,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "ironman-70-3-duisburg",
-    "name": "Ironman 70.3 Duisburg",
-    "name_en": "Ironman 70.3 Duisburg",
-    "race_type": "half_ironman",
-    "date": "2026-08-16",
-    "course_factor_swim": 1,
-    "course_factor_bike": 0.96,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "ironman-copenhagen",
-    "name": "Ironman Copenhagen",
-    "name_en": "Ironman Copenhagen",
-    "race_type": "ironman",
-    "date": "2026-08-16",
-    "course_factor_swim": 0.98,
-    "course_factor_bike": 0.96,
-    "course_factor_run": 0.98
-  },
-  {
     "slug": "ironman-tallinn",
     "name": "Ironman Tallinn",
     "name_en": "Ironman Tallinn",
@@ -350,6 +310,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "triathlon-de-cup-koenigsbrunn",
+    "name": "triathlon.de CUP Königsbrunn",
+    "name_en": "triathlon.de CUP Königsbrunn",
+    "race_type": "half_ironman",
+    "date": "2026-09-20",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "bmw-berlin-marathon",
     "name": "BMW Berlin Marathon",
     "name_en": "BMW Berlin Marathon",
@@ -530,6 +500,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "ironman-70-3-portugal-cascais",
+    "name": "IRONMAN 70.3 Portugal-Cascais",
+    "name_en": "IRONMAN 70.3 Portugal-Cascais",
+    "race_type": "half_ironman",
+    "date": "2026-10-17",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-portugal-cascais",
     "name": "Ironman Portugal (Cascais)",
     "name_en": "Ironman Portugal (Cascais)",
@@ -540,13 +520,33 @@
     "course_factor_run": 1.02
   },
   {
-    "slug": "ironman-70-3-m-laga",
+    "slug": "bottwartal-marathon",
+    "name": "Bottwartal-Marathon",
+    "name_en": "Bottwartal Marathon",
+    "race_type": "marathon",
+    "date": "2026-10-18",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.02
+  },
+  {
+    "slug": "ironman-70-3-malaga",
     "name": "Ironman 70.3 Málaga",
     "name_en": "Ironman 70.3 Málaga",
     "race_type": "half_ironman",
     "date": "2026-10-18",
     "course_factor_swim": 1,
     "course_factor_bike": 1.1,
+    "course_factor_run": 1.02
+  },
+  {
+    "slug": "ironman-70-3-porec",
+    "name": "IRONMAN 70.3 Poreč",
+    "name_en": "IRONMAN 70.3 Poreč",
+    "race_type": "half_ironman",
+    "date": "2026-10-18",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.05,
     "course_factor_run": 1.02
   },
   {
@@ -570,6 +570,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "ljubljana-marathon",
+    "name": "Ljubljana Marathon",
+    "name_en": "Ljubljana Marathon",
+    "race_type": "marathon",
+    "date": "2026-10-18",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
     "slug": "tcs-amsterdam-marathon",
     "name": "TCS Amsterdam Marathon",
     "name_en": "TCS Amsterdam Marathon",
@@ -588,6 +598,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 1.1
+  },
+  {
+    "slug": "dresden-halbmarathon",
+    "name": "Dresden Halbmarathon",
+    "name_en": "Dresden Half Marathon",
+    "race_type": "half_marathon",
+    "date": "2026-10-25",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
   },
   {
     "slug": "dresden-marathon",
@@ -618,6 +638,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 1.03
+  },
+  {
+    "slug": "ironman-70-3-costa-navarino",
+    "name": "IRONMAN 70.3 Costa Navarino",
+    "name_en": "IRONMAN 70.3 Costa Navarino",
+    "race_type": "half_ironman",
+    "date": "2026-10-25",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1
   },
   {
     "slug": "lausanne-halbmarathon",
@@ -660,6 +690,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "swisscitymarathon-lucerne",
+    "name": "SwissCityMarathon Lucerne",
+    "name_en": "SwissCityMarathon Lucerne",
+    "race_type": "marathon",
+    "date": "2026-10-25",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
     "slug": "swisscitymarathon-lucerne-halbmarathon",
     "name": "SwissCityMarathon Lucerne Halbmarathon",
     "name_en": "SwissCityMarathon Lucerne Half Marathon",
@@ -678,6 +718,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 0.93
+  },
+  {
+    "slug": "venicemarathon",
+    "name": "Venicemarathon",
+    "name_en": "Venicemarathon",
+    "race_type": "marathon",
+    "date": "2026-10-25",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
   },
   {
     "slug": "ironman-florida",
@@ -700,6 +750,66 @@
     "course_factor_run": 1.15
   },
   {
+    "slug": "edp-porto-marathon",
+    "name": "EDP Porto Marathon",
+    "name_en": "EDP Porto Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-08",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "generali-maraton-malaga",
+    "name": "Generali Maratón Málaga",
+    "name_en": "Generali Málaga Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-08",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "marathon-nice-cannes",
+    "name": "Marathon Nice-Cannes",
+    "name_en": "French Riviera Marathon Nice-Cannes",
+    "race_type": "marathon",
+    "date": "2026-11-08",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "maratona-di-ravenna",
+    "name": "Maratona di Ravenna",
+    "name_en": "Ravenna Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-08",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "rursee-marathon",
+    "name": "Rursee-Marathon",
+    "name_en": "Rursee Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-08",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.12
+  },
+  {
+    "slug": "verona-marathon",
+    "name": "Verona Marathon",
+    "name_en": "Verona Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-15",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
     "slug": "ironman-cozumel",
     "name": "IRONMAN Cozumel",
     "name_en": "IRONMAN Cozumel",
@@ -708,6 +818,26 @@
     "course_factor_swim": 0.92,
     "course_factor_bike": 1.02,
     "course_factor_run": 1.04
+  },
+  {
+    "slug": "estra-firenze-marathon",
+    "name": "Estra Firenze Marathon",
+    "name_en": "Estra Florence Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-29",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "marathon-de-la-rochelle",
+    "name": "Marathon de La Rochelle",
+    "name_en": "La Rochelle Marathon",
+    "race_type": "marathon",
+    "date": "2026-11-29",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.97
   },
   {
     "slug": "ironman-western-australia",
@@ -740,6 +870,36 @@
     "course_factor_run": 1.18
   },
   {
+    "slug": "challenge-israman",
+    "name": "Challenge Israman",
+    "name_en": "Challenge Israman",
+    "race_type": "ironman",
+    "date": "2027-01-29",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.1,
+    "course_factor_run": 1.02
+  },
+  {
+    "slug": "ironman-70-3-muscat",
+    "name": "IRONMAN 70.3 Muscat",
+    "name_en": "IRONMAN 70.3 Muscat",
+    "race_type": "half_ironman",
+    "date": "2027-02-06",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1.02
+  },
+  {
+    "slug": "challenge-wanaka",
+    "name": "Challenge Wanaka",
+    "name_en": "Challenge Wanaka",
+    "race_type": "half_ironman",
+    "date": "2027-02-20",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.08,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "seville-marathon",
     "name": "Seville Marathon",
     "name_en": "Seville Marathon",
@@ -748,6 +908,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 0.95
+  },
+  {
+    "slug": "ironman-70-3-panama",
+    "name": "IRONMAN 70.3 Panama",
+    "name_en": "IRONMAN 70.3 Panama",
+    "race_type": "half_ironman",
+    "date": "2027-02-28",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1,
+    "course_factor_run": 1.05
   },
   {
     "slug": "ironman-new-zealand",
@@ -790,7 +960,7 @@
     "course_factor_run": 1.05
   },
   {
-    "slug": "zurich-marat-barcelona",
+    "slug": "zurich-marato-barcelona",
     "name": "Zurich Marató Barcelona",
     "name_en": "Zurich Marató Barcelona",
     "race_type": "marathon",
@@ -817,6 +987,16 @@
     "date": "2027-03-27",
     "course_factor_swim": 0,
     "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "ironman-70-3-vilamoura-algarve",
+    "name": "IRONMAN 70.3 Vilamoura-Algarve",
+    "name_en": "IRONMAN 70.3 Vilamoura-Algarve",
+    "race_type": "half_ironman",
+    "date": "2027-04-03",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.08,
     "course_factor_run": 1
   },
   {
@@ -960,6 +1140,16 @@
     "course_factor_run": 0.97
   },
   {
+    "slug": "anfi-challenge-mogan-gran-canaria",
+    "name": "Anfi Challenge Mogán-Gran Canaria",
+    "name_en": "Anfi Challenge Mogán-Gran Canaria",
+    "race_type": "half_ironman",
+    "date": "2027-04-17",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.12,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-70-3-valencia",
     "name": "IRONMAN 70.3 Valencia",
     "name_en": "IRONMAN 70.3 Valencia",
@@ -1070,7 +1260,7 @@
     "course_factor_run": 1.8
   },
   {
-    "slug": "ironman-70-3-mallorca-alc-dia",
+    "slug": "ironman-70-3-mallorca-alcudia",
     "name": "Ironman 70.3 Mallorca (Alcúdia)",
     "name_en": "Ironman 70.3 Mallorca (Alcúdia)",
     "race_type": "half_ironman",
@@ -1078,6 +1268,16 @@
     "course_factor_swim": 1,
     "course_factor_bike": 1.08,
     "course_factor_run": 1.02
+  },
+  {
+    "slug": "challenge-salou-costa-daurada",
+    "name": "Challenge Salou-Costa Daurada",
+    "name_en": "Challenge Salou-Costa Daurada",
+    "race_type": "half_ironman",
+    "date": "2027-05-09",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
   },
   {
     "slug": "genf-halbmarathon",
@@ -1118,6 +1318,16 @@
     "course_factor_swim": 1.05,
     "course_factor_bike": 1.15,
     "course_factor_run": 1.05
+  },
+  {
+    "slug": "challenge-cesenatico",
+    "name": "Challenge Cesenatico",
+    "name_en": "Challenge Cesenatico",
+    "race_type": "half_ironman",
+    "date": "2027-05-16",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1
   },
   {
     "slug": "ironman-jacksonville",
@@ -1210,6 +1420,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "the-championship-samorin",
+    "name": "The Championship (Šamorín)",
+    "name_en": "The Championship (Šamorín)",
+    "race_type": "half_ironman",
+    "date": "2027-05-23",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "wuerzburg-marathon",
     "name": "Würzburg Marathon",
     "name_en": "Würzburg Marathon",
@@ -1230,14 +1450,24 @@
     "course_factor_run": 1.08
   },
   {
-    "slug": "ironman-70-3-kraichgau",
-    "name": "Ironman 70.3 Kraichgau",
-    "name_en": "Ironman 70.3 Kraichgau",
+    "slug": "ironman-70-3-alghero",
+    "name": "IRONMAN 70.3 Alghero",
+    "name_en": "IRONMAN 70.3 Alghero",
+    "race_type": "half_ironman",
+    "date": "2027-05-30",
+    "course_factor_swim": 1.02,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "neuseenman-ferropolis",
+    "name": "neuseenMAN Ferropolis",
+    "name_en": "neuseenMAN Ferropolis",
     "race_type": "half_ironman",
     "date": "2027-05-30",
     "course_factor_swim": 1,
-    "course_factor_bike": 1.04,
-    "course_factor_run": 1.02
+    "course_factor_bike": 1,
+    "course_factor_run": 1
   },
   {
     "slug": "regensburg-marathon",
@@ -1247,6 +1477,26 @@
     "date": "2027-05-30",
     "course_factor_swim": 0,
     "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "bonn-triathlon",
+    "name": "Bonn Triathlon",
+    "name_en": "Bonn Triathlon",
+    "race_type": "half_ironman",
+    "date": "2027-06-06",
+    "course_factor_swim": 0.97,
+    "course_factor_bike": 1.08,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "ingolstadt-triathlon",
+    "name": "Ingolstadt Triathlon",
+    "name_en": "Ingolstadt Triathlon",
+    "race_type": "half_ironman",
+    "date": "2027-06-06",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
     "course_factor_run": 1
   },
   {
@@ -1270,7 +1520,7 @@
     "course_factor_run": 1
   },
   {
-    "slug": "ironman-70-3-tours-m-tropole",
+    "slug": "ironman-70-3-tours-metropole",
     "name": "IRONMAN 70.3 Tours Métropole",
     "name_en": "IRONMAN 70.3 Tours Métropole",
     "race_type": "half_ironman",
@@ -1300,26 +1550,6 @@
     "course_factor_run": 1.65
   },
   {
-    "slug": "bonn-triathlon",
-    "name": "Bonn Triathlon",
-    "name_en": "Bonn Triathlon",
-    "race_type": "half_ironman",
-    "date": "2027-06-13",
-    "course_factor_swim": 0.97,
-    "course_factor_bike": 1.08,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "ingolstadt-triathlon",
-    "name": "Ingolstadt Triathlon",
-    "name_en": "Ingolstadt Triathlon",
-    "race_type": "half_ironman",
-    "date": "2027-06-13",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
     "slug": "ironman-austria-klagenfurt",
     "name": "Ironman Austria (Klagenfurt)",
     "name_en": "Ironman Austria (Klagenfurt)",
@@ -1340,23 +1570,13 @@
     "course_factor_run": 1.03
   },
   {
-    "slug": "ironman-tours-m-tropole-loire-valley",
+    "slug": "ironman-tours-metropole-loire-valley",
     "name": "IRONMAN Tours Métropole – Loire Valley",
     "name_en": "IRONMAN Tours Métropole – Loire Valley",
     "race_type": "ironman",
     "date": "2027-06-13",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "tirol-laeuft-innsbruck-halbmarathon",
-    "name": "\"Tirol läuft\" Innsbruck Halbmarathon",
-    "name_en": "\"Tirol läuft\" Innsbruck Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2027-06-19",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
     "course_factor_run": 1
   },
   {
@@ -1400,7 +1620,17 @@
     "course_factor_run": 1.01
   },
   {
-    "slug": "ironman-70-3-les-sables-d-olonne-vend-e",
+    "slug": "triathlon-de-cup-muenchen",
+    "name": "triathlon.de CUP München",
+    "name_en": "triathlon.de CUP München",
+    "race_type": "half_ironman",
+    "date": "2027-06-27",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "ironman-70-3-les-sables-d-olonne-vendee",
     "name": "IRONMAN 70.3 Les Sables d'Olonne-Vendée",
     "name_en": "IRONMAN 70.3 Les Sables d'Olonne-Vendée",
     "race_type": "half_ironman",

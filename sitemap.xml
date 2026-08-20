@@ -82,54 +82,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/embrunman.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/embrunman.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/embrunman-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/embrunman-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/embrunman.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/embrunman-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-kalmar-sweden.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-kalmar-sweden.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-kalmar-sweden-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-kalmar-sweden-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-kalmar-sweden.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-kalmar-sweden-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-duisburg.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-duisburg.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-duisburg-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-duisburg-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-duisburg.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-duisburg-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-copenhagen.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-copenhagen.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-copenhagen-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-copenhagen-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-copenhagen.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-copenhagen-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/ironman-tallinn.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-tallinn.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-tallinn-en.html"/>
@@ -502,6 +454,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/bmw-berlin-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
@@ -718,6 +682,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/ironman-70-3-portugal-cascais.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-portugal-cascais.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-portugal-cascais-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-portugal-cascais-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-portugal-cascais.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-portugal-cascais-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-portugal-cascais.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-portugal-cascais.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-portugal-cascais-en.html"/>
@@ -730,15 +706,39 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-m-laga.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-m-laga.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-m-laga-en.html"/>
+    <loc>https://race-mind.com/events/bottwartal-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bottwartal-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bottwartal-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-m-laga-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-m-laga.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-m-laga-en.html"/>
+    <loc>https://race-mind.com/events/bottwartal-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bottwartal-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bottwartal-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-malaga.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-malaga-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-porec.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-porec.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-porec-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-porec-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-porec.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-porec-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -766,6 +766,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/ljubljana-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ljubljana-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ljubljana-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ljubljana-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ljubljana-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ljubljana-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/tcs-amsterdam-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tcs-amsterdam-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tcs-amsterdam-marathon-en.html"/>
@@ -787,6 +799,18 @@
     <loc>https://race-mind.com/events/wolfgangseelauf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/wolfgangseelauf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/wolfgangseelauf-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/dresden-halbmarathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/dresden-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/dresden-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/dresden-halbmarathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/dresden-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/dresden-halbmarathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -823,6 +847,18 @@
     <loc>https://race-mind.com/events/irish-life-dublin-marathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/irish-life-dublin-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/irish-life-dublin-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-costa-navarino.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-costa-navarino.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-costa-navarino-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-costa-navarino-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-costa-navarino.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-costa-navarino-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -874,6 +910,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/swisscitymarathon-lucerne.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/swisscitymarathon-lucerne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/swisscitymarathon-lucerne-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/swisscitymarathon-lucerne-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/swisscitymarathon-lucerne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/swisscitymarathon-lucerne-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/swisscitymarathon-lucerne-halbmarathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/swisscitymarathon-lucerne-halbmarathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/swisscitymarathon-lucerne-halbmarathon-en.html"/>
@@ -895,6 +943,18 @@
     <loc>https://race-mind.com/events/valencia-half-marathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/valencia-half-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/valencia-half-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/venicemarathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/venicemarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/venicemarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/venicemarathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/venicemarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/venicemarathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -922,6 +982,78 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/edp-porto-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/edp-porto-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-maraton-malaga.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-maraton-malaga-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-nice-cannes.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-nice-cannes-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/maratona-di-ravenna.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/maratona-di-ravenna-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/rursee-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/rursee-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/verona-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/verona-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/verona-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/verona-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/verona-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/verona-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-cozumel.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-cozumel.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-cozumel-en.html"/>
@@ -931,6 +1063,30 @@
     <loc>https://race-mind.com/events/ironman-cozumel-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-cozumel.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-cozumel-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/estra-firenze-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/estra-firenze-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/estra-firenze-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/estra-firenze-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/estra-firenze-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/estra-firenze-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-de-la-rochelle.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-de-la-rochelle.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-de-la-rochelle-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-de-la-rochelle-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-de-la-rochelle.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-de-la-rochelle-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -970,6 +1126,42 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/challenge-israman.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-israman.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-israman-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-israman-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-israman.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-israman-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-muscat.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-muscat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-muscat-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-muscat-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-muscat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-muscat-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-wanaka.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-wanaka-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/seville-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/seville-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/seville-marathon-en.html"/>
@@ -979,6 +1171,18 @@
     <loc>https://race-mind.com/events/seville-marathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/seville-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/seville-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-panama.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-panama.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-panama-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-panama-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-panama.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-panama-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1030,15 +1234,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/zurich-marat-barcelona.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/zurich-marat-barcelona.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/zurich-marat-barcelona-en.html"/>
+    <loc>https://race-mind.com/events/zurich-marato-barcelona.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/zurich-marato-barcelona.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/zurich-marato-barcelona-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/zurich-marat-barcelona-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/zurich-marat-barcelona.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/zurich-marat-barcelona-en.html"/>
+    <loc>https://race-mind.com/events/zurich-marato-barcelona-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/zurich-marato-barcelona.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/zurich-marato-barcelona-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1063,6 +1267,18 @@
     <loc>https://race-mind.com/events/paderborner-osterlauf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/paderborner-osterlauf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/paderborner-osterlauf-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-vilamoura-algarve.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-vilamoura-algarve.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-vilamoura-algarve-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-vilamoura-algarve-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-vilamoura-algarve.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-vilamoura-algarve-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1234,6 +1450,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-70-3-valencia.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-valencia.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-valencia-en.html"/>
@@ -1366,15 +1594,27 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-mallorca-alc-dia.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-mallorca-alc-dia.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-mallorca-alc-dia-en.html"/>
+    <loc>https://race-mind.com/events/ironman-70-3-mallorca-alcudia.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-mallorca-alcudia.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-mallorca-alcudia-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-mallorca-alc-dia-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-mallorca-alc-dia.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-mallorca-alc-dia-en.html"/>
+    <loc>https://race-mind.com/events/ironman-70-3-mallorca-alcudia-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-mallorca-alcudia.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-mallorca-alcudia-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-salou-costa-daurada.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-salou-costa-daurada-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1423,6 +1663,18 @@
     <loc>https://race-mind.com/events/ironman-lanzarote-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-lanzarote.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-lanzarote-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-cesenatico.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-cesenatico-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1534,6 +1786,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/the-championship-samorin.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/the-championship-samorin-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/wuerzburg-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/wuerzburg-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/wuerzburg-marathon-en.html"/>
@@ -1558,15 +1822,27 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-kraichgau.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-kraichgau.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-kraichgau-en.html"/>
+    <loc>https://race-mind.com/events/ironman-70-3-alghero.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-alghero.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-alghero-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-kraichgau-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-kraichgau.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-kraichgau-en.html"/>
+    <loc>https://race-mind.com/events/ironman-70-3-alghero-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-alghero.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-alghero-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/neuseenman-ferropolis.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/neuseenman-ferropolis-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1579,66 +1855,6 @@
     <loc>https://race-mind.com/events/regensburg-marathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/regensburg-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/regensburg-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-bolton.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-bolton.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-bolton-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-bolton-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-bolton.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-bolton-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-tours-m-tropole.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-tours-m-tropole.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-tours-m-tropole-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-tours-m-tropole-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-tours-m-tropole.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-tours-m-tropole-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-hamburg.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-hamburg.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-hamburg-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-hamburg-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-hamburg.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-hamburg-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/celtman-extreme-scottish-triathlon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1666,6 +1882,66 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/ironman-70-3-bolton.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-bolton.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-bolton-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-bolton-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-bolton.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-bolton-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-switzerland-rapperswil-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-tours-metropole.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-tours-metropole.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-tours-metropole-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-tours-metropole-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-tours-metropole.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-tours-metropole-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-hamburg.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-hamburg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-hamburg-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-hamburg-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-hamburg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-hamburg-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/celtman-extreme-scottish-triathlon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/celtman-extreme-scottish-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-austria-klagenfurt.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-austria-klagenfurt.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-austria-klagenfurt-en.html"/>
@@ -1690,27 +1966,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-tours-m-tropole-loire-valley.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-tours-m-tropole-loire-valley.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-tours-m-tropole-loire-valley-en.html"/>
+    <loc>https://race-mind.com/events/ironman-tours-metropole-loire-valley.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-tours-metropole-loire-valley.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-tours-metropole-loire-valley-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-tours-m-tropole-loire-valley-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-tours-m-tropole-loire-valley.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-tours-m-tropole-loire-valley-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html"/>
+    <loc>https://race-mind.com/events/ironman-tours-metropole-loire-valley-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-tours-metropole-loire-valley.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-tours-metropole-loire-valley-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1762,15 +2026,27 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e-en.html"/>
+    <loc>https://race-mind.com/events/triathlon-de-cup-muenchen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-muenchen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-muenchen-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vend-e-en.html"/>
+    <loc>https://race-mind.com/events/triathlon-de-cup-muenchen-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-muenchen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-muenchen-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-les-sables-d-olonne-vendee-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1942,6 +2218,66 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/embrunman.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/embrunman.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/embrunman-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/embrunman-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/embrunman.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/embrunman-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-kalmar-sweden.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-kalmar-sweden.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-kalmar-sweden-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-kalmar-sweden-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-kalmar-sweden.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-kalmar-sweden-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-duisburg.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-duisburg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-duisburg-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-duisburg-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-duisburg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-duisburg-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-copenhagen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-copenhagen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-copenhagen-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-copenhagen-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-copenhagen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-copenhagen-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/chiemsee-triathlon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/chiemsee-triathlon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/chiemsee-triathlon-en.html"/>
@@ -1987,6 +2323,18 @@
     <loc>https://race-mind.com/events/ironman-70-3-gdynia-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-gdynia.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-gdynia-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-kraichgau.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-kraichgau.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-kraichgau-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-kraichgau-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-kraichgau.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-kraichgau-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
