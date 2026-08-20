@@ -1760,6 +1760,36 @@
     "course_factor_run": 1
   },
   {
+    "slug": "ironman-kalmar-sweden",
+    "name": "Ironman Kalmar (Sweden)",
+    "name_en": "Ironman Kalmar (Sweden)",
+    "race_type": "ironman",
+    "date": "2027-08-21",
+    "course_factor_swim": 0.99,
+    "course_factor_bike": 0.97,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "ironman-copenhagen",
+    "name": "Ironman Copenhagen",
+    "name_en": "Ironman Copenhagen",
+    "race_type": "ironman",
+    "date": "2027-08-22",
+    "course_factor_swim": 0.98,
+    "course_factor_bike": 0.96,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "ironman-70-3-duisburg",
+    "name": "Ironman 70.3 Duisburg",
+    "name_en": "Ironman 70.3 Duisburg",
+    "race_type": "half_ironman",
+    "date": "2027-08-29",
+    "course_factor_swim": 1,
+    "course_factor_bike": 0.96,
+    "course_factor_run": 0.98
+  },
+  {
     "slug": "ironman-70-3-nice",
     "name": "IRONMAN 70.3 Nice",
     "name_en": "IRONMAN 70.3 Nice",
