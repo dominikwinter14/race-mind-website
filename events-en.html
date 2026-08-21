@@ -5532,9 +5532,13 @@
             <button class="type-btn" data-type="running">Running</button>
           </div>
         </div>
-        <div class="tags-filter-wrapper">
-          <span class="tags-filter-label">Filter by attributes:</span>
-          <div class="tags-filter-pills"><button class="filter-pill" data-tag="asphalt">asphalt</button><button class="filter-pill" data-tag="atmospheric">atmospheric</button><button class="filter-pill" data-tag="canal-swim">canal-swim</button><button class="filter-pill" data-tag="challenging">challenging</button><button class="filter-pill" data-tag="classic">classic</button><button class="filter-pill" data-tag="coastal">coastal</button><button class="filter-pill" data-tag="cobblestones">cobblestones</button><button class="filter-pill" data-tag="cold">cold</button><button class="filter-pill" data-tag="fast">fast</button><button class="filter-pill" data-tag="fast-swim">fast-swim</button><button class="filter-pill" data-tag="flat">flat</button><button class="filter-pill" data-tag="forest-path">forest-path</button><button class="filter-pill" data-tag="hilly">hilly</button><button class="filter-pill" data-tag="historic">historic</button><button class="filter-pill" data-tag="hot">hot</button><button class="filter-pill" data-tag="humid">humid</button><button class="filter-pill" data-tag="iconic">iconic</button><button class="filter-pill" data-tag="lake-loop">lake-loop</button><button class="filter-pill" data-tag="lake-swim">lake-swim</button><button class="filter-pill" data-tag="lake-view">lake-view</button><button class="filter-pill" data-tag="lively">lively</button><button class="filter-pill" data-tag="mixed-surface">mixed-surface</button><button class="filter-pill" data-tag="mountain">mountain</button><button class="filter-pill" data-tag="mountainous">mountainous</button><button class="filter-pill" data-tag="night-run">night-run</button><button class="filter-pill" data-tag="ocean">ocean</button><button class="filter-pill" data-tag="ocean-swim">ocean-swim</button><button class="filter-pill" data-tag="pr-course">pr-course</button><button class="filter-pill" data-tag="river">river</button><button class="filter-pill" data-tag="river-swim">river-swim</button><button class="filter-pill" data-tag="rolling">rolling</button><button class="filter-pill" data-tag="scenic">scenic</button><button class="filter-pill" data-tag="spectator-magnet">spectator-magnet</button><button class="filter-pill" data-tag="urban">urban</button><button class="filter-pill" data-tag="very-tough">very-tough</button><button class="filter-pill" data-tag="windy">windy</button></div>
+        <div class="tags-filter-wrapper" id="tagsFilterWrapper">
+          <button type="button" class="tags-filter-label" id="tagsFilterToggle" aria-controls="tagsFilterPills">
+            <span>Filter by attributes:</span>
+            <span class="tags-filter-count" id="tagsFilterCount" hidden></span>
+            <svg class="tags-filter-chevron" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </button>
+          <div class="tags-filter-pills" id="tagsFilterPills"><button class="filter-pill" data-tag="asphalt">asphalt</button><button class="filter-pill" data-tag="atmospheric">atmospheric</button><button class="filter-pill" data-tag="canal-swim">canal-swim</button><button class="filter-pill" data-tag="challenging">challenging</button><button class="filter-pill" data-tag="classic">classic</button><button class="filter-pill" data-tag="coastal">coastal</button><button class="filter-pill" data-tag="cobblestones">cobblestones</button><button class="filter-pill" data-tag="cold">cold</button><button class="filter-pill" data-tag="fast">fast</button><button class="filter-pill" data-tag="fast-swim">fast-swim</button><button class="filter-pill" data-tag="flat">flat</button><button class="filter-pill" data-tag="forest-path">forest-path</button><button class="filter-pill" data-tag="hilly">hilly</button><button class="filter-pill" data-tag="historic">historic</button><button class="filter-pill" data-tag="hot">hot</button><button class="filter-pill" data-tag="humid">humid</button><button class="filter-pill" data-tag="iconic">iconic</button><button class="filter-pill" data-tag="lake-loop">lake-loop</button><button class="filter-pill" data-tag="lake-swim">lake-swim</button><button class="filter-pill" data-tag="lake-view">lake-view</button><button class="filter-pill" data-tag="lively">lively</button><button class="filter-pill" data-tag="mixed-surface">mixed-surface</button><button class="filter-pill" data-tag="mountain">mountain</button><button class="filter-pill" data-tag="mountainous">mountainous</button><button class="filter-pill" data-tag="night-run">night-run</button><button class="filter-pill" data-tag="ocean">ocean</button><button class="filter-pill" data-tag="ocean-swim">ocean-swim</button><button class="filter-pill" data-tag="pr-course">pr-course</button><button class="filter-pill" data-tag="river">river</button><button class="filter-pill" data-tag="river-swim">river-swim</button><button class="filter-pill" data-tag="rolling">rolling</button><button class="filter-pill" data-tag="scenic">scenic</button><button class="filter-pill" data-tag="spectator-magnet">spectator-magnet</button><button class="filter-pill" data-tag="urban">urban</button><button class="filter-pill" data-tag="very-tough">very-tough</button><button class="filter-pill" data-tag="windy">windy</button></div>
         </div>
         <div class="filters-bottom">
           <span class="results-count" id="resultsCount">Loading...</span>
@@ -12892,7 +12896,8 @@
     const I18N_JS = {
       detailsShow: "Show details",
       detailsHide: "Hide details",
-      resultsCount: (n, total) => `Showing ${n} of ${total} races`
+      resultsCount: (n, total) => `Showing ${n} of ${total} races`,
+      activeTags: (n) => n === 1 ? "1 filter active" : `${n} filters active`
     };
     document.addEventListener("DOMContentLoaded", () => {
       const searchInput = document.getElementById("searchInput");
@@ -12903,10 +12908,36 @@
       const eventsGrid = document.getElementById("eventsGrid");
       const noResults = document.getElementById("noResults");
       const resetBtn = document.getElementById("resetFiltersBtn");
+      const tagsWrapper = document.getElementById("tagsFilterWrapper");
+      const tagsToggle = document.getElementById("tagsFilterToggle");
+      const tagsCount = document.getElementById("tagsFilterCount");
+      const narrowScreen = window.matchMedia("(max-width: 768px)");
       const cards = Array.from(document.querySelectorAll(".race-card"));
       let activeType = "all";
       let selectedTags = new Set();
       let searchQuery = "";
+      let tagsOpen = false;
+
+      // The tag pills wrap to about a dozen rows on a phone, which pushed the
+      // results - and even the hit count - below the fold while the keyboard
+      // was open. Collapse them there; the desktop layout has the room.
+      function syncTagsCollapse() {
+        const collapsible = narrowScreen.matches;
+        tagsWrapper.classList.toggle("is-collapsed", collapsible && !tagsOpen);
+        if (collapsible) {
+          tagsToggle.setAttribute("aria-expanded", String(tagsOpen));
+          tagsToggle.removeAttribute("tabindex");
+        } else {
+          // Every pill is on screen, so the toggle does nothing here.
+          tagsToggle.removeAttribute("aria-expanded");
+          tagsToggle.setAttribute("tabindex", "-1");
+        }
+        // A collapsed block hides WHICH filters are on - name how many.
+        const n = selectedTags.size;
+        tagsCount.textContent = n ? String(n) : "";
+        tagsCount.setAttribute("aria-label", I18N_JS.activeTags(n));
+        tagsCount.hidden = n === 0;
+      }
 
       function updateStats(visibleCount) {
         resultsCount.textContent = I18N_JS.resultsCount(visibleCount, cards.length);
@@ -12953,14 +12984,21 @@
         const tag = pill.getAttribute("data-tag");
         if (selectedTags.has(tag)) { selectedTags.delete(tag); pill.classList.remove("active"); }
         else { selectedTags.add(tag); pill.classList.add("active"); }
+        syncTagsCollapse();
         applyFilters();
       }));
+      tagsToggle.addEventListener("click", () => {
+        if (!narrowScreen.matches) return;
+        tagsOpen = !tagsOpen;
+        syncTagsCollapse();
+      });
+      narrowScreen.addEventListener("change", syncTagsCollapse);
       sortSelect.addEventListener("change", applySorting);
       function resetAll() {
         searchInput.value = ""; searchQuery = "";
         typeButtons.forEach(b => b.classList.remove("active")); typeButtons[0].classList.add("active"); activeType = "all";
         filterPills.forEach(p => p.classList.remove("active")); selectedTags.clear();
-        sortSelect.value = "date-asc"; applySorting(); applyFilters();
+        sortSelect.value = "date-asc"; syncTagsCollapse(); applySorting(); applyFilters();
       }
       resetBtn.addEventListener("click", resetAll);
       eventsGrid.addEventListener("click", (e) => {
@@ -12982,7 +13020,7 @@
           if (header && !header.classList.contains("no-toggle")) { e.preventDefault(); header.click(); }
         }
       });
-      applySorting(); applyFilters();
+      syncTagsCollapse(); applySorting(); applyFilters();
     });
   </script>
   <script src="script.js"></script>

@@ -5532,9 +5532,13 @@
             <button class="type-btn" data-type="running">Laufen</button>
           </div>
         </div>
-        <div class="tags-filter-wrapper">
-          <span class="tags-filter-label">Eigenschaften filtern:</span>
-          <div class="tags-filter-pills"><button class="filter-pill" data-tag="Anspruchsvoll">Anspruchsvoll</button><button class="filter-pill" data-tag="Asphalt">Asphalt</button><button class="filter-pill" data-tag="Atmosphäre">Atmosphäre</button><button class="filter-pill" data-tag="Bergig">Bergig</button><button class="filter-pill" data-tag="Bestzeit-Kurs">Bestzeit-Kurs</button><button class="filter-pill" data-tag="Flach">Flach</button><button class="filter-pill" data-tag="Fluss-Schwimmen">Fluss-Schwimmen</button><button class="filter-pill" data-tag="Heiß">Heiß</button><button class="filter-pill" data-tag="Historisch">Historisch</button><button class="filter-pill" data-tag="Hügelig">Hügelig</button><button class="filter-pill" data-tag="Kalt">Kalt</button><button class="filter-pill" data-tag="Kanal-Schwimmen">Kanal-Schwimmen</button><button class="filter-pill" data-tag="Klassiker">Klassiker</button><button class="filter-pill" data-tag="Kopfsteinpflaster">Kopfsteinpflaster</button><button class="filter-pill" data-tag="Kultig">Kultig</button><button class="filter-pill" data-tag="Küstenkurs">Küstenkurs</button><button class="filter-pill" data-tag="Landschaftlich">Landschaftlich</button><button class="filter-pill" data-tag="Meer-Schwimmen">Meer-Schwimmen</button><button class="filter-pill" data-tag="Mischbelag">Mischbelag</button><button class="filter-pill" data-tag="Nachtlauf">Nachtlauf</button><button class="filter-pill" data-tag="Schnell">Schnell</button><button class="filter-pill" data-tag="Schnelles Schwimmen">Schnelles Schwimmen</button><button class="filter-pill" data-tag="Schwül">Schwül</button><button class="filter-pill" data-tag="See-Schwimmen">See-Schwimmen</button><button class="filter-pill" data-tag="See-Sicht">See-Sicht</button><button class="filter-pill" data-tag="See-Umrundung">See-Umrundung</button><button class="filter-pill" data-tag="Sehr Schwer">Sehr Schwer</button><button class="filter-pill" data-tag="Stadtkurs">Stadtkurs</button><button class="filter-pill" data-tag="Stimmungsvoll">Stimmungsvoll</button><button class="filter-pill" data-tag="Waldweg">Waldweg</button><button class="filter-pill" data-tag="Wellig">Wellig</button><button class="filter-pill" data-tag="Windanfällig">Windanfällig</button><button class="filter-pill" data-tag="Zuschauermagnet">Zuschauermagnet</button></div>
+        <div class="tags-filter-wrapper" id="tagsFilterWrapper">
+          <button type="button" class="tags-filter-label" id="tagsFilterToggle" aria-controls="tagsFilterPills">
+            <span>Eigenschaften filtern:</span>
+            <span class="tags-filter-count" id="tagsFilterCount" hidden></span>
+            <svg class="tags-filter-chevron" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </button>
+          <div class="tags-filter-pills" id="tagsFilterPills"><button class="filter-pill" data-tag="Anspruchsvoll">Anspruchsvoll</button><button class="filter-pill" data-tag="Asphalt">Asphalt</button><button class="filter-pill" data-tag="Atmosphäre">Atmosphäre</button><button class="filter-pill" data-tag="Bergig">Bergig</button><button class="filter-pill" data-tag="Bestzeit-Kurs">Bestzeit-Kurs</button><button class="filter-pill" data-tag="Flach">Flach</button><button class="filter-pill" data-tag="Fluss-Schwimmen">Fluss-Schwimmen</button><button class="filter-pill" data-tag="Heiß">Heiß</button><button class="filter-pill" data-tag="Historisch">Historisch</button><button class="filter-pill" data-tag="Hügelig">Hügelig</button><button class="filter-pill" data-tag="Kalt">Kalt</button><button class="filter-pill" data-tag="Kanal-Schwimmen">Kanal-Schwimmen</button><button class="filter-pill" data-tag="Klassiker">Klassiker</button><button class="filter-pill" data-tag="Kopfsteinpflaster">Kopfsteinpflaster</button><button class="filter-pill" data-tag="Kultig">Kultig</button><button class="filter-pill" data-tag="Küstenkurs">Küstenkurs</button><button class="filter-pill" data-tag="Landschaftlich">Landschaftlich</button><button class="filter-pill" data-tag="Meer-Schwimmen">Meer-Schwimmen</button><button class="filter-pill" data-tag="Mischbelag">Mischbelag</button><button class="filter-pill" data-tag="Nachtlauf">Nachtlauf</button><button class="filter-pill" data-tag="Schnell">Schnell</button><button class="filter-pill" data-tag="Schnelles Schwimmen">Schnelles Schwimmen</button><button class="filter-pill" data-tag="Schwül">Schwül</button><button class="filter-pill" data-tag="See-Schwimmen">See-Schwimmen</button><button class="filter-pill" data-tag="See-Sicht">See-Sicht</button><button class="filter-pill" data-tag="See-Umrundung">See-Umrundung</button><button class="filter-pill" data-tag="Sehr Schwer">Sehr Schwer</button><button class="filter-pill" data-tag="Stadtkurs">Stadtkurs</button><button class="filter-pill" data-tag="Stimmungsvoll">Stimmungsvoll</button><button class="filter-pill" data-tag="Waldweg">Waldweg</button><button class="filter-pill" data-tag="Wellig">Wellig</button><button class="filter-pill" data-tag="Windanfällig">Windanfällig</button><button class="filter-pill" data-tag="Zuschauermagnet">Zuschauermagnet</button></div>
         </div>
         <div class="filters-bottom">
           <span class="results-count" id="resultsCount">Wird geladen...</span>
@@ -12892,7 +12896,8 @@
     const I18N_JS = {
       detailsShow: "Details anzeigen",
       detailsHide: "Details ausblenden",
-      resultsCount: (n, total) => `${n} von ${total} Rennen angezeigt`
+      resultsCount: (n, total) => `${n} von ${total} Rennen angezeigt`,
+      activeTags: (n) => n === 1 ? "1 Filter aktiv" : `${n} Filter aktiv`
     };
     document.addEventListener("DOMContentLoaded", () => {
       const searchInput = document.getElementById("searchInput");
@@ -12903,10 +12908,36 @@
       const eventsGrid = document.getElementById("eventsGrid");
       const noResults = document.getElementById("noResults");
       const resetBtn = document.getElementById("resetFiltersBtn");
+      const tagsWrapper = document.getElementById("tagsFilterWrapper");
+      const tagsToggle = document.getElementById("tagsFilterToggle");
+      const tagsCount = document.getElementById("tagsFilterCount");
+      const narrowScreen = window.matchMedia("(max-width: 768px)");
       const cards = Array.from(document.querySelectorAll(".race-card"));
       let activeType = "all";
       let selectedTags = new Set();
       let searchQuery = "";
+      let tagsOpen = false;
+
+      // The tag pills wrap to about a dozen rows on a phone, which pushed the
+      // results - and even the hit count - below the fold while the keyboard
+      // was open. Collapse them there; the desktop layout has the room.
+      function syncTagsCollapse() {
+        const collapsible = narrowScreen.matches;
+        tagsWrapper.classList.toggle("is-collapsed", collapsible && !tagsOpen);
+        if (collapsible) {
+          tagsToggle.setAttribute("aria-expanded", String(tagsOpen));
+          tagsToggle.removeAttribute("tabindex");
+        } else {
+          // Every pill is on screen, so the toggle does nothing here.
+          tagsToggle.removeAttribute("aria-expanded");
+          tagsToggle.setAttribute("tabindex", "-1");
+        }
+        // A collapsed block hides WHICH filters are on - name how many.
+        const n = selectedTags.size;
+        tagsCount.textContent = n ? String(n) : "";
+        tagsCount.setAttribute("aria-label", I18N_JS.activeTags(n));
+        tagsCount.hidden = n === 0;
+      }
 
       function updateStats(visibleCount) {
         resultsCount.textContent = I18N_JS.resultsCount(visibleCount, cards.length);
@@ -12953,14 +12984,21 @@
         const tag = pill.getAttribute("data-tag");
         if (selectedTags.has(tag)) { selectedTags.delete(tag); pill.classList.remove("active"); }
         else { selectedTags.add(tag); pill.classList.add("active"); }
+        syncTagsCollapse();
         applyFilters();
       }));
+      tagsToggle.addEventListener("click", () => {
+        if (!narrowScreen.matches) return;
+        tagsOpen = !tagsOpen;
+        syncTagsCollapse();
+      });
+      narrowScreen.addEventListener("change", syncTagsCollapse);
       sortSelect.addEventListener("change", applySorting);
       function resetAll() {
         searchInput.value = ""; searchQuery = "";
         typeButtons.forEach(b => b.classList.remove("active")); typeButtons[0].classList.add("active"); activeType = "all";
         filterPills.forEach(p => p.classList.remove("active")); selectedTags.clear();
-        sortSelect.value = "date-asc"; applySorting(); applyFilters();
+        sortSelect.value = "date-asc"; syncTagsCollapse(); applySorting(); applyFilters();
       }
       resetBtn.addEventListener("click", resetAll);
       eventsGrid.addEventListener("click", (e) => {
@@ -12982,7 +13020,7 @@
           if (header && !header.classList.contains("no-toggle")) { e.preventDefault(); header.click(); }
         }
       });
-      applySorting(); applyFilters();
+      syncTagsCollapse(); applySorting(); applyFilters();
     });
   </script>
   <script src="script.js"></script>
