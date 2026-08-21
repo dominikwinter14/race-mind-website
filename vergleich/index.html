@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triathlon-Apps im Vergleich 2026 – Preise, Sprachen, Planlogik</title>
-  <meta name="description" content="enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind im Vergleich: Preise, Bewertungen, Sprachen und die Frage, wer eigentlich entscheidet, was du morgen trainierst. Stand: 19.08.2026.">
+  <title>Triathlon-Apps im Vergleich 2026 – Preise und Planlogik</title>
+  <meta name="description" content="enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind im Vergleich: Was sie kosten und wer eigentlich entscheidet, was du morgen trainierst. Stand: 19.08.2026.">
   <link rel="canonical" href="https://race-mind.com/vergleich/">
   <link rel="alternate" hreflang="de" href="https://race-mind.com/vergleich/">
-  <link rel="alternate" hreflang="en" href="https://race-mind.com/compare/">
   <link rel="alternate" hreflang="x-default" href="https://race-mind.com/vergleich/">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../fonts.css">
@@ -17,7 +16,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="RaceMind">
   <meta property="og:title" content="Triathlon-Apps im Vergleich 2026">
-  <meta property="og:description" content="Preise, Sprachen und Planlogik von enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind – mit Quellen und Stand-Datum.">
+  <meta property="og:description" content="Preise und Planlogik von enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind – mit Quellen und Stand-Datum.">
   <meta property="og:url" content="https://race-mind.com/vergleich/">
   <meta property="og:locale" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
@@ -47,7 +46,7 @@
 
     /* Tabelle: scrollt in der eigenen Box, nie die Seite */
     .vg-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
-    .vg-table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 0.92rem; }
+    .vg-table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 0.92rem; }
     .vg-table th, .vg-table td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; }
     .vg-table thead th {
       font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -60,7 +59,28 @@
     .vg-app { font-weight: 700; color: var(--foreground); }
     .vg-vendor { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 0.15rem; }
     .vg-price { white-space: nowrap; }
+    .vg-rating { white-space: nowrap; color: var(--muted); }
     .vg-note { font-size: 0.82rem; color: var(--muted); margin-top: 1rem; line-height: 1.6; }
+
+    /* Funktionsmatrix: erste Spalte bleibt beim Querscrollen stehen */
+    .vg-matrix { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 0.88rem; }
+    .vg-matrix th, .vg-matrix td { padding: 0.75rem 0.6rem; text-align: center; vertical-align: middle; }
+    .vg-matrix thead th {
+      font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .vg-matrix tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .vg-matrix th[scope="row"] {
+      text-align: left; font-weight: 500; color: var(--foreground);
+      min-width: 240px; position: sticky; left: 0; background: var(--bg); z-index: 1;
+      font-size: 0.9rem; line-height: 1.4;
+    }
+    .vg-matrix .vg-col-own { background: rgba(255,138,0,0.07); }
+    .vg-matrix thead .vg-col-own { color: var(--primary); }
+    .vg-yes { color: var(--primary); font-weight: 700; font-size: 1.05rem; }
+    .vg-part { color: var(--muted); font-size: 0.78rem; }
+    .vg-no { color: rgba(255,255,255,0.22); }
+    .vg-legend { font-size: 0.82rem; color: var(--muted); margin-top: 1rem; line-height: 1.7; }
 
     /* Drei Kategorien */
     .vg-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -207,130 +227,18 @@
       <span class="vg-eyebrow">Vergleich</span>
       <h1 class="vg-title">Triathlon-Apps im Vergleich</h1>
       <p class="vg-sub">
-        Sechs Apps, ein Fragebogen: Was kostet sie, gibt es sie auf Deutsch – und wer entscheidet
-        eigentlich, was du morgen trainierst? Alle Angaben stammen aus den öffentlichen
-        Store-Einträgen und sind unten verlinkt.
+        Sechs Apps, zwei Fragen: Was kosten sie – und wer entscheidet eigentlich, was du morgen
+        trainierst? Alle Preise stammen aus den öffentlichen Store-Einträgen und sind unten
+        verlinkt.
       </p>
       <span class="vg-stamp">Stand: 19. August 2026 · deutscher App Store</span>
     </header>
 
     <section class="vg-section container">
-      <h2>Die Zahlen</h2>
-      <p class="vg-lead">
-        Sortiert nach Größe, gemessen an den Bewertungen im deutschen App Store.
-      </p>
-
-      <div class="vg-table-wrap">
-        <table class="vg-table">
-          <thead>
-            <tr>
-              <th scope="col">App</th>
-              <th scope="col">Bewertung (DE)</th>
-              <th scope="col">Sprachen</th>
-              <th scope="col">Preis / Jahr</th>
-              <th scope="col">Wie der Plan entsteht</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="vg-app">TrainingPeaks<span class="vg-vendor">Peaksware, USA</span></span></td>
-              <td>4,6 · 2.029</td>
-              <td>8, inkl. Deutsch</td>
-              <td class="vg-price">149,99 €</td>
-              <td>Du oder dein Coach planen. Die Plattform analysiert, sie plant nicht selbst.</td>
-            </tr>
-            <tr>
-              <td><span class="vg-app">enduco<span class="vg-vendor">enduco, Deutschland</span></span></td>
-              <td>4,5 · 460</td>
-              <td>DE, EN, FR, IT</td>
-              <td class="vg-price">119,99 €<br><span class="vg-vendor">Pro+ 179,99 €</span></td>
-              <td>„KI-Coach“ nach eigener Beschreibung, mit laufender Anpassung.</td>
-            </tr>
-            <tr>
-              <td><span class="vg-app">Pushing Limits Club<span class="vg-vendor">Pushing Ideas GmbH, Deutschland</span></span></td>
-              <td>4,8 · 274</td>
-              <td>7, inkl. Deutsch</td>
-              <td class="vg-price">179,99 €</td>
-              <td>Über 50 fertige Pläne von Trainern; eine KI bewertet die Einheiten.</td>
-            </tr>
-            <tr>
-              <td><span class="vg-app">MATS<span class="vg-vendor">MATS GmbH, Deutschland</span></span></td>
-              <td>3,9 · 168</td>
-              <td>DE, EN</td>
-              <td class="vg-price">143,99 €<br><span class="vg-vendor">AI Coach ab 400 €</span></td>
-              <td>Plattform mit Analyse und Diagnostik; „AI Coach“ als Zusatzabo.</td>
-            </tr>
-            <tr>
-              <td><span class="vg-app">2PEAK<span class="vg-vendor">Quevita AG, Schweiz</span></span></td>
-              <td>3,5 · 51</td>
-              <td>5, inkl. Deutsch</td>
-              <td class="vg-price">229,99 €</td>
-              <td>„KI-basierter Coach“ nach eigener Beschreibung, Neuberechnung nach jeder Einheit.</td>
-            </tr>
-            <tr class="vg-own">
-              <td><span class="vg-app">RaceMind<span class="vg-vendor">Digital Creatives UG, Deutschland</span></span></td>
-              <td>5,0 · 13</td>
-              <td>DE, EN</td>
-              <td class="vg-price">79,99 €</td>
-              <td>Regelbasierte Engine. KI nur für Erklärtexte und den Chat.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="vg-note">
-        Bewertungszahlen sind ein grober Größenvergleich, kein Marktanteil: Sie erfassen nur iOS,
-        nur den deutschen Store und wachsen über die Jahre mit. Preise sind die im deutschen
-        App Store gelisteten Jahresabos; einzelne Anbieter haben zusätzliche Tarifstufen.
-        Alle Angaben Stand 19.08.2026 – Quellen am Seitenende.
-      </p>
-    </section>
-
-    <section class="vg-section container">
-      <h2>Der Unterschied, der in keiner Feature-Liste steht</h2>
-      <p class="vg-lead">
-        Fast alle diese Apps versprechen „individuelle Pläne“. Der eigentliche Unterschied liegt
-        davor: Wer trifft die Entscheidung, wie hart deine Woche wird? Es gibt drei Antworten.
-      </p>
-
-      <div class="vg-cards">
-        <div class="vg-card">
-          <p class="vg-card-tag">Du selbst</p>
-          <h3>Die Plattform</h3>
-          <p>
-            Ein Werkzeug für Planung und Analyse. Es rechnet nichts für dich – es zeigt dir sehr
-            genau, was du getan hast. Der Plan kommt von dir oder von deinem Trainer.
-          </p>
-          <p class="vg-card-who"><strong>Beispiel:</strong> TrainingPeaks, MATS</p>
-        </div>
-        <div class="vg-card">
-          <p class="vg-card-tag">Ein Trainer, vorab</p>
-          <h3>Die Plan-Bibliothek</h3>
-          <p>
-            Fertige Pläne, geschrieben von erfahrenen Coaches, oft mit Community, Videos und
-            Ernährung drumherum. Gut gemacht und erprobt – aber vor deiner Woche geschrieben,
-            nicht für sie.
-          </p>
-          <p class="vg-card-who"><strong>Beispiel:</strong> Pushing Limits Club</p>
-        </div>
-        <div class="vg-card vg-card--own">
-          <p class="vg-card-tag">Die App, laufend</p>
-          <h3>Der erzeugte Plan</h3>
-          <p>
-            Der Plan entsteht aus deinem Ziel, deinem Level und deiner Zeit – und wird neu
-            berechnet, wenn sich etwas ändert. Hier stellt sich die nächste Frage: erzeugt oder
-            errechnet?
-          </p>
-          <p class="vg-card-who"><strong>Beispiel:</strong> enduco, 2PEAK, RaceMind</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="vg-section container">
       <h2>Warum wir deinen Plan rechnen – und nicht schreiben lassen</h2>
       <p class="vg-lead">
-        Fast jede App in dieser Tabelle wirbt mit einem KI-Coach. RaceMind nicht. Das ist eine
-        Entscheidung, keine fehlende Funktion – und wir erklären sie gerne.
+        Fast jede App in diesem Vergleich wirbt mit einem KI-Coach. RaceMind nicht. Das ist eine
+        Entscheidung, keine fehlende Funktion – und wir erklären sie, bevor die Zahlen kommen.
       </p>
       <p>
         Ein Trainingsplan ist im Kern eine Dosierung: wie viele harte Minuten diese Woche, wie lang
@@ -376,6 +284,257 @@
     </section>
 
     <section class="vg-section container">
+      <h2>Was sie kosten – und wer plant</h2>
+      <p class="vg-lead">
+        Sortiert nach Jahrespreis. Die rechte Spalte ist die wichtigere: Sie sagt, wer entscheidet,
+        wie hart deine Woche wird.
+      </p>
+
+      <div class="vg-table-wrap">
+        <table class="vg-table">
+          <thead>
+            <tr>
+              <th scope="col">App</th>
+              <th scope="col">Bewertung</th>
+              <th scope="col">Preis / Jahr</th>
+              <th scope="col">Wie der Plan entsteht</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="vg-app">2PEAK</span></td>
+              <td class="vg-rating">3,5 ★</td>
+              <td class="vg-price">229,99 €</td>
+              <td>„KI-basierter Coach“ nach eigener Beschreibung, Neuberechnung nach jeder Einheit.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">Pushing Limits Club</span></td>
+              <td class="vg-rating">4,8 ★</td>
+              <td class="vg-price">179,99 €</td>
+              <td>Über 50 fertige Pläne von Trainern; eine KI bewertet die Einheiten.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">TrainingPeaks</span></td>
+              <td class="vg-rating">4,6 ★</td>
+              <td class="vg-price">149,99 €</td>
+              <td>Du oder dein Coach planen. Die Plattform analysiert, sie plant nicht selbst.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">MATS</span></td>
+              <td class="vg-rating">3,9 ★</td>
+              <td class="vg-price">143,99 €<br><span class="vg-vendor">AI Coach ab 400 €</span></td>
+              <td>Plattform mit Analyse und Diagnostik; „AI Coach“ als Zusatzabo.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">enduco</span></td>
+              <td class="vg-rating">4,5 ★</td>
+              <td class="vg-price">119,99 €<br><span class="vg-vendor">Pro+ 179,99 €</span></td>
+              <td>„KI-Coach“ nach eigener Beschreibung, mit laufender Anpassung.</td>
+            </tr>
+            <tr class="vg-own">
+              <td><span class="vg-app">RaceMind</span></td>
+              <td class="vg-rating">5,0 ★</td>
+              <td class="vg-price">79,99 €</td>
+              <td>Regelbasierte Engine. KI nur für Erklärtexte und den Chat.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="vg-note">
+        Bewertungen aus dem deutschen App Store. Sie beruhen auf sehr unterschiedlich vielen
+        Stimmen – bei jungen Apps auf deutlich weniger als bei langjährigen; die genaue Zahl steht
+        in den verlinkten Store-Einträgen. Angegeben ist jeweils das dort gelistete Jahresabo;
+        einzelne Anbieter haben zusätzliche Tarifstufen. Alle Angaben Stand 19.08.2026 – Quellen
+        am Seitenende.
+      </p>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Was die Apps k&ouml;nnen &ndash; und was nicht</h2>
+      <p class="vg-lead">
+        Diese Tabelle zeigt, was die Anbieter selbst bewerben &ndash; auf ihren Websites und in ihren
+        Store-Eintr&auml;gen, abgerufen am 21.08.2026. Wir haben auch die Zeilen aufgenommen, in denen
+        RaceMind leer ausgeht.
+      </p>
+
+      <div class="vg-table-wrap">
+        <table class="vg-matrix">
+          <thead>
+            <tr>
+              <th scope="col">Funktion</th>
+              <th scope="col" class="vg-col-own">RaceMind</th>
+              <th scope="col">enduco</th>
+              <th scope="col">MATS</th>
+              <th scope="col">Pushing&nbsp;Limits</th>
+              <th scope="col">TrainingPeaks</th>
+              <th scope="col">2PEAK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Plan passt sich an, wenn eine Einheit ausf&auml;llt</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Tagesform flie&szlig;t in die Planung ein</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Plan per Chat &auml;ndern</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Zielzeit-Prognose</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Pacing- und Verpflegungsplan f&uuml;r den Renntag</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Zyklus als Kontext f&uuml;r die Planung</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Einheiten gemeinsam mit Freund:innen planen</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+              <td><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+              <td><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Einheiten auf die Uhr schicken</th>
+              <td class="vg-col-own"><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Anbindung an echte Trainer</th>
+              <td class="vg-col-own"><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Leistungsdiagnostik</th>
+              <td class="vg-col-own"><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Community, Podcast, Rezepte</th>
+              <td class="vg-col-own"><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+              <td class=""><span class="vg-yes" aria-label="beworben">&#10003;</span></td>
+              <td class=""><span class="vg-part" aria-label="eingeschraenkt">teils</span></td>
+              <td class=""><span class="vg-no" aria-label="nicht beworben">&ndash;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="vg-legend">
+        &#10003; beworben &nbsp;&middot;&nbsp; teils = eingeschr&auml;nkt oder anders zugeschnitten
+        &nbsp;&middot;&nbsp; &ndash; nicht beworben.
+        <strong>Ein Strich hei&szlig;t nicht, dass die Funktion fehlt</strong> &ndash; nur, dass der
+        Anbieter sie nicht als Funktion ausweist. Ma&szlig;geblich ist immer die Angabe des
+        Anbieters; Quellen am Seitenende.<br>
+        Zur Zeile „gemeinsam planen": MATS und TrainingPeaks bewerben Gruppenplanung &ndash; dort
+        plant allerdings ein Trainer f&uuml;r mehrere Athlet:innen, nicht zwei Sportler:innen
+        miteinander.
+      </p>
+
+      <p style="margin-top:1.5rem">
+        Drei Zeilen kann RaceMind nicht: <strong>echte Trainer, Leistungsdiagnostik und
+        Community-Inhalte.</strong> Das ist kein Versehen, sondern der Zuschnitt &ndash; wir bauen die
+        Planung, nicht das Drumherum. Wenn dir eine dieser drei Zeilen wichtig ist, steht weiter
+        unten, welche App dann die bessere Wahl ist.
+      </p>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Der Unterschied, der in keiner Feature-Liste steht</h2>
+      <p class="vg-lead">
+        Fast alle diese Apps versprechen „individuelle Pläne“. Der eigentliche Unterschied liegt
+        davor: Wer trifft die Entscheidung, wie hart deine Woche wird? Es gibt drei Antworten.
+      </p>
+
+      <div class="vg-cards">
+        <div class="vg-card">
+          <p class="vg-card-tag">Du selbst</p>
+          <h3>Die Plattform</h3>
+          <p>
+            Ein Werkzeug für Planung und Analyse. Es rechnet nichts für dich – es zeigt dir sehr
+            genau, was du getan hast. Der Plan kommt von dir oder von deinem Trainer.
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> TrainingPeaks, MATS</p>
+        </div>
+        <div class="vg-card">
+          <p class="vg-card-tag">Ein Trainer, vorab</p>
+          <h3>Die Plan-Bibliothek</h3>
+          <p>
+            Fertige Pläne, geschrieben von erfahrenen Coaches, oft mit Community, Videos und
+            Ernährung drumherum. Gut gemacht und erprobt – aber vor deiner Woche geschrieben,
+            nicht für sie.
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> Pushing Limits Club</p>
+        </div>
+        <div class="vg-card vg-card--own">
+          <p class="vg-card-tag">Die App, laufend</p>
+          <h3>Der erzeugte Plan</h3>
+          <p>
+            Der Plan entsteht aus deinem Ziel, deinem Level und deiner Zeit – und wird neu
+            berechnet, wenn sich etwas ändert. Hier stellt sich die nächste Frage: erzeugt oder
+            errechnet?
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> enduco, 2PEAK, RaceMind</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vg-section container">
       <h2>Wann eine andere App die bessere Wahl ist</h2>
       <p class="vg-lead">
         Wir halten diese Seite nur für nützlich, wenn sie auch die Fälle nennt, in denen du woanders
@@ -395,7 +554,8 @@
           <div class="vg-h-app">Pushing Limits Club</div>
           <p>
             Du willst mehr als einen Plan: Podcast, Community, Ernährung, Rezepte, Videos. Eine
-            starke Marke mit erfahrenen Trainern dahinter – und die beste Bewertung im Feld.
+            starke Marke mit erfahrenen Trainern dahinter – und sehr zufriedene Nutzer im
+            deutschen App Store.
           </p>
         </div>
         <div class="vg-honest-row">
@@ -456,9 +616,16 @@
         <a href="https://apps.apple.com/de/app/enduco-deine-trainingspl%C3%A4ne/id1483216578" target="_blank" rel="noopener nofollow">enduco im App Store</a> ·
         <a href="https://apps.apple.com/de/app/pushing-limits-club/id1606897234" target="_blank" rel="noopener nofollow">Pushing Limits Club im App Store</a> ·
         <a href="https://apps.apple.com/de/app/mats-trainingsplattform/id6443653002" target="_blank" rel="noopener nofollow">MATS im App Store</a> ·
-        <a href="https://apps.apple.com/de/app/2peak-cycling-triathlon/id1053397362" target="_blank" rel="noopener nofollow">2PEAK im App Store</a><br>
+        <a href="https://apps.apple.com/de/app/2peak-cycling-triathlon/id1053397362" target="_blank" rel="noopener nofollow">2PEAK im App Store</a><br><br>
+        Die Funktionsmatrix stützt sich zusätzlich auf die Anbieterseiten, abgerufen am 21.08.2026:<br>
+        <a href="https://www.enduco.app/" target="_blank" rel="noopener nofollow">enduco.app</a> ·
+        <a href="https://mats.coach/" target="_blank" rel="noopener nofollow">mats.coach</a> ·
+        <a href="https://pushinglimits.club/" target="_blank" rel="noopener nofollow">pushinglimits.club</a> ·
+        <a href="https://www.trainingpeaks.com/" target="_blank" rel="noopener nofollow">trainingpeaks.com</a> ·
+        <a href="https://www.2peak.com/" target="_blank" rel="noopener nofollow">2peak.com</a><br><br>
         Genannte Produkt- und Firmennamen sind Marken der jeweiligen Inhaber. Preise und Funktionen
-        können sich ändern – maßgeblich ist immer die Angabe des jeweiligen Anbieters.
+        können sich ändern – maßgeblich ist immer die Angabe des jeweiligen Anbieters. Wenn eine
+        Angabe hier nicht mehr stimmt, sag uns bitte Bescheid; wir korrigieren sie.
       </p>
     </section>
 
