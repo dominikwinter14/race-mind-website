@@ -1140,9 +1140,9 @@
     "course_factor_run": 0.97
   },
   {
-    "slug": "anfi-challenge-mogan-gran-canaria",
-    "name": "Anfi Challenge Mogán-Gran Canaria",
-    "name_en": "Anfi Challenge Mogán-Gran Canaria",
+    "slug": "anfi-challenge-mogan-gran-canaria-t100",
+    "name": "Anfi Challenge Mogán-Gran Canaria (T100)",
+    "name_en": "Anfi Challenge Mogán-Gran Canaria (T100)",
     "race_type": "half_ironman",
     "date": "2027-04-17",
     "course_factor_swim": 1.02,
@@ -1270,9 +1270,9 @@
     "course_factor_run": 1.02
   },
   {
-    "slug": "challenge-salou-costa-daurada",
-    "name": "Challenge Salou-Costa Daurada",
-    "name_en": "Challenge Salou-Costa Daurada",
+    "slug": "challenge-salou-costa-daurada-t100",
+    "name": "Challenge Salou-Costa Daurada (T100)",
+    "name_en": "Challenge Salou-Costa Daurada (T100)",
     "race_type": "half_ironman",
     "date": "2027-05-09",
     "course_factor_swim": 1,
@@ -1320,9 +1320,9 @@
     "course_factor_run": 1.05
   },
   {
-    "slug": "challenge-cesenatico",
-    "name": "Challenge Cesenatico",
-    "name_en": "Challenge Cesenatico",
+    "slug": "challenge-cesenatico-t100",
+    "name": "Challenge Cesenatico (T100)",
+    "name_en": "Challenge Cesenatico (T100)",
     "race_type": "half_ironman",
     "date": "2027-05-16",
     "course_factor_swim": 1,
@@ -1420,9 +1420,9 @@
     "course_factor_run": 1
   },
   {
-    "slug": "the-championship-samorin",
-    "name": "The Championship (Šamorín)",
-    "name_en": "The Championship (Šamorín)",
+    "slug": "the-championship-samorin-t100",
+    "name": "The Championship Šamorín (T100)",
+    "name_en": "The Championship Šamorín (T100)",
     "race_type": "half_ironman",
     "date": "2027-05-23",
     "course_factor_swim": 1,
@@ -1707,6 +1707,16 @@
     "date": "2027-07-17",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "trumer-triathlon",
+    "name": "Trumer Triathlon",
+    "name_en": "Trumer Triathlon",
+    "race_type": "half_ironman",
+    "date": "2027-07-18",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.04,
     "course_factor_run": 1
   },
   {

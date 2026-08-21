@@ -26,11 +26,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/vergleich/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/vergleich/"/>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/kona-check.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/kona-check.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/kona-check-en.html"/>
@@ -85,6 +80,10 @@
   <url>
     <loc>https://race-mind.com/friend/</loc>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/vergleich/</loc>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://race-mind.com/events/ironman-tallinn.html</loc>
@@ -1455,15 +1454,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html"/>
+    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-en.html"/>
+    <loc>https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/anfi-challenge-mogan-gran-canaria-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1611,15 +1610,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-salou-costa-daurada.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-en.html"/>
+    <loc>https://race-mind.com/events/challenge-salou-costa-daurada-t100.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-salou-costa-daurada-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-en.html"/>
+    <loc>https://race-mind.com/events/challenge-salou-costa-daurada-t100-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-salou-costa-daurada-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-salou-costa-daurada-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1671,15 +1670,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-cesenatico.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-en.html"/>
+    <loc>https://race-mind.com/events/challenge-cesenatico-t100.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-cesenatico-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-en.html"/>
+    <loc>https://race-mind.com/events/challenge-cesenatico-t100-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-cesenatico-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-cesenatico-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1791,15 +1790,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/the-championship-samorin.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-en.html"/>
+    <loc>https://race-mind.com/events/the-championship-samorin-t100.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/the-championship-samorin-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-en.html"/>
+    <loc>https://race-mind.com/events/the-championship-samorin-t100-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/the-championship-samorin-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/the-championship-samorin-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2139,6 +2138,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/trumer-triathlon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trumer-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trumer-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/trumer-triathlon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trumer-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trumer-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-lake-placid.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-lake-placid.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-lake-placid-en.html"/>
@@ -2376,18 +2387,6 @@
     <loc>https://race-mind.com/events/trierer-stadtlauf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trierer-stadtlauf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trierer-stadtlauf-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/trumer-triathlon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trumer-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trumer-triathlon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/trumer-triathlon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trumer-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trumer-triathlon-en.html"/>
     <priority>0.7</priority>
   </url>
 </urlset>
