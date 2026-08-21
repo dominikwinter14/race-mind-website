@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triathlon-Apps im Vergleich 2026 – Preise, Sprachen, Planlogik</title>
+  <meta name="description" content="enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind im Vergleich: Preise, Bewertungen, Sprachen und die Frage, wer eigentlich entscheidet, was du morgen trainierst. Stand: 19.08.2026.">
+  <link rel="canonical" href="https://race-mind.com/vergleich/">
+  <link rel="alternate" hreflang="de" href="https://race-mind.com/vergleich/">
+  <link rel="alternate" hreflang="en" href="https://race-mind.com/compare/">
+  <link rel="alternate" hreflang="x-default" href="https://race-mind.com/vergleich/">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="../fonts.css">
+  <link rel="stylesheet" href="../style.css">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="RaceMind">
+  <meta property="og:title" content="Triathlon-Apps im Vergleich 2026">
+  <meta property="og:description" content="Preise, Sprachen und Planlogik von enduco, TrainingPeaks, Pushing Limits, MATS, 2PEAK und RaceMind – mit Quellen und Stand-Datum.">
+  <meta property="og:url" content="https://race-mind.com/vergleich/">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* ── Vergleichsseite ── */
+    .vg-main { padding-top: 7rem; }
+    .vg-hero { text-align: center; padding: 2rem 0 1rem; }
+    .vg-eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .vg-title { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.05; margin-bottom: 0.9rem; }
+    .vg-sub { color: var(--muted); font-size: 1.05rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+    .vg-stamp {
+      display: inline-block; margin-top: 1.25rem; padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    .vg-section { padding: 3.5rem 0; }
+    .vg-section h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 700; line-height: 1.2; margin-bottom: 0.75rem; }
+    .vg-section h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .vg-lead { color: var(--muted); max-width: 720px; line-height: 1.7; margin-bottom: 1.75rem; }
+    .vg-section p + p { margin-top: 0.9rem; }
+
+    /* Tabelle: scrollt in der eigenen Box, nie die Seite */
+    .vg-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
+    .vg-table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 0.92rem; }
+    .vg-table th, .vg-table td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; }
+    .vg-table thead th {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.12);
+      white-space: nowrap;
+    }
+    .vg-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .vg-table tbody tr.vg-own { background: rgba(255,138,0,0.07); }
+    .vg-table tbody tr.vg-own td:first-child { box-shadow: inset 3px 0 0 var(--primary); }
+    .vg-app { font-weight: 700; color: var(--foreground); }
+    .vg-vendor { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 0.15rem; }
+    .vg-price { white-space: nowrap; }
+    .vg-note { font-size: 0.82rem; color: var(--muted); margin-top: 1rem; line-height: 1.6; }
+
+    /* Drei Kategorien */
+    .vg-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    @media (max-width: 860px) { .vg-cards { grid-template-columns: 1fr; } }
+    .vg-card {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .vg-card--own { border-color: rgba(255,138,0,0.45); }
+    .vg-card-tag {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--primary); font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .vg-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+    .vg-card-who { margin-top: 0.9rem; font-size: 0.82rem; color: var(--muted); }
+    .vg-card-who strong { color: var(--foreground); }
+
+    /* Argumentliste */
+    .vg-points { list-style: none; margin-top: 1.25rem; display: grid; gap: 1rem; }
+    .vg-points li {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 1.1rem 1.25rem; border: 1px solid rgba(255,255,255,0.06);
+    }
+    .vg-points strong { display: block; margin-bottom: 0.25rem; }
+    .vg-points span { color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+
+    .vg-claim {
+      margin-top: 2rem; padding: 1.5rem; border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255,138,0,0.12), rgba(0,209,255,0.08));
+      border: 1px solid rgba(255,138,0,0.25);
+      font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 700; text-align: center;
+    }
+
+    /* Ehrlichkeits-Block */
+    .vg-honest { display: grid; gap: 0.9rem; margin-top: 1.5rem; }
+    .vg-honest-row {
+      display: grid; grid-template-columns: 200px 1fr; gap: 1.25rem;
+      padding: 1.1rem 0; border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    @media (max-width: 720px) { .vg-honest-row { grid-template-columns: 1fr; gap: 0.35rem; } }
+    .vg-honest-row .vg-h-app { font-weight: 700; }
+    .vg-honest-row p { color: var(--muted); font-size: 0.94rem; line-height: 1.65; }
+
+    .vg-sources { font-size: 0.82rem; color: var(--muted); line-height: 1.9; }
+    .vg-sources a { color: var(--secondary); }
+    .vg-sources a:hover { text-decoration: underline; }
+
+    .vg-cta { text-align: center; padding: 1rem 0 4rem; }
+    .vg-cta h2 { margin-bottom: 0.6rem; }
+    .vg-cta p { color: var(--muted); margin-bottom: 1.5rem; }
+
+    .vg-breadcrumb { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .vg-breadcrumb a:hover { color: var(--foreground); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "RaceMind", "item": "https://race-mind.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Triathlon-Apps im Vergleich", "item": "https://race-mind.com/vergleich/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Welche Triathlon-App ist die beste?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es gibt keine beste – es gibt drei verschiedene Produkte. TrainingPeaks ist eine Plattform, auf der du oder dein Coach planen. Pushing Limits liefert fertige Pläne von Trainern plus Community und Ernährung. enduco, 2PEAK, MATS und RaceMind erstellen den Plan selbst. Entscheide zuerst, wer planen soll – danach wird die Auswahl klein."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Triathlon-App ist die günstigste?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unter den Apps, die den Trainingsplan selbst erstellen, ist RaceMind mit 79,99 € im Jahr am günstigsten, gefolgt von enduco mit 119,99 € (Pro). MATS liegt bei 143,99 €, TrainingPeaks bei 149,99 €, Pushing Limits bei 179,99 € und 2PEAK bei 229,99 € im Jahr. Stand: 19.08.2026, deutscher App Store."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Nutzt RaceMind künstliche Intelligenz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für Erklärungen und den Coach-Chat ja, für die Trainingsplanung nein. Der Plan entsteht in einer regelbasierten Engine: Periodisierung, Belastungsgrenzen und der Weg zurück nach Krankheit sind als getestete Regeln hinterlegt. Sprachmodelle erklären dir, warum eine Einheit so aussieht, und verstehen deine Wünsche im Chat – ausgeführt wird die Änderung von der Engine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Triathlon-Apps gibt es auf Deutsch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Auf Deutsch verfügbar sind RaceMind, enduco, MATS, 2PEAK, Pushing Limits Club und TrainingPeaks. Die US-App Stamina gibt es nur auf Englisch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Triathlon-App eignet sich für Anfänger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Für den ersten Wettkampf ist entscheidend, dass die App bremst statt anzutreiben. Sinnvoll ist eine App, die den Umfang an deine tatsächlich verfügbare Zeit anpasst, harte Einheiten begrenzt und nach Pausen konservativ zurückführt – und die erklärt, warum sie das tut."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="subpage">
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="../index.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="../logo-full.svg" class="logo-svg" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#q1">Features</a>
+        <a href="../index.html#testimonials">Erfahrungen</a>
+        <a href="../index.html#pricing">Preise</a>
+        <a href="../events.html">Rennen</a>
+        <a href="../race-time.html">Zielzeit</a>
+        <a href="../kona-check.html">Kona-Check</a>
+        <a href="../index.html#contact">Kontakt</a>
+        <a href="../index.html#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="vg-main">
+    <div class="container">
+      <p class="vg-breadcrumb"><a href="../index.html">RaceMind</a> &rsaquo; Vergleich</p>
+    </div>
+
+    <header class="vg-hero container">
+      <span class="vg-eyebrow">Vergleich</span>
+      <h1 class="vg-title">Triathlon-Apps im Vergleich</h1>
+      <p class="vg-sub">
+        Sechs Apps, ein Fragebogen: Was kostet sie, gibt es sie auf Deutsch – und wer entscheidet
+        eigentlich, was du morgen trainierst? Alle Angaben stammen aus den öffentlichen
+        Store-Einträgen und sind unten verlinkt.
+      </p>
+      <span class="vg-stamp">Stand: 19. August 2026 · deutscher App Store</span>
+    </header>
+
+    <section class="vg-section container">
+      <h2>Die Zahlen</h2>
+      <p class="vg-lead">
+        Sortiert nach Größe, gemessen an den Bewertungen im deutschen App Store.
+      </p>
+
+      <div class="vg-table-wrap">
+        <table class="vg-table">
+          <thead>
+            <tr>
+              <th scope="col">App</th>
+              <th scope="col">Bewertung (DE)</th>
+              <th scope="col">Sprachen</th>
+              <th scope="col">Preis / Jahr</th>
+              <th scope="col">Wie der Plan entsteht</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="vg-app">TrainingPeaks<span class="vg-vendor">Peaksware, USA</span></span></td>
+              <td>4,6 · 2.029</td>
+              <td>8, inkl. Deutsch</td>
+              <td class="vg-price">149,99 €</td>
+              <td>Du oder dein Coach planen. Die Plattform analysiert, sie plant nicht selbst.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">enduco<span class="vg-vendor">enduco, Deutschland</span></span></td>
+              <td>4,5 · 460</td>
+              <td>DE, EN, FR, IT</td>
+              <td class="vg-price">119,99 €<br><span class="vg-vendor">Pro+ 179,99 €</span></td>
+              <td>„KI-Coach“ nach eigener Beschreibung, mit laufender Anpassung.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">Pushing Limits Club<span class="vg-vendor">Pushing Ideas GmbH, Deutschland</span></span></td>
+              <td>4,8 · 274</td>
+              <td>7, inkl. Deutsch</td>
+              <td class="vg-price">179,99 €</td>
+              <td>Über 50 fertige Pläne von Trainern; eine KI bewertet die Einheiten.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">MATS<span class="vg-vendor">MATS GmbH, Deutschland</span></span></td>
+              <td>3,9 · 168</td>
+              <td>DE, EN</td>
+              <td class="vg-price">143,99 €<br><span class="vg-vendor">AI Coach ab 400 €</span></td>
+              <td>Plattform mit Analyse und Diagnostik; „AI Coach“ als Zusatzabo.</td>
+            </tr>
+            <tr>
+              <td><span class="vg-app">2PEAK<span class="vg-vendor">Quevita AG, Schweiz</span></span></td>
+              <td>3,5 · 51</td>
+              <td>5, inkl. Deutsch</td>
+              <td class="vg-price">229,99 €</td>
+              <td>„KI-basierter Coach“ nach eigener Beschreibung, Neuberechnung nach jeder Einheit.</td>
+            </tr>
+            <tr class="vg-own">
+              <td><span class="vg-app">RaceMind<span class="vg-vendor">Digital Creatives UG, Deutschland</span></span></td>
+              <td>5,0 · 13</td>
+              <td>DE, EN</td>
+              <td class="vg-price">79,99 €</td>
+              <td>Regelbasierte Engine. KI nur für Erklärtexte und den Chat.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="vg-note">
+        Bewertungszahlen sind ein grober Größenvergleich, kein Marktanteil: Sie erfassen nur iOS,
+        nur den deutschen Store und wachsen über die Jahre mit. Preise sind die im deutschen
+        App Store gelisteten Jahresabos; einzelne Anbieter haben zusätzliche Tarifstufen.
+        Alle Angaben Stand 19.08.2026 – Quellen am Seitenende.
+      </p>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Der Unterschied, der in keiner Feature-Liste steht</h2>
+      <p class="vg-lead">
+        Fast alle diese Apps versprechen „individuelle Pläne“. Der eigentliche Unterschied liegt
+        davor: Wer trifft die Entscheidung, wie hart deine Woche wird? Es gibt drei Antworten.
+      </p>
+
+      <div class="vg-cards">
+        <div class="vg-card">
+          <p class="vg-card-tag">Du selbst</p>
+          <h3>Die Plattform</h3>
+          <p>
+            Ein Werkzeug für Planung und Analyse. Es rechnet nichts für dich – es zeigt dir sehr
+            genau, was du getan hast. Der Plan kommt von dir oder von deinem Trainer.
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> TrainingPeaks, MATS</p>
+        </div>
+        <div class="vg-card">
+          <p class="vg-card-tag">Ein Trainer, vorab</p>
+          <h3>Die Plan-Bibliothek</h3>
+          <p>
+            Fertige Pläne, geschrieben von erfahrenen Coaches, oft mit Community, Videos und
+            Ernährung drumherum. Gut gemacht und erprobt – aber vor deiner Woche geschrieben,
+            nicht für sie.
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> Pushing Limits Club</p>
+        </div>
+        <div class="vg-card vg-card--own">
+          <p class="vg-card-tag">Die App, laufend</p>
+          <h3>Der erzeugte Plan</h3>
+          <p>
+            Der Plan entsteht aus deinem Ziel, deinem Level und deiner Zeit – und wird neu
+            berechnet, wenn sich etwas ändert. Hier stellt sich die nächste Frage: erzeugt oder
+            errechnet?
+          </p>
+          <p class="vg-card-who"><strong>Beispiel:</strong> enduco, 2PEAK, RaceMind</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Warum wir deinen Plan rechnen – und nicht schreiben lassen</h2>
+      <p class="vg-lead">
+        Fast jede App in dieser Tabelle wirbt mit einem KI-Coach. RaceMind nicht. Das ist eine
+        Entscheidung, keine fehlende Funktion – und wir erklären sie gerne.
+      </p>
+      <p>
+        Ein Trainingsplan ist im Kern eine Dosierung: wie viele harte Minuten diese Woche, wie lang
+        der lange Lauf, wie schnell zurück nach einer Erkältung. Bei einer Dosierung ist eine
+        falsche Zahl kein unglücklich formulierter Satz. Sie ist eine Verletzung, ein Übertraining
+        oder ein Rennen, das nicht stattfindet.
+      </p>
+      <p>Drei Eigenschaften von Sprachmodellen vertragen sich schlecht mit dieser Aufgabe:</p>
+
+      <ul class="vg-points">
+        <li>
+          <strong>Sie sind nicht reproduzierbar.</strong>
+          <span>Dieselbe Ausgangslage kann zweimal zu verschiedenen Antworten führen. Ein Plan, der
+          beim zweiten Öffnen anders aussieht, ist kein Plan.</span>
+        </li>
+        <li>
+          <strong>Sie rechnen nicht, sie formulieren.</strong>
+          <span>Ein Sprachmodell erzeugt die wahrscheinlichste Fortsetzung – auch dort, wo Zahlen
+          stehen. Plausibel aussehende Zahlen sind aber nicht dasselbe wie richtige.</span>
+        </li>
+        <li>
+          <strong>Sie kennen deine Grenzen nicht von allein.</strong>
+          <span>Dass die erste Woche nach einer Erkältung gedeckelt gehört, folgt nicht aus
+          Sprache. Es folgt aus einer Regel, die jemand aufgeschrieben hat.</span>
+        </li>
+      </ul>
+
+      <p style="margin-top:1.5rem">
+        Deshalb steht die Trainingslogik bei RaceMind als Code: Periodisierung, Belastungsgrenzen je
+        Intensität, Mindest- und Höchstumfänge, der Weg zurück nach Krankheit oder Verletzung. Jede
+        dieser Regeln ist nachvollziehbar, wiederholbar und automatisch getestet. Gleiche
+        Ausgangslage, gleicher Plan – jedes Mal.
+      </p>
+      <p>
+        Und weil die Frage berechtigt ist: Wir nutzen Sprachmodelle sehr wohl – für das, was sie gut
+        können. Sie schreiben die Erklärung, warum eine Einheit so aussieht, und sie verstehen dich
+        im Chat, wenn du „verschieb das Intervall auf Donnerstag“ tippst. <strong>Entscheiden dürfen
+        sie nichts.</strong> Die Änderung führt die Engine aus – mit denselben Grenzen wie bei der
+        ersten Planung.
+      </p>
+
+      <p class="vg-claim">Dein Plan wird gerechnet, nicht geraten.</p>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Wann eine andere App die bessere Wahl ist</h2>
+      <p class="vg-lead">
+        Wir halten diese Seite nur für nützlich, wenn sie auch die Fälle nennt, in denen du woanders
+        besser aufgehoben bist. Hier sind sie.
+      </p>
+
+      <div class="vg-honest">
+        <div class="vg-honest-row">
+          <div class="vg-h-app">TrainingPeaks</div>
+          <p>
+            Du arbeitest mit einem menschlichen Trainer oder willst deine Daten selbst bis ins
+            Detail auswerten – am Rechner, mit voller Kontrolle. Dafür ist es der Standard, und
+            fast jeder Coach arbeitet damit.
+          </p>
+        </div>
+        <div class="vg-honest-row">
+          <div class="vg-h-app">Pushing Limits Club</div>
+          <p>
+            Du willst mehr als einen Plan: Podcast, Community, Ernährung, Rezepte, Videos. Eine
+            starke Marke mit erfahrenen Trainern dahinter – und die beste Bewertung im Feld.
+          </p>
+        </div>
+        <div class="vg-honest-row">
+          <div class="vg-h-app">MATS</div>
+          <p>
+            Du willst Leistungsdiagnostik, angeleitetes Krafttraining und die Möglichkeit, mit
+            einem echten Coach in derselben Software zu arbeiten.
+          </p>
+        </div>
+        <div class="vg-honest-row">
+          <div class="vg-h-app">enduco</div>
+          <p>
+            Du trainierst schwerpunktmäßig Rad oder Lauf und legst Wert auf die Zusammenarbeit mit
+            bekannten Athletinnen und Athleten.
+          </p>
+        </div>
+        <div class="vg-honest-row">
+          <div class="vg-h-app">2PEAK</div>
+          <p>
+            Du bist seit Jahren dort zu Hause und deine Historie liegt komplett in der Plattform –
+            der Anbieter plant seit 2003.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Häufige Fragen</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Welche Triathlon-App ist die beste?</summary>
+          <p>Es gibt keine beste – es gibt drei verschiedene Produkte. TrainingPeaks ist eine Plattform, auf der du oder dein Coach planen. Pushing Limits liefert fertige Pläne von Trainern plus Community und Ernährung. enduco, 2PEAK, MATS und RaceMind erstellen den Plan selbst. Entscheide zuerst, wer planen soll – danach wird die Auswahl klein.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Triathlon-App ist die günstigste?</summary>
+          <p>Unter den Apps, die den Trainingsplan selbst erstellen, ist RaceMind mit 79,99 € im Jahr am günstigsten, gefolgt von enduco mit 119,99 € (Pro). MATS liegt bei 143,99 €, TrainingPeaks bei 149,99 €, Pushing Limits bei 179,99 € und 2PEAK bei 229,99 € im Jahr. Stand: 19.08.2026, deutscher App Store.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Nutzt RaceMind künstliche Intelligenz?</summary>
+          <p>Für Erklärungen und den Coach-Chat ja, für die Trainingsplanung nein. Der Plan entsteht in einer regelbasierten Engine: Periodisierung, Belastungsgrenzen und der Weg zurück nach Krankheit sind als getestete Regeln hinterlegt. Sprachmodelle erklären dir, warum eine Einheit so aussieht, und verstehen deine Wünsche im Chat – ausgeführt wird die Änderung von der Engine.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Triathlon-Apps gibt es auf Deutsch?</summary>
+          <p>Auf Deutsch verfügbar sind RaceMind, enduco, MATS, 2PEAK, Pushing Limits Club und TrainingPeaks. Die US-App Stamina gibt es nur auf Englisch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Triathlon-App eignet sich für Anfänger?</summary>
+          <p>Für den ersten Wettkampf ist entscheidend, dass die App bremst statt anzutreiben. Sinnvoll ist eine App, die den Umfang an deine tatsächlich verfügbare Zeit anpasst, harte Einheiten begrenzt und nach Pausen konservativ zurückführt – und die erklärt, warum sie das tut.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="vg-section container">
+      <h2>Quellen</h2>
+      <p class="vg-sources">
+        Alle Angaben stammen aus den öffentlichen Store-Einträgen, abgerufen am 19.08.2026:<br>
+        <a href="https://apps.apple.com/de/app/trainingpeaks/id408047715" target="_blank" rel="noopener nofollow">TrainingPeaks im App Store</a> ·
+        <a href="https://apps.apple.com/de/app/enduco-deine-trainingspl%C3%A4ne/id1483216578" target="_blank" rel="noopener nofollow">enduco im App Store</a> ·
+        <a href="https://apps.apple.com/de/app/pushing-limits-club/id1606897234" target="_blank" rel="noopener nofollow">Pushing Limits Club im App Store</a> ·
+        <a href="https://apps.apple.com/de/app/mats-trainingsplattform/id6443653002" target="_blank" rel="noopener nofollow">MATS im App Store</a> ·
+        <a href="https://apps.apple.com/de/app/2peak-cycling-triathlon/id1053397362" target="_blank" rel="noopener nofollow">2PEAK im App Store</a><br>
+        Genannte Produkt- und Firmennamen sind Marken der jeweiligen Inhaber. Preise und Funktionen
+        können sich ändern – maßgeblich ist immer die Angabe des jeweiligen Anbieters.
+      </p>
+    </section>
+
+    <section class="vg-cta container">
+      <h2>Selbst ausprobieren</h2>
+      <p>14 Tage kostenlos, ohne Zahlungsdaten.</p>
+      <a href="../index.html#download" class="btn btn-primary btn-lg">Jetzt starten</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="../index.html">
+          <img src="../logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../impressum.html">Impressum</a>
+        <a href="../index.html#contact">Kontakt</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

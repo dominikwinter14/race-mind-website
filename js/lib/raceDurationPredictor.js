@@ -69,7 +69,7 @@ const TRANSITION_MIN = {
 // deliberately below the corridor (it describes a trained age-grouper, and the
 // optimistic direction is the dangerous one).
 // Keep byte-identical with the edge copy (race-duration-parity.test.ts).
-const RUN_RACE_FACTOR = {
+export const RUN_RACE_FACTOR = {
     //                                                     implied s/km vs the open race
     sprint_tri: { beginner: 0.930, intermediate: 0.965, advanced: 1.00 }, // +35 / +25 / +16
     olympic_tri: { beginner: 0.880, intermediate: 0.930, advanced: 0.96 }, // +42 / +26 / +18
@@ -79,7 +79,7 @@ const RUN_RACE_FACTOR = {
 // Short-course IFs likewise raised 2026-07-30 (trained athletes ride sprints
 // near 0.95+, olympics near 0.85-0.90); long course matches standard guidance
 // and is unchanged.
-const BIKE_RACE_IF = {
+export const BIKE_RACE_IF = {
     sprint_tri: { beginner: 0.86, intermediate: 0.91, advanced: 0.94 },
     olympic_tri: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 },
     half_ironman: { beginner: 0.72, intermediate: 0.77, advanced: 0.81 },
@@ -87,8 +87,37 @@ const BIKE_RACE_IF = {
 };
 // Raised 2026-07-30: the old 0.88/0.92/0.95 compounded with OW_FACTOR to
 // +17% over CSS — with a wetsuit most athletes race within 5-10% of CSS.
-const SWIM_CSS_FACTOR = {
+export const SWIM_CSS_FACTOR = {
     beginner: 0.91, intermediate: 0.95, advanced: 0.97,
+};
+/** Standalone bike race: the IF comes from the DISTANCE, not a race-type row —
+ *  a 40 km criterium and a 180 km gran fondo share one race_type and nothing
+ *  else. Mirrors BIKE_RACE_IF_BY_DISTANCE in the edge copy; added to the app
+ *  side on 21.08.2026 when lib/racePaceZones.ts began prescribing bike race
+ *  targets from these tables instead of from a goal-time-derived speed.
+ *  Keep byte-identical with the edge copy (sync-mirrors.test.ts). */
+const BIKE_RACE_IF_BY_DISTANCE = [
+    { maxKm: 50, iff: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 } }, // criterium / short road race
+    { maxKm: 100, iff: { beginner: 0.74, intermediate: 0.79, advanced: 0.83 } }, // classic road race
+    { maxKm: 150, iff: { beginner: 0.68, intermediate: 0.73, advanced: 0.77 } }, // gran fondo
+    { maxKm: Infinity, iff: { beginner: 0.62, intermediate: 0.67, advanced: 0.71 } }, // long fondo / marathon
+];
+/** IF for a standalone bike race of this distance. */
+export function bikeRaceIF(distanceM, level) {
+    const km = distanceM / 1000;
+    const bucket = BIKE_RACE_IF_BY_DISTANCE.find((b) => km <= b.maxKm)
+        ?? BIKE_RACE_IF_BY_DISTANCE[BIKE_RACE_IF_BY_DISTANCE.length - 1];
+    return bucket.iff[level];
+}
+/** Finish-time relaxation per B-race effort — the DISPLAY counterpart to
+ *  B_RACE_EFFORT_MULTIPLIER below, which buffers the WEEK'S LOAD and points the
+ *  opposite way. An athlete going all out is fastest (x1.00); one treating the
+ *  race as training finishes slower (x1.12).
+ *  Keep byte-identical with the edge copy (sync-mirrors.test.ts). */
+export const B_RACE_FINISH_EFFORT_FACTOR = {
+    all_out: 1.0,
+    tempo: 1.05,
+    training: 1.12,
 };
 const CDA_BY_LEVEL = {
     beginner: 0.35, intermediate: 0.28, advanced: 0.24,
