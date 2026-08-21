@@ -2476,12 +2476,6 @@ strong { font-weight: 600; }
   margin-bottom: 0.35rem;
 }
 
-/* Carries the race type next to the date on a phone, where the image is too
-   narrow for the badge that sits on it. Desktop keeps the badge. */
-.race-card-type-inline {
-  display: none;
-}
-
 .race-card-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -2869,42 +2863,21 @@ a.race-card-image {
 
   /* List Card Mobile Responsiveness */
   .race-card-header {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: stretch;
     gap: 0;
   }
 
-  /* A 160px banner on top pushed the race name 232px into the card, so a
-     result could be on screen without its name being readable. Image to the
-     side puts the name about 57px in. */
+  /* A 160px banner pushed the race name 232px into the card, so a result could
+     be on screen without its name being readable. 96px keeps the banner - and
+     the badge on it - while moving the name up to about 145px. */
   .race-card-image {
-    width: 88px;
-    height: auto;
-    min-height: 88px;
-    align-self: stretch;
-    flex-shrink: 0;
+    width: 100%;
+    height: 96px;
   }
 
   .race-card-main {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 0.75rem 1rem;
-  }
-
-  /* An 88px image has no room for the badge, so the type moves next to the
-     date rather than disappearing from the list. */
-  .race-card-image .race-card-badge {
-    display: none;
-  }
-
-  /* Own line rather than inline: run together with the date it wrapped
-     raggedly - two lines at 402px, three at 320px. */
-  .race-card-type-inline {
-    display: block;
-    color: var(--secondary);
-    font-size: 0.68rem;
-    margin-bottom: 0.1rem;
+    padding: 0.75rem 1rem 0.5rem 1rem;
   }
 
   .race-card-metrics-and-tags {
@@ -2920,10 +2893,7 @@ a.race-card-image {
     white-space: normal;
   }
   
-  /* Third sibling in the header row - without a full-basis it squeezes the
-     text column down to a few characters per line. */
   .race-card-action-area {
-    flex: 1 0 100%;
     padding: 0 1rem 0.875rem 1rem;
     justify-content: flex-start;
   }
