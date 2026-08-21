@@ -2476,6 +2476,12 @@ strong { font-weight: 600; }
   margin-bottom: 0.35rem;
 }
 
+/* Carries the race type next to the date on a phone, where the image is too
+   narrow for the badge that sits on it. Desktop keeps the badge. */
+.race-card-type-inline {
+  display: none;
+}
+
 .race-card-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -2768,11 +2774,23 @@ a.race-card-image {
     font-size: 2.5rem;
   }
   
+  /* With the keyboard up an iPhone leaves about 416px of page visible. The
+     panel used to spend 377px of that on itself, so no result could ever show
+     while typing. Everything below tightens it to roughly 265px. */
+  .filters-section {
+    padding-bottom: 1.25rem;
+  }
+
+  .filters-panel {
+    padding: 1rem;
+  }
+
   .filters-top {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
   }
-  
+
   .type-filter-group {
     width: 100%;
   }
@@ -2786,6 +2804,8 @@ a.race-card-image {
   .tags-filter-wrapper {
     flex-direction: column;
     gap: 0.75rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0.75rem;
   }
 
   /* 33 pills wrap to about a dozen rows on a phone. That pushed the results -
@@ -2811,12 +2831,15 @@ a.race-card-image {
     display: none;
   }
   
+  /* Count and sort share a row where they fit and wrap to two only on the
+     narrowest phones - stacking them unconditionally cost 32px that the
+     result list needed. */
   .filters-bottom {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: center;
   }
-  
+
   .sort-box {
     width: 100%;
     justify-content: space-between;
@@ -2830,30 +2853,78 @@ a.race-card-image {
     min-width: 0;
   }
 
+  /* Compact search mode: with the keyboard up only ~412px of page is left, and
+     the panel alone wanted 301px of it. While the field is focused the sport
+     switch, the tag row and the sort control step aside, leaving field + count
+     at about 104px so the first race actually shows. They return on blur. */
+  .filters-panel.is-searching .type-filter-group,
+  .filters-panel.is-searching .tags-filter-wrapper,
+  .filters-panel.is-searching .sort-box {
+    display: none;
+  }
+
+  .filters-panel.is-searching .filters-top {
+    margin-bottom: 0.5rem;
+  }
+
   /* List Card Mobile Responsiveness */
   .race-card-header {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: stretch;
     gap: 0;
   }
-  
+
+  /* A 160px banner on top pushed the race name 232px into the card, so a
+     result could be on screen without its name being readable. Image to the
+     side puts the name about 57px in. */
   .race-card-image {
-    width: 100%;
-    height: 160px;
+    width: 88px;
+    height: auto;
+    min-height: 88px;
+    align-self: stretch;
+    flex-shrink: 0;
   }
-  
+
   .race-card-main {
-    padding: 1.25rem 1.25rem 0.5rem 1.25rem;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.75rem 1rem;
   }
-  
+
+  /* An 88px image has no room for the badge, so the type moves next to the
+     date rather than disappearing from the list. */
+  .race-card-image .race-card-badge {
+    display: none;
+  }
+
+  /* Own line rather than inline: run together with the date it wrapped
+     raggedly - two lines at 402px, three at 320px. */
+  .race-card-type-inline {
+    display: block;
+    color: var(--secondary);
+    font-size: 0.68rem;
+    margin-bottom: 0.1rem;
+  }
+
   .race-card-metrics-and-tags {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
   }
+
+  /* The text column is only ~260px wide next to the image, and nowrap let the
+     longest chip ("Anmeldung geschlossen (890 EUR, 2026)") run out of the
+     card. */
+  .race-card-metric {
+    white-space: normal;
+  }
   
+  /* Third sibling in the header row - without a full-basis it squeezes the
+     text column down to a few characters per line. */
   .race-card-action-area {
-    padding: 0.5rem 1.25rem 1.25rem 1.25rem;
+    flex: 1 0 100%;
+    padding: 0 1rem 0.875rem 1rem;
     justify-content: flex-start;
   }
   
