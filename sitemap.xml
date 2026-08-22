@@ -2294,18 +2294,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/chiemsee-triathlon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/chiemsee-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/chiemsee-triathlon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/chiemsee-triathlon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/chiemsee-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/chiemsee-triathlon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/embrunman.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/embrunman.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/embrunman-en.html"/>
