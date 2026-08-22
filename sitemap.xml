@@ -1154,15 +1154,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-wanaka.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-en.html"/>
+    <loc>https://race-mind.com/events/challenge-wanaka-t100.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/challenge-wanaka-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-en.html"/>
+    <loc>https://race-mind.com/events/challenge-wanaka-t100-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-wanaka-t100.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-wanaka-t100-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2198,6 +2198,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/norseman-xtreme-triathlon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/norseman-xtreme-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/norseman-xtreme-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/norseman-xtreme-triathlon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/norseman-xtreme-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/norseman-xtreme-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-canada-ottawa.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-canada-ottawa.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-canada-ottawa-en.html"/>
@@ -2351,18 +2363,6 @@
     <loc>https://race-mind.com/events/ironman-70-3-kraichgau-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-kraichgau.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-kraichgau-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/norseman-xtreme-triathlon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/norseman-xtreme-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/norseman-xtreme-triathlon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/norseman-xtreme-triathlon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/norseman-xtreme-triathlon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/norseman-xtreme-triathlon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>

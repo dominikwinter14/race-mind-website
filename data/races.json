@@ -890,9 +890,9 @@
     "course_factor_run": 1.02
   },
   {
-    "slug": "challenge-wanaka",
-    "name": "Challenge Wanaka",
-    "name_en": "Challenge Wanaka",
+    "slug": "challenge-wanaka-t100",
+    "name": "Challenge Wanaka (T100)",
+    "name_en": "Challenge Wanaka (T100)",
     "race_type": "half_ironman",
     "date": "2027-02-20",
     "course_factor_swim": 1.02,
@@ -1758,6 +1758,16 @@
     "course_factor_swim": 1.05,
     "course_factor_bike": 1,
     "course_factor_run": 1.02
+  },
+  {
+    "slug": "norseman-xtreme-triathlon",
+    "name": "Norseman Xtreme Triathlon",
+    "name_en": "Norseman Xtreme Triathlon",
+    "race_type": "ironman",
+    "date": "2027-08-07",
+    "course_factor_swim": 1.2,
+    "course_factor_bike": 1.45,
+    "course_factor_run": 1.6
   },
   {
     "slug": "ironman-canada-ottawa",
