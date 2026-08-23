@@ -70,10 +70,18 @@ export const HOURS_FLOOR = {
  * supabase/functions/_test/cross-training-threshold.test.ts re-derives these
  * numbers from the engine and fails if they move. Used only for the planconfig
  * hint text — the engine stays the source of truth for what gets scheduled.
+ *
+ * 🚨 These are the numbers of the engine WITH the two budget flags on
+ * (PLAN_FLAG_BUDGET_REDISTRIBUTES_CAPPED_SURPLUS / _CAPPED_AT_SPENDABLE). The
+ * client has no flags, so the hint can only describe one engine — and the
+ * decided one is that. With the flags off the engine still asks 4h/5h for the
+ * two beginner cells below, i.e. the hint would promise a ride one hour before
+ * there is one. The table and the roll-out of those two flags belong in the
+ * same release. The drift guard pins BOTH states, so neither can move unseen.
  */
 export const CROSS_TRAINING_MIN_HOURS = {
-    '5k': { beginner: 4, intermediate: 5, advanced: 5 },
-    '10k': { beginner: 5, intermediate: 5, advanced: 5 },
+    '5k': { beginner: 3, intermediate: 5, advanced: 5 },
+    '10k': { beginner: 4, intermediate: 5, advanced: 5 },
     half_marathon: { beginner: 5, intermediate: 6, advanced: 6 },
     marathon: { beginner: 5, intermediate: 6, advanced: 7 },
 };

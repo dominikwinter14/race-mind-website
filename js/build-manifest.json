@@ -6,6 +6,6 @@
     "lib/goalAssessment.ts": "1ceaa7f1e0efa17322e6329dc35d3d9a5a3109a050ccfc501d72484f573df8d3",
     "lib/athleteLevel.ts": "e6c0bec4310d63f6592366ebc81db00be7f4dc71b5f6517ccf3725ab4d6cf8a0",
     "lib/format.ts": "7350deae7ace164b15721b1a5d1c2759e65fcee872ed742e621a93f69b473e86",
-    "constants/raceVolume.ts": "c3fa07e2154760a01c0ed5eb52c22805f1615b6e549ec31b97d0f4e7fb725871"
+    "constants/raceVolume.ts": "6ac7e93bbf17385e388351e752e2b1105db1874533539d45f6512d7642e9a683"
   }
 }
