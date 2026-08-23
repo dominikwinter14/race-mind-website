@@ -1,15 +1,5 @@
 [
   {
-    "slug": "ironman-tallinn",
-    "name": "Ironman Tallinn",
-    "name_en": "Ironman Tallinn",
-    "race_type": "ironman",
-    "date": "2026-08-22",
-    "course_factor_swim": 1,
-    "course_factor_bike": 0.97,
-    "course_factor_run": 1
-  },
-  {
     "slug": "allgaeu-triathlon-classic",
     "name": "Allgäu Triathlon Classic",
     "name_en": "Allgäu Triathlon Classic",
@@ -110,6 +100,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "jungfrau-marathon",
+    "name": "Jungfrau Marathon",
+    "name_en": "Jungfrau Marathon",
+    "race_type": "marathon",
+    "date": "2026-09-05",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.8
+  },
+  {
     "slug": "medoc-marathon",
     "name": "Medoc Marathon",
     "name_en": "Medoc Marathon",
@@ -168,16 +168,6 @@
     "course_factor_swim": 1,
     "course_factor_bike": 1.15,
     "course_factor_run": 1.04
-  },
-  {
-    "slug": "jungfrau-marathon",
-    "name": "Jungfrau Marathon",
-    "name_en": "Jungfrau Marathon",
-    "race_type": "marathon",
-    "date": "2026-09-12",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.8
   },
   {
     "slug": "bremen-marathon",
