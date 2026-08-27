@@ -857,10 +857,39 @@ export function deriveBikeFTP(input, level, weight) {
     else {
         return null;
     }
-    const RIDE_INTENSITY = { beginner: 0.65, intermediate: 0.70, advanced: 0.72 };
-    const rideIF = RIDE_INTENSITY[level] ?? 0.70;
-    const CDA = { beginner: 0.35, intermediate: 0.28, advanced: 0.24 };
-    const cda = CDA[level] ?? 0.28;
+    // The level used to steer BOTH the aero assumption (CdA 0.35 -> 0.24, x1.46)
+    // and the ride intensity (0.65 -> 0.72, x1.11). Both push the same way, so a
+    // beginner and an advanced athlete claiming the SAME speed came out x1.6
+    // apart -- inverted, since the beginner got the higher FTP. That is right on
+    // the diagonal (slow beginner, fast advanced) and wrong on both off-diagonals:
+    // a beginner at 31-35 km/h landed at 306 W, an advanced athlete at 23-27 km/h
+    // at 103 W. The claimed speed is the better witness for how someone sits on a
+    // bike than their self-assessment, so the aero term follows the SPEED and the
+    // level is left as a small nudge on the result.
+    const rideIF = 0.70;
+    // Effective CdA, fitted so the anchors land on plausible power: ~120 W at
+    // 21 km/h, ~300 W at 37 km/h (75 kg, intermediate). "Effective" because it
+    // absorbs what the model has no term for: the chip asks for an AVERAGE ride
+    // speed, and pushing an average through a cubic law underestimates -- traffic
+    // lights, climbs, coasting and wind all spend power the mean speed hides.
+    // That is why the slow end fits at 0.52, which is no real body position.
+    const CDA_BY_SPEED = [
+        [21, 0.519], [25, 0.390], [29, 0.324], [33, 0.285], [37, 0.259],
+    ];
+    let cda = CDA_BY_SPEED[CDA_BY_SPEED.length - 1][1];
+    if (speedKmh <= CDA_BY_SPEED[0][0]) {
+        cda = CDA_BY_SPEED[0][1];
+    }
+    else {
+        for (let i = 1; i < CDA_BY_SPEED.length; i++) {
+            const [sHi, cHi] = CDA_BY_SPEED[i];
+            if (speedKmh <= sHi) {
+                const [sLo, cLo] = CDA_BY_SPEED[i - 1];
+                cda = lerp(cLo, cHi, (speedKmh - sLo) / (sHi - sLo));
+                break;
+            }
+        }
+    }
     const RHO = 1.205;
     const CRR = 0.004;
     const mass = (weight ?? 75) + 10;
@@ -868,8 +897,16 @@ export function deriveBikeFTP(input, level, weight) {
     const v = speedKmh / 3.6;
     const DRIVETRAIN_LOSS = 0.97;
     const powerAtSpeed = (0.5 * RHO * cda * v ** 3 + CRR * mass * G * v) / DRIVETRAIN_LOSS;
-    const ftpResult = Math.round(powerAtSpeed / rideIF);
-    const FTP_MIN = 80;
+    // What is left of the level: a beginner holding a given speed is working
+    // harder for it than an advanced athlete. Same direction as before, but x1.10
+    // across the ladder instead of x1.6 -- small enough that it can no longer
+    // outrank the speed itself.
+    const LEVEL_FACTOR = { beginner: 1.05, intermediate: 1.0, advanced: 0.95 };
+    const ftpResult = Math.round((powerAtSpeed / rideIF) * (LEVEL_FACTOR[level] ?? 1.0));
+    // The floor is not cosmetic: below ~110 W the derived value stops being a
+    // threshold and starts being an artefact of a very low claimed speed, and it
+    // would go on to drive the bike zones.
+    const FTP_MIN = 110;
     const FTP_MAX = 500;
     return Math.max(FTP_MIN, Math.min(FTP_MAX, ftpResult));
 }

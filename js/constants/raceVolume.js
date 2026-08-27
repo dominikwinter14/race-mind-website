@@ -98,6 +98,26 @@ export const FOCUS_WINDOW_WEEKS = {
     half_ironman: 12,
     ironman: 20,
 };
+/** Never warn above this, whatever the focus window says. */
+const TIGHT_RACE_DATE_FLOOR_WEEKS = 4;
+/**
+ * Below this many weeks to the race, the onboarding date picker shows the
+ * coach's "that's a tight one" sheet (app/(onboarding)/journey.tsx). Advisory
+ * only — the athlete can plan anyway; the hard floor is MIN_RACE_LEAD_DAYS.
+ *
+ * Derived from FOCUS_WINDOW_WEEKS rather than tabled separately: half the
+ * specificity window is the point where the engine cannot even fit the
+ * race-specific phase, let alone a base. The full window would be the wrong
+ * line — 20 weeks is an Ironman's TARGET, not a tight date, and warning there
+ * would fire on most real signups.
+ *
+ * ironman 10 · marathon 7 · half_ironman 6 · half_marathon 5 ·
+ * olympic_tri/5k/10k/sprint_tri 4.
+ */
+export function tightRaceDateWeeks(raceType) {
+    const focusW = FOCUS_WINDOW_WEEKS[raceType ?? ''] ?? 14;
+    return Math.max(TIGHT_RACE_DATE_FLOOR_WEEKS, Math.ceil(focusW / 2));
+}
 // Client mirror of the engine GENERAL_PHASE_CEILING_FRACTION
 // (_shared/ramp-feasibility.ts). Short-course multisport plateaus higher (0.8);
 // everything else defaults to 0.6. MUST stay in sync with the engine table.

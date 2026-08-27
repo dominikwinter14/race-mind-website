@@ -128,6 +128,34 @@ export function daysUntilDate(dateStr) {
     today.setHours(0, 0, 0, 0);
     return Math.round((target.getTime() - today.getTime()) / 86400000);
 }
+/**
+ * Weeks the plan engine will actually build for a TT.MM.JJJJ race date.
+ *
+ * Client mirror of `calculateWeeksToRace`
+ * (supabase/functions/_shared/plan-data-prep/calendar.ts) — pinned by
+ * __tests__/lib/weeks-until-race.test.ts. NOT `days / 7`: the plan starts on
+ * the CURRENT Monday and ends in the race's own week, so this counts whole
+ * Monday-to-Monday spans plus the race week. A screen that divides by seven
+ * names a different number than the plan the athlete then gets — a race next
+ * Sunday is 6 days away but two plan weeks.
+ *
+ * Returns null when the input is not a valid future race date.
+ */
+export function weeksUntilRace(dateStr) {
+    if (!isValidRaceDate(dateStr))
+        return null;
+    const [d, m, y] = dateStr.split('.').map(Number);
+    const race = new Date(y, m - 1, d);
+    race.setHours(0, 0, 0, 0);
+    const raceMonday = new Date(race);
+    raceMonday.setDate(race.getDate() - ((race.getDay() + 6) % 7));
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const thisMonday = new Date(today);
+    thisMonday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    const weekSpan = Math.round((raceMonday.getTime() - thisMonday.getTime()) / (7 * 86400000));
+    return Math.max(0, weekSpan + 1);
+}
 /** Auto-format a numeric string as TT.MM.JJJJ */
 export function formatDateInput(raw) {
     const digits = raw.replace(/\D/g, '').slice(0, 8);
