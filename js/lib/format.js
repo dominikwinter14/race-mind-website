@@ -97,7 +97,54 @@ export function isTriathlon(raceType) {
 export function isRunning(raceType) {
     return raceType != null && !TRIATHLON_RACE_TYPES.has(raceType);
 }
-/** Validate a DD.MM.YYYY race date: must be a real, future-or-today date with year >= 2024. */
+/**
+ * Furthest race date the app accepts, in years from today.
+ *
+ * A typo guard, NOT a judgement about how far ahead someone may plan. The
+ * gate this closes is that `weeksToRace` is a plain subtraction with no
+ * ceiling anywhere: the skeleton builder writes one `weekly_overviews` row per
+ * week to the race, so a mistyped year builds — silently, successfully — a row
+ * per week until it. One athlete typed 2067 instead of 2026 and got 2155 weeks
+ * across 540 mesocycles: the same 4-week block (build/build/build/recovery)
+ * repeated 539 times, because the volume ramp is done by week 2 and the
+ * periodization has nothing left to do with the remaining four decades. That
+ * single account held 29 % of the table.
+ *
+ * Five years is deliberately generous. The furthest REAL race on file is ~2.1
+ * years out (Ironman Hamburg 2028), and registrations open 12-24 months ahead,
+ * so this rejects no plausible entry — while still catching every typo that
+ * moves the year by a decade or more. Raise it if a real athlete ever hits it;
+ * the number is a guess about typos, not about ambition.
+ *
+ * Mirrored by the picker's ceiling in `DatePickerSheet` — a date the CTA would
+ * refuse must not be offered in the grid either.
+ *
+ * NOT yet mirrored server-side: `prepare-input.ts` guards the near side
+ * (RACE_DATE_PASSED, min 2 structured weeks) and has no far side, so old
+ * bundles and the chat's date-setting path can still write one.
+ */
+export const MAX_RACE_LEAD_YEARS = 5;
+/** Latest race date the app accepts — today + MAX_RACE_LEAD_YEARS, local midnight. */
+export function latestRaceDate() {
+    const ceiling = new Date();
+    ceiling.setHours(0, 0, 0, 0);
+    ceiling.setFullYear(ceiling.getFullYear() + MAX_RACE_LEAD_YEARS);
+    return ceiling;
+}
+/**
+ * Earliest race date the app accepts — today, local midnight. Mirror of
+ * `latestRaceDate` at the near end, so a picker handed both gets exactly the
+ * window `isValidRaceDate` enforces.
+ */
+export function earliestRaceDate() {
+    const floor = new Date();
+    floor.setHours(0, 0, 0, 0);
+    return floor;
+}
+/**
+ * Validate a DD.MM.YYYY race date: a real calendar day, today or later, and no
+ * further out than MAX_RACE_LEAD_YEARS.
+ */
 export function isValidRaceDate(dateStr) {
     if (dateStr.length !== 10)
         return false;
@@ -112,7 +159,22 @@ export function isValidRaceDate(dateStr) {
         return false;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    return parsed >= today;
+    return parsed >= today && parsed <= latestRaceDate();
+}
+/** True for a real, future date that is only rejected because it is too far out. */
+export function isRaceDateTooFar(dateStr) {
+    if (dateStr.length !== 10)
+        return false;
+    const parts = dateStr.split('.');
+    if (parts.length !== 3)
+        return false;
+    const [d, m, y] = parts.map(Number);
+    if (!d || !m || !y || d < 1 || d > 31 || m < 1 || m > 12 || y < 2024)
+        return false;
+    const parsed = new Date(y, m - 1, d);
+    if (parsed.getDate() !== d || parsed.getMonth() !== m - 1)
+        return false;
+    return parsed > latestRaceDate();
 }
 /**
  * Whole days from today (local midnight) to a TT.MM.JJJJ date.

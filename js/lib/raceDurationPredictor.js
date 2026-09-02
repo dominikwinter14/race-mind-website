@@ -139,7 +139,15 @@ const BIKE_COURSE_REALITY = {
     sprint_tri: 0.97,
 };
 const BIKE_COURSE_REALITY_DEFAULT = 0.92;
-const OW_FACTOR = 1.08;
+/** Open-water slowdown vs pool CSS.
+ *
+ *  Exported since 28.08.2026 because it stopped being private to the
+ *  prediction. `swimRacePaceBand` prices the INTENSITY relative to CSS, and
+ *  that answer is the same in a lane and in a lake — what differs is how fast
+ *  that intensity moves you through the water. So the race plan's swim TARGET
+ *  needs this factor too, or the target and the split time next to it describe
+ *  two different swims. See chat/race-pace-targets.ts. */
+export const OW_FACTOR = 1.08;
 const B_RACE_TIME_MULTIPLIER = 1.05; // legacy, no effort field
 // §17.2 duration relaxation per effort — buffer for what the race takes out of
 // the week, not a pace prediction. Keep identical with the edge copy; the app

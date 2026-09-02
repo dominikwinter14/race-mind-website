@@ -897,15 +897,26 @@ export function deriveBikeFTP(input, level, weight) {
     const v = speedKmh / 3.6;
     const DRIVETRAIN_LOSS = 0.97;
     const powerAtSpeed = (0.5 * RHO * cda * v ** 3 + CRR * mass * G * v) / DRIVETRAIN_LOSS;
-    // What is left of the level: a beginner holding a given speed is working
-    // harder for it than an advanced athlete. Same direction as before, but x1.10
-    // across the ladder instead of x1.6 -- small enough that it can no longer
-    // outrank the speed itself.
+    // What is left of the level. NOT "a beginner works harder for this speed": the
+    // power above is identical for both, so that reading would argue for a LOWER
+    // threshold and a factor below 1. What the factor encodes is the RIDE being
+    // described. The chip asks for an average ride, and the model assumes a
+    // beginner's sits at a smaller fraction of threshold than a trained athlete's,
+    // who holds a higher share of it for longer -- so the same claimed speed
+    // implies more headroom above it for the beginner. That is the fraction
+    // ordering the old RIDE_INTENSITY ladder already had (0.65 -> 0.72); only its
+    // size was wrong. x1.10 across the ladder instead of x1.6, small enough that
+    // it can no longer outrank the speed itself.
+    //
+    // It is a modelling assumption, not a measurement. If it is ever revisited,
+    // revisit the assumption -- do not flip the sign on the effort reading alone.
+    // The two arguments point opposite ways and the difference is 12 W at 240 W.
     const LEVEL_FACTOR = { beginner: 1.05, intermediate: 1.0, advanced: 0.95 };
     const ftpResult = Math.round((powerAtSpeed / rideIF) * (LEVEL_FACTOR[level] ?? 1.0));
     // The floor is not cosmetic: below ~110 W the derived value stops being a
     // threshold and starts being an artefact of a very low claimed speed, and it
-    // would go on to drive the bike zones.
+    // would go on to drive the bike zones. It guards the DERIVATION only -- a
+    // self-entered FTP returns at the top of this function, before any clamp.
     const FTP_MIN = 110;
     const FTP_MAX = 500;
     return Math.max(FTP_MIN, Math.min(FTP_MAX, ftpResult));
