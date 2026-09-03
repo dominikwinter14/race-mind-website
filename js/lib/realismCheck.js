@@ -327,16 +327,35 @@ export function isBaselinePlausible(baseline, raceType) {
         if (!inRange(baseline.current_ftp_estimated, 80, 500)) {
             return { ok: false, reason: `ftp_out_of_range:${baseline.current_ftp_estimated}` };
         }
-        // CSS required: 1:00–3:30/100m → 60–210 sec
-        if (!inRange(baseline.current_css_pace_100m, 60, 210)) {
+        // CSS required: 1:10–4:00/100m → 70–240 sec. Aligned 03.09.2026 on the one
+        // band the rest of the app already shares — update-baseline.ts
+        // CSS_CANDIDATE_MIN_S/MAX_S, lib/thresholds.ts THRESHOLD_BOUNDS and
+        // chat/tools/threshold.ts THRESHOLD_BOUNDS_EDGE, the latter two aligned on
+        // 19.08.2026. The old 60–210 was wrong at BOTH ends in the same way theirs
+        // had been: 210 refuses a real 3:30/100m beginner (production swims run up
+        // to 204), and 60 waves through the one athlete at 66 s/100m whose pool
+        // length is almost certainly set to double the real one — the exact case
+        // cssInBand exists to reject.
+        if (!inRange(baseline.current_css_pace_100m, 70, 240)) {
             return { ok: false, reason: `css_out_of_range:${baseline.current_css_pace_100m}` };
         }
         // Bike EF optional (NP/HR needs a power meter) — sanity-checked when present
         if (!inRangeIfPresent(baseline.current_bike_ef, 0.5, 4.0)) {
             return { ok: false, reason: `bike_ef_out_of_range:${baseline.current_bike_ef}` };
         }
-        // Swim EF optional (speed/HR needs HR in the water) — sanity-checked when present
-        if (!inRangeIfPresent(baseline.current_swim_ef, 0.3, 5.0)) {
+        // Swim EF optional (speed/HR needs HR in the water) — sanity-checked when present.
+        // The floor was 0.3 and rejected ordinary swimmers, not garbage: swim_ef is
+        // m/min per bpm (data-prep.ts:437), so an athlete at CSS 2:13/100m with HR
+        // 150 lands on 0.30 and anyone slower falls out. Measured 2026-08-28
+        // (Sentry REACT-NATIVE-9V): a COMPLETE Strava import — FTP 151, CSS 133,
+        // run EF 2.45, threshold pace 4:57/km, all plausible — was pushed through
+        // the manual fitness questionnaire because this one side metric read 0.26,
+        // and it drifted to 0.30 by itself over the following days. Same failure
+        // mode as the run threshold pace bound above.
+        // 0.12 is below the slowest swim the CSS band still accepts (240 s/100m =
+        // 25 m/min at HR 170 ≈ 0.15), so genuine garbage — a zero, a unit slip —
+        // is still caught.
+        if (!inRangeIfPresent(baseline.current_swim_ef, 0.12, 5.0)) {
             return { ok: false, reason: `swim_ef_out_of_range:${baseline.current_swim_ef}` };
         }
     }
