@@ -1133,17 +1133,62 @@ function buildMessageEN(scaleLabel, goal, projected, best, weeklyHours, level, v
 // ══════════════════════════════════════════════════════════
 // POST-REALISM WRITE: Prognose → Supabase (nur onboarding/hybrid)
 // ══════════════════════════════════════════════════════════
-export async function writePrognosisToSupabase({ supabase, userId, prognosis, }) {
+export async function writePrognosisToSupabase({ supabase, userId, prognosis, editedFields = [], stated = { run: true, bike: true, swim: true }, }) {
     if (!supabase || !userId || !prognosis) {
         return { error: true, code: 'MISSING_INPUT', detail: 'supabase, userId, prognosis required' };
     }
     const now = new Date().toISOString();
-    // Preserve existing EF/threshold values that import-history may have written
-    const { data: existing } = await supabase
+    // Preserve existing EF/threshold values that import-history may have written.
+    // The three threshold columns are read as well, and that is not cosmetic: the
+    // comment claimed to preserve them while the select left them out, so every
+    // write blew them away.
+    const { data: existing, error: existingError } = await supabase
         .from('athlete_baseline')
-        .select('current_run_ef, current_bike_ef, current_swim_ef, consistency_score, acwr, weekly_training_load, avg_hours_per_week_28d, total_sessions_28d')
+        .select('current_run_ef, current_bike_ef, current_swim_ef, consistency_score, acwr, weekly_training_load, avg_hours_per_week_28d, total_sessions_28d, current_ftp_estimated, current_run_threshold_pace_sec_km, current_css_pace_100m')
         .eq('user_id', userId)
         .maybeSingle();
+    // 🚨 A failed read is not an empty row. supabase-js never throws; on a dead
+    // connection `maybeSingle` hands back data: null exactly as it does for an
+    // athlete who has no baseline yet, and everything below reads null as
+    // "nothing to keep": `keepMeasured` would then let the seed through, and the
+    // EF / load columns would be upserted as null. That is Marc's regression
+    // again, only now it needs a network hiccup instead of a code path. Abort:
+    // the prognosis can be written on the next attempt, a measured threshold
+    // takes update-baseline about a week to grow back.
+    if (existingError) {
+        return { error: true, code: 'BASELINE_READ_FAILED', detail: existingError.message };
+    }
+    /**
+     * A threshold already on the baseline outranks anything this function derives.
+     *
+     * `athlete_baseline` is the measured store — update-baseline writes `evidence`
+     * there from real activities. This function only ever carries a SEED: on the
+     * new-race and off-season flows the store is refilled from `athlete_config`,
+     * and where a discipline was never answered `build*Data` falls through to a
+     * middle bucket, so `derived_*` can be a number nobody stated. Writing that
+     * over an `evidence` value is a straight regression, and the EMA in
+     * update-baseline needs about a week of nightly runs to crawl back.
+     *
+     * Marc (06.09.2026): 289 s/km → 311 and 105 s/100m → 146, the two middle-chip
+     * defaults, plus an invented FTP of 187 W. He noticed within 25 minutes that
+     * his prescribed GA1 pace had gone slack.
+     *
+     * The one thing that may overwrite: a value the athlete typed on
+     * threshold_check this run. That is a decision, not a fallback.
+     */
+    const keepMeasured = (stored, derived, field) => {
+        if (derived == null)
+            return stored ?? null;
+        if (stored == null || editedFields.includes(field))
+            return Math.round(derived);
+        return stored;
+    };
+    // An unanswered discipline has no derived value to offer — only a fallback the
+    // projection needed. `keepMeasured` then leaves whatever is already there,
+    // including nothing.
+    const nextFtp = keepMeasured(existing?.current_ftp_estimated, stated.bike ? prognosis.derived_ftp : null, 'ftp_watts');
+    const nextRunThreshold = keepMeasured(existing?.current_run_threshold_pace_sec_km, stated.run ? prognosis.derived_threshold_pace : null, 'run_threshold_pace_sec_km');
+    const nextCss = keepMeasured(existing?.current_css_pace_100m, stated.swim ? prognosis.derived_css : null, 'css_pace_100m');
     const baselineData = {
         user_id: userId,
         // Carry over activity-derived fields so upsert doesn't null them out
@@ -1170,9 +1215,9 @@ export async function writePrognosisToSupabase({ supabase, userId, prognosis, })
         course_factor_swim: prognosis.course_factor_swim ?? 1.0,
         course_factor_bike: prognosis.course_factor_bike ?? 1.0,
         course_factor_run: prognosis.course_factor_run ?? 1.0,
-        current_ftp_estimated: prognosis.derived_ftp != null ? Math.round(prognosis.derived_ftp) : null,
-        current_css_pace_100m: prognosis.derived_css != null ? Math.round(prognosis.derived_css) : null,
-        current_run_threshold_pace_sec_km: prognosis.derived_threshold_pace != null ? Math.round(prognosis.derived_threshold_pace) : null,
+        current_ftp_estimated: nextFtp,
+        current_css_pace_100m: nextCss,
+        current_run_threshold_pace_sec_km: nextRunThreshold,
         prognose_source_swim: prognosis.source_swim ?? prognosis.source ?? null,
         prognose_source_bike: prognosis.source_bike ?? prognosis.source ?? null,
         prognose_source_run: prognosis.source_run ?? prognosis.source ?? null,
@@ -1204,9 +1249,9 @@ export async function writePrognosisToSupabase({ supabase, userId, prognosis, })
         run_prognose_hours: prognosis.run_prognose_hours,
         best_case_hours: prognosis.best_case_hours,
         worst_case_hours: prognosis.worst_case_hours,
-        current_ftp_estimated: prognosis.derived_ftp != null ? Math.round(prognosis.derived_ftp) : null,
-        current_css_pace_100m: prognosis.derived_css != null ? Math.round(prognosis.derived_css) : null,
-        current_run_threshold_pace_sec_km: prognosis.derived_threshold_pace != null ? Math.round(prognosis.derived_threshold_pace) : null,
+        current_ftp_estimated: nextFtp,
+        current_css_pace_100m: nextCss,
+        current_run_threshold_pace_sec_km: nextRunThreshold,
         adjusted_total_hours: prognosis.adjusted_total_hours,
         race_day_probable_hours: prognosis.race_day_probable_hours ?? null,
         race_day_best_hours: prognosis.race_day_best_hours ?? null,
