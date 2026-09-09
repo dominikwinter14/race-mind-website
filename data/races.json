@@ -1,65 +1,5 @@
 [
   {
-    "slug": "austria-triathlon-podersdorf",
-    "name": "Austria Triathlon Podersdorf",
-    "name_en": "Austria Triathlon Podersdorf",
-    "race_type": "half_ironman",
-    "date": "2026-09-05",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "jungfrau-marathon",
-    "name": "Jungfrau Marathon",
-    "name_en": "Jungfrau Marathon",
-    "race_type": "marathon",
-    "date": "2026-09-05",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.8
-  },
-  {
-    "slug": "medoc-marathon",
-    "name": "Medoc Marathon",
-    "name_en": "Medoc Marathon",
-    "race_type": "marathon",
-    "date": "2026-09-05",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.5
-  },
-  {
-    "slug": "dresdenhalf",
-    "name": "DresdenHALF",
-    "name_en": "DresdenHALF",
-    "race_type": "half_marathon",
-    "date": "2026-09-06",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "ironman-70-3-knokke-heist",
-    "name": "IRONMAN 70.3 Knokke-Heist",
-    "name_en": "IRONMAN 70.3 Knokke-Heist",
-    "race_type": "half_ironman",
-    "date": "2026-09-06",
-    "course_factor_swim": 1.02,
-    "course_factor_bike": 0.98,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "koeln-triathlon-mitteldistanz",
-    "name": "Köln Triathlon Mitteldistanz",
-    "name_en": "Cologne Triathlon Middle Distance",
-    "race_type": "half_ironman",
-    "date": "2026-09-06",
-    "course_factor_swim": 0.95,
-    "course_factor_bike": 0.95,
-    "course_factor_run": 0.9
-  },
-  {
     "slug": "challenge-almere-amsterdam",
     "name": "Challenge Almere-Amsterdam",
     "name_en": "Challenge Almere-Amsterdam",
@@ -390,6 +330,16 @@
     "course_factor_run": 1.01
   },
   {
+    "slug": "bottwartal-marathon",
+    "name": "Bottwartal-Marathon",
+    "name_en": "Bottwartal Marathon",
+    "race_type": "marathon",
+    "date": "2026-10-17",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "challenge-peguera-mallorca",
     "name": "Challenge Peguera-Mallorca",
     "name_en": "Challenge Peguera-Mallorca",
@@ -417,16 +367,6 @@
     "date": "2026-10-17",
     "course_factor_swim": 1,
     "course_factor_bike": 1.1,
-    "course_factor_run": 1.02
-  },
-  {
-    "slug": "bottwartal-marathon",
-    "name": "Bottwartal-Marathon",
-    "name_en": "Bottwartal Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-18",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
     "course_factor_run": 1.02
   },
   {
@@ -1360,6 +1300,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "neuseenman-ferropolis",
+    "name": "neuseenMAN Ferropolis",
+    "name_en": "neuseenMAN Ferropolis",
+    "race_type": "half_ironman",
+    "date": "2027-05-28",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "adidas-stockholm-marathon",
     "name": "Adidas Stockholm Marathon",
     "name_en": "Adidas Stockholm Marathon",
@@ -1377,16 +1327,6 @@
     "date": "2027-05-30",
     "course_factor_swim": 1.02,
     "course_factor_bike": 1.05,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "neuseenman-ferropolis",
-    "name": "neuseenMAN Ferropolis",
-    "name_en": "neuseenMAN Ferropolis",
-    "race_type": "half_ironman",
-    "date": "2027-05-30",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
     "course_factor_run": 1
   },
   {
@@ -1710,6 +1650,16 @@
     "course_factor_run": 1.6
   },
   {
+    "slug": "ironman-70-3-leipzig",
+    "name": "IRONMAN 70.3 Leipzig",
+    "name_en": "IRONMAN 70.3 Leipzig",
+    "race_type": "half_ironman",
+    "date": "2027-08-08",
+    "course_factor_swim": 1,
+    "course_factor_bike": 0.98,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-canada-ottawa",
     "name": "IRONMAN Canada-Ottawa",
     "name_en": "IRONMAN Canada-Ottawa",
@@ -1808,6 +1758,16 @@
     "course_factor_swim": 1,
     "course_factor_bike": 1.09,
     "course_factor_run": 1
+  },
+  {
+    "slug": "dresdenhalf",
+    "name": "DresdenHALF",
+    "name_en": "DresdenHALF",
+    "race_type": "half_marathon",
+    "date": "2027-09-05",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.98
   },
   {
     "slug": "ironman-70-3-nice",
