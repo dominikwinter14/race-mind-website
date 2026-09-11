@@ -472,11 +472,17 @@ strong { font-weight: 600; }
   margin-bottom: 1.75rem;
 }
 
+/* Acht Logos in vier Spalten: zwei volle Reihen. Als flex-wrap brach die
+   Zeile ab 1100px nach dem siebten Logo um und ROUVY stand allein da.
+   Die Spalten sind inhaltsbreit, nicht gleich breit — sonst sprengt Polar
+   (169px, das breiteste) seine Spalte und der Block laeuft ueber.
+   Kommt ein NEUNTES Logo dazu, steht dieses allein: dann auf 3 Spalten. */
 .compat-logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   justify-content: center;
+  justify-items: center;
+  align-items: center;
   gap: 2.5rem 3rem;
 }
 
@@ -495,6 +501,16 @@ strong { font-weight: 600; }
 
 .compat-logo:hover {
   opacity: 0.9;
+}
+
+/* Der Viererblock ist 656px breit, der Container 740px - 48px Rand. Enger
+   wird es nicht mehr, ohne dass Polar ueber den Rand laeuft. Zwei Spalten
+   sind die einzige andere Teilung, die bei acht Logos ohne Rest aufgeht. */
+@media (max-width: 740px) {
+  .compat-logos {
+    grid-template-columns: repeat(2, auto);
+    gap: 2rem 2.5rem;
+  }
 }
 
 /* ── Reality (compact) ── */
