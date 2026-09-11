@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.4 &middot; Last updated: August 2026</p>
+      <p class="legal-meta">Version 1.5 &middot; Last updated: September 2026</p>
 
       <hr>
 
@@ -88,6 +88,7 @@
           <tr><td><strong>Strava</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name)</td><td>Training analysis, baseline calculation, Performance Score</td></tr>
           <tr><td><strong>Intervals.icu</strong></td><td>Training activities and performance data</td><td>Training analysis, plan optimization</td></tr>
           <tr><td><strong>Garmin Connect</strong></td><td>Training activities (duration, distance, pace, heart rate, power, lap data, elevation, cadence, device name); daily wellness summaries (resting heart rate, steps, respiration rate); sleep (duration, score, quality); heart rate variability (HRV) &ndash; see Section 6.8</td><td>Training analysis, baseline calculation, training readiness, workout push to watch</td></tr>
+          <tr><td><strong>ROUVY</strong></td><td>Completed indoor rides (duration, distance, elevation gain, energy expenditure, normalized power, intensity factor, training stress score) &ndash; see Section 6.9</td><td>Training analysis, matching planned bike sessions, workout push to ROUVY</td></tr>
           <tr><td><strong>Apple Health / HealthKit</strong> (iOS)</td><td>Heart rate variability (HRV SDNN), resting heart rate, sleep duration and stages</td><td>Recovery assessment, training readiness</td></tr>
           <tr><td><strong>Google Health Connect</strong> (Android)</td><td>Heart rate variability (HRV RMSSD), resting heart rate, sleep sessions and stages</td><td>Recovery assessment, training readiness</td></tr>
         </tbody>
@@ -174,7 +175,7 @@
           <tr><td>Subscription management and payment processing</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           -->
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
-          <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
+          <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, ROUVY, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
           <tr><td>Display of weather forecast in weekly planning (IP-based geolocation)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (providing relevant training context information)</td></tr>
           <tr><td>Audience measurement on the Website (Cloudflare Web Analytics)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (cookie-free statistics to improve our offering)</td></tr>
         </tbody>
@@ -200,6 +201,7 @@
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
           <tr><td><strong>Garmin International, Inc.</strong></td><td>Training import, workout push to watch (only when connected)</td><td>USA</td><td>You authorize access directly with Garmin (OAuth); EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>intervals.icu Ltd</strong></td><td>Training import (only when connected)</td><td>UK (operator); data processing in Germany/Finland</td><td>You authorize access directly (OAuth); EU data processing; UK adequacy decision</td></tr>
+          <tr><td><strong>VirtualTraining s.r.o. (ROUVY)</strong></td><td>Workout push of planned bike sessions, import of completed rides (only when connected)</td><td>Czech Republic (EU)</td><td>You authorize access directly at ROUVY (OAuth); operator established in the EU</td></tr>
           <tr><td><strong>GitHub Inc. (GitHub Pages)</strong></td><td>Website hosting and server log files</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Cloudflare, Inc.</strong></td><td>Cookie-free audience measurement on individual Website pages (Cloudflare Web Analytics)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
@@ -327,6 +329,35 @@
       </ul>
       <ul>
         <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent; for health-related data (heart rate, HRV, sleep) additionally Art. 9(2)(a) GDPR &ndash; Explicit consent</li>
+      </ul>
+
+      <h3 id="rouvy">6.9 ROUVY</h3>
+      <p>When you connect ROUVY, you authorize the connection <strong>directly with ROUVY</strong> (OAuth). We never receive your ROUVY password. The connection is <strong>entirely optional</strong> &mdash; every other function of the app works without it.</p>
+      <p>ROUVY is operated by <strong>VirtualTraining s.r.o.</strong>, Rohansk&eacute; n&aacute;b&#345;e&#382;&iacute; 693/10, 186&nbsp;00 Prague 8 &ndash; Karl&iacute;n, Czech Republic (company no. 018&nbsp;98&nbsp;019). The recipient is established in the EU.</p>
+      <p><strong>What we send to ROUVY</strong></p>
+      <ul>
+        <li><strong>Planned bike sessions</strong> &ndash; the name of the session, its planned duration and the interval structure with the corresponding targets</li>
+      </ul>
+      <p>Only bike sessions are transmitted. Sessions of other sports, health data, injury information and chat content are <strong>not</strong> transmitted to ROUVY.</p>
+      <p><strong>What ROUVY sends to us</strong></p>
+      <ul>
+        <li><strong>Completed rides</strong> &ndash; activity identifier and title, start time, elapsed and moving time, distance, elevation gain, energy expenditure, normalized power, intensity factor and training stress score (TSS); if the ride is based on a session we sent, its identifier as well</li>
+        <li><strong>Connection data</strong> &ndash; your ROUVY user ID and the OAuth access token that allows us to send sessions on your behalf</li>
+      </ul>
+      <p>ROUVY transmits this data by <strong>push notification</strong> to our server (Supabase, EU) as soon as a ride is completed. We do not poll your ROUVY account. The purpose is training analysis and determining whether a planned session was actually ridden.</p>
+      <ul>
+        <li>We retain the <strong>original record</strong> transmitted by ROUVY for up to <strong>30 days</strong> in a technical log so that failed processing can be retried. It is deleted afterwards.</li>
+        <li><strong>ROUVY data is never sold</strong>, passed on to third parties for their own purposes, or used for advertising.</li>
+        <li>Your ROUVY access token is stored in your profile and is deleted when you disconnect.</li>
+      </ul>
+      <p><strong>Withdrawal</strong></p>
+      <ul>
+        <li>You can disconnect at any time in the app under <strong>Settings &rarr; Connections &rarr; ROUVY</strong>. We then delete your ROUVY tokens and your ROUVY user ID and process no further ROUVY data.</li>
+        <li>You can also revoke the authorization directly at ROUVY. ROUVY notifies us in that case and we end the connection on our side.</li>
+        <li>Sessions already sent remain in your ROUVY library. While the connection exists we remove a session there automatically when you delete it from your plan; after disconnecting you can only delete it within ROUVY itself.</li>
+      </ul>
+      <ul>
+        <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent</li>
       </ul>
 
       <hr>

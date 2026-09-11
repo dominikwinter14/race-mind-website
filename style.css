@@ -741,6 +741,33 @@ strong { font-weight: 600; }
   background: var(--surface);
 }
 
+.reviews-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.reviews-score-stars {
+  color: var(--primary);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+}
+
+.reviews-score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.reviews-score-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .reviews-marquee {
   position: relative;
   margin-top: 3rem;
@@ -752,7 +779,7 @@ strong { font-weight: 600; }
 .reviews-track {
   display: flex;
   width: max-content;
-  animation: reviews-scroll 75s linear infinite;
+  animation: reviews-scroll 205s linear infinite;
 }
 
 .reviews-set {

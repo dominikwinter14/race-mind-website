@@ -81,6 +81,16 @@ const VDOT_TABLE = [
 export const MARATHON_LEVEL_MARGIN = {
     beginner: 1.08, intermediate: 1.05, advanced: 1.02,
 };
+// How wide a forecast band a prognosis of a given confidence earns, as a
+// fraction of the predicted time. Asymmetric on purpose: a race goes wrong
+// more ways than it goes right, so the slow side is 1.5x the fast one.
+//
+// Was declared twice locally in this file until 08.09.2026 and is now the
+// single source, because the B-race projection in the edge function needs the
+// same numbers: it used to inherit the MAIN race's relative best/worst spread,
+// which put an Ironman's +-13% on a 35-minute 10k. Mirrored in
+// supabase/functions/_shared/update-baseline.ts (parity-tested).
+export const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
 // ══════════════════════════════════════════════════════════
 // ENTRY POINT 1: Manuelles Onboarding → Prognose + Realism
 // ══════════════════════════════════════════════════════════
@@ -253,7 +263,6 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
         prognosis.adjusted_total_hours = adjTotal > 0 ? adjTotal : null;
         const overallConf = worstOf(prognosis.confidence_run, prognosis.confidence_bike, prognosis.confidence_swim);
         prognosis.confidence_overall = overallConf;
-        const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
         const spreadPct = BASE_SPREAD[overallConf] ?? 0.10;
         prognosis.best_case_hours = round4(adjTotal * (1 - spreadPct));
         prognosis.worst_case_hours = round4(adjTotal * (1 + spreadPct * 1.5));
@@ -441,7 +450,6 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
     const adjBike = bikeHours ? round4(bikeHours * courseFactors.bike) : null;
     const adjRun = runHours ? round4(runHours * courseFactors.run) : null;
     const adjTotal = round4((adjSwim ?? 0) + T1h + (adjBike ?? 0) + T2h + (adjRun ?? 0));
-    const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
     const overallConfidence = worstOf(runConfidence, bikeConfidence, swimConfidence);
     const spreadPct = BASE_SPREAD[overallConfidence] ?? 0.10;
     const bestCase = round4(adjTotal * (1 - spreadPct));
