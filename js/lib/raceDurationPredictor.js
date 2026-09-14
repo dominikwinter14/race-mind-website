@@ -76,28 +76,80 @@ export const RUN_RACE_FACTOR = {
     half_ironman: { beginner: 0.820, intermediate: 0.865, advanced: 0.89 }, // +51 / +35 / +26
     ironman: { beginner: 0.730, intermediate: 0.775, advanced: 0.81 }, // +57 / +44 / +38
 };
-// Short-course IFs likewise raised 2026-07-30 (trained athletes ride sprints
-// near 0.95+, olympics near 0.85-0.90); long course matches standard guidance
-// and is unchanged.
+// Sprint row raised again 2026-09-12; every other row re-checked and left
+// alone. The 2026-07-30 pass named its own target ("sprints near 0.95+") and
+// then stopped at 0.94/0.91/0.86, so the beginner cell sat below EVERY
+// published floor for a sprint bike leg: Best Bike Split 90 %, CTS 90-105 %,
+// No Limits 88-98 %, Friel's age-group band 90-100 %. Our own BIKE_POWER_ZONES
+// classified 0.86 as GA2 — an endurance zone, prescribed for a race leg the
+// predictor itself puts at 33-38 min.
+//
+// What was checked and NOT moved: olympic (0.82-0.90) fits Friel's 80-90 %
+// age-group band; half and ironman sit inside every range checked, and the
+// intermediate column matches Best Bike Split's per-distance defaults
+// (0.90/0.83/0.78/0.70) to within 0.04 across the board.
+//
+// Coggan's 0.95-1.05 does NOT apply here: that is a pure-cycling number
+// (40 km TT, criterium) and a tri bike leg is deliberately ridden under TT
+// effort to protect the run. Shape guarded in onboarding-prognose-matrix.test.
 export const BIKE_RACE_IF = {
-    sprint_tri: { beginner: 0.86, intermediate: 0.91, advanced: 0.94 },
+    sprint_tri: { beginner: 0.90, intermediate: 0.94, advanced: 0.98 },
     olympic_tri: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 },
     half_ironman: { beginner: 0.72, intermediate: 0.77, advanced: 0.81 },
     ironman: { beginner: 0.66, intermediate: 0.72, advanced: 0.76 },
 };
-// Raised 2026-07-30: the old 0.88/0.92/0.95 compounded with OW_FACTOR to
-// +17% over CSS — with a wetsuit most athletes race within 5-10% of CSS.
+// Swim intensity relative to CSS, keyed by RACE TYPE and level. Above 1.0
+// means faster than CSS pace in a pool, which is what a 750 m leg actually is:
+// CSS is roughly 1500 m / 30-minute pace, so a sprint swim sits above it and
+// an Ironman swim below.
+//
+// Given a distance dimension 2026-09-12. It had none — one flat row priced a
+// 750 m sprint and a 3800 m Ironman alike, while every published table
+// staffs them (Swim Smooth / Foot Traffic: sprint CSS-3..-5 s/100m, olympic
+// CSS, 70.3 CSS+3..+5, ironman CSS+5..+8).
+//
+// The 2026-07-30 pass raised the factors but left OW_FACTOR at 1.08, and the
+// product is what the athlete swims. It named its own target in the comment
+// it wrote -- "most athletes race within 5-10% of CSS" -- and then shipped
+// +11.3 / +13.7 / +18.7 %, the beginner WORSE than the +17 % that had
+// triggered the fix. Fixing factors while the multiplier stays put moves the
+// error, it does not remove it. So both moved this time: OW_FACTOR to 1.04
+// and the rows below, and the intermediate column now lands on the published
+// guidance at all four distances.
+//
+// Exported for the same reason as BIKE_RACE_IF: update-baseline's live
+// prognosis kept a copy at the pre-2026-07-30 values.
 export const SWIM_CSS_FACTOR = {
-    beginner: 0.91, intermediate: 0.95, advanced: 0.97,
+    //                                                        pool intensity, and
+    //                                       (1/factor)*OW_FACTOR vs CSS in water
+    sprint_tri: { beginner: 1.04, intermediate: 1.08, advanced: 1.10 }, //  +0 / -4 / -6 s
+    olympic_tri: { beginner: 1.00, intermediate: 1.04, advanced: 1.06 }, //  +4 /  0 / -2 s
+    half_ironman: { beginner: 0.96, intermediate: 1.00, advanced: 1.02 }, //  +9 / +4 / +2 s
+    ironman: { beginner: 0.94, intermediate: 0.98, advanced: 1.00 }, // +11 / +6 / +4 s
 };
+/** The swim intensity for a race leg. Falls back to the olympic row: only a
+ *  triathlon has a swim leg, and a race type we do not know is priced in the
+ *  middle rather than at either edge. */
+export function swimCssFactor(raceType, level) {
+    const row = SWIM_CSS_FACTOR[raceType] ?? SWIM_CSS_FACTOR.olympic_tri;
+    return row[level] ?? row.intermediate;
+}
 /** Standalone bike race: the IF comes from the DISTANCE, not a race-type row —
  *  a 40 km criterium and a 180 km gran fondo share one race_type and nothing
  *  else. Mirrors BIKE_RACE_IF_BY_DISTANCE in the edge copy; added to the app
  *  side on 21.08.2026 when lib/racePaceZones.ts began prescribing bike race
  *  targets from these tables instead of from a goal-time-derived speed.
+ *
+ *  Corrected 2026-09-12: the ≤50 km bucket used to be the tri rows above at a
+ *  comparable duration, which copies the wrong discipline in — a tri bike leg
+ *  is deliberately under-ridden to save the legs for the run after it, and a
+ *  standalone race has no run to save them for. Coggan puts a criterium/short
+ *  road race/40 km TT at 0.95-1.05, a full band above the fastest tri bike leg
+ *  in this file. See the edge copy for the full note and the other three
+ *  buckets' references (unchanged, already close to published guidance).
  *  Keep byte-identical with the edge copy (sync-mirrors.test.ts). */
 const BIKE_RACE_IF_BY_DISTANCE = [
-    { maxKm: 50, iff: { beginner: 0.82, intermediate: 0.87, advanced: 0.90 } }, // criterium / short road race
+    { maxKm: 50, iff: { beginner: 0.95, intermediate: 1.00, advanced: 1.04 } }, // criterium / short road race
     { maxKm: 100, iff: { beginner: 0.74, intermediate: 0.79, advanced: 0.83 } }, // classic road race
     { maxKm: 150, iff: { beginner: 0.68, intermediate: 0.73, advanced: 0.77 } }, // gran fondo
     { maxKm: Infinity, iff: { beginner: 0.62, intermediate: 0.67, advanced: 0.71 } }, // long fondo / marathon
@@ -146,8 +198,12 @@ const BIKE_COURSE_REALITY_DEFAULT = 0.92;
  *  that answer is the same in a lane and in a lake — what differs is how fast
  *  that intensity moves you through the water. So the race plan's swim TARGET
  *  needs this factor too, or the target and the split time next to it describe
- *  two different swims. See chat/race-pace-targets.ts. */
-export const OW_FACTOR = 1.08;
+ *  two different swims. See chat/race-pace-targets.ts.
+ *  Lowered 1.08 -> 1.04 on 2026-09-12. Eight percent is a steep flat penalty
+ *  for a wetsuit swim — the suit buys buoyancy back, sighting and chop cost it
+ *  — and compounded with SWIM_CSS_FACTOR it put every prescribed race pace
+ *  outside published guidance. See the note on that table. */
+export const OW_FACTOR = 1.04;
 const B_RACE_TIME_MULTIPLIER = 1.05; // legacy, no effort field
 // §17.2 duration relaxation per effort — buffer for what the race takes out of
 // the week, not a pace prediction. Keep identical with the edge copy; the app
@@ -348,7 +404,7 @@ export function predictRaceDuration(thresholds, opts) {
     if (dist.swim > 0) {
         const css = thresholds.css_pace_sec_per_100m;
         if (css && css > 0) {
-            const factor = SWIM_CSS_FACTOR[opts.level] ?? 0.92;
+            const factor = swimCssFactor(opts.raceType, opts.level);
             const racePacePer100m = css / factor;
             swimHours = (racePacePer100m * OW_FACTOR * (dist.swim / 100)) / 3600;
             swimHours *= courseFactors.swim;

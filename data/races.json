@@ -1,85 +1,5 @@
 [
   {
-    "slug": "challenge-almere-amsterdam",
-    "name": "Challenge Almere-Amsterdam",
-    "name_en": "Challenge Almere-Amsterdam",
-    "race_type": "ironman",
-    "date": "2026-09-12",
-    "course_factor_swim": 1,
-    "course_factor_bike": 0.95,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "ironman-70-3-world-championship-nice",
-    "name": "IRONMAN 70.3 World Championship Nice",
-    "name_en": "IRONMAN 70.3 World Championship Nice",
-    "race_type": "half_ironman",
-    "date": "2026-09-12",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1.15,
-    "course_factor_run": 1.04
-  },
-  {
-    "slug": "bremen-marathon",
-    "name": "Bremen Marathon",
-    "name_en": "Bremen Marathon",
-    "race_type": "marathon",
-    "date": "2026-09-13",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "great-north-run-newcastle",
-    "name": "Great North Run (Newcastle)",
-    "name_en": "Great North Run (Newcastle)",
-    "race_type": "half_marathon",
-    "date": "2026-09-13",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.02
-  },
-  {
-    "slug": "ironman-70-3-erkner",
-    "name": "Ironman 70.3 Erkner",
-    "name_en": "Ironman 70.3 Erkner",
-    "race_type": "half_ironman",
-    "date": "2026-09-13",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "ironman-wales-tenby",
-    "name": "Ironman Wales (Tenby)",
-    "name_en": "Ironman Wales (Tenby)",
-    "race_type": "ironman",
-    "date": "2026-09-13",
-    "course_factor_swim": 1.05,
-    "course_factor_bike": 1.25,
-    "course_factor_run": 1.2
-  },
-  {
-    "slug": "ironman-wisconsin",
-    "name": "IRONMAN Wisconsin",
-    "name_en": "IRONMAN Wisconsin",
-    "race_type": "ironman",
-    "date": "2026-09-13",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1.08,
-    "course_factor_run": 1.03
-  },
-  {
-    "slug": "muenster-marathon",
-    "name": "Münster Marathon",
-    "name_en": "Münster Marathon",
-    "race_type": "marathon",
-    "date": "2026-09-13",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
     "slug": "ironman-italy-emilia-romagna",
     "name": "Ironman Italy (Emilia-Romagna)",
     "name_en": "Ironman Italy (Emilia-Romagna)",
@@ -1768,6 +1688,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 0.98
+  },
+  {
+    "slug": "ironman-70-3-erkner",
+    "name": "Ironman 70.3 Erkner",
+    "name_en": "Ironman 70.3 Erkner",
+    "race_type": "half_ironman",
+    "date": "2027-09-12",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
   },
   {
     "slug": "ironman-70-3-nice",
