@@ -2006,6 +2006,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/allgaeu-triathlon-classic.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/allgaeu-triathlon-classic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/allgaeu-triathlon-classic-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/allgaeu-triathlon-classic-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/allgaeu-triathlon-classic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/allgaeu-triathlon-classic-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-70-3-vichy.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-vichy.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-vichy-en.html"/>
@@ -2102,6 +2114,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/medoc-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/medoc-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/medoc-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/medoc-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/medoc-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/medoc-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/dresdenhalf.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/dresdenhalf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/dresdenhalf-en.html"/>
@@ -2147,6 +2171,18 @@
     <loc>https://race-mind.com/events/ironman-nice-france-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-nice-france.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-nice-france-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-wales-tenby.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-wales-tenby.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-wales-tenby-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-wales-tenby-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-wales-tenby.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-wales-tenby-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2198,18 +2234,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-wales-tenby.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-wales-tenby.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-wales-tenby-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-wales-tenby-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-wales-tenby.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-wales-tenby-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/ironman-wisconsin.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-wisconsin.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-wisconsin-en.html"/>
@@ -2243,18 +2267,6 @@
     <loc>https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/tirol-laeuft-innsbruck-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/allgaeu-triathlon-classic.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/allgaeu-triathlon-classic.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/allgaeu-triathlon-classic-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/allgaeu-triathlon-classic-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/allgaeu-triathlon-classic.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/allgaeu-triathlon-classic-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2351,18 +2363,6 @@
     <loc>https://race-mind.com/events/koelner-halbmarathon-muengersdorf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koelner-halbmarathon-muengersdorf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koelner-halbmarathon-muengersdorf-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/medoc-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/medoc-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/medoc-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/medoc-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/medoc-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/medoc-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
