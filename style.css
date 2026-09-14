@@ -1492,6 +1492,12 @@ strong { font-weight: 600; }
   font-size: 0.9rem;
 }
 
+.faq-item p a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── Footer ── */
 
 .footer {
@@ -3444,6 +3450,20 @@ a.race-card-image {
 
 .race-detail-cta .btn:last-child {
   margin-bottom: 0;
+}
+
+.race-detail-cta-link {
+  display: block;
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.race-detail-cta-link:hover {
+  color: var(--primary);
 }
 
 @media (max-width: 860px) {
