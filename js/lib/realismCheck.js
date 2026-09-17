@@ -7,6 +7,7 @@ import { RACE_PARAMS } from '../constants/raceVolume.js';
 import { formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
 import { classifyGoalTime } from './goalAssessment.js';
+import { isInBounds } from './thresholdBounds.js';
 // ══════════════════════════════════════════════════════════
 // CONSTANTS
 // ══════════════════════════════════════════════════════════
@@ -1185,7 +1186,9 @@ export async function writePrognosisToSupabase({ supabase, userId, prognosis, ed
      * threshold_check this run. That is a decision, not a fallback.
      */
     const keepMeasured = (stored, derived, field) => {
-        if (derived == null)
+        // Outside THRESHOLD_BOUNDS the derived value is no offer at all — the same
+        // band saveOnboardingData and the settings sheet refuse to write.
+        if (derived == null || !isInBounds(field, derived))
             return stored ?? null;
         if (stored == null || editedFields.includes(field))
             return Math.round(derived);
