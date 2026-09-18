@@ -472,22 +472,23 @@ strong { font-weight: 600; }
   margin-bottom: 1.75rem;
 }
 
-/* Acht Logos in vier Spalten: zwei volle Reihen. Als flex-wrap brach die
-   Zeile ab 1100px nach dem siebten Logo um und ROUVY stand allein da.
-   Die Spalten sind inhaltsbreit, nicht gleich breit — sonst sprengt Polar
-   (169px, das breiteste) seine Spalte und der Block laeuft ueber.
-   Kommt ein NEUNTES Logo dazu, steht dieses allein: dann auf 3 Spalten. */
+/* Zehn Logos in fuenf Spalten: oben die Uhren, unten die Plattformen.
+   Als flex-wrap brach die Zeile ab 1100px nach dem siebten Logo um und ROUVY
+   stand allein da. Die Spalten sind inhaltsbreit, nicht gleich breit — sonst
+   sprengt Polar (151px bei 25px Hoehe, das breiteste) seine Spalte.
+   Fuenf Spalten passen nur bei 25px Logo-Hoehe: Die breitesten Logos je
+   Spalte ergeben 537px, plus 4 x 2rem Luecke = 665px im 692px-Container. */
 .compat-logos {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
   justify-content: center;
   justify-items: center;
   align-items: center;
-  gap: 2.5rem 3rem;
+  gap: 2.5rem 2rem;
 }
 
 .compat-logo {
-  height: 28px;
+  height: 25px;
   width: auto;
   opacity: 0.55;
   filter: brightness(0) invert(1);
@@ -499,13 +500,23 @@ strong { font-weight: 600; }
   opacity: 1;
 }
 
+/* Zwift gibt es nur als gestapeltes Logo (Zeichen ueber Schriftzug): bei
+   25px waere der Schriftzug ein Drittel so hoch wie die anderen. */
+.compat-logo--stacked {
+  height: 46px;
+}
+
+/* Der Schriftzug steht unter dem „my“-Bogen und traegt nur zwei Drittel
+   der Bildhoehe. */
+.compat-logo--tall {
+  height: 32px;
+}
+
 .compat-logo:hover {
   opacity: 0.9;
 }
 
-/* Der Viererblock ist 656px breit, der Container 740px - 48px Rand. Enger
-   wird es nicht mehr, ohne dass Polar ueber den Rand laeuft. Zwei Spalten
-   sind die einzige andere Teilung, die bei acht Logos ohne Rest aufgeht. */
+/* Unter 740px zwei Spalten, fuenf Reihen. */
 @media (max-width: 740px) {
   .compat-logos {
     grid-template-columns: repeat(2, auto);
