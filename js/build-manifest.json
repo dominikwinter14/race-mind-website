@@ -5,7 +5,7 @@
     "lib/raceDurationPredictor.ts": "51a81f911a2ea2c261d52d200d0709b7f644053df40e13e85842b5b8f1c14687",
     "lib/goalAssessment.ts": "1ceaa7f1e0efa17322e6329dc35d3d9a5a3109a050ccfc501d72484f573df8d3",
     "lib/athleteLevel.ts": "e6c0bec4310d63f6592366ebc81db00be7f4dc71b5f6517ccf3725ab4d6cf8a0",
-    "lib/format.ts": "a282d104681a16c0a91cb57c4e3d43d4160cb30ccb46b2334e8b1abb5bdcce46",
+    "lib/format.ts": "c17271810f7232baecd54cad89cffb646a521baa679fd4371d398d2caf0b174a",
     "lib/thresholdBounds.ts": "85ca33a5f3ffacf2358cd34bc60f6706b0b2388b3ab80ea4b08b37b62845063d",
     "constants/raceVolume.ts": "c95ded22d1696bed280b1c81c1ff681da8e86bd21354bcf02cef1968807a3013"
   }

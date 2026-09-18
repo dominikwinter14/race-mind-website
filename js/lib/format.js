@@ -195,7 +195,8 @@ export function daysUntilDate(dateStr) {
  *
  * Client mirror of `calculateWeeksToRace`
  * (supabase/functions/_shared/plan-data-prep/calendar.ts) — pinned by
- * __tests__/lib/weeks-until-race.test.ts. NOT `days / 7`: the plan starts on
+ * __tests__/lib/tight-race-date.test.ts, which reads the engine source. NOT
+ * `days / 7`: the plan starts on
  * the CURRENT Monday and ends in the race's own week, so this counts whole
  * Monday-to-Monday spans plus the race week. A screen that divides by seven
  * names a different number than the plan the athlete then gets — a race next
