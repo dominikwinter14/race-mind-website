@@ -940,6 +940,16 @@
     "course_factor_run": 0.99
   },
   {
+    "slug": "uniper-duesseldorf-marathon",
+    "name": "Uniper Düsseldorf Marathon",
+    "name_en": "Uniper Düsseldorf Marathon",
+    "race_type": "marathon",
+    "date": "2027-04-18",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
     "slug": "vienna-city-halbmarathon",
     "name": "Vienna City Halbmarathon",
     "name_en": "Vienna City Half Marathon",
@@ -1170,6 +1180,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "ironman-70-3-pennsylvania-happy-valley",
+    "name": "IRONMAN 70.3 Pennsylvania Happy Valley",
+    "name_en": "IRONMAN 70.3 Pennsylvania Happy Valley",
+    "race_type": "half_ironman",
+    "date": "2027-05-23",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-70-3-st-poelten",
     "name": "Ironman 70.3 St. Pölten",
     "name_en": "Ironman 70.3 St. Pölten",
@@ -1347,6 +1367,26 @@
     "date": "2027-06-13",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "wuerzburg-triathlon-mitteldistanz",
+    "name": "Würzburg Triathlon Mitteldistanz",
+    "name_en": "Würzburg Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-13",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.04,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "indeland-triathlon-mitteldistanz",
+    "name": "indeland-Triathlon Mitteldistanz",
+    "name_en": "indeland Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-20",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
     "course_factor_run": 1
   },
   {
