@@ -1,25 +1,5 @@
 [
   {
-    "slug": "ironman-italy-emilia-romagna",
-    "name": "Ironman Italy (Emilia-Romagna)",
-    "name_en": "Ironman Italy (Emilia-Romagna)",
-    "race_type": "ironman",
-    "date": "2026-09-19",
-    "course_factor_swim": 1,
-    "course_factor_bike": 0.97,
-    "course_factor_run": 0.99
-  },
-  {
-    "slug": "ironman-maryland",
-    "name": "IRONMAN Maryland",
-    "name_en": "IRONMAN Maryland",
-    "race_type": "ironman",
-    "date": "2026-09-19",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
     "slug": "copenhagen-half",
     "name": "Copenhagen Half",
     "name_en": "Copenhagen Half",
@@ -1024,7 +1004,7 @@
     "name": "Innsbruck Alpin Marathon",
     "name_en": "Innsbruck Alpine Marathon",
     "race_type": "marathon",
-    "date": "2027-05-05",
+    "date": "2027-05-06",
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 1.8
@@ -1400,16 +1380,6 @@
     "course_factor_run": 1
   },
   {
-    "slug": "triathlon-de-cup-muenchen",
-    "name": "triathlon.de CUP München",
-    "name_en": "triathlon.de CUP München",
-    "race_type": "half_ironman",
-    "date": "2027-06-25",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
-  },
-  {
     "slug": "swissman-xtreme-triathlon",
     "name": "SWISSMAN Xtreme Triathlon",
     "name_en": "SWISSMAN Xtreme Triathlon",
@@ -1448,6 +1418,16 @@
     "course_factor_swim": 1,
     "course_factor_bike": 1.02,
     "course_factor_run": 1.01
+  },
+  {
+    "slug": "triathlon-de-cup-muenchen",
+    "name": "triathlon.de CUP München",
+    "name_en": "triathlon.de CUP München",
+    "race_type": "half_ironman",
+    "date": "2027-06-27",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
   },
   {
     "slug": "ironman-70-3-les-sables-d-olonne-vendee",
@@ -1750,6 +1730,36 @@
     "course_factor_run": 0.98
   },
   {
+    "slug": "challenge-almere-amsterdam",
+    "name": "Challenge Almere-Amsterdam",
+    "name_en": "Challenge Almere-Amsterdam",
+    "race_type": "ironman",
+    "date": "2027-09-11",
+    "course_factor_swim": 1,
+    "course_factor_bike": 0.95,
+    "course_factor_run": 0.98
+  },
+  {
+    "slug": "jungfrau-marathon",
+    "name": "Jungfrau Marathon",
+    "name_en": "Jungfrau Marathon",
+    "race_type": "marathon",
+    "date": "2027-09-11",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.8
+  },
+  {
+    "slug": "great-north-run-newcastle",
+    "name": "Great North Run (Newcastle)",
+    "name_en": "Great North Run (Newcastle)",
+    "race_type": "half_marathon",
+    "date": "2027-09-12",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-70-3-erkner",
     "name": "Ironman 70.3 Erkner",
     "name_en": "Ironman 70.3 Erkner",
@@ -1780,6 +1790,16 @@
     "course_factor_run": 1.04
   },
   {
+    "slug": "muenster-marathon",
+    "name": "Münster Marathon",
+    "name_en": "Münster Marathon",
+    "race_type": "marathon",
+    "date": "2027-09-12",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-wales-tenby",
     "name": "Ironman Wales (Tenby)",
     "name_en": "Ironman Wales (Tenby)",
@@ -1788,5 +1808,15 @@
     "course_factor_swim": 1.05,
     "course_factor_bike": 1.25,
     "course_factor_run": 1.2
+  },
+  {
+    "slug": "bremen-marathon",
+    "name": "Bremen Marathon",
+    "name_en": "Bremen Marathon",
+    "race_type": "marathon",
+    "date": "2027-10-03",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
   }
 ]
