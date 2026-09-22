@@ -86,78 +86,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/copenhagen-half.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/copenhagen-half.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/copenhagen-half-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/copenhagen-half-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/copenhagen-half.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/copenhagen-half-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-weymouth.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-weymouth.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-weymouth-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-70-3-weymouth-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-weymouth.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-weymouth-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/karlsruhe-baden-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/karlsruhe-baden-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/karlsruhe-baden-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/karlsruhe-baden-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/karlsruhe-baden-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/karlsruhe-baden-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/kassel-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/kassel-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/kassel-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/kassel-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/kassel-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/kassel-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/bmw-berlin-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
@@ -2315,6 +2243,78 @@
     <loc>https://race-mind.com/events/ironman-maryland-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-maryland.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-maryland-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/copenhagen-half.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/copenhagen-half.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/copenhagen-half-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/copenhagen-half-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/copenhagen-half.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/copenhagen-half-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-weymouth.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-weymouth.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-weymouth-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-70-3-weymouth-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-weymouth.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-weymouth-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/karlsruhe-baden-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/karlsruhe-baden-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/karlsruhe-baden-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/karlsruhe-baden-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/karlsruhe-baden-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/karlsruhe-baden-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/kassel-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/kassel-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/kassel-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/kassel-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/kassel-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/kassel-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/schuster-tegernseelauf-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>

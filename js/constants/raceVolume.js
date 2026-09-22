@@ -6,7 +6,7 @@
  *   - components/onboarding/AvailabilitySlider.tsx (slider range + hints)
  *
  * Edge functions (Deno) cannot import from this module — they keep text-synced
- * copies in supabase/functions/_shared/update-baseline.ts (RACE_PARAMS) and
+ * copies in supabase/functions/_shared/race-day-projection.ts (RACE_PARAMS) and
  * supabase/functions/_shared/plan-builder-v2.ts (MIN_HOURS, MAX_HOURS).
  * __tests__/lib/race-constants-sync.test.ts asserts byte-identical RACE_PARAMS.
  */

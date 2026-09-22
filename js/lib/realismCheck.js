@@ -90,7 +90,7 @@ export const MARATHON_LEVEL_MARGIN = {
 // single source, because the B-race projection in the edge function needs the
 // same numbers: it used to inherit the MAIN race's relative best/worst spread,
 // which put an Ironman's +-13% on a 35-minute 10k. Mirrored in
-// supabase/functions/_shared/update-baseline.ts (parity-tested).
+// supabase/functions/_shared/race-day-projection.ts (parity-tested).
 export const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
 // ══════════════════════════════════════════════════════════
 // ENTRY POINT 1: Manuelles Onboarding → Prognose + Realism
@@ -485,7 +485,7 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
 // Race-Type-Aware Projection Constants
 // ══════════════════════════════════════════════════════════
 // RACE_PARAMS is imported from constants/raceVolume.ts (single source of truth).
-// Edge function copy in supabase/functions/_shared/update-baseline.ts must stay
+// Edge function copy in supabase/functions/_shared/race-day-projection.ts must stay
 // byte-identical — enforced by __tests__/lib/race-constants-sync.test.ts.
 const PROJECTION_CAPS = {
     beginner: { '5k': 0.24, '10k': 0.22, half_marathon: 0.20, marathon: 0.18, sprint_tri: 0.21, olympic_tri: 0.19, half_ironman: 0.17, ironman: 0.16, bike_race: 0.18 },
