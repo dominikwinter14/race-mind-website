@@ -930,6 +930,16 @@
     "course_factor_run": 0.97
   },
   {
+    "slug": "gutenberg-halbmarathon-mainz",
+    "name": "Gutenberg Halbmarathon Mainz",
+    "name_en": "Gutenberg Half Marathon Mainz",
+    "race_type": "half_marathon",
+    "date": "2027-05-02",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
     "slug": "prague-marathon",
     "name": "Prague Marathon",
     "name_en": "Prague Marathon",
@@ -984,16 +994,6 @@
     "name": "Genf Marathon",
     "name_en": "Geneva Marathon",
     "race_type": "marathon",
-    "date": "2027-05-09",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "gutenberg-halbmarathon-mainz",
-    "name": "Gutenberg Halbmarathon Mainz",
-    "name_en": "Gutenberg Half Marathon Mainz",
-    "race_type": "half_marathon",
     "date": "2027-05-09",
     "course_factor_swim": 0,
     "course_factor_bike": 0,
@@ -1460,6 +1460,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "erlangen-triathlon",
+    "name": "Erlangen Triathlon",
+    "name_en": "Erlangen Triathlon",
+    "race_type": "half_ironman",
+    "date": "2027-07-25",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-lake-placid",
     "name": "IRONMAN Lake Placid",
     "name_en": "IRONMAN Lake Placid",
@@ -1650,6 +1660,26 @@
     "course_factor_run": 1
   },
   {
+    "slug": "koelner-halbmarathon-muengersdorf",
+    "name": "Kölner Halbmarathon (Müngersdorf)",
+    "name_en": "Cologne Half Marathon (Müngersdorf)",
+    "race_type": "half_marathon",
+    "date": "2027-08-29",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.99
+  },
+  {
+    "slug": "austria-triathlon-podersdorf",
+    "name": "Austria Triathlon Podersdorf",
+    "name_en": "Austria Triathlon Podersdorf",
+    "race_type": "half_ironman",
+    "date": "2027-09-04",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "medoc-marathon",
     "name": "Medoc Marathon",
     "name_en": "Medoc Marathon",
@@ -1720,6 +1750,16 @@
     "course_factor_run": 1.04
   },
   {
+    "slug": "ironman-70-3-weymouth",
+    "name": "Ironman 70.3 Weymouth",
+    "name_en": "Ironman 70.3 Weymouth",
+    "race_type": "half_ironman",
+    "date": "2027-09-12",
+    "course_factor_swim": 1.1,
+    "course_factor_bike": 1.05,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-nice-france",
     "name": "Ironman Nice (France)",
     "name_en": "Ironman Nice (France)",
@@ -1740,6 +1780,36 @@
     "course_factor_run": 1
   },
   {
+    "slug": "ironman-italy-emilia-romagna",
+    "name": "Ironman Italy (Emilia-Romagna)",
+    "name_en": "Ironman Italy (Emilia-Romagna)",
+    "race_type": "ironman",
+    "date": "2027-09-18",
+    "course_factor_swim": 1,
+    "course_factor_bike": 0.97,
+    "course_factor_run": 0.99
+  },
+  {
+    "slug": "ironman-maryland",
+    "name": "IRONMAN Maryland",
+    "name_en": "IRONMAN Maryland",
+    "race_type": "ironman",
+    "date": "2027-09-18",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "copenhagen-half",
+    "name": "Copenhagen Half",
+    "name_en": "Copenhagen Half",
+    "race_type": "half_marathon",
+    "date": "2027-09-19",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.95
+  },
+  {
     "slug": "ironman-wales-tenby",
     "name": "Ironman Wales (Tenby)",
     "name_en": "Ironman Wales (Tenby)",
@@ -1748,6 +1818,26 @@
     "course_factor_swim": 1.05,
     "course_factor_bike": 1.25,
     "course_factor_run": 1.2
+  },
+  {
+    "slug": "karlsruhe-baden-marathon",
+    "name": "Karlsruhe Baden-Marathon",
+    "name_en": "Karlsruhe Baden Marathon",
+    "race_type": "marathon",
+    "date": "2027-09-19",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "schuster-tegernseelauf-halbmarathon",
+    "name": "Schuster Tegernseelauf (Halbmarathon)",
+    "name_en": "Schuster Tegernseelauf (Half Marathon)",
+    "race_type": "half_marathon",
+    "date": "2027-09-19",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.02
   },
   {
     "slug": "bremen-marathon",
