@@ -1360,6 +1360,16 @@
     "course_factor_run": 1.01
   },
   {
+    "slug": "ironman-les-sables-d-olonne-vendee",
+    "name": "IRONMAN Les Sables d'Olonne-Vendée",
+    "name_en": "IRONMAN Les Sables d'Olonne-Vendée",
+    "race_type": "ironman",
+    "date": "2027-06-27",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.04,
+    "course_factor_run": 1.01
+  },
+  {
     "slug": "triathlon-de-cup-muenchen",
     "name": "triathlon.de CUP München",
     "name_en": "triathlon.de CUP München",

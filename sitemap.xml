@@ -1718,6 +1718,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/ironman-les-sables-d-olonne-vendee.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-les-sables-d-olonne-vendee.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-les-sables-d-olonne-vendee-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-les-sables-d-olonne-vendee-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-les-sables-d-olonne-vendee.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-les-sables-d-olonne-vendee-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/triathlon-de-cup-muenchen.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-muenchen.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-muenchen-en.html"/>
