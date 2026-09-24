@@ -7,7 +7,7 @@ import { RACE_PARAMS } from '../constants/raceVolume.js';
 import { formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
 import { classifyGoalTime } from './goalAssessment.js';
-import { isInBounds } from './thresholdBounds.js';
+import { isInBounds, seedInBand } from './thresholdBounds.js';
 // ══════════════════════════════════════════════════════════
 // CONSTANTS
 // ══════════════════════════════════════════════════════════
@@ -471,9 +471,11 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
         course_factor_swim: courseFactors.swim,
         course_factor_bike: courseFactors.bike,
         course_factor_run: courseFactors.run,
-        derived_threshold_pace: thresholdPace,
+        // What forecast.tsx syncs into the store and the baseline write offers —
+        // the prediction above keeps the unclamped value (seedInBand).
+        derived_threshold_pace: seedInBand('run_threshold_pace_sec_km', thresholdPace, runInput),
         derived_ftp: ftp,
-        derived_css: cssPace,
+        derived_css: seedInBand('css_pace_100m', cssPace, swimInput),
         confidence_run: runConfidence,
         confidence_bike: bikeConfidence,
         confidence_swim: swimConfidence,

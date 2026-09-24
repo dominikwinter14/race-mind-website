@@ -38,3 +38,27 @@ export function isInBounds(field, value) {
     const { min, max } = THRESHOLD_BOUNDS[field];
     return Number.isFinite(value) && value >= min && value <= max;
 }
+/**
+ * A threshold derived from a distance + duration, kept inside the band whenever
+ * the athlete's own pace is.
+ *
+ * The derivation shifts the pace by a few percent — a 5 km test sits ~2 % faster
+ * than threshold pace, a 100 m swim 18 % — so "5 km in 50 min" (exactly 10:00/km)
+ * derived 610 s/km and "100 m in 3:24" 241 s/100m, both just past the band. The
+ * screens then refused the athlete with a range their own number was inside,
+ * and the save dropped the value (review 24.09.2026, A1). The seed is pulled to
+ * the band's edge instead; the server's estimator clamps to the same band.
+ *
+ * A typed pace outside the band stays unclamped, so the screens still refuse
+ * it. Only run and swim: a ride's distance + duration has no pace in watts to
+ * hold against the FTP band.
+ */
+export function seedInBand(field, derived, input) {
+    if (derived == null || input?.mode !== 'custom' || !input.distance_m || !input.duration_sec)
+        return derived;
+    const typedPace = input.duration_sec / (input.distance_m / (field === 'css_pace_100m' ? 100 : 1000));
+    if (isInBounds(field, derived) || !isInBounds(field, typedPace))
+        return derived;
+    const { min, max } = THRESHOLD_BOUNDS[field];
+    return Math.min(max, Math.max(min, derived));
+}
