@@ -806,7 +806,7 @@ strong { font-weight: 600; }
 .reviews-track {
   display: flex;
   width: max-content;
-  animation: reviews-scroll 205s linear infinite;
+  animation: reviews-scroll 248s linear infinite;
 }
 
 .reviews-set {

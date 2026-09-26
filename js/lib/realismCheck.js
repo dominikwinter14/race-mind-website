@@ -312,6 +312,9 @@ function inRangeIfPresent(v, min, max) {
         return true;
     return inRange(v, min, max);
 }
+function requiredOutOfRange(metric, v) {
+    return { ok: false, reason: `${metric}_out_of_range:${v}`, ...(v == null ? { missing: true } : {}) };
+}
 export function isBaselinePlausible(baseline, raceType) {
     if (!baseline)
         return { ok: false, reason: 'baseline_null' };
@@ -326,7 +329,7 @@ export function isBaselinePlausible(baseline, raceType) {
     // catches genuine garbage, and threshold_check shows the value pre-filled and
     // editable, so an implausible-but-passing value gets corrected there anyway.
     if (!inRange(baseline.current_run_threshold_pace_sec_km, 150, 600)) {
-        return { ok: false, reason: `run_threshold_pace_out_of_range:${baseline.current_run_threshold_pace_sec_km}` };
+        return requiredOutOfRange('run_threshold_pace', baseline.current_run_threshold_pace_sec_km);
     }
     // Run EF optional (needs HR data) — only sanity-checked when present
     if (!inRangeIfPresent(baseline.current_run_ef, 0.5, 3.5)) {
@@ -335,7 +338,7 @@ export function isBaselinePlausible(baseline, raceType) {
     if (isTriRace) {
         // FTP required: 80–500W
         if (!inRange(baseline.current_ftp_estimated, 80, 500)) {
-            return { ok: false, reason: `ftp_out_of_range:${baseline.current_ftp_estimated}` };
+            return requiredOutOfRange('ftp', baseline.current_ftp_estimated);
         }
         // CSS required: 1:10–4:00/100m → 70–240 sec. Aligned 03.09.2026 on the one
         // band the rest of the app already shares — update-baseline.ts
@@ -347,7 +350,7 @@ export function isBaselinePlausible(baseline, raceType) {
         // length is almost certainly set to double the real one — the exact case
         // cssInBand exists to reject.
         if (!inRange(baseline.current_css_pace_100m, 70, 240)) {
-            return { ok: false, reason: `css_out_of_range:${baseline.current_css_pace_100m}` };
+            return requiredOutOfRange('css', baseline.current_css_pace_100m);
         }
         // Bike EF optional (NP/HR needs a power meter) — sanity-checked when present
         if (!inRangeIfPresent(baseline.current_bike_ef, 0.5, 4.0)) {
