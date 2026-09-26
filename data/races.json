@@ -7,7 +7,7 @@
     "date": "2026-09-27",
     "course_factor_swim": 0,
     "course_factor_bike": 0,
-    "course_factor_run": 0.95
+    "course_factor_run": 0.97
   },
   {
     "slug": "ironman-chattanooga",
@@ -1246,7 +1246,7 @@
     "race_type": "ironman",
     "date": "2027-06-06",
     "course_factor_swim": 0.99,
-    "course_factor_bike": 0.95,
+    "course_factor_bike": 0.97,
     "course_factor_run": 0.97
   },
   {
