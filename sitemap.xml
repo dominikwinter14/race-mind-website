@@ -1478,18 +1478,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/neuseenman-ferropolis.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/neuseenman-ferropolis-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/adidas-stockholm-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/adidas-stockholm-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/adidas-stockholm-marathon-en.html"/>
@@ -1511,6 +1499,18 @@
     <loc>https://race-mind.com/events/ironman-70-3-alghero-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-alghero.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-alghero-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/neuseenman-ferropolis.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/neuseenman-ferropolis-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/neuseenman-ferropolis.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/neuseenman-ferropolis-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
