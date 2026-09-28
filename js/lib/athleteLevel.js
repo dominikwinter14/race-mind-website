@@ -124,7 +124,7 @@ export function goalLevelStep(computed, experienceMonths, goalHours) {
     }
     return null;
 }
-/** The minimum weekly hours of the distance; a week counts as a training week from it. */
+/** The minimum weekly hours of the distance: below it the rule says beginner. */
 export function minVolumeFor(raceType) {
     return raceType ? MIN_VOLUME[raceType] ?? 2 : 2;
 }
@@ -132,6 +132,8 @@ export function minVolumeFor(raceType) {
 // The server counts the training weeks; the app gets them from
 // athlete_baseline.training_weeks and only computes with them.
 export const WEEKS_PER_MONTH = 4.33;
+/** The run + bike + swim hours from which a week is a training week, the same for every distance. */
+export const TRAINING_WEEK_HOURS = 2;
 /** Months from the onboarding answer plus the training weeks since. */
 export function trainingAgeMonths(experienceMonths, trainingWeeks) {
     return experienceMonths + trainingWeeks / WEEKS_PER_MONTH;
