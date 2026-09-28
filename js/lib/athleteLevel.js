@@ -56,3 +56,157 @@ export function deriveAthleteLevel(experience, weeklyHours, raceType) {
     const periodizationMode = hours >= minBlockVolume ? 'block' : 'linear';
     return { athleteLevel, periodizationMode };
 }
+// ══════════════════════════════════════════════════════════
+// Planner mirror
+// Copies of supabase/functions/_shared/athlete-level.ts (resolveEffectiveLevel,
+// classifyAthleteLevel, plannedAthleteLevel, nextLevelStep, goalLevelStep), intensity-rules.ts
+// (maxIntensitySessionsFor, ageFromBirthDate) and ramp-feasibility.ts
+// (levelMaxJump). The level card shows the level the planner plans with, and
+// what it does there, only while both sides agree:
+// supabase/functions/_test/athlete-level-parity.test.ts runs them over the
+// same inputs.
+// ══════════════════════════════════════════════════════════
+/** Fix 18: resolve effective athlete level based on experience and volume. */
+export function resolveEffectiveLevel(athleteLevel, experienceMonths, goalHours) {
+    if (athleteLevel === 'beginner' && experienceMonths != null && experienceMonths >= 12 && goalHours >= 6) {
+        return 'intermediate';
+    }
+    if (athleteLevel === 'advanced' && goalHours <= 4) {
+        return 'intermediate';
+    }
+    if (athleteLevel === 'intermediate' && goalHours <= 2.5) {
+        return 'beginner';
+    }
+    return athleteLevel;
+}
+/** Server fallback when athlete_config.athlete_level is empty. */
+export function classifyAthleteLevel(experienceMonths) {
+    if (experienceMonths == null || experienceMonths < 6)
+        return 'beginner';
+    if (experienceMonths < 24)
+        return 'intermediate';
+    if (experienceMonths >= 60)
+        return 'advanced';
+    return 'intermediate';
+}
+/** The level the planner plans with: the athlete's own choice as it is, a
+ *  computed one adjusted to the weekly goal, an empty one from the experience. */
+export function plannedAthleteLevel(input) {
+    if (input.chosen && input.stored)
+        return input.stored;
+    const raw = input.stored || classifyAthleteLevel(input.experienceMonths);
+    return resolveEffectiveLevel(raw, input.experienceMonths, input.goalHours);
+}
+/** The step above `level`, read off deriveAthleteLevel's thresholds. Null at
+ *  the top, and for an intermediate without a race type. */
+export function nextLevelStep(level, experience, raceType) {
+    if (level === 'beginner') {
+        return experience === 0
+            ? { level: 'intermediate', afterMonths: 6 }
+            : { level: 'intermediate', weeklyHours: raceType ? MIN_VOLUME[raceType] ?? 2 : 2 };
+    }
+    if (level === 'intermediate' && raceType) {
+        const hours = MIN_ADVANCED_VOLUME[Math.max(2, Math.min(3, experience))][raceType];
+        return hours != null ? { level: 'advanced', afterMonths: 24, weeklyHours: hours } : null;
+    }
+    return null;
+}
+/** When resolveEffectiveLevel alone keeps the planned level down, the next
+ *  level is a weekly goal away. Null when the goal is not what holds it. */
+export function goalLevelStep(computed, experienceMonths, goalHours) {
+    const planned = resolveEffectiveLevel(computed, experienceMonths, goalHours);
+    if (computed === 'advanced' && planned === 'intermediate')
+        return { level: 'advanced', goalAboveHours: 4 };
+    if (computed === 'intermediate' && planned === 'beginner')
+        return { level: 'intermediate', goalAboveHours: 2.5 };
+    if (planned === 'beginner' && experienceMonths != null && experienceMonths >= 12) {
+        return { level: 'intermediate', goalFromHours: 6 };
+    }
+    return null;
+}
+/** Hard sessions per week the slot builder gives this level (45+: at most 2). */
+export function maxIntensitySessionsFor(athleteLevel, age) {
+    const baseMax = athleteLevel === 'beginner' ? 1 : athleteLevel === 'advanced' ? 3 : 2;
+    return (age != null && age >= 45) ? Math.min(baseMax, 2) : baseMax;
+}
+/** Whole years since `birthDate`, or null when it is unset or unparseable. The
+ *  onboarding saves its birth year as YYYY-01-01. */
+export function ageFromBirthDate(birthDate) {
+    if (!birthDate)
+        return null;
+    const ms = new Date(birthDate).getTime();
+    if (!Number.isFinite(ms))
+        return null;
+    return Math.floor((Date.now() - ms) / (365.25 * 24 * 60 * 60 * 1000));
+}
+/** Level default weekly volume jump (the athlete's own ramp limit goes first). */
+export function levelMaxJump(athleteLevel) {
+    return athleteLevel === 'beginner' ? 0.10
+        : athleteLevel === 'advanced' ? 0.15
+            : 0.12;
+}
+// ── App only ──
+/** Months of training the onboarding answer stands for — what it saves as
+ *  profiles.experience_months, and so what the planner reads. */
+export const EXPERIENCE_TO_MONTHS = {
+    0: 3, // < 6 months
+    1: 12, // 6–24 months
+    2: 36, // 2–5 years
+    3: 72, // 5+ years
+};
+/** The onboarding answer a number of months falls into. */
+export function monthsToExperience(months) {
+    if (months < 6)
+        return 0; // < 6 months
+    if (months < 24)
+        return 1; // 6–24 months
+    if (months < 60)
+        return 2; // 2–5 years
+    return 3; // 5+ years
+}
+export const ATHLETE_LEVELS = ['beginner', 'intermediate', 'advanced'];
+/** Narrow a stored level; anything unknown reads as intermediate, like the
+ *  race predictor's default. */
+export function toAthleteLevel(value) {
+    return ATHLETE_LEVELS.includes(value) ? value : 'intermediate';
+}
+/** Order of the levels: beginner 0, intermediate 1, advanced 2. */
+export function levelRank(level) {
+    return ATHLETE_LEVELS.indexOf(level);
+}
+/** Periodization a level gets without a pick of its own: beginners linear,
+ *  everyone else block from their distance's block volume on — the rule
+ *  deriveAthleteLevel applies to the level it derives. */
+export function defaultPeriodizationFor(level, weeklyHours, raceType) {
+    if (level === 'beginner')
+        return 'linear';
+    const minBlockVolume = raceType ? MIN_BLOCK_VOLUME[raceType] ?? 5 : 5;
+    return (parseFloat(weeklyHours) || 0) >= minBlockVolume ? 'block' : 'linear';
+}
+/**
+ * The onboarding store's level fields for new answers. `computedLevel` always
+ * follows the answers; `athleteLevel` (the one that applies and is saved) stays
+ * the athlete's own choice when there is one, and the periodization follows
+ * whichever level applies.
+ */
+export function onboardingLevel(experience, weeklyHours, raceType, chosen) {
+    const derived = deriveAthleteLevel(experience, weeklyHours, raceType);
+    if (!chosen)
+        return { computedLevel: derived.athleteLevel, ...derived };
+    return {
+        computedLevel: derived.athleteLevel,
+        athleteLevel: chosen,
+        periodizationMode: defaultPeriodizationFor(chosen, weeklyHours, raceType),
+    };
+}
+/** The store patch for a tap on the level card. Tapping the recommended level
+ *  drops the choice and goes back to the computed one. */
+export function levelChoice(state, level, recommended) {
+    const levelChosen = level !== recommended;
+    const athleteLevel = levelChosen ? level : state.computedLevel;
+    return {
+        athleteLevel,
+        levelChosen,
+        periodizationMode: defaultPeriodizationFor(athleteLevel, state.weeklyHours, state.raceType),
+    };
+}
