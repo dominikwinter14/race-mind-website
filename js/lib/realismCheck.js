@@ -383,7 +383,7 @@ export function isBaselinePlausible(baseline, raceType) {
 // ══════════════════════════════════════════════════════════
 // RACE DISTANCE RESOLVER
 // ══════════════════════════════════════════════════════════
-function resolveRaceDist(raceType, raceConfig) {
+export function resolveRaceDist(raceType, raceConfig) {
     let raceDist = RACE_TYPE_DISTANCES[raceType] ?? RACE_TYPE_DISTANCES.ironman;
     let courseFactors = { swim: 1.0, bike: 1.0, run: 1.0 };
     if (raceConfig) {
@@ -586,6 +586,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
             projected_best_hours: projectedBest,
             projected_probable_hours: projectedProb,
             projected_worst_hours: projectedWorst,
+            race_day: precomputedProjection ? null : raceDay.view,
             suggested_goal_hours: projectedProb,
             suggested_goal_formatted: formatTime(projectedProb),
             improvement_pct: round2(maxImprovement * 100),
@@ -736,6 +737,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projected_best_hours: projectedBest,
         projected_probable_hours: projectedProb,
         projected_worst_hours: projectedWorst,
+        race_day: precomputedProjection ? null : raceDay.view,
         projected_best_formatted: formatTime(projectedBest),
         projected_probable_formatted: formatTime(projectedProb),
         projected_worst_formatted: formatTime(projectedWorst),

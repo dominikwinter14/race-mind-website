@@ -46,7 +46,7 @@ export function onboardingRaceDay(params) {
     const { prognosis: p, base, raceType, weeksToRace, currentWeeklyHours, level } = params;
     const athlete = params.athlete ?? {};
     const same = {
-        ...base, improvement: 0, breakdown: null, probableAt: () => base.probable,
+        ...base, improvement: 0, breakdown: null, view: null, probableAt: () => base.probable,
     };
     if (!weeksToRace || weeksToRace < 3 || !(base.probable > 0))
         return same;
@@ -92,12 +92,19 @@ export function onboardingRaceDay(params) {
     // Never slower than today, as on the server.
     const clamp = (hours, today) => round4(Math.min(today, hours));
     const probable = clamp(projection.hours.probable, base.probable);
+    // The cone: every case from today's probable time (concept Umsetzung 6).
+    const fromToday = (c) => clamp(base.probable * (1 - projection.improvement[c]), base.probable);
     return {
         best: base.best != null ? clamp(projection.hours.best, base.best) : null,
         probable,
         worst: base.worst != null ? clamp(projection.hours.worst, base.worst) : null,
         improvement: 1 - probable / base.probable,
         breakdown: projection.breakdown,
+        view: {
+            today: base.probable,
+            cone: { best: fromToday('best'), probable, worst: fromToday('worst') },
+            breakdown: projection.breakdown,
+        },
         probableAt: (weeklyHours) => {
             const other = at(weeklyHours);
             return other ? clamp(other.hours.probable, base.probable) : base.probable;
