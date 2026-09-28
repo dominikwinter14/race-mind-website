@@ -562,6 +562,9 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projectedProb = raceDay.probable;
         projectedWorst = raceDay.worst;
     }
+    // The dream goal is the cone's best case, the one the card names; the gauge,
+    // the database and Race Control keep the input band (Dominik 29.09.2026).
+    const dreamBest = (precomputedProjection ? null : raceDay.view?.cone.best) ?? projectedBest;
     // ── GAP ANALYSIS ──
     if (!goalTimeHours) {
         const noGoalSuggestions = [];
@@ -611,8 +614,8 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     const suggestions = [];
     if (scaleLabel === 'too_easy') {
         suggestions.push({ type: 'adjust_goal_faster', label_de: tx('Schnelleres Ziel setzen', 'Set a faster goal'), suggested_goal_hours: projectedProb, suggested_goal_formatted: formatTime(projectedProb), message_de: tx('Du kannst mehr! Eine fordernde Zielzeit wäre ' + formatTime(projectedProb) + '.', 'You can do more! A challenging goal would be ' + formatTime(projectedProb) + '.') });
-        if (projectedBest) {
-            suggestions.push({ type: 'adjust_goal_dream', label_de: tx('Dream Goal setzen', 'Set a dream goal'), suggested_goal_hours: projectedBest, suggested_goal_formatted: formatTime(projectedBest), message_de: tx('Dein absolutes Best-Case-Ziel: ' + formatTime(projectedBest) + '. Ambitioniert, aber möglich.', 'Your absolute best-case goal: ' + formatTime(projectedBest) + '. Ambitious, but possible.') });
+        if (dreamBest) {
+            suggestions.push({ type: 'adjust_goal_dream', label_de: tx('Dream Goal setzen', 'Set a dream goal'), suggested_goal_hours: dreamBest, suggested_goal_formatted: formatTime(dreamBest), message_de: tx('Dein absolutes Best-Case-Ziel: ' + formatTime(dreamBest) + '. Ambitioniert, aber möglich.', 'Your absolute best-case goal: ' + formatTime(dreamBest) + '. Ambitious, but possible.') });
         }
         // Race-aware floor: never suggest below rp.hMin (improvement threshold).
         // Avoids absurd cases like "reduce IM to 4.79h/week".
