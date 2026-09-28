@@ -124,6 +124,34 @@ export function goalLevelStep(computed, experienceMonths, goalHours) {
     }
     return null;
 }
+/** The minimum weekly hours of the distance; a week counts as a training week from it. */
+export function minVolumeFor(raceType) {
+    return raceType ? MIN_VOLUME[raceType] ?? 2 : 2;
+}
+// ── Training age (copy of supabase/functions/_shared/training-age.ts) ──
+// The server counts the training weeks; the app gets them from
+// athlete_baseline.training_weeks and only computes with them.
+export const WEEKS_PER_MONTH = 4.33;
+/** Months from the onboarding answer plus the training weeks since. */
+export function trainingAgeMonths(experienceMonths, trainingWeeks) {
+    return experienceMonths + trainingWeeks / WEEKS_PER_MONTH;
+}
+const GROWTH_RANK = { beginner: 0, intermediate: 1, advanced: 2 };
+/** The onboarding rule with the training age in place of the answer, never below the floor. */
+export function grownAthleteLevel(input) {
+    const experience = monthsToExperience(trainingAgeMonths(input.experienceMonths, input.trainingWeeks));
+    const derived = deriveAthleteLevel(experience, String(input.weeklyHours), input.raceType).athleteLevel;
+    return input.floor && GROWTH_RANK[input.floor] > GROWTH_RANK[derived] ? input.floor : derived;
+}
+/** Training weeks until the training age reaches the months of the level
+ *  above, or null when the months are not what is missing. */
+export function trainingWeeksToNext(level, experienceMonths, trainingWeeks) {
+    const target = level === 'beginner' ? 6 : level === 'intermediate' ? 24 : null;
+    const months = trainingAgeMonths(experienceMonths, trainingWeeks);
+    if (target == null || months >= target)
+        return null;
+    return Math.ceil((target - months) * WEEKS_PER_MONTH);
+}
 /** Hard sessions per week the slot builder gives this level (45+: at most 2). */
 export function maxIntensitySessionsFor(athleteLevel, age) {
     const baseMax = athleteLevel === 'beginner' ? 1 : athleteLevel === 'advanced' ? 3 : 2;
@@ -184,19 +212,31 @@ export function defaultPeriodizationFor(level, weeklyHours, raceType) {
     return (parseFloat(weeklyHours) || 0) >= minBlockVolume ? 'block' : 'linear';
 }
 /**
- * The onboarding store's level fields for new answers. `computedLevel` always
- * follows the answers; `athleteLevel` (the one that applies and is saved) stays
- * the athlete's own choice when there is one, and the periodization follows
- * whichever level applies.
+ * The onboarding store's level fields for new answers. `computedLevel` follows
+ * the answers, or with `growth` the training age and never below the stored
+ * level; `athleteLevel` (the one that applies and is saved) stays the athlete's
+ * own choice when there is one, and the periodization follows whichever level
+ * applies.
  */
-export function onboardingLevel(experience, weeklyHours, raceType, chosen) {
-    const derived = deriveAthleteLevel(experience, weeklyHours, raceType);
-    if (!chosen)
-        return { computedLevel: derived.athleteLevel, ...derived };
+export function onboardingLevel(experience, weeklyHours, raceType, chosen, growth = null) {
+    const computedLevel = growth
+        ? grownAthleteLevel({
+            experienceMonths: EXPERIENCE_TO_MONTHS[experience],
+            trainingWeeks: growth.trainingWeeks,
+            weeklyHours: growth.weeklyHours ?? (parseFloat(weeklyHours) || 0),
+            raceType,
+            floor: growth.floor,
+        })
+        : deriveAthleteLevel(experience, weeklyHours, raceType).athleteLevel;
+    const athleteLevel = chosen ?? computedLevel;
+    return { computedLevel, athleteLevel, periodizationMode: defaultPeriodizationFor(athleteLevel, weeklyHours, raceType) };
+}
+/** What the level card reads off the training age: the experience its next
+ *  level is named from, and the training weeks until the months of that level. */
+export function levelProgress(level, experienceMonths, trainingWeeks) {
     return {
-        computedLevel: derived.athleteLevel,
-        athleteLevel: chosen,
-        periodizationMode: defaultPeriodizationFor(chosen, weeklyHours, raceType),
+        experience: monthsToExperience(trainingAgeMonths(experienceMonths, trainingWeeks)),
+        weeksToNext: trainingWeeksToNext(level, experienceMonths, trainingWeeks),
     };
 }
 /** The store patch for a tap on the level card. Tapping the recommended level
