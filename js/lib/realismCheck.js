@@ -6,6 +6,7 @@
 import { RACE_PARAMS } from '../constants/raceVolume.js';
 import { formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
+import { onboardingExecutionToday, onboardingRaceDay } from './onboardingRaceDay.js';
 import { classifyGoalTime } from './goalAssessment.js';
 import { isInBounds, seedInBand } from './thresholdBounds.js';
 // ══════════════════════════════════════════════════════════
@@ -95,10 +96,11 @@ export const BASE_SPREAD = { high: 0.06, medium: 0.10, low: 0.15 };
 // ══════════════════════════════════════════════════════════
 // ENTRY POINT 1: Manuelles Onboarding → Prognose + Realism
 // ══════════════════════════════════════════════════════════
-export function calculateOnboardingPrognosis({ onboardingData, raceType, athleteLevel, weightKg, weeklyHoursGoal, goalTimeHours, mainRaceDate, raceConfig, language, currentWeeklyHours, }) {
+export function calculateOnboardingPrognosis({ onboardingData, raceType, athleteLevel, weightKg, weeklyHoursGoal, goalTimeHours, mainRaceDate, raceConfig, language, currentWeeklyHours, athlete, }) {
     const lang = language === 'en' ? 'en' : 'de';
     const level = athleteLevel ?? 'intermediate';
     const weight = weightKg ?? 75;
+    const execution = onboardingExecutionToday(raceType, level, currentWeeklyHours, athlete);
     if (!onboardingData) {
         throw new Error('[realismCheck] onboardingData is required');
     }
@@ -112,7 +114,7 @@ export function calculateOnboardingPrognosis({ onboardingData, raceType, athlete
     const prognosis = buildPrognosis({
         thresholdPace, ftp, cssPace,
         runInput, bikeInput, swimInput,
-        raceDist, courseFactors, raceType, level, weight,
+        raceDist, courseFactors, raceType, level, weight, execution,
         source: 'onboarding',
     });
     const realism = realismCheck({
@@ -125,15 +127,17 @@ export function calculateOnboardingPrognosis({ onboardingData, raceType, athlete
         raceDist,
         lang,
         currentWeeklyHours,
+        athlete: { ...athlete, weightKg: weight },
     });
     return { prognosis, realism };
 }
 // ══════════════════════════════════════════════════════════
 // ENTRY POINT 2: Strava Baseline → Realism
 // ══════════════════════════════════════════════════════════
-export function calculateStravaRealism({ baseline, onboardingData, raceType, athleteLevel, weightKg, weeklyHoursGoal, goalTimeHours, mainRaceDate, raceConfig, language, thresholdsEdited, currentWeeklyHours, }) {
+export function calculateStravaRealism({ baseline, onboardingData, raceType, athleteLevel, weightKg, weeklyHoursGoal, goalTimeHours, mainRaceDate, raceConfig, language, thresholdsEdited, currentWeeklyHours, athlete, }) {
     const lang = language === 'en' ? 'en' : 'de';
     const level = athleteLevel ?? 'intermediate';
+    const execution = onboardingExecutionToday(raceType, level, currentWeeklyHours, athlete);
     if (!baseline) {
         throw new Error('[realismCheck] baseline is required');
     }
@@ -184,7 +188,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
             ftp: baseline.current_ftp_estimated ?? null,
             cssPace: baseline.current_css_pace_100m ?? null,
             runInput: null, bikeInput: null, swimInput: null,
-            raceDist, courseFactors, raceType, level, weight, source: 'strava',
+            raceDist, courseFactors, raceType, level, weight, execution, source: 'strava',
         });
     }
     const needsSwim = isTriRace && !recalc.swim_prognose_hours;
@@ -202,7 +206,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
                 fallbackSwim = buildPrognosis({
                     thresholdPace: null, ftp: null, cssPace: css,
                     runInput: null, bikeInput: null, swimInput: onboardingData.swim,
-                    raceDist, courseFactors, raceType, level, weight, source: 'onboarding',
+                    raceDist, courseFactors, raceType, level, weight, execution, source: 'onboarding',
                 });
         }
         if (needsBike && onboardingData?.bike) {
@@ -211,7 +215,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
                 fallbackBike = buildPrognosis({
                     thresholdPace: null, ftp: ftpVal, cssPace: null,
                     runInput: null, bikeInput: onboardingData.bike, swimInput: null,
-                    raceDist, courseFactors, raceType, level, weight, source: 'onboarding',
+                    raceDist, courseFactors, raceType, level, weight, execution, source: 'onboarding',
                 });
         }
         if (needsRun && onboardingData?.run) {
@@ -220,7 +224,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
                 fallbackRun = buildPrognosis({
                     thresholdPace: tp, ftp: null, cssPace: null,
                     runInput: onboardingData.run, bikeInput: null, swimInput: null,
-                    raceDist, courseFactors, raceType, level, weight, source: 'onboarding',
+                    raceDist, courseFactors, raceType, level, weight, execution, source: 'onboarding',
                 });
         }
     }
@@ -234,6 +238,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
         source_swim: needsSwim ? (fallbackSwim ? 'onboarding' : 'missing') : 'strava',
         source_bike: needsBike ? (fallbackBike ? 'onboarding' : 'missing') : 'strava',
         source_run: needsRun ? (fallbackRun ? 'onboarding' : 'missing') : 'strava',
+        exact: { swim: fallbackSwim?.exact?.swim, bike: fallbackBike?.exact?.bike, run: fallbackRun?.exact?.run },
     };
     if (fallbackSwim) {
         prognosis.swim_prognose_hours = fallbackSwim.swim_prognose_hours;
@@ -280,6 +285,7 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
         raceDist,
         lang,
         currentWeeklyHours,
+        athlete: { ...athlete, weightKg: weight },
     });
     return { prognosis, realism };
 }
@@ -400,7 +406,7 @@ function resolveRaceDist(raceType, raceConfig) {
 // ══════════════════════════════════════════════════════════
 // BUILD PROGNOSIS (from derived thresholds)
 // ══════════════════════════════════════════════════════════
-function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swimInput, raceDist, courseFactors, raceType, level, weight, source, }) {
+function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swimInput, raceDist, courseFactors, raceType, level, weight, execution, source, }) {
     const T1h = raceDist.t1_min / 60;
     const T2h = raceDist.t2_min / 60;
     // ── Per-discipline race times via shared predictor ──
@@ -416,6 +422,7 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
     }, {
         raceType,
         level,
+        ...(execution != null ? { execution } : {}),
         distances: { swim: raceDist.swim, bike: raceDist.bike, run: raceDist.run },
     });
     // Run — gated on threshold presence (legacy "null when no input" semantic).
@@ -484,6 +491,7 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
         confidence_swim: swimConfidence,
         confidence_overall: overallConfidence,
         source,
+        exact: { run: runInput?.mode === 'threshold', bike: bikeInput?.mode === 'ftp', swim: swimInput?.mode === 'css' },
     };
 }
 // ══════════════════════════════════════════════════════════
@@ -491,16 +499,13 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
 // ══════════════════════════════════════════════════════════
 // RACE_PARAMS is imported from constants/raceVolume.ts (single source of truth).
 // Edge function copy in supabase/functions/_shared/race-day-projection.ts must stay
-// byte-identical — enforced by __tests__/lib/race-constants-sync.test.ts.
-const PROJECTION_CAPS = {
-    beginner: { '5k': 0.24, '10k': 0.22, half_marathon: 0.20, marathon: 0.18, sprint_tri: 0.21, olympic_tri: 0.19, half_ironman: 0.17, ironman: 0.16, bike_race: 0.18 },
-    intermediate: { '5k': 0.18, '10k': 0.16, half_marathon: 0.14, marathon: 0.12, sprint_tri: 0.15, olympic_tri: 0.13, half_ironman: 0.10, ironman: 0.08, bike_race: 0.12 },
-    advanced: { '5k': 0.14, '10k': 0.12, half_marathon: 0.10, marathon: 0.08, sprint_tri: 0.11, olympic_tri: 0.09, half_ironman: 0.07, ironman: 0.06, bike_race: 0.08 },
-};
+// byte-identical — enforced by __tests__/lib/race-constants-sync.test.ts. The
+// level caps are gone since Phase 2: the headroom table is the cap
+// (lib/onboardingRaceDay.ts).
 // ══════════════════════════════════════════════════════════
 // UNIVERSAL: Realism Check (exported for Live-Updates)
 // ══════════════════════════════════════════════════════════
-export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRaceDate, athleteLevel, raceType, raceDist, precomputedProjection, lang, currentWeeklyHours, }) {
+export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRaceDate, athleteLevel, raceType, raceDist, precomputedProjection, lang, currentWeeklyHours, athlete, }) {
     const l = lang ?? 'de';
     const tx = (de, en) => l === 'en' ? en : de;
     const level = athleteLevel ?? 'intermediate';
@@ -529,65 +534,21 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     const weeksToRace = mainRaceDate
         ? Math.max(0, (new Date(mainRaceDate).getTime() - Date.now()) / (7 * 86400000))
         : null;
-    const IMPROVEMENT_RATES = { beginner: 0.025, intermediate: 0.022, advanced: 0.010 };
-    const monthlyRate = IMPROVEMENT_RATES[level] ?? 0.015;
-    const monthsToRace = weeksToRace ? weeksToRace / 4.33 : 0;
     const rp = RACE_PARAMS[raceType] || RACE_PARAMS.ironman;
     const minHours = rp.hMin;
     const RAMP_CEILING = 1.15; // suggest 15% above minimum for volume increase suggestions
-    // Volume sufficiency: soft ramp hMin→hNorm (0→1), diminishing returns hNorm→hCap (1→1.15)
-    let volumeEffect;
-    let volumeStatus = 'sufficient';
-    if (weeklyHoursGoal < rp.hMin) {
-        volumeEffect = 0;
-        volumeStatus = 'insufficient';
-    }
-    else if (weeklyHoursGoal <= rp.hNorm) {
-        volumeEffect = (weeklyHoursGoal - rp.hMin) / (rp.hNorm - rp.hMin);
-        // Above hMin = sufficient. No "marginal" warning between hMin and hMin*1.3
-        // because volume warnings are reserved for "below improvement threshold".
-    }
-    else if (weeklyHoursGoal <= rp.hCap) {
-        volumeEffect = 1 + 0.15 * (weeklyHoursGoal - rp.hNorm) / (rp.hCap - rp.hNorm);
-    }
-    else {
-        volumeEffect = 1.15;
-    }
-    // Gap penalty: light dampener — plan engine handles ramp safety (max +15%/week),
-    // so the cliff-jump assumption is wrong. Coefficient kept low.
-    const gapPenalty = 1 / (1 + 0.05 * Math.max(0, weeklyHoursGoal / currentWeeklyHours - 1));
-    // Time saturation: divisor 2 reflects typical 8-12 week adaptation cycle for endurance training.
-    const timeFactor = monthsToRace > 0 ? 1 - Math.exp(-monthsToRace / 2) : 0;
-    // Race-type-aware caps
-    const levelCaps = PROJECTION_CAPS[level] || PROJECTION_CAPS.intermediate;
-    const totalCap = levelCaps[raceType] || levelCaps.ironman || 0.08;
-    // Continuous compounding
-    const baseRate = monthlyRate * rp.raceRateMult * volumeEffect * gapPenalty;
-    const rawImprovement = monthsToRace > 0 ? 1 - Math.exp(-baseRate * monthsToRace * timeFactor) : 0;
-    // Proportional taper bonus
-    const taperBonus = Math.min(0.015, 0.15 * rawImprovement);
-    const maxImprovement = Math.min(rawImprovement + taperBonus, totalCap);
-    const projectProbableAtHours = (hours) => {
-        let ve;
-        if (hours < rp.hMin) {
-            ve = 0;
-        }
-        else if (hours <= rp.hNorm) {
-            ve = (hours - rp.hMin) / (rp.hNorm - rp.hMin);
-        }
-        else if (hours <= rp.hCap) {
-            ve = 1 + 0.15 * (hours - rp.hNorm) / (rp.hCap - rp.hNorm);
-        }
-        else {
-            ve = 1.15;
-        }
-        const gp = 1 / (1 + 0.05 * Math.max(0, hours / currentWeeklyHours - 1));
-        const rate = monthlyRate * rp.raceRateMult * ve * gp;
-        const raw = monthsToRace > 0 ? 1 - Math.exp(-rate * monthsToRace * timeFactor) : 0;
-        const tb = Math.min(0.015, 0.15 * raw);
-        const impr = Math.min(raw + tb, totalCap);
-        return round4(adjTotal * (1 - impr));
-    };
+    // Below hMin no improvement is possible; above it is sufficient. No "marginal"
+    // warning between hMin and hMin*1.3: volume warnings are reserved for "below
+    // improvement threshold".
+    const volumeStatus = weeklyHoursGoal < rp.hMin ? 'insufficient' : 'sufficient';
+    // The gain by race day hangs on the thresholds, not on the level (Phase 2).
+    const raceDay = onboardingRaceDay({
+        prognosis, base: { best: bestCase, probable: adjTotal, worst: worstCase },
+        raceType, distances: raceDist, weeksToRace, weeklyHoursGoal, currentWeeklyHours, level, athlete,
+    });
+    const maxImprovement = raceDay.improvement;
+    const projectProbableAtHours = raceDay.probableAt;
+    const monthsToRace = weeksToRace ? weeksToRace / 4.33 : 0;
     let projectedBest;
     let projectedProb;
     let projectedWorst;
@@ -597,9 +558,9 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projectedWorst = precomputedProjection.projectedWorst;
     }
     else {
-        projectedBest = bestCase ? round4(bestCase * (1 - Math.min(rawImprovement * 1.3 + taperBonus, totalCap * 1.2))) : null;
-        projectedProb = round4(adjTotal * (1 - maxImprovement));
-        projectedWorst = worstCase ? round4(worstCase * (1 - Math.min(rawImprovement * 0.4 + taperBonus * 0.5, totalCap * 0.5))) : null;
+        projectedBest = raceDay.best;
+        projectedProb = raceDay.probable;
+        projectedWorst = raceDay.worst;
     }
     // ── GAP ANALYSIS ──
     if (!goalTimeHours) {
@@ -665,14 +626,17 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     }
     else if (scaleLabel === 'unrealistic' || scaleLabel === 'high_effort') {
         suggestions.push({ type: 'adjust_goal', label_de: tx('Zielzeit anpassen', 'Adjust goal time'), suggested_goal_hours: projectedProb, suggested_goal_formatted: formatTime(projectedProb), message_de: tx('Eine realistischere Zielzeit wäre ' + formatTime(projectedProb) + '.', 'A more realistic goal time would be ' + formatTime(projectedProb) + '.') });
-        const requiredImprovement = (projectedProb - goal) / projectedProb;
-        const requiredTotal = requiredImprovement + maxImprovement;
-        if (requiredTotal <= totalCap * 1.5 && monthsToRace > 0) {
-            const requiredRate = (requiredTotal - taperBonus) / monthsToRace;
-            const requiredVF = requiredRate / monthlyRate;
-            const clampedVF = Math.max(0.6, Math.min(1.15, requiredVF));
-            const requiredHours = Math.pow(12, 2 * (clampedVF - 0.5));
-            const suggestedHours = round2(Math.max((weeklyHoursGoal ?? 10) + 1, Math.min(25, requiredHours)));
+        if (monthsToRace > 0) {
+            // The least weekly volume that reaches the goal; volume stops helping at
+            // hCap, so the search ends there and falls back to its projection.
+            const topHours = Math.min(25, Math.max(rp.hCap, (weeklyHoursGoal ?? 10) + 1));
+            let suggestedHours = topHours;
+            for (let h = (weeklyHoursGoal ?? 10) + 1; h < topHours; h += 0.5) {
+                if (projectProbableAtHours(h) <= goal) {
+                    suggestedHours = round2(h);
+                    break;
+                }
+            }
             if (suggestedHours > (weeklyHoursGoal ?? 10)) {
                 const projAtSuggested = projectProbableAtHours(suggestedHours);
                 const closesGapPct = Math.abs(gapHours) > 0 ? (projectedProb - projAtSuggested) / Math.abs(gapHours) : 0;

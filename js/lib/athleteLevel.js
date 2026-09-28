@@ -154,6 +154,58 @@ export function trainingWeeksToNext(level, experienceMonths, trainingWeeks) {
         return null;
     return Math.ceil((target - months) * WEEKS_PER_MONTH);
 }
+// ── Execution for the prognosis (Phase 2) ──
+// Mirrors supabase/functions/_shared/training-age.ts (executionToday,
+// executionOnRaceDay); athlete-level-parity.test.ts holds the two together.
+// The prognosis glides between the plan's three steps: beginner → intermediate
+// from 6 to 12 months of training age, intermediate → advanced from 24 to 36.
+const GLIDES = [
+    { from: 6, months: 6 },
+    { from: 24, months: 12 },
+];
+/** The execution the training age alone reaches (0 beginner … 2 advanced). */
+export function executionByAge(months) {
+    return GLIDES.reduce((x, g) => x + Math.min(1, Math.max(0, (months - g.from) / g.months)), 0);
+}
+function rankOf(level) {
+    return level && level in GROWTH_RANK ? GROWTH_RANK[level] : null;
+}
+/** The glide by age, held where the weekly hours stop carrying the next
+ *  level, never below the stored level. */
+function heldByVolume(months, weeklyHours, raceType, floor) {
+    const carried = deriveAthleteLevel(monthsToExperience(Math.max(months, 24)), String(weeklyHours), raceType).athleteLevel;
+    return Math.min(executionByAge(months), Math.max(GROWTH_RANK[carried], floor ?? 0));
+}
+/** Today's execution: an own pick as it is, a computed level by its glide. */
+export function executionToday(input, weeklyHours) {
+    const stored = rankOf(input.stored);
+    if (input.chosen && stored != null)
+        return stored;
+    if (input.experienceMonths == null)
+        return stored ?? 1;
+    const months = trainingAgeMonths(input.experienceMonths, input.trainingWeeks);
+    return heldByVolume(months, weeklyHours, input.raceType, stored);
+}
+/** The execution on race day, `weeksToRace` of training as planned at
+ *  `plannedHours` a week, never below today's. A pick at or above what the
+ *  training shows is a floor the training age can outgrow; one below stays. */
+export function executionOnRaceDay(input, weeklyHours, weeksToRace, plannedHours) {
+    const today = executionToday(input, weeklyHours);
+    if (input.experienceMonths == null)
+        return today;
+    const months = trainingAgeMonths(input.experienceMonths, input.trainingWeeks + Math.max(0, weeksToRace));
+    const stored = rankOf(input.stored);
+    if (input.chosen && stored != null) {
+        const shown = grownAthleteLevel({
+            experienceMonths: input.experienceMonths, trainingWeeks: input.trainingWeeks,
+            weeklyHours, raceType: input.raceType, floor: null,
+        });
+        if (stored < GROWTH_RANK[shown])
+            return stored;
+        return Math.max(stored, heldByVolume(months, plannedHours, input.raceType, null));
+    }
+    return Math.max(today, heldByVolume(months, plannedHours, input.raceType, stored));
+}
 /** Hard sessions per week the slot builder gives this level (45+: at most 2). */
 export function maxIntensitySessionsFor(athleteLevel, age) {
     const baseMax = athleteLevel === 'beginner' ? 1 : athleteLevel === 'advanced' ? 3 : 2;

@@ -11,18 +11,18 @@
  * __tests__/lib/race-constants-sync.test.ts asserts byte-identical RACE_PARAMS.
  */
 export const RACE_PARAMS = {
-    '5k': { hMin: 2, hNorm: 3, hCap: 5, raceRateMult: 1.10 },
-    '10k': { hMin: 2, hNorm: 4, hCap: 6, raceRateMult: 1.05 },
-    half_marathon: { hMin: 3, hNorm: 5, hCap: 7, raceRateMult: 1.00 },
-    marathon: { hMin: 3, hNorm: 6, hCap: 9, raceRateMult: 0.90 },
-    sprint_tri: { hMin: 2, hNorm: 4, hCap: 7, raceRateMult: 1.00 },
-    olympic_tri: { hMin: 3, hNorm: 6, hCap: 9, raceRateMult: 0.95 },
-    half_ironman: { hMin: 4, hNorm: 8, hCap: 12, raceRateMult: 0.85 },
-    ironman: { hMin: 8, hNorm: 12, hCap: 18, raceRateMult: 0.75 },
+    '5k': { hMin: 2, hNorm: 3, hCap: 5 },
+    '10k': { hMin: 2, hNorm: 4, hCap: 6 },
+    half_marathon: { hMin: 3, hNorm: 5, hCap: 7 },
+    marathon: { hMin: 3, hNorm: 6, hCap: 9 },
+    sprint_tri: { hMin: 2, hNorm: 4, hCap: 7 },
+    olympic_tri: { hMin: 3, hNorm: 6, hCap: 9 },
+    half_ironman: { hMin: 4, hNorm: 8, hCap: 12 },
+    ironman: { hMin: 8, hNorm: 12, hCap: 18 },
     // Bike races are B-races, so these only ever shape the improvement projection
-    // to the race date, never a volume slider. Mid-field values: a rider training
-    // for something else improves on the bike at roughly a half-marathon rate.
-    bike_race: { hMin: 3, hNorm: 6, hCap: 10, raceRateMult: 0.95 },
+    // to the race date, never a volume slider. Mid-field values, between the
+    // half-marathon and the olympic row.
+    bike_race: { hMin: 3, hNorm: 6, hCap: 10 },
 };
 /**
  * Slider / plan-engine ceiling per race type. Mirrors MAX_HOURS in

@@ -6,7 +6,7 @@
    ══════════════════════════════════════════════════════════ */
 
 import { calculateOnboardingPrognosis } from './lib/realismCheck.js';
-import { deriveAthleteLevel } from './lib/athleteLevel.js';
+import { deriveAthleteLevel, EXPERIENCE_TO_MONTHS } from './lib/athleteLevel.js';
 import { RACE_PARAMS } from './constants/raceVolume.js';
 
 (function () {
@@ -726,6 +726,8 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
         language: LANG,
         currentWeeklyHours: weeklyNow || weeklyGoal,
         weightKg: num(state.bike.weight) || undefined,
+        // Race day at the level the months reach by then; no age asked, so no age factor.
+        athlete: hasStep2 ? { experienceMonths: EXPERIENCE_TO_MONTHS[parseInt(state.exp, 10)] } : null,
       });
     } catch (err) {
       forecast = null;

@@ -24,6 +24,32 @@ const RACE_DISTANCES = {
     // placeholder shape — the real distance arrives via opts.distances.run.
     run_race: { swim: 0, bike: 0, run: 10000, t1_min: 0, t2_min: 0 },
 };
+const LEVELS = ['beginner', 'intermediate', 'advanced'];
+/** A level as its point; an unknown one sits in the middle. */
+export function executionOf(level) {
+    const i = LEVELS.indexOf(level);
+    return i < 0 ? 1 : i;
+}
+/** A level-keyed value at a point, linear between the two levels around it.
+ *  A whole number reads its cell as it is, so a plain level stays exact. */
+export function atExecution(row, x) {
+    const at = Math.min(2, Math.max(0, x));
+    const lo = Math.floor(at);
+    const t = at - lo;
+    if (t === 0)
+        return row[LEVELS[lo]];
+    return row[LEVELS[lo]] + (row[LEVELS[lo + 1]] - row[LEVELS[lo]]) * t;
+}
+/** The transition minutes at a point, or undefined for a race without them. */
+function transitionAt(raceType, x) {
+    const row = TRANSITION_MIN[raceType];
+    if (!row)
+        return undefined;
+    return {
+        t1: atExecution({ beginner: row.beginner.t1, intermediate: row.intermediate.t1, advanced: row.advanced.t1 }, x),
+        t2: atExecution({ beginner: row.beginner.t2, intermediate: row.intermediate.t2, advanced: row.advanced.t2 }, x),
+    };
+}
 /** Transition minutes per level (2026-08-06). The t1_min/t2_min in
  *  RACE_DISTANCES were a single value per race type — a first-timer wrestling
  *  a wetsuit off in an unfamiliar transition area got the same 3 minutes as
@@ -131,8 +157,11 @@ export const SWIM_CSS_FACTOR = {
  *  triathlon has a swim leg, and a race type we do not know is priced in the
  *  middle rather than at either edge. */
 export function swimCssFactor(raceType, level) {
-    const row = SWIM_CSS_FACTOR[raceType] ?? SWIM_CSS_FACTOR.olympic_tri;
-    return row[level] ?? row.intermediate;
+    return swimCssFactorAt(raceType, executionOf(level));
+}
+/** swimCssFactor at a point between two levels. */
+function swimCssFactorAt(raceType, x) {
+    return atExecution(SWIM_CSS_FACTOR[raceType] ?? SWIM_CSS_FACTOR.olympic_tri, x);
 }
 /** Standalone bike race: the IF comes from the DISTANCE, not a race-type row —
  *  a 40 km criterium and a 180 km gran fondo share one race_type and nothing
@@ -312,9 +341,9 @@ function nearestRunAnchor(distanceM) {
  *
  *  Canonical distances are unaffected: at 42195 m the lerp is 1 (full margin,
  *  exactly as before) and at or below 21097.5 m it is 0 (no margin, as before). */
-function enduranceMargin(distanceM, level) {
+function enduranceMargin(distanceM, x) {
     const t = Math.min(1, Math.max(0, (distanceM - 21097.5) / (42195 - 21097.5)));
-    const full = MARATHON_LEVEL_MARGIN[level] ?? 1.05;
+    const full = atExecution(MARATHON_LEVEL_MARGIN, x);
     return 1.0 + t * (full - 1.0);
 }
 /** Race seconds for a canonical distance column from threshold pace,
@@ -347,6 +376,7 @@ const FALLBACK_HOURS = {
 // ── Main ──
 export function predictRaceDuration(thresholds, opts) {
     const dist = resolveDistances(opts);
+    const x = opts.execution ?? executionOf(opts.level);
     const courseFactors = {
         swim: opts.courseFactors?.swim ?? 1.0,
         bike: opts.courseFactors?.bike ?? 1.0,
@@ -369,11 +399,12 @@ export function predictRaceDuration(thresholds, opts) {
                 // Column 4 is the PURE Daniels marathon; the amateur margin is applied
                 // separately, keyed on the actual distance rather than on the race_type.
                 const raceSec = raceSecondsFromThreshold(tp, vdotRace.col)
-                    * enduranceMargin(dist.run, opts.level);
+                    * enduranceMargin(dist.run, x);
                 runHours = (raceSec / 3600) * Math.pow(dist.run / vdotRace.baseDist, RIEGEL_EXPONENT);
             }
             else {
-                const factor = RUN_RACE_FACTOR[opts.raceType]?.[opts.level] ?? 0.85;
+                const row = RUN_RACE_FACTOR[opts.raceType];
+                const factor = row ? atExecution(row, x) : 0.85;
                 const thresholdSpeedKmH = 3600 / tp;
                 const raceSpeedKmH = thresholdSpeedKmH * factor;
                 runHours = (dist.run / 1000) / raceSpeedKmH;
@@ -391,7 +422,7 @@ export function predictRaceDuration(thresholds, opts) {
         const ftp = thresholds.ftp_watts;
         const weight = thresholds.weight_kg;
         if (ftp && ftp > 0 && weight && weight > 0) {
-            bikeHours = predictBikeHours(ftp, weight, dist.bike, opts.raceType, opts.level);
+            bikeHours = predictBikeHours(ftp, weight, dist.bike, opts.raceType, x, opts.seat ?? x);
             bikeHours *= courseFactors.bike;
             usedThresholds = true;
         }
@@ -404,7 +435,7 @@ export function predictRaceDuration(thresholds, opts) {
     if (dist.swim > 0) {
         const css = thresholds.css_pace_sec_per_100m;
         if (css && css > 0) {
-            const factor = swimCssFactor(opts.raceType, opts.level);
+            const factor = swimCssFactorAt(opts.raceType, x);
             const racePacePer100m = css / factor;
             swimHours = (racePacePer100m * OW_FACTOR * (dist.swim / 100)) / 3600;
             swimHours *= courseFactors.swim;
@@ -442,10 +473,11 @@ export function predictRaceDuration(thresholds, opts) {
 export function predictRaceDurationHours(thresholds, opts) {
     return predictRaceDuration(thresholds, opts).total_hours;
 }
-function predictBikeHours(ftp, weight, distanceM, raceType, level) {
-    const raceIF = BIKE_RACE_IF[raceType]?.[level] ?? 0.75;
+function predictBikeHours(ftp, weight, distanceM, raceType, x, seat) {
+    const ifRow = BIKE_RACE_IF[raceType];
+    const raceIF = ifRow ? atExecution(ifRow, x) : 0.75;
     const racePower = ftp * raceIF;
-    const cda = CDA_BY_LEVEL[level] ?? 0.28;
+    const cda = atExecution(CDA_BY_LEVEL, seat);
     const RHO = 1.205;
     const CRR = 0.004;
     const G = 9.81;
@@ -487,7 +519,7 @@ function resolveDistances(opts) {
     const base = RACE_DISTANCES[opts.raceType] ?? RACE_DISTANCES.marathon;
     // Level-keyed transition, falling back to the flat row for any race type
     // without a TRANSITION_MIN entry (open runs, bike races — all zero anyway).
-    const t = TRANSITION_MIN[opts.raceType]?.[opts.level];
+    const t = transitionAt(opts.raceType, opts.execution ?? executionOf(opts.level));
     return {
         swim: opts.distances?.swim ?? base.swim,
         bike: opts.distances?.bike ?? base.bike,
