@@ -18,6 +18,7 @@ const TEXTS = {
         faster: 'Schneller als deine Spanne. Mit mehr Umfang rückt es näher.',
         fasterNoHours: 'Schneller als deine Spanne. Mehr Stunden schließen die Lücke nicht.',
         farFaster: 'Weit schneller als deine Spanne. Auch mehr Stunden schließen die Lücke nicht.',
+        farFasterHours: 'Weit schneller als deine Spanne. Mit mehr Umfang rückt es näher.',
         volume: 'Mit {h} h pro Woche hältst du dein Level. Schneller wirst du ab {min} h.',
     },
     en: {
@@ -27,6 +28,7 @@ const TEXTS = {
         faster: 'Faster than your range. More volume brings it closer.',
         fasterNoHours: "Faster than your range. More hours won't close the gap.",
         farFaster: "Well beyond your range. More hours won't close the gap.",
+        farFasterHours: 'Well beyond your range. More volume brings it closer.',
         volume: 'At {h} h per week you hold your level. From {min} h you get faster.',
     },
 };
@@ -49,7 +51,8 @@ export function goalVerdict(input) {
         case 'comfortable': return t.comfortable;
         case 'stretch': return t.stretch;
         case 'high_effort': return input.hoursHelpful ? t.faster : t.fasterNoHours;
-        // unrealistic: more hours that do close half the gap still bring it closer.
-        default: return input.hoursHelpful ? t.faster : t.farFaster;
+        // unrealistic: more hours that do close half the gap still bring it closer,
+        // and the goal stays "well beyond" under the red label (Dominik 29.09.2026).
+        default: return input.hoursHelpful ? t.farFasterHours : t.farFaster;
     }
 }

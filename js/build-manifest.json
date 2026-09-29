@@ -4,7 +4,7 @@
     "lib/realismCheck.ts": "46350c34592ea31e1e35e9961de4be162e08b10b697a8b334e650d370ae46156",
     "lib/raceDurationPredictor.ts": "2865e39650449138a50376c9287be3d67eec4dfc8d5cc895a3b9c2eff4d2a3d9",
     "lib/goalAssessment.ts": "1ceaa7f1e0efa17322e6329dc35d3d9a5a3109a050ccfc501d72484f573df8d3",
-    "lib/goalVerdict.ts": "629a7793a02c383b391f735829511996c4bcc86d009e525e89bb15b5af7d5828",
+    "lib/goalVerdict.ts": "2ad7d71707851d5123394754f9d3e8cd3fd6a61bfb2b06d38aa507b5d82697e2",
     "lib/moreHoursSuggestion.ts": "f563933a48b9cb787dfe03e30ff477df6422d75851f8ed4641dd35b20dc57052",
     "lib/athleteLevel.ts": "853d404f49a34ad9df27a57cc1b67b9a00fd44d5ac7b8164d3c8cd066690a0aa",
     "lib/improvementHeadroom.ts": "ab291ead5aed6dbcd719a2892c98c28578489496f04c57e96dfe3b4aaeb1ed4b",
