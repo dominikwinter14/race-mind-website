@@ -71,6 +71,7 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
       shareFooter: 'race-mind.com/race-time',
       shareToday: 'WO ICH HEUTE STEHE', shareRace: 'MEINE ZIELZEIT',
       volumeWarn: 'Unter %h h/Woche rechnen wir mit keiner Verbesserung bis zum Renntag.',
+      goalTime: 'Zielzeit',
     },
     en: {
       dist: {
@@ -116,6 +117,7 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
       shareFooter: 'race-mind.com/race-time',
       shareToday: 'WHERE I STAND TODAY', shareRace: 'MY TARGET TIME',
       volumeWarn: 'Below %h h/week we project no improvement until race day.',
+      goalTime: 'Target time',
     },
   }[LANG];
 
@@ -828,11 +830,18 @@ import { RACE_PARAMS } from './constants/raceVolume.js';
     }
 
     // Goal verdict — realismCheck already returns the message in the page language.
+    // The sentence is written to stand under the goal (lib/goalVerdict.ts), and
+    // the goal field sits further down in step 2: the box names it first.
     var verdict = $('rtVerdict');
     if (re.message_de && re.scale_label !== 'no_goal') {
       verdict.style.display = '';
       verdict.className = 'rt-verdict rt-verdict--' + verdictTone(re);
-      verdict.textContent = re.message_de;
+      verdict.textContent = '';
+      if (re.goal_time_formatted) {
+        verdict.appendChild(el('strong', null, T.goalTime + ' ' + re.goal_time_formatted));
+        verdict.appendChild(document.createElement('br'));
+      }
+      verdict.appendChild(document.createTextNode(re.message_de));
     } else {
       verdict.style.display = 'none';
     }

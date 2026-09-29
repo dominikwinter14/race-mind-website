@@ -6,13 +6,14 @@
 // "At 8 h per week: 5:20 on race day" (components/forecast/RaceDayForecastCard.tsx).
 /** At most this many hours more than the athlete plans. */
 const MAX_MORE_HOURS = 3;
-/** A suggestion that gains less than a minute is not one. */
-const MIN_GAIN_HOURS = 1 / 60;
+/** A suggestion that gains less than a minute is not one (also realismCheck's other hours lines). */
+export const MIN_GAIN_HOURS = 1 / 60;
 export function moreHoursSuggestion(input) {
     const { weeklyHours: h, probable, formatTime, tx } = input;
     if (!(h < input.hNorm))
         return null;
-    const suggested = Math.round(Math.min(input.hNorm, h + MAX_MORE_HOURS) * 2) / 2;
+    // Down to the half hour, or 4.3 h + 3 would round up to 7.5 h.
+    const suggested = Math.floor(Math.min(input.hNorm, h + MAX_MORE_HOURS) * 2) / 2;
     if (!(suggested > h + 0.5))
         return null;
     const at = input.projectAt(suggested);

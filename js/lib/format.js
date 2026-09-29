@@ -357,6 +357,21 @@ export function formatHoursToCanonical(hours, raceType) {
     const hm = h + ':' + String(m).padStart(2, '0');
     return raceTimeFormat(raceType) === 'mmss' ? hm + ':' + String(s).padStart(2, '0') : hm;
 }
+/**
+ * A best-case finish rounded UP to the unit it is shown in — the second for
+ * 5k/10k, else the minute —, so 4:58:42 reads "4:59". Display and storage
+ * truncate and the grade compares exactly (lib/goalAssessment.ts): with the
+ * exact value, "4:58" applied as the dream goal or typed as the lower bound
+ * shown was faster than the best case, and graded AMBITIOUS.
+ *
+ * The hair below the unit absorbs the float noise of reading the time back:
+ * 4 + 59/60 is not always 17940/3600 to the last bit. It is far too small to
+ * move a truncated minute (splitHoursToHM's epsilon is larger).
+ */
+export function ceilToShownTime(hours, raceType) {
+    const unitSec = raceTimeFormat(raceType) === 'mmss' ? 1 : 60;
+    return (Math.ceil((hours * 3600) / unitSec - 1e-6) * unitSec) / 3600 - 1e-12;
+}
 /** Convert a user-facing field string (MM:SS for 5k/10k) to canonical storage. */
 export function raceTimeToCanonical(display, raceType) {
     if (!display)

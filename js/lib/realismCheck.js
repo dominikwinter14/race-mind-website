@@ -4,12 +4,12 @@
 // Rein synchron, kein Netzwerk, keine Secrets.
 // ══════════════════════════════════════════════════════════
 import { RACE_PARAMS } from '../constants/raceVolume.js';
-import { formatHoursToHM } from './format.js';
+import { ceilToShownTime, formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
 import { onboardingExecutionToday, onboardingRaceDay } from './onboardingRaceDay.js';
 import { classifyGoalTime } from './goalAssessment.js';
 import { goalVerdict } from './goalVerdict.js';
-import { moreHoursSuggestion } from './moreHoursSuggestion.js';
+import { MIN_GAIN_HOURS, moreHoursSuggestion } from './moreHoursSuggestion.js';
 import { isInBounds, seedInBand } from './thresholdBounds.js';
 // ══════════════════════════════════════════════════════════
 // CONSTANTS
@@ -564,6 +564,10 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projectedProb = raceDay.probable;
         projectedWorst = raceDay.worst;
     }
+    // The best case as it is shown, its minute rounded up: applied or typed back,
+    // it is not faster than itself (lib/format.ts ceilToShownTime).
+    if (projectedBest != null)
+        projectedBest = Math.min(ceilToShownTime(projectedBest, raceType), projectedProb);
     // The dream goal is the band's best case: the one the forecast card names
     // ("possible 4:57–6:25"), the grade, the database and Race Control use
     // (Dominik 29.09.2026, the card's redesign).
@@ -574,15 +578,17 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         if (volumeStatus === 'insufficient') {
             const sugHrs = halfHours(minHours * RAMP_CEILING);
             const projAt = projectProbableAtHours(sugHrs);
-            noGoalSuggestions.push({
-                type: 'increase_volume',
-                label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'),
-                current_hours: weeklyHoursGoal ?? 10,
-                suggested_hours: sugHrs, min_hours: minHours,
-                projected_probable_at_suggested: projAt,
-                projected_probable_formatted_at_suggested: formatTime(projAt),
-                message_de: tx('Ab ' + minHours + 'h/Woche wird Verbesserung möglich. Bei ' + sugHrs + 'h erreichst du voraussichtlich ' + formatTime(projAt) + '.', 'From ' + minHours + 'h/week improvement becomes possible. At ' + sugHrs + 'h you can expect ' + formatTime(projAt) + '.'),
-            });
+            // Close to race day (or without a date) the hours gain nothing: no line then.
+            if (projectedProb - projAt >= MIN_GAIN_HOURS)
+                noGoalSuggestions.push({
+                    type: 'increase_volume',
+                    label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'),
+                    current_hours: weeklyHoursGoal ?? 10,
+                    suggested_hours: sugHrs, min_hours: minHours,
+                    projected_probable_at_suggested: projAt,
+                    projected_probable_formatted_at_suggested: formatTime(projAt),
+                    message_de: tx('Ab ' + minHours + 'h/Woche wird Verbesserung möglich. Bei ' + sugHrs + 'h erreichst du voraussichtlich ' + formatTime(projAt) + '.', 'From ' + minHours + 'h/week improvement becomes possible. At ' + sugHrs + 'h you can expect ' + formatTime(projAt) + '.'),
+                });
         }
         else if (monthsToRace > 0) {
             const more = moreHoursSuggestion({ weeklyHours: weeklyHoursGoal, hNorm: rp.hNorm, probable: projectedProb, projectAt: projectProbableAtHours, formatTime, tx });
@@ -710,7 +716,8 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     if (volumeStatus === 'insufficient' && ambitiousGoal) {
         const suggestedHrsVol = halfHours(minHours * RAMP_CEILING);
         const projAtVol = projectProbableAtHours(suggestedHrsVol);
-        suggestions.unshift({ type: 'increase_volume', label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'), current_hours: weeklyHoursGoal ?? 10, suggested_hours: suggestedHrsVol, min_hours: minHours, projected_probable_at_suggested: projAtVol, projected_probable_formatted_at_suggested: formatTime(projAtVol), improvement_vs_current_pct: round2(((projectedProb - projAtVol) / projectedProb) * 100), message_de: tx('Mit ' + (weeklyHoursGoal ?? 10) + 'h/Woche ist Verbesserung unwahrscheinlich. Ab ' + minHours + 'h wird deine Prognose spürbar besser — bei ' + suggestedHrsVol + 'h erreichst du ' + formatTime(projAtVol) + '.', 'At ' + (weeklyHoursGoal ?? 10) + 'h/week, improvement is unlikely. From ' + minHours + 'h your projection improves noticeably — at ' + suggestedHrsVol + 'h you reach ' + formatTime(projAtVol) + '.') });
+        if (projectedProb - projAtVol >= MIN_GAIN_HOURS)
+            suggestions.unshift({ type: 'increase_volume', label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'), current_hours: weeklyHoursGoal ?? 10, suggested_hours: suggestedHrsVol, min_hours: minHours, projected_probable_at_suggested: projAtVol, projected_probable_formatted_at_suggested: formatTime(projAtVol), improvement_vs_current_pct: round2(((projectedProb - projAtVol) / projectedProb) * 100), message_de: tx('Mit ' + (weeklyHoursGoal ?? 10) + 'h/Woche ist Verbesserung unwahrscheinlich. Ab ' + minHours + 'h wird deine Prognose spürbar besser — bei ' + suggestedHrsVol + 'h erreichst du ' + formatTime(projAtVol) + '.', 'At ' + (weeklyHoursGoal ?? 10) + 'h/week, improvement is unlikely. From ' + minHours + 'h your projection improves noticeably — at ' + suggestedHrsVol + 'h you reach ' + formatTime(projAtVol) + '.') });
     }
     // Fallback: low volume + ambitious goal but no hours-suggestion fired yet.
     // Triggers when user is at hMin or just above, where adjust_hours' strict
