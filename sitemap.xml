@@ -2282,6 +2282,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/bmw-berlin-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/bmw-berlin-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/bremen-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bremen-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bremen-marathon-en.html"/>
@@ -2339,18 +2351,6 @@
     <loc>https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-de-cup-koenigsbrunn-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/bmw-berlin-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/bmw-berlin-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bmw-berlin-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bmw-berlin-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
