@@ -8,6 +8,8 @@ import { formatHoursToHM } from './format.js';
 import { predictRaceDuration } from './raceDurationPredictor.js';
 import { onboardingExecutionToday, onboardingRaceDay } from './onboardingRaceDay.js';
 import { classifyGoalTime } from './goalAssessment.js';
+import { goalVerdict } from './goalVerdict.js';
+import { moreHoursSuggestion } from './moreHoursSuggestion.js';
 import { isInBounds, seedInBand } from './thresholdBounds.js';
 // ══════════════════════════════════════════════════════════
 // CONSTANTS
@@ -562,14 +564,15 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         projectedProb = raceDay.probable;
         projectedWorst = raceDay.worst;
     }
-    // The dream goal is the cone's best case, the one the card names; the gauge,
-    // the database and Race Control keep the input band (Dominik 29.09.2026).
-    const dreamBest = (precomputedProjection ? null : raceDay.view?.cone.best) ?? projectedBest;
+    // The dream goal is the band's best case: the one the forecast card names
+    // ("possible 4:57–6:25"), the grade, the database and Race Control use
+    // (Dominik 29.09.2026, the card's redesign).
+    const dreamBest = projectedBest;
     // ── GAP ANALYSIS ──
     if (!goalTimeHours) {
         const noGoalSuggestions = [];
         if (volumeStatus === 'insufficient') {
-            const sugHrs = round2(minHours * RAMP_CEILING);
+            const sugHrs = halfHours(minHours * RAMP_CEILING);
             const projAt = projectProbableAtHours(sugHrs);
             noGoalSuggestions.push({
                 type: 'increase_volume',
@@ -580,6 +583,11 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
                 projected_probable_formatted_at_suggested: formatTime(projAt),
                 message_de: tx('Ab ' + minHours + 'h/Woche wird Verbesserung möglich. Bei ' + sugHrs + 'h erreichst du voraussichtlich ' + formatTime(projAt) + '.', 'From ' + minHours + 'h/week improvement becomes possible. At ' + sugHrs + 'h you can expect ' + formatTime(projAt) + '.'),
             });
+        }
+        else if (monthsToRace > 0) {
+            const more = moreHoursSuggestion({ weeklyHours: weeklyHoursGoal, hNorm: rp.hNorm, probable: projectedProb, projectAt: projectProbableAtHours, formatTime, tx });
+            if (more)
+                noGoalSuggestions.push(more);
         }
         return {
             feasible: true, likelihood: null,
@@ -621,7 +629,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         // Avoids absurd cases like "reduce IM to 4.79h/week".
         const reduceFloor = Math.max(rp.hMin, 4);
         if (monthsToRace > 0 && (weeklyHoursGoal ?? 10) > reduceFloor) {
-            const reducedHours = round2(Math.max(reduceFloor, (weeklyHoursGoal ?? 10) * 0.75));
+            const reducedHours = halfHours(Math.max(reduceFloor, (weeklyHoursGoal ?? 10) * 0.75));
             if (reducedHours < (weeklyHoursGoal ?? 10) - 1) {
                 const projAtReduced = projectProbableAtHours(reducedHours);
                 suggestions.push({ type: 'reduce_hours', label_de: tx('Trainingsumfang reduzieren', 'Reduce training volume'), current_hours: weeklyHoursGoal ?? 10, suggested_hours: reducedHours, projected_probable_at_suggested: projAtReduced, projected_probable_formatted_at_suggested: formatTime(projAtReduced), message_de: tx('Für ' + formatTime(goal) + ' reichen auch ' + reducedHours + 'h/Woche (Prognose: ' + formatTime(projAtReduced) + ').', 'For ' + formatTime(goal) + ', ' + reducedHours + 'h/week is enough (projection: ' + formatTime(projAtReduced) + ').') });
@@ -700,7 +708,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     // a low volume is a non-issue and pushing more hours would be noise.
     const ambitiousGoal = scaleLabel === 'stretch' || scaleLabel === 'high_effort' || scaleLabel === 'unrealistic';
     if (volumeStatus === 'insufficient' && ambitiousGoal) {
-        const suggestedHrsVol = round2(minHours * RAMP_CEILING);
+        const suggestedHrsVol = halfHours(minHours * RAMP_CEILING);
         const projAtVol = projectProbableAtHours(suggestedHrsVol);
         suggestions.unshift({ type: 'increase_volume', label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'), current_hours: weeklyHoursGoal ?? 10, suggested_hours: suggestedHrsVol, min_hours: minHours, projected_probable_at_suggested: projAtVol, projected_probable_formatted_at_suggested: formatTime(projAtVol), improvement_vs_current_pct: round2(((projectedProb - projAtVol) / projectedProb) * 100), message_de: tx('Mit ' + (weeklyHoursGoal ?? 10) + 'h/Woche ist Verbesserung unwahrscheinlich. Ab ' + minHours + 'h wird deine Prognose spürbar besser — bei ' + suggestedHrsVol + 'h erreichst du ' + formatTime(projAtVol) + '.', 'At ' + (weeklyHoursGoal ?? 10) + 'h/week, improvement is unlikely. From ' + minHours + 'h your projection improves noticeably — at ' + suggestedHrsVol + 'h you reach ' + formatTime(projAtVol) + '.') });
     }
@@ -708,25 +716,17 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
     // Triggers when user is at hMin or just above, where adjust_hours' strict
     // closesGapPct gate blocks but a modest volume bump would still meaningfully
     // shift the projection toward the goal.
-    const lowVolume = (weeklyHoursGoal ?? 10) < rp.hNorm;
     const hoursAlreadySuggested = suggestions.some((s) => s.type === 'adjust_hours' || s.type === 'increase_volume');
-    if (ambitiousGoal && lowVolume && !hoursAlreadySuggested && monthsToRace > 0) {
-        const suggestedHrsVol = round2(Math.min(rp.hNorm, (weeklyHoursGoal ?? 10) + 3));
-        if (suggestedHrsVol > (weeklyHoursGoal ?? 10) + 0.5) {
-            const projAtVol = projectProbableAtHours(suggestedHrsVol);
-            suggestions.push({
-                type: 'increase_volume',
-                label_de: tx('Trainingsumfang erhöhen', 'Increase training volume'),
-                current_hours: weeklyHoursGoal ?? 10,
-                suggested_hours: suggestedHrsVol,
-                projected_probable_at_suggested: projAtVol,
-                projected_probable_formatted_at_suggested: formatTime(projAtVol),
-                improvement_vs_current_pct: round2(((projectedProb - projAtVol) / projectedProb) * 100),
-                message_de: tx('Mit ' + suggestedHrsVol + 'h/Woche statt ' + (weeklyHoursGoal ?? 10) + 'h verbessert sich deine Prognose auf ' + formatTime(projAtVol) + '.', 'With ' + suggestedHrsVol + 'h/week instead of ' + (weeklyHoursGoal ?? 10) + 'h, your projection improves to ' + formatTime(projAtVol) + '.'),
-            });
-        }
+    if (ambitiousGoal && !hoursAlreadySuggested && monthsToRace > 0) {
+        const more = moreHoursSuggestion({ weeklyHours: weeklyHoursGoal ?? 10, hNorm: rp.hNorm, probable: projectedProb, projectAt: projectProbableAtHours, formatTime, tx });
+        if (more)
+            suggestions.push(more);
     }
-    const hoursHelpful = suggestions.some((s) => s.type === 'adjust_hours' || s.type === 'increase_volume');
+    // Hours help when they close at least half the gap. The fallback above is
+    // offered whenever the volume is low: 8 h taking 5:32 to 5:20 does not bring
+    // a 4:15 goal "within reach" (Dominik 29.09.2026).
+    const hoursHelpful = suggestions.some((s) => (s.type === 'adjust_hours' || s.type === 'increase_volume')
+        && s.projected_probable_at_suggested != null && projectedProb - s.projected_probable_at_suggested >= gapHours / 2);
     return {
         feasible: scaleLabel !== 'unrealistic',
         likelihood,
@@ -748,7 +748,7 @@ export function realismCheck({ prognosis, goalTimeHours, weeklyHoursGoal, mainRa
         weeks_to_race: weeksToRace ? round2(weeksToRace) : null,
         volume_status: volumeStatus,
         min_weekly_hours: minHours,
-        message_de: buildMessage(scaleLabel, goal, projectedProb, projectedBest, weeklyHoursGoal, level, volumeStatus, minHours, hoursHelpful, l, raceType),
+        message_de: goalVerdict({ scaleLabel, volumeStatus, hoursHelpful, weeklyHours: weeklyHoursGoal, minHours, lang: l }),
         suggestions,
     };
 }
@@ -1053,67 +1053,6 @@ function interpolateFromVDOT(table, vdot, col) {
     return table[table.length - 1][col];
 }
 // ══════════════════════════════════════════════════════════
-// BUILD MESSAGE: Deutsch
-// ══════════════════════════════════════════════════════════
-function buildMessage(scaleLabel, goal, projected, best, weeklyHours, level, volumeStatus, minHours, hoursHelpful, lang, raceType) {
-    if (lang === 'en')
-        return buildMessageEN(scaleLabel, goal, projected, best, weeklyHours, level, volumeStatus, minHours, hoursHelpful, raceType);
-    const formatTime = (h) => formatRaceClock(h, raceType);
-    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-    const g = formatTime(goal);
-    const p = formatTime(projected);
-    const h = weeklyHours;
-    const mh = minHours;
-    // Insufficient-volume verdict only when the user is reaching for a non-easy goal.
-    const needsImprovement = scaleLabel === 'stretch' || scaleLabel === 'high_effort' || scaleLabel === 'unrealistic';
-    if (volumeStatus === 'insufficient' && needsImprovement)
-        return pick(['Mit ' + h + 'h/Woche hältst du dein Level — für eine Verbesserung empfehlen wir mindestens ' + mh + 'h. Deine aktuelle Prognose: ' + p + '.', h + 'h/Woche reichen für Formerhalt, aber nicht für eine schnellere Zeit. Ab ' + mh + 'h wird Verbesserung realistisch.', 'Dein Prognose-Fenster (' + p + ') basiert auf deinem aktuellen Level. Mehr als ' + mh + 'h/Woche bringen dich nach vorne.']);
-    const COMFORTABLE = [g + ' ist ein realistisches Ziel. Mit ' + h + 'h/Woche und deinem aktuellen Fitnesslevel bist du auf einem guten Weg.', g + ' passt gut zu deinem Fitness-Level. Bleib dran und du wirst das schaffen.', 'Dein Ziel von ' + g + ' ist absolut machbar — deine Basis stimmt.', g + '? Das liegt voll in deiner Reichweite. Weiter so!', 'Mit deinem aktuellen Stand und ' + h + 'h/Woche ist ' + g + ' ein solides Ziel.'];
-    const STRETCH = [g + ' ist optimistisch — machbar, wenn alles gut läuft. Prognose: ' + p + '. Eine kleine Anpassung bei Ziel oder Umfang macht es sicherer.', 'Dein Ziel von ' + g + ' liegt im oberen Bereich deiner Prognose (' + p + '). Erreichbar, aber du solltest nichts dem Zufall überlassen.', g + ' bei Prognose ' + p + ' — das geht, braucht aber einen guten Tag. Etwas mehr Training oder ein kleiner Puffer machen den Unterschied.', 'Zwischen ' + g + ' und deiner Prognose (' + p + ') liegt ein schmaler Grat. Mit einer kleinen Anpassung wird daraus ein sicheres Ziel.', g + ' ist ambitioniert, aber nicht unrealistisch. Aktuell: ' + p + '. Willst du es absichern, hilft etwas mehr Umfang oder eine Zielkorrektur.'];
-    const HIGH_EFFORT = [g + ' ist ambitioniert, aber machbar. Deine aktuelle Prognose liegt bei ' + p + '. Konsequentes Training und gute Regeneration sind entscheidend.', g + ' wird kein Selbstläufer — deine Prognose liegt bei ' + p + '. Mit Fokus und Disziplin ist es aber drin.', 'Dein Ziel von ' + g + ' fordert dich. Aktuell stehst du bei ' + p + '. Jede Einheit zählt ab jetzt.', g + ' ist sportlich, aber nicht unmöglich. Prognose: ' + p + '. Gute Planung und Erholung machen den Unterschied.', 'Zwischen ' + g + ' und deiner Prognose (' + p + ') liegt harte Arbeit — aber genau dafür trainierst du.'];
-    const UNREALISTIC = [g + ' ist mit ' + h + 'h/Woche aktuell schwer erreichbar. Unsere Prognose liegt bei ' + p + '. Du kannst entweder die Zielzeit oder den Trainingsumfang anpassen.', 'Ehrlich gesagt: ' + g + ' ist mit ' + h + 'h/Woche sehr ambitioniert. Prognose: ' + p + '. Lass uns Ziel oder Umfang anpassen.', g + ' liegt aktuell außerhalb der realistischen Reichweite (Prognose: ' + p + '). Aber es gibt zwei gute Optionen, das zu ändern.', 'Deine Prognose (' + p + ') zeigt: ' + g + ' braucht entweder mehr Trainingszeit oder ein angepasstes Ziel.', g + ' mit ' + h + 'h/Woche — das wird eng. Aktuell sehen wir ' + p + '. Lass uns schauen, was wir drehen können.'];
-    const TOO_EASY = [g + '? Das schaffst du locker — und zwar mit Reserven. Du könntest dir ein ambitionierteres Ziel setzen.', 'Dein Ziel von ' + g + ' ist deutlich unter deinem Potenzial. Du kannst mehr — trau dich!', g + ' ist für dich eine entspannte Sache. Willst du dich nicht etwas mehr herausfordern?', 'Mit deiner Fitness ist ' + g + ' fast schon zu gemütlich. Prognose: ' + p + ' — da geht mehr.'];
-    const UNREALISTIC_GOAL_ONLY = [g + ' ist mit deinem aktuellen Stand nicht erreichbar — auch mehr Stunden würden die Lücke nicht schließen. Prognose: ' + p + '. Passe dein Ziel an.', 'Zwischen ' + g + ' und ' + p + ' liegt mehr als zusätzliches Training ausgleichen kann. Eine realistischere Zielzeit bringt dich weiter.', g + ' bei Prognose ' + p + ' — diese Differenz lässt sich nicht über mehr Umfang lösen. Passe deine Zielzeit an und steigere dich schrittweise.', 'Ehrlich: ' + g + ' ist aktuell außer Reichweite, auch mit mehr Stunden. Setz dir ein erreichbares Ziel — du kannst es später verschärfen.'];
-    if (scaleLabel === 'too_easy')
-        return pick(TOO_EASY);
-    if (scaleLabel === 'stretch')
-        return pick(STRETCH);
-    if (scaleLabel === 'comfortable')
-        return pick(COMFORTABLE);
-    if (scaleLabel === 'high_effort')
-        return hoursHelpful ? pick(HIGH_EFFORT) : pick(UNREALISTIC_GOAL_ONLY);
-    return hoursHelpful ? pick(UNREALISTIC) : pick(UNREALISTIC_GOAL_ONLY);
-}
-// ══════════════════════════════════════════════════════════
-// BUILD MESSAGE: English
-// ══════════════════════════════════════════════════════════
-function buildMessageEN(scaleLabel, goal, projected, best, weeklyHours, level, volumeStatus, minHours, hoursHelpful, raceType) {
-    const formatTime = (h) => formatRaceClock(h, raceType);
-    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-    const g = formatTime(goal);
-    const p = formatTime(projected);
-    const h = weeklyHours;
-    const mh = minHours;
-    const needsImprovement = scaleLabel === 'stretch' || scaleLabel === 'high_effort' || scaleLabel === 'unrealistic';
-    if (volumeStatus === 'insufficient' && needsImprovement)
-        return pick(['At ' + h + 'h/week you maintain your level — for improvement we recommend at least ' + mh + 'h. Projection: ' + p + '.', h + 'h/week is enough for maintenance, but not for getting faster. From ' + mh + 'h, improvement becomes realistic.', 'Your projection (' + p + ') reflects your current level. More than ' + mh + 'h/week will push you forward.']);
-    const COMFORTABLE = [g + ' is a realistic goal. With ' + h + 'h/week and your current fitness, you are on track.', g + ' fits your fitness level well. Stay consistent and you will make it.', 'Your goal of ' + g + ' is absolutely achievable — your foundation is solid.', g + '? That is well within your reach. Keep it up!', 'With your current level and ' + h + 'h/week, ' + g + ' is a solid goal.'];
-    const STRETCH = [g + ' is optimistic — achievable if everything goes well. Projection: ' + p + '. A small tweak to goal or volume makes it safer.', 'Your goal of ' + g + ' is at the upper end of your projection (' + p + '). Reachable, but leave nothing to chance.', g + ' at projection ' + p + ' — doable, but needs a good day. A bit more training or a small buffer makes the difference.', 'Between ' + g + ' and your projection (' + p + ') is a thin margin. A small adjustment turns it into a safe goal.', g + ' is ambitious but not unrealistic. Current: ' + p + '. More volume or a goal tweak helps secure it.'];
-    const HIGH_EFFORT = [g + ' is ambitious but achievable. Your projection is ' + p + '. Consistent training and good recovery are key.', g + ' will not come easy — your projection is ' + p + '. With focus and discipline, it is possible.', 'Your goal of ' + g + ' challenges you. Currently at ' + p + '. Every session counts from now on.', g + ' is a stretch but not impossible. Projection: ' + p + '. Smart planning and recovery make the difference.', 'Between ' + g + ' and your projection (' + p + ') lies hard work — but that is exactly what you train for.'];
-    const UNREALISTIC = [g + ' is hard to reach at ' + h + 'h/week. Projection: ' + p + '. Adjust either your goal or training volume.', 'Honestly: ' + g + ' is very ambitious at ' + h + 'h/week. Projection: ' + p + '. Adjust goal or volume.', g + ' is currently out of realistic reach (projection: ' + p + '). But there are two good options to change that.', 'Your projection (' + p + ') shows: ' + g + ' needs either more training time or an adjusted goal.', g + ' at ' + h + 'h/week — that is tight. Currently: ' + p + '. Let us see what we can adjust.'];
-    const TOO_EASY = [g + '? You will nail that easily — with room to spare. Consider a more ambitious goal.', 'Your goal of ' + g + ' is well below your potential. You can do more — go for it!', g + ' is a walk in the park for you. Want to challenge yourself more?', 'With your fitness, ' + g + ' is almost too comfortable. Projection: ' + p + ' — there is more in you.'];
-    const UNREALISTIC_GOAL_ONLY = [g + ' is not reachable — more hours would not close the gap. Projection: ' + p + '. Adjust your goal.', 'Between ' + g + ' and ' + p + ' lies more than extra training can fix. A more realistic goal serves you better.', g + ' at projection ' + p + ' — this gap cannot be closed with volume. Adjust your goal and improve step by step.', 'Honestly: ' + g + ' is out of reach, even with more hours. Set an achievable goal — tighten it later.'];
-    if (scaleLabel === 'too_easy')
-        return pick(TOO_EASY);
-    if (scaleLabel === 'stretch')
-        return pick(STRETCH);
-    if (scaleLabel === 'comfortable')
-        return pick(COMFORTABLE);
-    if (scaleLabel === 'high_effort')
-        return hoursHelpful ? pick(HIGH_EFFORT) : pick(UNREALISTIC_GOAL_ONLY);
-    return hoursHelpful ? pick(UNREALISTIC) : pick(UNREALISTIC_GOAL_ONLY);
-}
-// ══════════════════════════════════════════════════════════
 // POST-REALISM WRITE: Prognose → Supabase (nur onboarding/hybrid)
 // ══════════════════════════════════════════════════════════
 export async function writePrognosisToSupabase({ supabase, userId, prognosis, editedFields = [], stated = { run: true, bike: true, swim: true }, }) {
@@ -1265,6 +1204,10 @@ export function round4(n) {
 }
 export function round2(n) {
     return Math.round(n * 100) / 100;
+}
+/** Suggested weekly hours: "4.13h" reads as a typo, 4 h does not. */
+function halfHours(n) {
+    return Math.round(n * 2) / 2;
 }
 export function lerp(a, b, t) {
     return a + (b - a) * Math.max(0, Math.min(1, t));
