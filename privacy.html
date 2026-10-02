@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.5 &middot; Last updated: September 2026</p>
+      <p class="legal-meta">Version 1.6 &middot; Last updated: October 2026</p>
 
       <hr>
 
@@ -76,6 +76,7 @@
           <tr><td><strong>Availability</strong></td><td>Rest days, time slots (AM/PM)</td><td>Weekly planning</td></tr>
           <tr><td><strong>Chat messages</strong></td><td>Questions to the coach, feedback, mood check-ins</td><td>Coaching responses, plan adjustment</td></tr>
           <tr><td><strong>Account data</strong></td><td>Email address (when linking account via Apple, Google, or email)</td><td>Authentication, data recovery</td></tr>
+          <tr><td><strong>Profile photo</strong> (optional)</td><td>A photo of your own, square, 512 &times; 512 pixels</td><td>Profile picture</td></tr>
         </tbody>
       </table>
 
@@ -171,9 +172,7 @@
         <tbody>
           <tr><td>Training plan creation, analysis, prognosis, chat coaching</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           <tr><td>Processing health data (injuries, heart rate, HRV)</td><td><strong>Art. 9(2)(a) GDPR</strong> &ndash; Explicit consent</td></tr>
-          <!-- TODO(iap): Subscription-Zeile wieder einblenden wenn IAP implementiert
           <tr><td>Subscription management and payment processing</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
-          -->
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
           <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, ROUVY, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
           <tr><td>Display of weather forecast in weekly planning (IP-based geolocation)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (providing relevant training context information)</td></tr>
@@ -194,9 +193,7 @@
         <tbody>
           <tr><td><strong>Supabase Inc.</strong></td><td>Database, authentication, serverless functions</td><td>EU (Ireland)</td><td>Data processing within the EU</td></tr>
           <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
-          <!-- TODO(iap): RevenueCat wieder einblenden wenn IAP implementiert
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Subscription management, in-app purchases</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
-          -->
           <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push notification delivery (FCM to Android devices)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
           <tr><td><strong>Garmin International, Inc.</strong></td><td>Training import, workout push to watch (only when connected)</td><td>USA</td><td>You authorize access directly with Garmin (OAuth); EU Standard Contractual Clauses (SCCs)</td></tr>
@@ -237,7 +234,7 @@
       </ul>
 
       <h3>6.3 Coach Chat</h3>
-      <p>Your chat messages are sent to Google Gemini along with relevant training context to provide personalized answers. Chat histories are stored in our database.</p>
+      <p>Your chat messages are sent to Google Gemini along with relevant training context to provide personalized answers. Chat histories are stored in our database. If you record a voice message, the recording is sent to Google Gemini to be converted into text; we do not store the recording itself.</p>
 
       <h3>6.4 Health Data (Apple Health / Google Health Connect)</h3>
       <p>If you choose to connect Apple Health (iOS) or Google Health Connect (Android), the App reads the following data <strong>locally on your device</strong>:</p>
@@ -360,6 +357,13 @@
         <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR &ndash; Consent</li>
       </ul>
 
+      <h3 id="profile-picture">6.10 Profile Picture</h3>
+      <p>As your profile picture you can choose one of our landscapes, or take a photo or pick one from your photo library. The app only accesses the one photo you take or select. It is cropped square on your device, scaled down to 512 &times; 512 pixels and stored on our server (Supabase, EU/Ireland). Only you and your accepted friends can see it. The photo is not analyzed automatically and is not passed on to third parties.</p>
+      <p>If you choose a different picture or remove your profile picture, nobody can see the old photo from then on. We usually delete it right away, and at the latest when you upload a new photo or delete your account.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR &ndash; Performance of a contract</li>
+      </ul>
+
       <hr>
 
       <h2>7. Data Retention</h2>
@@ -370,15 +374,14 @@
         <tbody>
           <tr><td>Profile and training data</td><td>As long as your account is active</td></tr>
           <tr><td>Chat histories</td><td>As long as your account is active</td></tr>
+          <tr><td>Profile photo</td><td>Until you replace or remove it, at the latest until your account is deleted</td></tr>
           <tr><td>Anonymous profiles without completed onboarding</td><td><strong>48 hours</strong>, then automatically deleted</td></tr>
           <!-- TODO(iap): Subscription + Payment-Zeilen wieder einblenden wenn IAP implementiert
           <tr><td>Anonymous profiles with subscription, no account link</td><td>Until subscription expires + 90 days of inactivity</td></tr>
           -->
           <!-- TODO(retention): Automatischen Gemini-Log-Cleanup implementieren (90-Tage-Cron) -->
           <tr><td>System logs (Gemini Logs)</td><td>90 days, then anonymized or deleted</td></tr>
-          <!-- TODO(iap): Payment-Zeile wieder einblenden wenn IAP implementiert
           <tr><td>Payment data</td><td>Managed by Apple/Google and RevenueCat; we do not store payment information directly</td></tr>
-          -->
         </tbody>
       </table>
       <p>After account deletion, all personal data is fully removed within <strong>30 days</strong>.</p>

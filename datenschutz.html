@@ -39,7 +39,7 @@
       </div>
 
       <h1>Datenschutzerkl&auml;rung</h1>
-      <p class="legal-meta">Version 1.5 &middot; Stand: September 2026</p>
+      <p class="legal-meta">Version 1.6 &middot; Stand: Oktober 2026</p>
 
       <hr>
 
@@ -76,6 +76,7 @@
           <tr><td><strong>Verf&uuml;gbarkeit</strong></td><td>Trainingsfreie Tage, Zeitfenster (AM/PM)</td><td>Wochenplanung</td></tr>
           <tr><td><strong>Chat-Nachrichten</strong></td><td>Fragen an den Coach, Feedback, Stimmungsabfragen</td><td>Coaching-Antworten, Plananpassung</td></tr>
           <tr><td><strong>Kontodaten</strong></td><td>E-Mail-Adresse (bei Account-Verkn&uuml;pfung via Apple, Google oder E-Mail)</td><td>Authentifizierung, Datenwiederherstellung</td></tr>
+          <tr><td><strong>Profilfoto</strong> (freiwillig)</td><td>Ein eigenes Foto, quadratisch, 512 &times; 512 Pixel</td><td>Profilbild</td></tr>
         </tbody>
       </table>
 
@@ -233,7 +234,7 @@
       </ul>
 
       <h3>6.3 Coach-Chat</h3>
-      <p>Deine Chat-Nachrichten werden zusammen mit relevantem Trainingskontext an Google Gemini &uuml;bermittelt, um dir personalisierte Antworten zu geben. Chat-Verl&auml;ufe werden in unserer Datenbank gespeichert.</p>
+      <p>Deine Chat-Nachrichten werden zusammen mit relevantem Trainingskontext an Google Gemini &uuml;bermittelt, um dir personalisierte Antworten zu geben. Chat-Verl&auml;ufe werden in unserer Datenbank gespeichert. Sprichst du eine Nachricht ein, wird die Aufnahme zur Umwandlung in Text an Google Gemini &uuml;bermittelt; die Aufnahme selbst speichern wir nicht.</p>
 
       <h3>6.4 Gesundheitsdaten (Apple Health / Google Health Connect)</h3>
       <p>Wenn du Apple Health (iOS) oder Google Health Connect (Android) verbindest, liest die App folgende Daten <strong>lokal auf deinem Ger&auml;t</strong> aus:</p>
@@ -357,6 +358,13 @@
         <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &ndash; Einwilligung</li>
       </ul>
 
+      <h3 id="profilbild">6.10 Profilbild</h3>
+      <p>Als Profilbild kannst du eine unserer Landschaften w&auml;hlen oder ein eigenes Foto aufnehmen bzw. aus deiner Mediathek w&auml;hlen. Die App greift dabei nur auf das eine Foto zu, das du aufnimmst oder ausw&auml;hlst. Es wird auf deinem Ger&auml;t quadratisch zugeschnitten, auf 512 &times; 512 Pixel verkleinert und auf unserem Server (Supabase, EU/Irland) gespeichert. Sehen k&ouml;nnen es nur du und deine angenommenen Freunde. Das Foto wird nicht automatisch ausgewertet und nicht an Dritte weitergegeben.</p>
+      <p>W&auml;hlst du ein anderes Bild oder entfernst du dein Profilbild, sieht ab sofort niemand mehr das alte Foto. Wir l&ouml;schen es in der Regel sofort, sp&auml;testens aber, wenn du ein neues Foto hochl&auml;dst oder dein Konto l&ouml;schst.</p>
+      <ul>
+        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO &ndash; Vertragserf&uuml;llung</li>
+      </ul>
+
       <hr>
 
       <h2>7. Speicherdauer</h2>
@@ -367,6 +375,7 @@
         <tbody>
           <tr><td>Profil- und Trainingsdaten</td><td>Solange dein Konto aktiv ist</td></tr>
           <tr><td>Chat-Verl&auml;ufe</td><td>Solange dein Konto aktiv ist</td></tr>
+          <tr><td>Profilfoto</td><td>Bis du es ersetzt oder entfernst, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
           <tr><td>Anonyme Profile ohne Onboarding-Abschluss</td><td><strong>48 Stunden</strong>, dann automatische L&ouml;schung</td></tr>
           <!-- TODO(iap): Abo + Zahlungs-Zeilen wieder einblenden wenn IAP implementiert
           <tr><td>Anonyme Profile mit Abo, ohne Account-Verkn&uuml;pfung</td><td>Bis Abo-Ablauf + 90 Tage Inaktivit&auml;t</td></tr>
