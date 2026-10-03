@@ -1850,9 +1850,9 @@
     "course_factor_run": 1.02
   },
   {
-    "slug": "bmw-berlin-marathon",
-    "name": "BMW Berlin Marathon",
-    "name_en": "BMW Berlin Marathon",
+    "slug": "generali-berlin-marathon",
+    "name": "Generali Berlin Marathon",
+    "name_en": "Generali Berlin Marathon",
     "race_type": "marathon",
     "date": "2027-09-26",
     "course_factor_swim": 0,
