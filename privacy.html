@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.6 &middot; Last updated: October 2026</p>
+      <p class="legal-meta">Version 1.7 &middot; Last updated: October 2026</p>
 
       <hr>
 
@@ -170,7 +170,7 @@
           <tr><th>Processing activity</th><th>Legal basis</th></tr>
         </thead>
         <tbody>
-          <tr><td>Training plan creation, analysis, prognosis, chat coaching</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
+          <tr><td>Training plan creation, analysis, prognosis, chat coaching, coach memory</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           <tr><td>Processing health data (injuries, heart rate, HRV)</td><td><strong>Art. 9(2)(a) GDPR</strong> &ndash; Explicit consent</td></tr>
           <tr><td>Subscription management and payment processing</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
@@ -192,7 +192,7 @@
         </thead>
         <tbody>
           <tr><td><strong>Supabase Inc.</strong></td><td>Database, authentication, serverless functions</td><td>EU (Ireland)</td><td>Data processing within the EU</td></tr>
-          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat, coach memory</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Subscription management, in-app purchases</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push notification delivery (FCM to Android devices)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
@@ -235,6 +235,7 @@
 
       <h3>6.3 Coach Chat</h3>
       <p>Your chat messages are sent to Google Gemini along with relevant training context to provide personalized answers. Chat histories are stored in our database. If you record a voice message, the recording is sent to Google Gemini to be converted into text; we do not store the recording itself.</p>
+      <p><strong>Coach memory:</strong> So that your coach knows you beyond single conversations, Google Gemini notes once a day from your new chat messages what matters for your coaching in the long run &ndash; including health-related information. Added to that are strengths and weaknesses that recur in the analyses of your sessions. Your coach uses these notes in the chat and when analysing new sessions. Under Settings &rarr; Coach Personality &rarr; &ldquo;What your coach knows about you&rdquo; you can see every note and delete it. The &ldquo;Coach memory&rdquo; switch turns the feature off; when you do, we delete all notes.</p>
 
       <h3>6.4 Health Data (Apple Health / Google Health Connect)</h3>
       <p>If you choose to connect Apple Health (iOS) or Google Health Connect (Android), the App reads the following data <strong>locally on your device</strong>:</p>
@@ -374,6 +375,7 @@
         <tbody>
           <tr><td>Profile and training data</td><td>As long as your account is active</td></tr>
           <tr><td>Chat histories</td><td>As long as your account is active</td></tr>
+          <tr><td>Coach memory</td><td>Until you delete a note or turn the coach memory off, at the latest until your account is deleted</td></tr>
           <tr><td>Profile photo</td><td>Until you replace or remove it, at the latest until your account is deleted</td></tr>
           <tr><td>Anonymous profiles without completed onboarding</td><td><strong>48 hours</strong>, then automatically deleted</td></tr>
           <!-- TODO(iap): Subscription + Payment-Zeilen wieder einblenden wenn IAP implementiert
