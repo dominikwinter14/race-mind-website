@@ -1,55 +1,5 @@
 [
   {
-    "slug": "cardiff-half-marathon",
-    "name": "Cardiff Half Marathon",
-    "name_en": "Cardiff Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2026-10-04",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.99
-  },
-  {
-    "slug": "challenge-sanremo",
-    "name": "Challenge Sanremo",
-    "name_en": "Challenge Sanremo",
-    "race_type": "half_ironman",
-    "date": "2026-10-04",
-    "course_factor_swim": 1.02,
-    "course_factor_bike": 1.1,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "generali-koeln-marathon",
-    "name": "Generali Köln Marathon",
-    "name_en": "Generali Cologne Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-04",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.99
-  },
-  {
-    "slug": "ironman-barcelona-calella",
-    "name": "Ironman Barcelona (Calella)",
-    "name_en": "Ironman Barcelona (Calella)",
-    "race_type": "ironman",
-    "date": "2026-10-04",
-    "course_factor_swim": 1,
-    "course_factor_bike": 0.94,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "koeln-halbmarathon",
-    "name": "Köln Halbmarathon",
-    "name_en": "Cologne Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2026-10-04",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.98
-  },
-  {
     "slug": "ironman-world-championship-kona",
     "name": "IRONMAN World Championship Kona",
     "name_en": "IRONMAN World Championship Kona",

@@ -86,66 +86,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/cardiff-half-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/cardiff-half-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/challenge-sanremo.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-sanremo.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-sanremo-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/challenge-sanremo-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-sanremo.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-sanremo-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/generali-koeln-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-koeln-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-koeln-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/generali-koeln-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-koeln-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-koeln-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-barcelona-calella.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-barcelona-calella.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-barcelona-calella-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-barcelona-calella-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-barcelona-calella.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-barcelona-calella-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/koeln-halbmarathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koeln-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koeln-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/koeln-halbmarathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koeln-halbmarathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koeln-halbmarathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/ironman-world-championship-kona.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-world-championship-kona.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-world-championship-kona-en.html"/>
@@ -2375,6 +2315,66 @@
     <loc>https://race-mind.com/events/ironman-chattanooga-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-chattanooga.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-chattanooga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/cardiff-half-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/cardiff-half-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-sanremo.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-sanremo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-sanremo-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/challenge-sanremo-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/challenge-sanremo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/challenge-sanremo-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-koeln-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-koeln-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-koeln-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-koeln-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-koeln-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-koeln-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-barcelona-calella.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-barcelona-calella.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-barcelona-calella-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-barcelona-calella-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-barcelona-calella.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-barcelona-calella-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/koeln-halbmarathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koeln-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koeln-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/koeln-halbmarathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koeln-halbmarathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koeln-halbmarathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
