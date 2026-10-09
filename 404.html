@@ -110,6 +110,16 @@
       padding: 0 0.25rem;
     }
 
+    .hint-fallback {
+      display: none;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      padding: 0 0.25rem;
+    }
+
     .features {
       display: flex;
       flex-direction: column;
@@ -278,6 +288,7 @@
     <div class="divider"></div>
 
     <a id="openAppBtn" class="open-app-btn" href="#"></a>
+    <p class="hint-fallback" id="igFallback"></p>
 
     <div class="store-buttons">
       <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
@@ -326,6 +337,12 @@
         hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
       },
       openApp: 'App öffnen',
+      openInSafari: 'In Safari öffnen',
+      igHintIOS: 'Instagram kann RaceMind nicht direkt öffnen. Tippe auf „In Safari öffnen“ und dort auf „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
+      igHintAndroid: 'Instagram kann RaceMind nicht immer direkt öffnen. Tippe auf „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
+      igFallbackIOS: 'Klappt das nicht? Tippe oben rechts auf ••• und öffne die Seite im Browser.',
+      igFallbackAndroid: 'Passiert nichts? Tippe oben rechts auf ⋮ und öffne die Seite im Browser.',
+      igFallbackCode: 'Oder gib den Code oben in RaceMind unter Einstellungen → Freunde ein.',
       notFoundTitle: 'Seite nicht gefunden',
       notFoundText: 'Die Seite, die du suchst, existiert nicht.',
       notFoundBack: 'Zurück zu race-mind.com'
@@ -346,6 +363,12 @@
         hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
       },
       openApp: 'Open in app',
+      openInSafari: 'Open in Safari',
+      igHintIOS: 'Instagram can\'t open RaceMind directly. Tap “Open in Safari”, then “Open in app” there. No app yet? Install it, then open the link again.',
+      igHintAndroid: 'Instagram can\'t always open RaceMind directly. Tap “Open in app”. No app yet? Install it, then open the link again.',
+      igFallbackIOS: 'Didn\'t work? Tap ••• at the top right and open the page in your browser.',
+      igFallbackAndroid: 'Nothing happens? Tap ⋮ at the top right and open the page in your browser.',
+      igFallbackCode: 'Or enter the code above in RaceMind under Settings → Friends.',
       notFoundTitle: 'Page not found',
       notFoundText: 'The page you\'re looking for doesn\'t exist.',
       notFoundBack: 'Back to race-mind.com'
@@ -405,11 +428,38 @@
       // get a "Cannot Open Page" dialog.
       var ua = navigator.userAgent || '';
       var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
       if (isMobile) {
         var openBtn = document.getElementById('openAppBtn');
         openBtn.href = 'racemind:///' + deepLinkSegment + '/' + encodeURIComponent(code);
         openBtn.textContent = t.openApp;
         openBtn.style.display = 'flex';
+      }
+
+      // Instagram opens links in its own web view, which neither hands a
+      // universal/app link to the OS nor lets a `racemind://` link through:
+      // the page loads although the app is installed, and the button above
+      // does nothing. iOS gets `x-safari-https://` (iOS 17+) to jump to
+      // Safari, where the plain button works; Android gets an `intent://` URL,
+      // which Chrome-based web views may resolve to the app. Neither is
+      // guaranteed inside Instagram, so the card also names the ••• / ⋮ menu
+      // and, for a friend link, the code field in the app.
+      if (isMobile && /Instagram/i.test(ua)) {
+        if (isAndroid) {
+          var playUrl = 'https://play.google.com/store/apps/details?id=com.racemind.app';
+          openBtn.href = 'intent://' + deepLinkSegment + '/' + encodeURIComponent(code) +
+            '#Intent;scheme=racemind;package=com.racemind.app;S.browser_fallback_url=' +
+            encodeURIComponent(playUrl) + ';end';
+          hintEl.textContent = t.igHintAndroid;
+        } else {
+          openBtn.href = 'x-safari-https://' + window.location.host + window.location.pathname;
+          openBtn.textContent = t.openInSafari;
+          hintEl.textContent = t.igHintIOS;
+        }
+        var fallbackEl = document.getElementById('igFallback');
+        fallbackEl.textContent = (isAndroid ? t.igFallbackAndroid : t.igFallbackIOS) +
+          (deepLinkSegment === 'friend' ? ' ' + t.igFallbackCode : '');
+        fallbackEl.style.display = 'block';
       }
     } else {
       document.getElementById('notFoundView').style.display = '';
