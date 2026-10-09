@@ -1031,8 +1031,8 @@
   },
   {
     "slug": "ironman-70-3-st-poelten",
-    "name": "Ironman 70.3 St. Pölten",
-    "name_en": "Ironman 70.3 St. Pölten",
+    "name": "IRONMAN 70.3 St. Pölten",
+    "name_en": "IRONMAN 70.3 St. Pölten",
     "race_type": "half_ironman",
     "date": "2027-05-23",
     "course_factor_swim": 1,
@@ -1178,6 +1178,26 @@
     "course_factor_swim": 1.25,
     "course_factor_bike": 1.3,
     "course_factor_run": 1.65
+  },
+  {
+    "slug": "schloss-triathlon-moritzburg-halbdistanz",
+    "name": "Schloss-Triathlon Moritzburg Halbdistanz",
+    "name_en": "Schloss-Triathlon Moritzburg Half Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-12",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
+    "course_factor_run": 1.01
+  },
+  {
+    "slug": "schloss-triathlon-moritzburg-langdistanz",
+    "name": "Schloss-Triathlon Moritzburg Langdistanz",
+    "name_en": "Schloss-Triathlon Moritzburg Full Distance",
+    "race_type": "ironman",
+    "date": "2027-06-12",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
+    "course_factor_run": 1.01
   },
   {
     "slug": "ironman-austria-klagenfurt",
@@ -1450,6 +1470,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "ostseeman-gluecksburg-mitteldistanz",
+    "name": "Ostseeman Glücksburg Mitteldistanz",
+    "name_en": "OstseeMan Glücksburg Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-08-01",
+    "course_factor_swim": 1.05,
+    "course_factor_bike": 1,
+    "course_factor_run": 1.02
+  },
+  {
     "slug": "ironman-tallinn",
     "name": "Ironman Tallinn",
     "name_en": "Ironman Tallinn",
@@ -1607,6 +1637,16 @@
     "date": "2027-09-04",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "austria-triathlon-podersdorf-langdistanz",
+    "name": "Austria Triathlon Podersdorf Langdistanz",
+    "name_en": "Austria Triathlon Podersdorf Full Distance",
+    "race_type": "ironman",
+    "date": "2027-09-04",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.01,
     "course_factor_run": 1
   },
   {
