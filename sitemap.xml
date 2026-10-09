@@ -2246,6 +2246,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/trierer-stadtlauf.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trierer-stadtlauf.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trierer-stadtlauf-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/trierer-stadtlauf-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trierer-stadtlauf.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trierer-stadtlauf-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/generali-berlin-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-berlin-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-berlin-marathon-en.html"/>
@@ -2267,6 +2279,18 @@
     <loc>https://race-mind.com/events/bremen-marathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/bremen-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/bremen-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/cardiff-half-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/cardiff-half-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2315,18 +2339,6 @@
     <loc>https://race-mind.com/events/ironman-chattanooga-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-chattanooga.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-chattanooga-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/cardiff-half-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/cardiff-half-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/cardiff-half-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/cardiff-half-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2471,18 +2483,6 @@
     <loc>https://race-mind.com/events/stuttgart-lauf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/stuttgart-lauf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/stuttgart-lauf-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/trierer-stadtlauf.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trierer-stadtlauf.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trierer-stadtlauf-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/trierer-stadtlauf-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/trierer-stadtlauf.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/trierer-stadtlauf-en.html"/>
     <priority>0.7</priority>
   </url>
 </urlset>

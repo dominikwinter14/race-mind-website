@@ -1800,6 +1800,16 @@
     "course_factor_run": 1.02
   },
   {
+    "slug": "trierer-stadtlauf",
+    "name": "Trierer Stadtlauf",
+    "name_en": "Trier City Run",
+    "race_type": "half_marathon",
+    "date": "2027-09-19",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1
+  },
+  {
     "slug": "generali-berlin-marathon",
     "name": "Generali Berlin Marathon",
     "name_en": "Generali Berlin Marathon",
@@ -1818,5 +1828,15 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 1
+  },
+  {
+    "slug": "cardiff-half-marathon",
+    "name": "Cardiff Half Marathon",
+    "name_en": "Cardiff Half Marathon",
+    "race_type": "half_marathon",
+    "date": "2027-10-03",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 0.99
   }
 ]
