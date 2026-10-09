@@ -337,10 +337,12 @@
         hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
       },
       openApp: 'App öffnen',
-      openInSafari: 'In Safari öffnen',
-      igHintIOS: 'Instagram kann RaceMind nicht direkt öffnen. Tippe auf „In Safari öffnen“ und dort auf „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
+      copyCode: 'Code kopieren',
+      codeCopied: 'Code kopiert ✓',
+      copyFailed: 'Kopieren ging nicht – tippe den Code oben ab',
+      igHintIOS: 'Instagram kann RaceMind nicht öffnen. Tippe oben rechts auf ••• und dann auf „In externem Browser öffnen“ – dort klappt „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
       igHintAndroid: 'Instagram kann RaceMind nicht immer direkt öffnen. Tippe auf „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
-      igFallbackIOS: 'Klappt das nicht? Tippe oben rechts auf ••• und öffne die Seite im Browser.',
+      igPasteCode: 'Oder füge den Code in RaceMind unter Einstellungen → Freunde ein.',
       igFallbackAndroid: 'Passiert nichts? Tippe oben rechts auf ⋮ und öffne die Seite im Browser.',
       igFallbackCode: 'Oder gib den Code oben in RaceMind unter Einstellungen → Freunde ein.',
       notFoundTitle: 'Seite nicht gefunden',
@@ -363,10 +365,12 @@
         hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
       },
       openApp: 'Open in app',
-      openInSafari: 'Open in Safari',
-      igHintIOS: 'Instagram can\'t open RaceMind directly. Tap “Open in Safari”, then “Open in app” there. No app yet? Install it, then open the link again.',
+      copyCode: 'Copy code',
+      codeCopied: 'Code copied ✓',
+      copyFailed: 'Couldn\'t copy – type the code above',
+      igHintIOS: 'Instagram can\'t open RaceMind. Tap ••• at the top right, then “Open in external browser” – “Open in app” works there. No app yet? Install it, then open the link again.',
       igHintAndroid: 'Instagram can\'t always open RaceMind directly. Tap “Open in app”. No app yet? Install it, then open the link again.',
-      igFallbackIOS: 'Didn\'t work? Tap ••• at the top right and open the page in your browser.',
+      igPasteCode: 'Or paste the code in RaceMind under Settings → Friends.',
       igFallbackAndroid: 'Nothing happens? Tap ⋮ at the top right and open the page in your browser.',
       igFallbackCode: 'Or enter the code above in RaceMind under Settings → Friends.',
       notFoundTitle: 'Page not found',
@@ -375,6 +379,28 @@
     };
 
     document.documentElement.lang = isDE ? 'de' : 'en';
+
+    // The async Clipboard API first; the textarea + execCommand path covers
+    // web views that lack it or refuse the write.
+    function copyText(text) {
+      var legacy = function () {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (!ok) throw new Error('copy refused');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(legacy);
+      }
+      return new Promise(function (resolve) { legacy(); resolve(); });
+    }
 
     var path = window.location.pathname;
     var parts = path.split('/').filter(Boolean);
@@ -439,27 +465,42 @@
       // Instagram opens links in its own web view, which neither hands a
       // universal/app link to the OS nor lets a `racemind://` link through:
       // the page loads although the app is installed, and the button above
-      // does nothing. iOS gets `x-safari-https://` (iOS 17+) to jump to
-      // Safari, where the plain button works; Android gets an `intent://` URL,
-      // which Chrome-based web views may resolve to the app. Neither is
-      // guaranteed inside Instagram, so the card also names the ••• / ⋮ menu
-      // and, for a friend link, the code field in the app.
+      // does nothing. On iOS nothing leaves that web view — `x-safari-https://`
+      // was tried and does nothing either (device test 09.10.2026) — so the
+      // card names Instagram's own "open in external browser" menu item, where
+      // the plain button works, and a friend link turns the button into "copy
+      // code" for the app's friend field. Android gets an `intent://` URL,
+      // which Chrome-based web views may resolve to the app (untested).
       if (isMobile && /Instagram/i.test(ua)) {
+        var fallbackEl = document.getElementById('igFallback');
         if (isAndroid) {
           var playUrl = 'https://play.google.com/store/apps/details?id=com.racemind.app';
           openBtn.href = 'intent://' + deepLinkSegment + '/' + encodeURIComponent(code) +
             '#Intent;scheme=racemind;package=com.racemind.app;S.browser_fallback_url=' +
             encodeURIComponent(playUrl) + ';end';
           hintEl.textContent = t.igHintAndroid;
+          fallbackEl.textContent = t.igFallbackAndroid +
+            (deepLinkSegment === 'friend' ? ' ' + t.igFallbackCode : '');
+          fallbackEl.style.display = 'block';
         } else {
-          openBtn.href = 'x-safari-https://' + window.location.host + window.location.pathname;
-          openBtn.textContent = t.openInSafari;
           hintEl.textContent = t.igHintIOS;
+          if (deepLinkSegment === 'friend') {
+            openBtn.href = '#';
+            openBtn.textContent = t.copyCode;
+            openBtn.addEventListener('click', function (e) {
+              e.preventDefault();
+              copyText(display).then(function () {
+                openBtn.textContent = t.codeCopied;
+              }, function () {
+                openBtn.textContent = t.copyFailed;
+              });
+            });
+            fallbackEl.textContent = t.igPasteCode;
+            fallbackEl.style.display = 'block';
+          } else {
+            openBtn.style.display = 'none';
+          }
         }
-        var fallbackEl = document.getElementById('igFallback');
-        fallbackEl.textContent = (isAndroid ? t.igFallbackAndroid : t.igFallbackIOS) +
-          (deepLinkSegment === 'friend' ? ' ' + t.igFallbackCode : '');
-        fallbackEl.style.display = 'block';
       }
     } else {
       document.getElementById('notFoundView').style.display = '';
