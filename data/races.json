@@ -1520,6 +1520,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "nordschwarzwald-triathlon-langdistanz",
+    "name": "Nordschwarzwald Triathlon Langdistanz",
+    "name_en": "Nordschwarzwald Triathlon Full Distance",
+    "race_type": "ironman",
+    "date": "2027-08-15",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.04,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-kalmar-sweden",
     "name": "Ironman Kalmar (Sweden)",
     "name_en": "Ironman Kalmar (Sweden)",
