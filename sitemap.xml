@@ -86,18 +86,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-world-championship-kona.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-world-championship-kona.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-world-championship-kona-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-world-championship-kona-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-world-championship-kona.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-world-championship-kona-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/asml-marathon-eindhoven.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/asml-marathon-eindhoven.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/asml-marathon-eindhoven-en.html"/>
@@ -1562,6 +1550,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/vr-triathlon-lauingen-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/wuerzburg-triathlon-mitteldistanz.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/wuerzburg-triathlon-mitteldistanz.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/wuerzburg-triathlon-mitteldistanz-en.html"/>
@@ -2006,18 +2006,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/uster-triathlon-mitteldistanz.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/uster-triathlon-mitteldistanz.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/uster-triathlon-mitteldistanz.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/ironman-70-3-duisburg.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-70-3-duisburg.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-70-3-duisburg-en.html"/>
@@ -2051,6 +2039,30 @@
     <loc>https://race-mind.com/events/koelner-halbmarathon-muengersdorf-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koelner-halbmarathon-muengersdorf.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koelner-halbmarathon-muengersdorf-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/triathlon-basel-mitteldistanz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-basel-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-basel-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/triathlon-basel-mitteldistanz-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/triathlon-basel-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/triathlon-basel-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/uster-triathlon-mitteldistanz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/uster-triathlon-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/uster-triathlon-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/uster-triathlon-mitteldistanz-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2447,6 +2459,18 @@
     <loc>https://race-mind.com/events/koeln-halbmarathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/koeln-halbmarathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/koeln-halbmarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-world-championship-kona.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-world-championship-kona.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-world-championship-kona-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-world-championship-kona-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-world-championship-kona.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-world-championship-kona-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>
