@@ -950,6 +950,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "drensteinfurt-triathlon-mitteldistanz",
+    "name": "Drensteinfurt Triathlon Mitteldistanz",
+    "name_en": "Drensteinfurt Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-05-16",
+    "course_factor_swim": 0.96,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-jacksonville",
     "name": "IRONMAN Jacksonville",
     "name_en": "IRONMAN Jacksonville",
