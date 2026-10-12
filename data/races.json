@@ -1,95 +1,5 @@
 [
   {
-    "slug": "asml-marathon-eindhoven",
-    "name": "ASML Marathon Eindhoven",
-    "name_en": "ASML Marathon Eindhoven",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "bregenz-3-laender-marathon",
-    "name": "Bregenz 3-Länder-Marathon",
-    "name_en": "Bregenz 3-Country Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "generali-muenchen-marathon",
-    "name": "Generali München Marathon",
-    "name_en": "Generali Munich Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.01
-  },
-  {
-    "slug": "graz-halbmarathon",
-    "name": "Graz Halbmarathon",
-    "name_en": "Graz Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "graz-marathon",
-    "name": "Graz Marathon",
-    "name_en": "Graz Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "ironman-70-3-versailles",
-    "name": "IRONMAN 70.3 Versailles",
-    "name_en": "IRONMAN 70.3 Versailles",
-    "race_type": "half_ironman",
-    "date": "2026-10-11",
-    "course_factor_swim": 1,
-    "course_factor_bike": 1.05,
-    "course_factor_run": 1.02
-  },
-  {
-    "slug": "muenchen-halbmarathon",
-    "name": "München Halbmarathon",
-    "name_en": "Munich Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.99
-  },
-  {
-    "slug": "schwarzwald-marathon",
-    "name": "Schwarzwald Marathon",
-    "name_en": "Black Forest Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.12
-  },
-  {
-    "slug": "spar-budapest-marathon",
-    "name": "Spar Budapest Marathon",
-    "name_en": "Spar Budapest Marathon",
-    "race_type": "marathon",
-    "date": "2026-10-11",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.01
-  },
-  {
     "slug": "bottwartal-marathon",
     "name": "Bottwartal-Marathon",
     "name_en": "Bottwartal Marathon",
@@ -1070,6 +980,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "triathlon-de-cup-landshut",
+    "name": "triathlon.de CUP Landshut",
+    "name_en": "triathlon.de CUP Landshut",
+    "race_type": "half_ironman",
+    "date": "2027-05-23",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.04,
+    "course_factor_run": 1
+  },
+  {
     "slug": "wuerzburg-marathon",
     "name": "Würzburg Marathon",
     "name_en": "Würzburg Marathon",
@@ -1090,6 +1010,16 @@
     "course_factor_run": 1.08
   },
   {
+    "slug": "spreewald-triathlon-mitteldistanz",
+    "name": "Spreewald Triathlon Mitteldistanz",
+    "name_en": "Spreewald Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-05-29",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.01,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-70-3-alghero",
     "name": "IRONMAN 70.3 Alghero",
     "name_en": "IRONMAN 70.3 Alghero",
@@ -1105,6 +1035,26 @@
     "name_en": "neuseenMAN Ferropolis",
     "race_type": "half_ironman",
     "date": "2027-05-30",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "o-see-triathlon-uelzen-mitteldistanz",
+    "name": "O-See-Triathlon Uelzen Mitteldistanz",
+    "name_en": "O-See Triathlon Uelzen Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-05-30",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
+    "course_factor_run": 1.02
+  },
+  {
+    "slug": "berlin-triathlon-mitteldistanz",
+    "name": "Berlin Triathlon Mitteldistanz",
+    "name_en": "Berlin Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-06",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
     "course_factor_run": 1
@@ -1200,6 +1150,16 @@
     "course_factor_run": 1.01
   },
   {
+    "slug": "aasee-triathlon-bocholt-mitteldistanz",
+    "name": "Aasee Triathlon Bocholt Mitteldistanz",
+    "name_en": "Aasee Triathlon Bocholt Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-13",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "ironman-austria-klagenfurt",
     "name": "Ironman Austria (Klagenfurt)",
     "name_en": "Ironman Austria (Klagenfurt)",
@@ -1230,6 +1190,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "vr-bank-triathlon-heilbronn-mitteldistanz",
+    "name": "VR Bank Triathlon Heilbronn Mitteldistanz",
+    "name_en": "VR Bank Triathlon Heilbronn Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-13",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.06,
+    "course_factor_run": 1
+  },
+  {
     "slug": "vr-triathlon-lauingen-mitteldistanz",
     "name": "VR-Triathlon Lauingen Mitteldistanz",
     "name_en": "VR-Triathlon Lauingen Middle Distance",
@@ -1238,6 +1208,16 @@
     "course_factor_swim": 1,
     "course_factor_bike": 1,
     "course_factor_run": 1
+  },
+  {
+    "slug": "wasserstadt-triathlon-hannover-mitteldistanz",
+    "name": "Wasserstadt Triathlon Hannover Mitteldistanz",
+    "name_en": "Wasserstadt Triathlon Hannover Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-13",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.01,
+    "course_factor_run": 1.01
   },
   {
     "slug": "wuerzburg-triathlon-mitteldistanz",
@@ -1263,6 +1243,16 @@
     "slug": "ironman-70-3-westfriesland",
     "name": "IRONMAN 70.3 Westfriesland",
     "name_en": "IRONMAN 70.3 Westfriesland",
+    "race_type": "half_ironman",
+    "date": "2027-06-20",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "viking-triathlon-schleswig-mitteldistanz",
+    "name": "Viking Triathlon Schleswig Mitteldistanz",
+    "name_en": "Viking Triathlon Schleswig Middle Distance",
     "race_type": "half_ironman",
     "date": "2027-06-20",
     "course_factor_swim": 1,
