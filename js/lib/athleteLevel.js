@@ -97,13 +97,15 @@ export function plannedAthleteLevel(input) {
     const raw = input.stored || classifyAthleteLevel(input.experienceMonths);
     return resolveEffectiveLevel(raw, input.experienceMonths, input.goalHours);
 }
-/** The step above `level`, read off deriveAthleteLevel's thresholds. Null at
- *  the top, and for an intermediate without a race type. */
+/** The step above `level`, read off deriveAthleteLevel's thresholds: under 6
+ *  months the months AND the hours of the distance. Null at the top, and for
+ *  an intermediate without a race type. */
 export function nextLevelStep(level, experience, raceType) {
     if (level === 'beginner') {
+        const weeklyHours = raceType ? MIN_VOLUME[raceType] ?? 2 : 2;
         return experience === 0
-            ? { level: 'intermediate', afterMonths: 6 }
-            : { level: 'intermediate', weeklyHours: raceType ? MIN_VOLUME[raceType] ?? 2 : 2 };
+            ? { level: 'intermediate', afterMonths: 6, weeklyHours }
+            : { level: 'intermediate', weeklyHours };
     }
     if (level === 'intermediate' && raceType) {
         const hours = MIN_ADVANCED_VOLUME[Math.max(2, Math.min(3, experience))][raceType];
