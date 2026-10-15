@@ -39,6 +39,9 @@
       --card: #1A1C1E;
       --muted: #949494;
       --foreground: #FFFFFF;
+      --soft: rgba(255, 255, 255, 0.8);
+      --line: rgba(255, 255, 255, 0.12);
+      --voucher-edge: rgba(255, 138, 0, 0.35);
       --radius: 1rem;
     }
 
@@ -47,10 +50,388 @@
       background: var(--bg);
       color: var(--foreground);
       min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--secondary);
+      outline-offset: 2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Invite (/friend/<code>, /r/<code>) ───────────────────────── */
+
+    .invite {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .brand-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+    }
+
+    .inviter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar-ring {
+      padding: 2px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      margin-bottom: 0.875rem;
+    }
+
+    .avatar {
       display: flex;
       align-items: center;
       justify-content: center;
-      -webkit-font-smoothing: antialiased;
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      background: var(--card);
+      font-size: 1.55rem;
+      font-weight: 700;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.5;
+      text-wrap: balance;
+    }
+
+    .voucher {
+      position: relative;
+      margin-bottom: 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--voucher-edge);
+      border-radius: 1.25rem;
+    }
+
+    .voucher-main {
+      padding: 1.375rem 1.25rem 1.25rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.625rem;
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .days {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .days-number {
+      font-size: 3.75rem;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .days-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .days-unit {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .days-free {
+      color: var(--soft);
+      font-size: 0.875rem;
+      font-weight: 300;
+    }
+
+    .perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      color: var(--soft);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .perks svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .perks strong, .steps strong {
+      font-weight: 500;
+      color: var(--foreground);
+    }
+
+    /* The tear-off line with a half notch on either edge of the voucher. */
+    .perforation {
+      position: relative;
+      height: 0;
+      margin: 0 18px;
+      border-top: 2px dashed var(--line);
+    }
+
+    .perforation::before, .perforation::after {
+      content: '';
+      position: absolute;
+      top: -13px;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--bg);
+    }
+
+    .perforation::before { left: -31px; border-right-color: var(--voucher-edge); }
+    .perforation::after { right: -31px; border-left-color: var(--voucher-edge); }
+
+    .voucher-stub {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1rem 1rem 1rem 1.25rem;
+    }
+
+    .stub-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .stub-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stub-code {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      min-height: 44px;
+      max-width: 55%;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--foreground);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .store-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: var(--radius);
+      font-family: inherit;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .store-btn:hover { opacity: 0.85; }
+
+    .store-btn svg { flex-shrink: 0; }
+
+    .store-btn--primary {
+      min-height: 54px;
+      padding: 0.875rem 1.25rem;
+      background: var(--primary);
+      color: var(--bg);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .store-btn--secondary {
+      min-height: 48px;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--line);
+      color: var(--foreground);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* `.is-android` on <html> (inline script in <head>) moves Google Play
+       first; the script below gives it the primary look and label. */
+    .is-android .store-btn--play { order: -1; }
+
+    .steps-title {
+      margin-bottom: 0.875rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .steps li:last-child .step-num {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--bg);
+      font-weight: 700;
+    }
+
+    .steps p {
+      margin-top: 3px;
+      color: var(--soft);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.45;
+    }
+
+    .fineprint {
+      margin-bottom: 1.25rem;
+      padding: 0.875rem 1rem;
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .installed {
+      display: none;
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 300;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .open-app-link {
+      display: none;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .footer-text a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* ── Not found ───────────────────────────────────────────────── */
+
+    .not-found {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .card {
@@ -70,17 +451,9 @@
       margin: 0 auto 1.25rem;
     }
 
-    .title {
+    .card .title {
       font-size: 1.35rem;
-      font-weight: 700;
       margin-bottom: 0.75rem;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .description {
@@ -89,163 +462,6 @@
       font-weight: 300;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-    }
-
-    .friend-code {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-      padding: 1rem;
-      background: var(--surface);
-      border-radius: var(--radius);
-    }
-
-    .hint {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--primary);
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-      padding: 0 0.25rem;
-    }
-
-    .hint-fallback {
-      display: none;
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      padding: 0 0.25rem;
-    }
-
-    .features {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-      text-align: left;
-    }
-
-    .feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.4;
-    }
-
-    .feature-icon {
-      flex-shrink: 0;
-      width: 18px;
-      text-align: center;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
-
-    .feature strong {
-      font-weight: 500;
-      color: var(--foreground);
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.06);
-      margin-bottom: 1.5rem;
-    }
-
-    .store-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .store-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.875rem 1.5rem;
-      border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .store-btn:hover { opacity: 0.85; }
-
-    .store-btn--ios {
-      background: var(--foreground);
-      color: var(--bg);
-    }
-
-    .store-btn--android {
-      background: var(--surface);
-      color: var(--foreground);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* `.is-android` on <html> (inline script in <head>) promotes Google Play
-       to the primary button and moves it first. iOS needs no counterpart — it
-       is the shipped default. */
-
-    .is-android .store-btn--android {
-      order: -2;
-      background: var(--foreground);
-      color: var(--bg);
-      border: none;
-    }
-
-    .is-android .store-btn--ios {
-      order: -1;
-      background: var(--surface);
-      color: var(--foreground);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .open-app-btn {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.875rem 1.5rem;
-      margin-bottom: 0.75rem;
-      border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      background: var(--primary);
-      color: var(--bg);
-      transition: opacity 0.2s;
-    }
-
-    .open-app-btn:hover { opacity: 0.85; }
-
-    .store-icon {
-      width: 22px;
-      height: 22px;
-    }
-
-    .footer-text {
-      margin-top: 1.25rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .footer-text a {
-      color: var(--primary);
-      text-decoration: none;
     }
 
     .back-link {
@@ -261,124 +477,162 @@
   </style>
 </head>
 <body>
-  <!-- Friend invite view (hidden by default) -->
-  <div class="card" id="friendView" style="display: none;">
-    <img src="/favicon.png" alt="RaceMind" class="logo">
-    <h1 class="title"><span class="gradient-text">RaceMind</span></h1>
-    <p class="description" id="description"></p>
+  <!-- Invite view: /friend/<code> and /r/<code> (hidden by default) -->
+  <main class="invite" id="friendView" style="display: none;">
+    <header class="brand">
+      <img src="/favicon.png" alt="" class="brand-logo">
+      <span>RaceMind</span>
+    </header>
 
-    <div class="friend-code" id="friendCode"></div>
-    <p class="hint" id="hint"></p>
-
-    <div class="features">
-      <div class="feature">
-        <span class="feature-icon">&circlearrowright;</span>
-        <span id="feature1"></span>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">&#x21C4;</span>
-        <span id="feature2"></span>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">?</span>
-        <span id="feature3"></span>
-      </div>
+    <div class="inviter">
+      <div class="avatar-ring"><div class="avatar" id="avatar"></div></div>
+      <h1 class="title" id="title"></h1>
+      <p class="subtitle" id="subtitle"></p>
     </div>
 
-    <div class="divider"></div>
-
-    <a id="openAppBtn" class="open-app-btn" href="#"></a>
-    <p class="hint-fallback" id="igFallback"></p>
+    <section class="voucher" aria-labelledby="eyebrow">
+      <div class="voucher-main">
+        <p class="eyebrow" id="eyebrow"></p>
+        <div class="days">
+          <span class="days-number gradient-text">28</span>
+          <div class="days-text">
+            <span class="days-unit" id="daysUnit"></span>
+            <span class="days-free" id="daysFree"></span>
+          </div>
+        </div>
+        <ul class="perks" id="perks"></ul>
+      </div>
+      <div class="perforation" aria-hidden="true"></div>
+      <div class="voucher-stub">
+        <div class="stub-text">
+          <span class="stub-label" id="codeLabel"></span>
+          <span class="stub-code" id="friendCode"></span>
+        </div>
+        <button type="button" class="copy-btn" id="copyBtn"></button>
+      </div>
+    </section>
 
     <div class="store-buttons">
-      <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
-        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Store
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
-        <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
-        Google Play
-      </a>
+      <a id="appStoreBtn" class="store-btn store-btn--app" href="https://apps.apple.com/app/race-mind/id6759935305"></a>
+      <a id="playBtn" class="store-btn store-btn--play" href="https://play.google.com/store/apps/details?id=com.racemind.app"></a>
     </div>
+
+    <h2 class="steps-title" id="stepsTitle"></h2>
+    <ol class="steps" id="steps"></ol>
+
+    <p class="fineprint" id="fineprint"></p>
+
+    <p class="installed" id="igNote"></p>
+    <a class="open-app-link" id="openAppLink" href="#"></a>
+    <p class="installed" id="igFallback"></p>
 
     <p class="footer-text">
       <a href="/">race-mind.com</a>
     </p>
-  </div>
+  </main>
 
   <!-- Generic 404 view (hidden by default) -->
-  <div class="card" id="notFoundView" style="display: none;">
-    <img src="/favicon.png" alt="RaceMind" class="logo">
-    <h1 class="title"><span class="gradient-text" id="notFoundTitle"></span></h1>
-    <p class="description" id="notFoundText"></p>
-    <a href="/" class="back-link" id="notFoundBack"></a>
+  <div class="not-found" id="notFoundView" style="display: none;">
+    <div class="card">
+      <img src="/favicon.png" alt="RaceMind" class="logo">
+      <h1 class="title"><span class="gradient-text" id="notFoundTitle"></span></h1>
+      <p class="description" id="notFoundText"></p>
+      <a href="/" class="back-link" id="notFoundBack"></a>
+    </div>
   </div>
 
   <script>
     var isDE = (navigator.language || '').toLowerCase().startsWith('de');
 
-    // Two distinct deep-link landing flavors share the same card layout but
-    // different copy. /friend/<code> = befriend, /r/<code> = pure referral
-    // bonus. The branch is decided by whichever path segment we find.
+    // Two link flavours share one page. /friend/<code> makes friends with the
+    // code's owner; /r/<code> only refers, without a friendship. The steps
+    // hold for every app version: since 14.10.2026 a code makes friends at
+    // once, older apps still send a request (until the OTA on 1.9.2), so they
+    // promise the four weeks, not when the friendship starts.
+    // Each line below is [bold lead, rest].
     var t = isDE ? {
       friend: {
-        description: 'Dein Coach für Triathlon und Laufen – von 5 km bis Langdistanz. Neu bei RaceMind? Über diesen Link nutzt du die App 4 Wochen kostenlos.',
-        feature1: '<strong>Plan, der zu deiner Woche passt:</strong> Der Wochenplaner fragt nach Zeit, festen Terminen und wie es dir geht. Läuft die Woche anders, plant RaceMind neu – ohne Nachholen.',
-        feature2: '<strong>Zusammen trainieren:</strong> Seht eure Einheiten und Wochen als Stories – und bleibt gegenseitig dran.',
-        feature3: '<strong>Frag deinen Coach:</strong> Brauche ich einen Neo? Bin ich auf Kurs? Kann ich heute Gas geben? Er kennt deinen Plan und deine Daten – und antwortet sofort.',
-        hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um {name} hinzuzufügen.',
-        hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Freunde-Link erneut, um deinen Freund oder deine Freundin hinzuzufügen.'
+        title: '{name} lädt dich zu RaceMind ein',
+        titleGeneric: 'Du bist zu RaceMind eingeladen',
+        step2: ['Diesen Link noch einmal öffnen,', ' dann laufen deine 4 Wochen ab der Einrichtung.'],
+        step3: ['Oder den Code eingeben:', ' unter Einstellungen → Freunde, bis 14 Tage nach dem Start.']
       },
       referral: {
-        description: 'Du wurdest empfohlen — nutze RaceMind vier Wochen kostenlos.',
-        feature1: '<strong>4 Wochen kostenlos</strong> — die volle App, kein Abo nötig.',
-        feature2: '<strong>Dein Empfehlender</strong> bekommt einen Gratis-Monat, wenn du dabeibleibst.',
-        hintWithName: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus von {name} zu aktivieren.',
-        hintGeneric: 'Anscheinend hast du die App noch nicht installiert. Installiere RaceMind und klicke den Empfehlungs-Link erneut, um den Bonus zu aktivieren.'
+        title: '{name} empfiehlt dir RaceMind',
+        titleGeneric: 'Du wurdest RaceMind empfohlen',
+        step2: ['Diesen Link noch einmal öffnen,', ' sobald die App installiert ist. Deine 4 Wochen zählen ab der Einrichtung.'],
+        step3: ['Oder den Code eingeben:', ' in den Einstellungen unter „Referral- oder Freundescode einlösen“, bis 14 Tage nach dem Start.']
       },
-      openApp: 'App öffnen',
-      copyCode: 'Code kopieren',
-      codeCopied: 'Code kopiert ✓',
-      copyFailed: 'Kopieren ging nicht – tippe den Code oben ab',
-      igHintIOS: 'Instagram kann RaceMind nicht öffnen. Tippe oben rechts auf ••• und dann auf „In externem Browser öffnen“ – dort klappt „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
-      igHintAndroid: 'Instagram kann RaceMind nicht immer direkt öffnen. Tippe auf „App öffnen“. Noch keine App? Installiere sie und öffne den Link danach noch einmal.',
-      igPasteCode: 'Oder füge den Code in RaceMind unter Einstellungen → Freunde ein.',
-      igFallbackAndroid: 'Passiert nichts? Tippe oben rechts auf ⋮ und öffne die Seite im Browser.',
-      igFallbackCode: 'Oder gib den Code oben in RaceMind unter Einstellungen → Freunde ein.',
+      subtitle: 'Dein Coach für Triathlon und Laufen, von 5 km bis Langdistanz.',
+      eyebrow: 'Deine Einladung',
+      daysUnit: 'Tage Premium',
+      daysFree: 'kostenlos testen',
+      perks: [
+        ['Coach-Chat,', ' der deinen Plan und deine Daten kennt'],
+        ['Wochenplaner,', ' der neu plant, wenn die Woche anders läuft'],
+        ['Analyse', ' jeder Einheit durch den Coach']
+      ],
+      codeLabel: 'Dein Code',
+      copy: 'Kopieren',
+      copied: 'Kopiert ✓',
+      copyFailed: 'Kopieren ging nicht – tippe den Code ab',
+      primary: 'App laden und 4 Wochen sichern',
+      secondaryPlay: 'Android? Bei Google Play laden',
+      secondaryAppStore: 'iPhone? Im App Store laden',
+      stepsTitle: 'So geht’s',
+      step1: ['App laden,', ' kostenlos im App Store oder bei Google Play.'],
+      fineprint: 'Für alle, die neu bei RaceMind sind. Kein Abo und keine Zahlungsdaten nötig. Die Testphase endet nach 4 Wochen von selbst. Plan, Aktivitäten und Freunde bleiben danach kostenlos.',
+      openApp: 'Schon installiert? App öffnen',
+      igIOS: 'Schon installiert? Tippe oben rechts auf ••• und dann auf „In externem Browser öffnen“. Dort kannst du die App öffnen.',
+      igAndroidFallback: 'Passiert nichts? Tippe oben rechts auf ⋮ und öffne die Seite im Browser.',
       notFoundTitle: 'Seite nicht gefunden',
       notFoundText: 'Die Seite, die du suchst, existiert nicht.',
       notFoundBack: 'Zurück zu race-mind.com'
     } : {
       friend: {
-        description: 'Your coach for triathlon and running – from 5K to full distance. New to RaceMind? With this link you get the app free for 4 weeks.',
-        feature1: '<strong>A plan that fits your week:</strong> The weekly planner asks about your time, fixed appointments and how you feel. If the week changes, RaceMind replans – no catching up.',
-        feature2: '<strong>Train together:</strong> See each other\'s sessions and weeks as stories – and keep each other going.',
-        feature3: '<strong>Ask your coach:</strong> Do I need a wetsuit? Am I on track? Can I push today? It knows your plan and your data – and answers right away.',
-        hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add {name}.',
-        hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the friend link again to add your friend.'
+        title: '{name} invited you to RaceMind',
+        titleGeneric: 'You’re invited to RaceMind',
+        step2: ['Open this link again,', ' and your 4 weeks run from setup.'],
+        step3: ['Or enter the code:', ' under Settings → Friends, within 14 days of starting.']
       },
       referral: {
-        description: 'You were referred — use RaceMind free for four weeks.',
-        feature1: '<strong>4 weeks free</strong> — the full app, no subscription needed.',
-        feature2: '<strong>Your referrer</strong> gets a free month if you stick around.',
-        hintWithName: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate {name}\'s bonus.',
-        hintGeneric: 'It looks like you don\'t have the app yet. Install RaceMind and tap the referral link again to activate the bonus.'
+        title: '{name} recommends RaceMind',
+        titleGeneric: 'RaceMind was recommended to you',
+        step2: ['Open this link again', ' once the app is installed. Your 4 weeks count from setup.'],
+        step3: ['Or enter the code:', ' in Settings under “Redeem referral or friend code”, within 14 days of starting.']
       },
-      openApp: 'Open in app',
-      copyCode: 'Copy code',
-      codeCopied: 'Code copied ✓',
-      copyFailed: 'Couldn\'t copy – type the code above',
-      igHintIOS: 'Instagram can\'t open RaceMind. Tap ••• at the top right, then “Open in external browser” – “Open in app” works there. No app yet? Install it, then open the link again.',
-      igHintAndroid: 'Instagram can\'t always open RaceMind directly. Tap “Open in app”. No app yet? Install it, then open the link again.',
-      igPasteCode: 'Or paste the code in RaceMind under Settings → Friends.',
-      igFallbackAndroid: 'Nothing happens? Tap ⋮ at the top right and open the page in your browser.',
-      igFallbackCode: 'Or enter the code above in RaceMind under Settings → Friends.',
+      subtitle: 'Your coach for triathlon and running, from 5K to full distance.',
+      eyebrow: 'Your invite',
+      daysUnit: 'days of Premium',
+      daysFree: 'free to try',
+      perks: [
+        ['Coach chat', ' that knows your plan and your data'],
+        ['Weekly planner', ' that replans when your week changes'],
+        ['Every session', ' analysed by your coach']
+      ],
+      codeLabel: 'Your code',
+      copy: 'Copy',
+      copied: 'Copied ✓',
+      copyFailed: 'Couldn’t copy – type the code',
+      primary: 'Get the app and your 4 weeks',
+      secondaryPlay: 'Android? Get it on Google Play',
+      secondaryAppStore: 'iPhone? Get it on the App Store',
+      stepsTitle: 'How it works',
+      step1: ['Get the app,', ' free on the App Store or Google Play.'],
+      fineprint: 'For anyone new to RaceMind. No subscription, no payment details. The trial ends on its own after 4 weeks. Your plan, activities and friends stay free afterwards.',
+      openApp: 'Already installed? Open the app',
+      igIOS: 'Already installed? Tap ••• at the top right, then “Open in external browser”. You can open the app from there.',
+      igAndroidFallback: 'Nothing happens? Tap ⋮ at the top right and open the page in your browser.',
       notFoundTitle: 'Page not found',
-      notFoundText: 'The page you\'re looking for doesn\'t exist.',
+      notFoundText: 'The page you’re looking for doesn’t exist.',
       notFoundBack: 'Back to race-mind.com'
     };
 
     document.documentElement.lang = isDE ? 'de' : 'en';
+
+    var APPLE_ICON = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>';
+    var PLAY_ICON = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>';
+    var CHECK_ICON = '<svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF8A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 
     // The async Clipboard API first; the textarea + execCommand path covers
     // web views that lack it or refuse the write.
@@ -402,6 +656,27 @@
       return new Promise(function (resolve) { legacy(); resolve(); });
     }
 
+    // A bold lead and the rest as text nodes, never innerHTML: the page
+    // carries a name taken from the URL.
+    function richLine(el, pair) {
+      var strong = document.createElement('strong');
+      strong.textContent = pair[0];
+      el.appendChild(strong);
+      el.appendChild(document.createTextNode(pair[1]));
+    }
+
+    function addStep(list, number, pair) {
+      var li = document.createElement('li');
+      var num = document.createElement('span');
+      num.className = 'step-num';
+      num.textContent = String(number);
+      var p = document.createElement('p');
+      richLine(p, pair);
+      li.appendChild(num);
+      li.appendChild(p);
+      list.appendChild(li);
+    }
+
     var path = window.location.pathname;
     var parts = path.split('/').filter(Boolean);
     var friendIndex = parts.indexOf('friend');
@@ -422,84 +697,109 @@
 
     if (subset) {
       var display = code.replace(/(\d+)$/, '#$1');
-      document.getElementById('friendCode').textContent = display;
+      var name = code.replace(/\d+$/, '');
+      var capitalName = name ? name.charAt(0).toUpperCase() + name.slice(1) : '';
+
       document.getElementById('friendView').style.display = '';
 
-      document.getElementById('description').textContent = subset.description;
-      document.getElementById('feature1').innerHTML = subset.feature1;
-      document.getElementById('feature2').innerHTML = subset.feature2;
-      // Feature 3 is friend-only (referral has 2 features). Hide the row when missing.
-      var feature3El = document.getElementById('feature3');
-      if (subset.feature3) {
-        feature3El.innerHTML = subset.feature3;
+      // Who invites: their initial, or the logo when the code carries no name.
+      var avatar = document.getElementById('avatar');
+      if (capitalName) {
+        avatar.textContent = capitalName.charAt(0);
       } else {
-        feature3El.parentNode.style.display = 'none';
+        var logo = document.createElement('img');
+        logo.src = '/favicon.png';
+        logo.alt = '';
+        avatar.appendChild(logo);
       }
+      document.getElementById('title').textContent = capitalName
+        ? subset.title.replace('{name}', capitalName)
+        : subset.titleGeneric;
+      document.getElementById('subtitle').textContent = t.subtitle;
 
-      var hintEl = document.getElementById('hint');
-      var name = code.replace(/\d+$/, '');
-      var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
+      document.getElementById('eyebrow').textContent = t.eyebrow;
+      document.getElementById('daysUnit').textContent = t.daysUnit;
+      document.getElementById('daysFree').textContent = t.daysFree;
+      var perks = document.getElementById('perks');
+      t.perks.forEach(function (pair) {
+        var li = document.createElement('li');
+        li.innerHTML = CHECK_ICON;
+        var span = document.createElement('span');
+        richLine(span, pair);
+        li.appendChild(span);
+        perks.appendChild(li);
+      });
 
-      if (name) {
-        hintEl.textContent = subset.hintWithName.replace('{name}', capitalName);
-      } else {
-        hintEl.textContent = subset.hintGeneric;
-      }
+      document.getElementById('codeLabel').textContent = t.codeLabel;
+      document.getElementById('friendCode').textContent = display;
+      var copyBtn = document.getElementById('copyBtn');
+      copyBtn.textContent = t.copy;
+      copyBtn.addEventListener('click', function () {
+        copyText(display).then(function () {
+          copyBtn.textContent = t.copied;
+        }, function () {
+          copyBtn.textContent = t.copyFailed;
+        });
+      });
 
-      // "Open in app" escape hatch for users on a device that has the app
-      // but where iOS hasn't refreshed the AASA cache yet (in-place update,
-      // not a fresh install). Triple-slash so the path passed to
-      // +native-intent.tsx starts with `/r/` or `/friend/` and matches the
-      // existing path.includes() checks. Mobile UA only — desktop users would
-      // get a "Cannot Open Page" dialog.
+      // The phone's own store is the orange button; the other one sits under
+      // it. Desktop keeps the App Store first, as the rest of the site does.
+      var isAndroidUA = document.documentElement.classList.contains('is-android');
+      var appStoreBtn = document.getElementById('appStoreBtn');
+      var playBtn = document.getElementById('playBtn');
+      var primaryBtn = isAndroidUA ? playBtn : appStoreBtn;
+      var secondaryBtn = isAndroidUA ? appStoreBtn : playBtn;
+      primaryBtn.classList.add('store-btn--primary');
+      primaryBtn.innerHTML = isAndroidUA ? PLAY_ICON : APPLE_ICON;
+      primaryBtn.appendChild(document.createTextNode(t.primary));
+      secondaryBtn.classList.add('store-btn--secondary');
+      secondaryBtn.innerHTML = isAndroidUA ? APPLE_ICON : PLAY_ICON;
+      secondaryBtn.appendChild(document.createTextNode(isAndroidUA ? t.secondaryAppStore : t.secondaryPlay));
+
+      document.getElementById('stepsTitle').textContent = t.stepsTitle;
+      var steps = document.getElementById('steps');
+      addStep(steps, 1, t.step1);
+      addStep(steps, 2, subset.step2);
+      addStep(steps, 3, subset.step3);
+
+      document.getElementById('fineprint').textContent = t.fineprint;
+
+      // "Already installed?" for visitors who have the app but whose phone
+      // showed this page anyway (iOS had not refreshed the AASA cache after an
+      // in-place update). Triple-slash so the path passed to
+      // +native-intent.tsx starts with `/r/` or `/friend/`. Mobile only —
+      // desktop would get a "Cannot Open Page" dialog.
       var ua = navigator.userAgent || '';
       var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
       var isAndroid = /Android/i.test(ua);
+      var openLink = document.getElementById('openAppLink');
+      var igNote = document.getElementById('igNote');
+      var igFallback = document.getElementById('igFallback');
       if (isMobile) {
-        var openBtn = document.getElementById('openAppBtn');
-        openBtn.href = 'racemind:///' + deepLinkSegment + '/' + encodeURIComponent(code);
-        openBtn.textContent = t.openApp;
-        openBtn.style.display = 'flex';
+        openLink.href = 'racemind:///' + deepLinkSegment + '/' + encodeURIComponent(code);
+        openLink.textContent = t.openApp;
+        openLink.style.display = 'block';
       }
 
       // Instagram opens links in its own web view, which neither hands a
-      // universal/app link to the OS nor lets a `racemind://` link through:
-      // the page loads although the app is installed, and the button above
-      // does nothing. On iOS nothing leaves that web view — `x-safari-https://`
-      // was tried and does nothing either (device test 09.10.2026) — so the
-      // card names Instagram's own "open in external browser" menu item, where
-      // the plain button works, and a friend link turns the button into "copy
-      // code" for the app's friend field. Android gets an `intent://` URL,
-      // which Chrome-based web views may resolve to the app (untested).
+      // universal/app link to the OS nor lets a `racemind://` link through.
+      // On iOS nothing leaves that web view — `x-safari-https://` does nothing
+      // either (device test 09.10.2026) — so the page names Instagram's own
+      // "open in external browser" menu item; the code above stays the way
+      // in without a browser. Android gets an `intent://` URL, which
+      // Chrome-based web views may resolve to the app (untested).
       if (isMobile && /Instagram/i.test(ua)) {
-        var fallbackEl = document.getElementById('igFallback');
         if (isAndroid) {
           var playUrl = 'https://play.google.com/store/apps/details?id=com.racemind.app';
-          openBtn.href = 'intent://' + deepLinkSegment + '/' + encodeURIComponent(code) +
+          openLink.href = 'intent://' + deepLinkSegment + '/' + encodeURIComponent(code) +
             '#Intent;scheme=racemind;package=com.racemind.app;S.browser_fallback_url=' +
             encodeURIComponent(playUrl) + ';end';
-          hintEl.textContent = t.igHintAndroid;
-          fallbackEl.textContent = t.igFallbackAndroid +
-            (deepLinkSegment === 'friend' ? ' ' + t.igFallbackCode : '');
-          fallbackEl.style.display = 'block';
+          igFallback.textContent = t.igAndroidFallback;
+          igFallback.style.display = 'block';
         } else {
-          hintEl.textContent = t.igHintIOS;
-          if (deepLinkSegment === 'friend') {
-            openBtn.href = '#';
-            openBtn.textContent = t.copyCode;
-            openBtn.addEventListener('click', function (e) {
-              e.preventDefault();
-              copyText(display).then(function () {
-                openBtn.textContent = t.codeCopied;
-              }, function () {
-                openBtn.textContent = t.copyFailed;
-              });
-            });
-            fallbackEl.textContent = t.igPasteCode;
-            fallbackEl.style.display = 'block';
-          } else {
-            openBtn.style.display = 'none';
-          }
+          openLink.style.display = 'none';
+          igNote.textContent = t.igIOS;
+          igNote.style.display = 'block';
         }
       }
     } else {

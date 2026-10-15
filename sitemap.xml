@@ -78,10 +78,6 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/friend/</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/vergleich/</loc>
     <priority>0.8</priority>
   </url>
