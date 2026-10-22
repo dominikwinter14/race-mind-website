@@ -206,7 +206,7 @@
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Fehler- und Crash-Monitoring der App</td><td>EU (Frankfurt)</td><td>EU-Hosting (Sentry EU/Frankfurt), Auftragsverarbeitungsvertrag (DPA), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain-Registrierung und DNS f&uuml;r race-mind.com</td><td>Deutschland</td><td>Auftragsverarbeitungsvertrag (AVV), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push-Notification-Zustellung (Relay zu Apple APNs und Google FCM)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>Open-Meteo</strong></td><td>Abruf der 7-Tage-Wettervorschau anhand grober Koordinaten und Ortssuche f&uuml;r Heimat- und Reiseort (dein Suchbegriff). Die Anfragen stellt unser Server; deine IP-Adresse wird nicht &uuml;bermittelt.</td><td>Schweiz</td><td>Angemessenheitsbeschluss der EU-Kommission f&uuml;r die Schweiz; Open-Source-Wetterdienst (CC-BY 4.0)</td></tr>
+          <tr><td><strong>Open-Meteo</strong></td><td>Abruf der 7-Tage-Wettervorschau anhand grober Koordinaten, Ortssuche f&uuml;r Heimat- und Reiseort (dein Suchbegriff) und Lufttemperatur zur Zeit einer Trainingseinheit (Startpunkt auf rund 1&nbsp;km gerundet, Datum). Die Anfragen stellt unser Server; deine IP-Adresse wird nicht &uuml;bermittelt.</td><td>Schweiz</td><td>Angemessenheitsbeschluss der EU-Kommission f&uuml;r die Schweiz; Open-Source-Wetterdienst (CC-BY 4.0)</td></tr>
         </tbody>
       </table>
 
@@ -232,6 +232,7 @@
       <ul>
         <li>Metriken wie Effizienz-Faktor, Drift und Pacing werden <strong>deterministisch berechnet</strong> (kein Zufallselement)</li>
         <li>Die qualitative Einordnung erfolgt &uuml;ber Google Gemini</li>
+        <li>Bei Einheiten drau&szlig;en mit GPS fragen wir bei <strong>Open-Meteo</strong> (Schweiz) die Lufttemperatur zur Zeit der Einheit ab. Daf&uuml;r sendet unser Server den Startpunkt, auf rund 1&nbsp;km gerundet, und das Datum; deine IP-Adresse und Angaben zu deinem Konto gehen nicht mit.</li>
         <li>Du erh&auml;ltst einen Performance Score (0&ndash;100) und konkrete Coaching-Hinweise</li>
       </ul>
 
@@ -272,15 +273,15 @@
       <p>In der Wochenplanung zeigen wir dir eine 7-Tage-Wettervorschau, damit du dein Training danach planen kannst. F&uuml;r welchen Ort sie gilt, ermitteln wir auf einem von zwei Wegen.</p>
       <p><strong>Mit Standortfreigabe</strong></p>
       <ul>
-        <li>Die App fragt erst, wenn du in der Wettervorschau auf &bdquo;Meinen Standort verwenden&ldquo; tippst oder unter <strong>Einstellungen &rarr; App &rarr; Standort f&uuml;rs Wetter</strong> die Freigabe erteilst. Die Freigabe gilt nur, w&auml;hrend du die App benutzt, und nur f&uuml;r deinen <strong>ungef&auml;hren</strong> Standort. Auf deinen genauen Standort greift die App nicht zu.</li>
-        <li>Beim Abruf der Vorhersage liest die App deinen ungef&auml;hren Standort vom Ger&auml;t. Bevor er dein Ger&auml;t verl&auml;sst, rundet sie ihn auf ein Raster von rund 5&nbsp;km. An unseren Server (Supabase, EU) gehen nur diese gerundeten Koordinaten, der Zeitpunkt der Messung und der Ortsname.</li>
-        <li>Den Ortsnamen (z.&nbsp;B. &bdquo;Freiburg&ldquo;) ermittelt der Kartendienst deines Betriebssystems aus deinem ungef&auml;hren Standort: auf dem iPhone der von Apple, auf Android in der Regel der von Google. Daf&uuml;r gelten die Datenschutzhinweise von Apple bzw. Google.</li>
-        <li>Wir speichern weder die Koordinaten noch den Ortsnamen. Die App beh&auml;lt die Position nur wenige Minuten im Arbeitsspeicher, damit sie nicht bei jedem &Ouml;ffnen neu messen muss. In unser Fehler-Monitoring (Sentry, EU) gelangen keine Koordinaten.</li>
-        <li>Mit Freigabe entscheidet allein dein Ger&auml;testandort. Deine IP-Adresse verwenden wir dann nicht zur Ortung; Heimatort und Reiseort spielen f&uuml;r die Vorhersage keine Rolle.</li>
+        <li>Die App fragt erst, wenn du in der Wettervorschau auf &bdquo;Meinen Standort verwenden&ldquo; tippst oder unter <strong>Einstellungen &rarr; App &rarr; Standort f&uuml;rs Wetter</strong> die Freigabe erteilst. Die App fragt nur nach deinem <strong>ungef&auml;hren</strong> Standort und nur f&uuml;r die Zeit, in der du sie benutzt.</li>
+        <li>Wenn die App die Wettervorschau abruft oder anzeigt, liest sie deinen Standort vom Ger&auml;t. Bevor er dein Ger&auml;t verl&auml;sst, rundet sie ihn auf ein Raster von 0,05 Grad (in Deutschland etwa 5&nbsp;&times;&nbsp;4&nbsp;km), auch wenn du in den Systemeinstellungen den genauen Standort erlaubt hast. An unseren Server (Supabase, EU) gehen nur diese gerundeten Koordinaten, der Zeitpunkt der Messung und der Ortsname.</li>
+        <li>Den Ortsnamen (z.&nbsp;B. &bdquo;Freiburg&ldquo;) ermittelt der Kartendienst deines Betriebssystems aus diesen gerundeten Koordinaten: auf dem iPhone der von Apple, auf Android in der Regel der von Google. Daf&uuml;r gelten die Datenschutzhinweise von Apple bzw. Google.</li>
+        <li>Wir speichern weder die Koordinaten noch den Ortsnamen. Die App h&auml;lt beides nur im Arbeitsspeicher, solange sie l&auml;uft, und legt nichts davon auf deinem Ger&auml;t ab; widerrufst du die Freigabe, verwirft sie beides. In unser Fehler-Monitoring (Sentry, EU) und unsere Server-Protokolle gelangen keine Koordinaten.</li>
+        <li>Mit Freigabe entscheidet dein Ger&auml;testandort; IP-Adresse, Heimatort und Reiseort spielen dann f&uuml;r die Vorhersage keine Rolle. Liefert dein Ger&auml;t gerade keinen Standort (etwa weil die Ortung ausgeschaltet ist oder nicht rechtzeitig ein Standort kommt), gilt f&uuml;r diesen Abruf der Weg ohne Freigabe.</li>
         <li>Den Ort, den wir uns zuvor &uuml;ber deine IP-Adresse gemerkt haben (erkannter Reiseort), l&ouml;schen wir, sobald die App mit deiner Freigabe ihren Standort sendet. Einen Reiseort, den du selbst festgelegt hast, behalten wir, bis du ihn entfernst.</li>
         <li>Du kannst die Freigabe jederzeit in den Systemeinstellungen deines Ger&auml;ts widerrufen (iOS: Einstellungen &rarr; RaceMind &rarr; Ort; Android: Einstellungen &rarr; Apps &rarr; RaceMind &rarr; Berechtigungen &rarr; Standort). Dorthin f&uuml;hrt dich auch Einstellungen &rarr; App &rarr; Standort f&uuml;rs Wetter. Danach gilt wieder der Weg ohne Freigabe.</li>
       </ul>
-      <p><strong>Ohne Standortfreigabe</strong></p>
+      <p><strong>Ohne Standortfreigabe (oder wenn dein Ger&auml;t gerade keinen Standort liefert)</strong></p>
       <ul>
         <li>Beim Abruf liest unser Server (Supabase, EU) die <strong>IP-Adresse</strong> deiner Anfrage aus und leitet daraus <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> deinen ungef&auml;hren Ort ab (Stadt- oder Regionsebene). Die IP-Adresse geben wir an niemanden weiter.</li>
         <li>Wir merken uns den zuletzt so ermittelten Ort (Ortsname, Koordinaten, Zeitzone, Zeitpunkt) in deinem Konto. Zusammen mit der Zeitzone deines Ger&auml;ts erkennen wir daran, ob du verreist bist, und die Vorhersage springt nicht bei jedem Netzwechsel. In der App erscheint dieser Ort als Reiseort mit dem Zusatz &bdquo;(erkannt)&ldquo;. Bist du an einem anderen Ort, ersetzen wir ihn.</li>
@@ -290,7 +291,7 @@
       </ul>
       <p><strong>F&uuml;r beide Wege</strong></p>
       <ul>
-        <li>An <strong>Open-Meteo</strong> (Schweiz) senden wir nur Koordinaten, nie deine IP-Adresse oder Angaben zu deinem Konto.</li>
+        <li>An <strong>Open-Meteo</strong> (Schweiz) senden wir f&uuml;r die Vorhersage nur Koordinaten und bei der Ortssuche deinen Suchbegriff, nie deine IP-Adresse oder Angaben zu deinem Konto.</li>
         <li>Die Wettervorschau ist optional. Unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> kannst du sie ausschalten. Dann verarbeiten wir weder deinen Ger&auml;testandort noch deine IP-Adresse zur Ortung.</li>
       </ul>
       <ul>
@@ -402,7 +403,7 @@
           <tr><td>Chat-Verl&auml;ufe</td><td>Solange dein Konto aktiv ist</td></tr>
           <tr><td>Coach-Ged&auml;chtnis</td><td>Bis du eine Notiz l&ouml;schst oder das Coach-Ged&auml;chtnis ausschaltest, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
           <tr><td>Profilfoto</td><td>Bis du es ersetzt oder entfernst, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
-          <tr><td>Standort deines Ger&auml;ts (Wetter)</td><td>Nicht gespeichert; die App h&auml;lt ihn wenige Minuten im Arbeitsspeicher</td></tr>
+          <tr><td>Standort deines Ger&auml;ts (Wetter)</td><td>Nicht gespeichert; die App h&auml;lt ihn nur im Arbeitsspeicher, solange sie l&auml;uft</td></tr>
           <tr><td>Heimatort, selbst festgelegter Reiseort</td><td>Bis du ihn entfernst, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
           <tr><td>Zuletzt &uuml;ber die IP-Adresse ermittelter Ort (erkannter Reiseort)</td><td>Bis ein neuer Ort ihn ersetzt, die App mit deiner Freigabe ihren Standort sendet, du ihn entfernst oder dein Konto l&ouml;schst</td></tr>
           <tr><td>Letzte IP-Adresse mit Ort, wenn unsere Tabelle f&uuml;r EU und Schweiz sie nicht zuordnen kann</td><td>H&ouml;chstens 30 Tage nach deinem letzten Wetterabruf</td></tr>

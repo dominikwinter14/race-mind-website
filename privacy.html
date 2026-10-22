@@ -206,7 +206,7 @@
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Error and crash monitoring of the App</td><td>EU (Frankfurt)</td><td>EU hosting (Sentry EU/Frankfurt), Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain registration and DNS for race-mind.com</td><td>Germany</td><td>Data Processing Agreement (DPA), data processing within the EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push notification delivery (relay to Apple APNs and Google FCM)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
-          <tr><td><strong>Open-Meteo</strong></td><td>Retrieval of the 7-day weather forecast based on coarse coordinates, and place search for home and travel location (your search term). Requests are made by our server; your IP address is not transmitted.</td><td>Switzerland</td><td>EU Commission adequacy decision for Switzerland; open-source weather service (CC-BY 4.0)</td></tr>
+          <tr><td><strong>Open-Meteo</strong></td><td>Retrieval of the 7-day weather forecast based on coarse coordinates, place search for home and travel location (your search term), and air temperature at the time of a training session (starting point rounded to about 1&nbsp;km, date). Requests are made by our server; your IP address is not transmitted.</td><td>Switzerland</td><td>EU Commission adequacy decision for Switzerland; open-source weather service (CC-BY 4.0)</td></tr>
         </tbody>
       </table>
 
@@ -232,6 +232,7 @@
       <ul>
         <li>Metrics such as Efficiency Factor, Drift, and Pacing are <strong>deterministically calculated</strong> (no random element)</li>
         <li>The qualitative interpretation is provided by Google Gemini</li>
+        <li>For outdoor sessions with GPS, we ask <strong>Open-Meteo</strong> (Switzerland) for the air temperature at the time of the session. Our server sends the starting point, rounded to about 1&nbsp;km, and the date; your IP address and account details are not sent.</li>
         <li>You receive a Performance Score (0&ndash;100) and actionable coaching advice</li>
       </ul>
 
@@ -271,15 +272,15 @@
       <p>On the weekly planning screen, we show you a 7-day weather forecast so you can plan your training around it. We determine which place it is for in one of two ways.</p>
       <p><strong>With location access</strong></p>
       <ul>
-        <li>The App only asks when you tap &ldquo;Use my location&rdquo; in the weather forecast or grant access under <strong>Settings &rarr; App &rarr; Location for weather</strong>. Access applies only while you use the App, and only to your <strong>approximate</strong> location. The App does not access your precise location.</li>
-        <li>When fetching the forecast, the App reads your approximate location from your device. Before it leaves your device, the App rounds it to a grid of about 5&nbsp;km. Only these rounded coordinates, the time of the reading and the place name are sent to our server (Supabase, EU).</li>
-        <li>The place name (e.g. &ldquo;Freiburg&rdquo;) is determined from your approximate location by your operating system&rsquo;s map service: Apple&rsquo;s on iPhone, usually Google&rsquo;s on Android. Apple&rsquo;s or Google&rsquo;s privacy policy applies to this.</li>
-        <li>We store neither the coordinates nor the place name. The App keeps the position in memory for only a few minutes, so it does not have to take a new reading every time you open it. No coordinates reach our error monitoring (Sentry, EU).</li>
-        <li>With access granted, your device location alone decides. We then do not use your IP address for location, and your home and travel location play no part in the forecast.</li>
+        <li>The App only asks when you tap &ldquo;Use my location&rdquo; in the weather forecast or grant access under <strong>Settings &rarr; App &rarr; Location for weather</strong>. The App only asks for your <strong>approximate</strong> location, and only for the time you use it.</li>
+        <li>When the App fetches or shows the weather forecast, it reads your location from your device. Before it leaves your device, the App rounds it to a grid of 0.05 degrees (about 5&nbsp;&times;&nbsp;4&nbsp;km in Germany), even if you have allowed precise location in your system settings. Only these rounded coordinates, the time of the reading and the place name are sent to our server (Supabase, EU).</li>
+        <li>The place name (e.g. &ldquo;Freiburg&rdquo;) is determined from these rounded coordinates by your operating system&rsquo;s map service: Apple&rsquo;s on iPhone, usually Google&rsquo;s on Android. Apple&rsquo;s or Google&rsquo;s privacy policy applies to this.</li>
+        <li>We store neither the coordinates nor the place name. The App keeps both in memory only while it is running and stores none of it on your device; if you withdraw access, it discards both. No coordinates reach our error monitoring (Sentry, EU) or our server logs.</li>
+        <li>With access granted, your device location decides; your IP address, home location and travel location then play no part in the forecast. If your device cannot provide a location right now (for example because location services are off or no location comes in time), that request takes the way without location access.</li>
         <li>The place we previously remembered from your IP address (detected travel location) is deleted as soon as the App sends its location with your permission. A travel location you set yourself is kept until you remove it.</li>
         <li>You can withdraw access at any time in your device&rsquo;s system settings (iOS: Settings &rarr; RaceMind &rarr; Location; Android: Settings &rarr; Apps &rarr; RaceMind &rarr; Permissions &rarr; Location). Settings &rarr; App &rarr; Location for weather also takes you there. After that, the way without location access applies again.</li>
       </ul>
-      <p><strong>Without location access</strong></p>
+      <p><strong>Without location access (or when your device cannot provide a location right now)</strong></p>
       <ul>
         <li>When fetching the forecast, our server (Supabase, EU) reads the <strong>IP address</strong> of your request and derives your approximate location from it <strong>exclusively on our own server</strong> (city or regional level). We do not pass the IP address on to anyone.</li>
         <li>We remember the last place determined this way (place name, coordinates, time zone, time) in your account. Together with your device&rsquo;s time zone, this tells us whether you are travelling and keeps the forecast from jumping with every network change. In the App, this place appears as your travel location marked &ldquo;(detected)&rdquo;. When you are somewhere else, we replace it.</li>
@@ -289,7 +290,7 @@
       </ul>
       <p><strong>For both ways</strong></p>
       <ul>
-        <li>We send <strong>Open-Meteo</strong> (Switzerland) only coordinates, never your IP address or details of your account.</li>
+        <li>We send <strong>Open-Meteo</strong> (Switzerland) only coordinates for the forecast and your search term for the place search, never your IP address or details of your account.</li>
         <li>The weather forecast is optional. You can turn it off under <strong>Settings &rarr; App &rarr; Weather forecast</strong>. We then process neither your device location nor your IP address for location.</li>
       </ul>
       <ul>
@@ -401,7 +402,7 @@
           <tr><td>Chat histories</td><td>As long as your account is active</td></tr>
           <tr><td>Coach memory</td><td>Until you delete a note or turn the coach memory off, at the latest until your account is deleted</td></tr>
           <tr><td>Profile photo</td><td>Until you replace or remove it, at the latest until your account is deleted</td></tr>
-          <tr><td>Your device location (weather)</td><td>Not stored; the App keeps it in memory for a few minutes</td></tr>
+          <tr><td>Your device location (weather)</td><td>Not stored; the App keeps it in memory only while it is running</td></tr>
           <tr><td>Home location, travel location you set yourself</td><td>Until you remove it, at the latest until your account is deleted</td></tr>
           <tr><td>Last place derived from your IP address (detected travel location)</td><td>Until a new place replaces it, the App sends its location with your permission, you remove it, or you delete your account</td></tr>
           <tr><td>Last IP address with place, if our table for the EU and Switzerland cannot match it</td><td>No more than 30 days after your last weather request</td></tr>
