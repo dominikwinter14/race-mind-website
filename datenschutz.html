@@ -39,7 +39,7 @@
       </div>
 
       <h1>Datenschutzerkl&auml;rung</h1>
-      <p class="legal-meta">Version 1.9 &middot; Stand: Oktober 2026</p>
+      <p class="legal-meta">Version 1.10 &middot; Stand: Oktober 2026</p>
 
       <hr>
 
@@ -105,7 +105,7 @@
           <tr><td><strong>Technische Daten</strong></td><td>Ger&auml;tetyp, Betriebssystem, App-Version, Fehlerberichte (Crash-Logs via Sentry)</td></tr>
           <tr><td><strong>Nutzungsdaten</strong></td><td>Zeitpunkt der App-Nutzung, Onboarding-Fortschritt</td></tr>
           <tr><td><strong>Anonyme Sitzung</strong></td><td>Bei App-Start wird eine anonyme Sitzungs-ID erzeugt (ohne pers&ouml;nliche Identifikation)</td></tr>
-          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>Beim Aufruf der Wochenplanung wird deine IP-Adresse <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> in einen ungef&auml;hren Standort (Stadt-/Regionsebene) umgerechnet. Die IP-Adresse wird nicht an Dritte &uuml;bermittelt und nicht persistent gespeichert. Details siehe Abschnitt 6.7.</td></tr>
+          <tr><td><strong>Standortdaten (ungef&auml;hr)</strong></td><td>F&uuml;r die Wettervorschau in der Wochenplanung: mit deiner Freigabe der ungef&auml;hre Standort deines Ger&auml;ts, sonst ein Ort, den wir auf unserem eigenen Server aus deiner IP-Adresse ableiten (Stadt- oder Regionsebene). Details und Speicherdauer siehe Abschnitt 6.7.</td></tr>
         </tbody>
       </table>
 
@@ -175,7 +175,9 @@
           <tr><td>Abo-Verwaltung und Zahlungsabwicklung</td><td><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> &ndash; Vertragserf&uuml;llung</td></tr>
           <tr><td>L&ouml;schung inaktiver anonymer Profile (Cleanup)</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (Datenhygiene)</td></tr>
           <tr><td>Verbindung mit Strava, Intervals.icu, Garmin Connect, ROUVY, Apple Health</td><td><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> &ndash; Einwilligung</td></tr>
-          <tr><td>Anzeige der Wettervorschau in der Wochenplanung (IP-basierte Geolokalisierung)</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (Bereitstellung relevanter Trainingskontext-Informationen)</td></tr>
+          <tr><td>Wettervorschau mit dem Standort deines Ger&auml;ts</td><td><strong>Art. 6 Abs. 1 lit. a DSGVO i. V. m. &sect; 25 Abs. 1 TDDDG</strong> &ndash; Einwilligung (&uuml;ber den Systemdialog deines Ger&auml;ts)</td></tr>
+          <tr><td>Wettervorschau ohne Standortfreigabe (Ortung &uuml;ber die IP-Adresse, erkannter Reiseort)</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (Wetter f&uuml;r den Ort, an dem du trainierst)</td></tr>
+          <tr><td>Heimatort und Reiseort, die du selbst festlegst</td><td><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> &ndash; Vertragserf&uuml;llung</td></tr>
           <tr><td>Reichweitenmessung auf der Website (Cloudflare Web Analytics)</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (cookiefreie Statistik zur Verbesserung des Angebots)</td></tr>
         </tbody>
       </table>
@@ -204,7 +206,7 @@
           <tr><td><strong>Sentry (Functional Software, Inc.)</strong></td><td>Fehler- und Crash-Monitoring der App</td><td>EU (Frankfurt)</td><td>EU-Hosting (Sentry EU/Frankfurt), Auftragsverarbeitungsvertrag (DPA), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>IONOS SE</strong></td><td>Domain-Registrierung und DNS f&uuml;r race-mind.com</td><td>Deutschland</td><td>Auftragsverarbeitungsvertrag (AVV), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>Expo, Inc.</strong></td><td>Push-Notification-Zustellung (Relay zu Apple APNs und Google FCM)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>Open-Meteo</strong></td><td>Abruf der 7-Tage-Wettervorschau anhand grober Koordinaten (ohne IP-&Uuml;bermittlung)</td><td>Schweiz</td><td>Angemessenheitsbeschluss der EU-Kommission f&uuml;r die Schweiz; Open-Source-Wetterdienst (CC-BY 4.0)</td></tr>
+          <tr><td><strong>Open-Meteo</strong></td><td>Abruf der 7-Tage-Wettervorschau anhand grober Koordinaten und Ortssuche f&uuml;r Heimat- und Reiseort (dein Suchbegriff). Die Anfragen stellt unser Server; deine IP-Adresse wird nicht &uuml;bermittelt.</td><td>Schweiz</td><td>Angemessenheitsbeschluss der EU-Kommission f&uuml;r die Schweiz; Open-Source-Wetterdienst (CC-BY 4.0)</td></tr>
         </tbody>
       </table>
 
@@ -267,16 +269,38 @@
       <p>Bei App-Start wird eine <strong>anonyme Sitzung</strong> erstellt. Du kannst die App zun&auml;chst ohne pers&ouml;nliche Registrierung nutzen. Nach dem Onboarding empfehlen wir die Verkn&uuml;pfung mit Apple, Google oder E-Mail, um deine Daten bei Ger&auml;tewechsel wiederherstellen zu k&ouml;nnen.</p>
 
       <h3>6.7 Wettervorschau in der Wochenplanung</h3>
-      <p>Im Bildschirm der Wochenplanung zeigen wir dir eine 7-Tage-Wettervorschau f&uuml;r deinen ungef&auml;hren Standort, damit du dein Training entsprechend planen kannst. Daf&uuml;r verarbeiten wir Standortdaten auf Stadt-/Regionsebene:</p>
+      <p>In der Wochenplanung zeigen wir dir eine 7-Tage-Wettervorschau, damit du dein Training danach planen kannst. F&uuml;r welchen Ort sie gilt, ermitteln wir auf einem von zwei Wegen.</p>
+      <p><strong>Mit Standortfreigabe</strong></p>
       <ul>
-        <li>Beim &Ouml;ffnen der Wochenplanung liest unser Server (Supabase, EU) die <strong>IP-Adresse</strong> deiner Anfrage aus.</li>
-        <li>Aus der IP-Adresse leiten wir <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> deinen ungef&auml;hren Standort ab (Koordinaten und Stadt). Die IP-Adresse verl&auml;sst dabei zu keinem Zeitpunkt unsere Infrastruktur und wird an keinen Dritten &uuml;bermittelt. Die Genauigkeit liegt &uuml;blicherweise auf Stadt- oder Regionsebene, nicht auf Stra&szlig;enebene.</li>
-        <li>An <strong>Open-Meteo</strong> (Schweiz) senden wir nur die so ermittelten Koordinaten, um die 7-Tage-Vorhersage abzurufen. Deine IP-Adresse wird dorthin nicht &uuml;bermittelt.</li>
-        <li>Wir speichern weder die IP-Adresse noch die ermittelten Koordinaten oder den Stadtnamen dauerhaft. Sie werden ausschlie&szlig;lich w&auml;hrend des Abrufs verarbeitet. Tritt dabei ein Fehler auf, kann die IP-Adresse vor&uuml;bergehend in unserem Fehler-Monitoring (Sentry, EU) protokolliert werden.</li>
-        <li>Die Wettervorschau ist eine optionale Komfortfunktion. Du kannst sie jederzeit unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> deaktivieren. Dann wird deine IP-Adresse nicht zur Standortbestimmung verarbeitet.</li>
+        <li>Die App fragt erst, wenn du in der Wettervorschau auf &bdquo;Meinen Standort verwenden&ldquo; tippst oder unter <strong>Einstellungen &rarr; App &rarr; Standort f&uuml;rs Wetter</strong> die Freigabe erteilst. Die Freigabe gilt nur, w&auml;hrend du die App benutzt, und nur f&uuml;r deinen <strong>ungef&auml;hren</strong> Standort. Auf deinen genauen Standort greift die App nicht zu.</li>
+        <li>Beim Abruf der Vorhersage liest die App deinen ungef&auml;hren Standort vom Ger&auml;t. Bevor er dein Ger&auml;t verl&auml;sst, rundet sie ihn auf ein Raster von rund 5&nbsp;km. An unseren Server (Supabase, EU) gehen nur diese gerundeten Koordinaten, der Zeitpunkt der Messung und der Ortsname.</li>
+        <li>Den Ortsnamen (z.&nbsp;B. &bdquo;Freiburg&ldquo;) ermittelt der Kartendienst deines Betriebssystems aus deinem ungef&auml;hren Standort: auf dem iPhone der von Apple, auf Android in der Regel der von Google. Daf&uuml;r gelten die Datenschutzhinweise von Apple bzw. Google.</li>
+        <li>Wir speichern weder die Koordinaten noch den Ortsnamen. Die App beh&auml;lt die Position nur wenige Minuten im Arbeitsspeicher, damit sie nicht bei jedem &Ouml;ffnen neu messen muss. In unser Fehler-Monitoring (Sentry, EU) gelangen keine Koordinaten.</li>
+        <li>Mit Freigabe entscheidet allein dein Ger&auml;testandort. Deine IP-Adresse verwenden wir dann nicht zur Ortung; Heimatort und Reiseort spielen f&uuml;r die Vorhersage keine Rolle.</li>
+        <li>Den Ort, den wir uns zuvor &uuml;ber deine IP-Adresse gemerkt haben (erkannter Reiseort), l&ouml;schen wir, sobald die App mit deiner Freigabe ihren Standort sendet. Einen Reiseort, den du selbst festgelegt hast, behalten wir, bis du ihn entfernst.</li>
+        <li>Du kannst die Freigabe jederzeit in den Systemeinstellungen deines Ger&auml;ts widerrufen (iOS: Einstellungen &rarr; RaceMind &rarr; Ort; Android: Einstellungen &rarr; Apps &rarr; RaceMind &rarr; Berechtigungen &rarr; Standort). Dorthin f&uuml;hrt dich auch Einstellungen &rarr; App &rarr; Standort f&uuml;rs Wetter. Danach gilt wieder der Weg ohne Freigabe.</li>
+      </ul>
+      <p><strong>Ohne Standortfreigabe</strong></p>
+      <ul>
+        <li>Beim Abruf liest unser Server (Supabase, EU) die <strong>IP-Adresse</strong> deiner Anfrage aus und leitet daraus <strong>ausschlie&szlig;lich auf unserem eigenen Server</strong> deinen ungef&auml;hren Ort ab (Stadt- oder Regionsebene). Die IP-Adresse geben wir an niemanden weiter.</li>
+        <li>Wir merken uns den zuletzt so ermittelten Ort (Ortsname, Koordinaten, Zeitzone, Zeitpunkt) in deinem Konto. Zusammen mit der Zeitzone deines Ger&auml;ts erkennen wir daran, ob du verreist bist, und die Vorhersage springt nicht bei jedem Netzwechsel. In der App erscheint dieser Ort als Reiseort mit dem Zusatz &bdquo;(erkannt)&ldquo;. Bist du an einem anderen Ort, ersetzen wir ihn.</li>
+        <li>Kann unsere eigene Ortungstabelle f&uuml;r die EU und die Schweiz deine IP-Adresse nicht zuordnen, etwa bei Verbindungen von au&szlig;erhalb, speichern wir zus&auml;tzlich deine letzte IP-Adresse mit dem daraus ermittelten Ort. So m&uuml;ssen wir die Ortung nicht bei jedem Abruf neu berechnen. Wir l&ouml;schen diesen Eintrag sp&auml;testens 30 Tage nach deinem letzten Wetterabruf.</li>
+        <li>Tritt bei der Ortung ein Fehler auf, kann die IP-Adresse vor&uuml;bergehend in unserem Fehler-Monitoring (Sentry, EU) protokolliert werden.</li>
+        <li>Weil die Ortung &uuml;ber die IP-Adresse ungenau sein kann, kannst du unter <strong>Einstellungen &rarr; App</strong> einen <strong>Heimatort</strong> und einen <strong>Reiseort</strong> festlegen. Den gew&auml;hlten Ort (Ortsname, Koordinaten, Zeitzone) speichern wir in deinem Konto, bis du ihn entfernst. Hast du einen Reiseort selbst festgelegt, merken wir uns au&szlig;erdem den &uuml;ber die IP-Adresse ermittelten Ort, den er korrigiert, damit dein Reiseort nicht bei jedem Netzwechsel &uuml;berschrieben wird. Bei der Ortssuche schickt unser Server deinen Suchbegriff an Open-Meteo.</li>
+      </ul>
+      <p><strong>F&uuml;r beide Wege</strong></p>
+      <ul>
+        <li>An <strong>Open-Meteo</strong> (Schweiz) senden wir nur Koordinaten, nie deine IP-Adresse oder Angaben zu deinem Konto.</li>
+        <li>Die Wettervorschau ist optional. Unter <strong>Einstellungen &rarr; App &rarr; Wettervorschau</strong> kannst du sie ausschalten. Dann verarbeiten wir weder deinen Ger&auml;testandort noch deine IP-Adresse zur Ortung.</li>
       </ul>
       <ul>
-        <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO &ndash; Berechtigtes Interesse (Bereitstellung relevanter Trainingskontext-Informationen wie Niederschlag und Wind, die deine Trainingsentscheidungen unterst&uuml;tzen).</li>
+        <li><strong>Rechtsgrundlage:</strong>
+          <ul>
+            <li>Ger&auml;testandort: Art. 6 Abs. 1 lit. a DSGVO i. V. m. &sect; 25 Abs. 1 TDDDG &ndash; deine Einwilligung &uuml;ber den Systemdialog, jederzeit widerrufbar.</li>
+            <li>Ortung &uuml;ber die IP-Adresse und erkannter Reiseort: Art. 6 Abs. 1 lit. f DSGVO &ndash; berechtigtes Interesse (Wetter f&uuml;r den Ort, an dem du trainierst, etwa Regen und Wind).</li>
+            <li>Selbst festgelegter Heimat- und Reiseort: Art. 6 Abs. 1 lit. b DSGVO &ndash; Vertragserf&uuml;llung.</li>
+          </ul>
+        </li>
       </ul>
 
       <h3 id="garmin">6.8 Garmin Connect</h3>
@@ -378,6 +402,10 @@
           <tr><td>Chat-Verl&auml;ufe</td><td>Solange dein Konto aktiv ist</td></tr>
           <tr><td>Coach-Ged&auml;chtnis</td><td>Bis du eine Notiz l&ouml;schst oder das Coach-Ged&auml;chtnis ausschaltest, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
           <tr><td>Profilfoto</td><td>Bis du es ersetzt oder entfernst, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
+          <tr><td>Standort deines Ger&auml;ts (Wetter)</td><td>Nicht gespeichert; die App h&auml;lt ihn wenige Minuten im Arbeitsspeicher</td></tr>
+          <tr><td>Heimatort, selbst festgelegter Reiseort</td><td>Bis du ihn entfernst, sp&auml;testens mit der Kontol&ouml;schung</td></tr>
+          <tr><td>Zuletzt &uuml;ber die IP-Adresse ermittelter Ort (erkannter Reiseort)</td><td>Bis ein neuer Ort ihn ersetzt, die App mit deiner Freigabe ihren Standort sendet, du ihn entfernst oder dein Konto l&ouml;schst</td></tr>
+          <tr><td>Letzte IP-Adresse mit Ort, wenn unsere Tabelle f&uuml;r EU und Schweiz sie nicht zuordnen kann</td><td>H&ouml;chstens 30 Tage nach deinem letzten Wetterabruf</td></tr>
           <tr><td>Anonyme Profile ohne Onboarding-Abschluss</td><td><strong>48 Stunden</strong>, dann automatische L&ouml;schung</td></tr>
           <!-- TODO(iap): Abo + Zahlungs-Zeilen wieder einblenden wenn IAP implementiert
           <tr><td>Anonyme Profile mit Abo, ohne Account-Verkn&uuml;pfung</td><td>Bis Abo-Ablauf + 90 Tage Inaktivit&auml;t</td></tr>
