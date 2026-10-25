@@ -39,6 +39,10 @@ export function formatWeekRange(weekStart) {
     const dm = (d) => `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.`;
     return `${dm(monday)} – ${dm(sunday)}`;
 }
+/** A local `YYYY-MM-DD` as `19.11.` — numeric, so German and English read alike (see formatWeekRange). */
+export function formatDayMonth(iso) {
+    return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.`;
+}
 /** Format seconds to M:SS pace string (e.g. 270 → "4:30") */
 export function formatPace(seconds) {
     if (!seconds)

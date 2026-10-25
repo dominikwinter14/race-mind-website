@@ -9,7 +9,7 @@
     "lib/athleteLevel.ts": "b474cc7beb07eeaf99322db2dfa5ecf73f4430a3518e9b765d35dc7095410431",
     "lib/improvementHeadroom.ts": "ab291ead5aed6dbcd719a2892c98c28578489496f04c57e96dfe3b4aaeb1ed4b",
     "lib/onboardingRaceDay.ts": "2abaeab5045dff5f1e17875fe0d65e0019f2feca53d3a35e5b5e21e4c59cee27",
-    "lib/format.ts": "8bae5a727619b5ab3a16cdd7c46d8dbe77e1d65d897c3390acfb1192de8abf30",
+    "lib/format.ts": "08c4fcfa13a66255f498c09b8b1013d3dda0082c195441513f78d3a764118d01",
     "lib/thresholdBounds.ts": "d8329fb2e2688ae3aa791b8242fade0cc1e7db6ffb3bbc6d2d2ae49d0834f528",
     "constants/raceVolume.ts": "e79eb4128bd082665aab224b0a8100450d5cb5be5cd335cfec1f7f7ef39c44a7"
   }
