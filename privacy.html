@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.10 &middot; Last updated: October 2026</p>
+      <p class="legal-meta">Version 1.11 &middot; Last updated: October 2026</p>
 
       <hr>
 
@@ -76,6 +76,7 @@
           <tr><td><strong>Availability</strong></td><td>Rest days, time slots (AM/PM)</td><td>Weekly planning</td></tr>
           <tr><td><strong>Chat messages</strong></td><td>Questions to the coach, feedback, mood check-ins</td><td>Coaching responses, plan adjustment</td></tr>
           <tr><td><strong>Account data</strong></td><td>Email address (when linking account via Apple, Google, or email)</td><td>Authentication, data recovery</td></tr>
+          <tr><td><strong>Invoice data</strong> (only when buying by invoice)</td><td>Name, postal address, email address, plan purchased, amount</td><td>Invoicing, unlocking access, accounting</td></tr>
           <tr><td><strong>Profile photo</strong> (optional)</td><td>A photo of your own, square, 512 &times; 512 pixels</td><td>Profile picture</td></tr>
         </tbody>
       </table>
@@ -173,6 +174,8 @@
           <tr><td>Training plan creation, analysis, prognosis, chat coaching, coach memory</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
           <tr><td>Processing health data (injuries, heart rate, HRV)</td><td><strong>Art. 9(2)(a) GDPR</strong> &ndash; Explicit consent</td></tr>
           <tr><td>Subscription management and payment processing</td><td><strong>Art. 6(1)(b) GDPR</strong> &ndash; Performance of a contract</td></tr>
+          <tr><td>Retaining invoices and subscription records, also after account deletion</td><td><strong>Art. 6(1)(c) GDPR</strong> &ndash; Legal obligation (Sec. 147 German Fiscal Code, Sec. 257 German Commercial Code)</td></tr>
+          <tr><td>Settling a partner's commission after account deletion, if you came to us through a partner</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (settling the agreed commission with the partner correctly)</td></tr>
           <tr><td>Deletion of inactive anonymous profiles (cleanup)</td><td><strong>Art. 6(1)(f) GDPR</strong> &ndash; Legitimate interest (data hygiene)</td></tr>
           <tr><td>Connection to Strava, Intervals.icu, Garmin Connect, ROUVY, Apple Health</td><td><strong>Art. 6(1)(a) GDPR</strong> &ndash; Consent</td></tr>
           <tr><td>Weather forecast with your device location</td><td><strong>Art. 6(1)(a) GDPR in conjunction with Section 25(1) TDDDG</strong> &ndash; Consent (via your device&rsquo;s system dialog)</td></tr>
@@ -412,10 +415,13 @@
           -->
           <!-- TODO(retention): Automatischen Gemini-Log-Cleanup implementieren (90-Tage-Cron) -->
           <tr><td>System logs (Gemini Logs)</td><td>90 days, then anonymized or deleted</td></tr>
-          <tr><td>Payment data</td><td>Managed by Apple/Google and RevenueCat; we do not store payment information directly</td></tr>
+          <tr><td>Payment data for purchases in the App Store or on Google Play (card, account)</td><td>Not with us: Apple or Google process the payment, we never receive this data</td></tr>
+          <tr><td>Subscription events reported to us by RevenueCat (product, price, currency, time, transaction ID)</td><td>As long as commercial and tax law require (up to 10 years), also after account deletion; then only under an identifier of the deleted account, without name or email address</td></tr>
+          <tr><td>Invoices (name, postal address, email address, amount), for bank transfers also the name and IBAN from the payment</td><td>As long as commercial and tax law require (up to 10 years), also after account deletion</td></tr>
+          <tr><td>That you came to us through a partner (date of the invitation and of sign-up, account identifier)</td><td>After account deletion, as long as it still earns the partner a commission, then for the legal retention of the statement; without name or email address</td></tr>
         </tbody>
       </table>
-      <p>After account deletion, all personal data is fully removed within <strong>30 days</strong>.</p>
+      <p>After account deletion, your personal data is deleted within <strong>30 days</strong>. Excepted are the subscription events, invoices and partner records in the table above: they are kept for the period stated there. Invoices keep name, postal address and email address, because an invoice must stay unchanged; the other two then carry only an identifier of the deleted account.</p>
 
       <hr>
 

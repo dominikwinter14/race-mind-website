@@ -39,7 +39,7 @@
       </div>
 
       <h1>Datenschutzerkl&auml;rung</h1>
-      <p class="legal-meta">Version 1.10 &middot; Stand: Oktober 2026</p>
+      <p class="legal-meta">Version 1.11 &middot; Stand: Oktober 2026</p>
 
       <hr>
 
@@ -76,6 +76,7 @@
           <tr><td><strong>Verf&uuml;gbarkeit</strong></td><td>Trainingsfreie Tage, Zeitfenster (AM/PM)</td><td>Wochenplanung</td></tr>
           <tr><td><strong>Chat-Nachrichten</strong></td><td>Fragen an den Coach, Feedback, Stimmungsabfragen</td><td>Coaching-Antworten, Plananpassung</td></tr>
           <tr><td><strong>Kontodaten</strong></td><td>E-Mail-Adresse (bei Account-Verkn&uuml;pfung via Apple, Google oder E-Mail)</td><td>Authentifizierung, Datenwiederherstellung</td></tr>
+          <tr><td><strong>Rechnungsdaten</strong> (nur beim Kauf per Rechnung)</td><td>Name, Anschrift, E-Mail-Adresse, gekauftes Abo, Betrag</td><td>Rechnungsstellung, Freischaltung, Buchhaltung</td></tr>
           <tr><td><strong>Profilfoto</strong> (freiwillig)</td><td>Ein eigenes Foto, quadratisch, 512 &times; 512 Pixel</td><td>Profilbild</td></tr>
         </tbody>
       </table>
@@ -173,6 +174,8 @@
           <tr><td>Trainingsplan-Erstellung, Analyse, Prognose, Chat-Coaching, Coach-Ged&auml;chtnis</td><td><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> &ndash; Vertragserf&uuml;llung</td></tr>
           <tr><td>Verarbeitung von Gesundheitsdaten (Verletzungen, Herzfrequenz, HRV)</td><td><strong>Art. 9 Abs. 2 lit. a DSGVO</strong> &ndash; Ausdr&uuml;ckliche Einwilligung</td></tr>
           <tr><td>Abo-Verwaltung und Zahlungsabwicklung</td><td><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> &ndash; Vertragserf&uuml;llung</td></tr>
+          <tr><td>Aufbewahrung von Rechnungen und Abo-Belegen, auch nach Kontol&ouml;schung</td><td><strong>Art. 6 Abs. 1 lit. c DSGVO</strong> &ndash; Rechtliche Verpflichtung (&sect;&nbsp;147 AO, &sect;&nbsp;257 HGB)</td></tr>
+          <tr><td>Abrechnung der Partner-Provision nach Kontol&ouml;schung, wenn du &uuml;ber einen Partner zu uns kamst</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (die vereinbarte Provision gegen&uuml;ber dem Partner richtig abrechnen)</td></tr>
           <tr><td>L&ouml;schung inaktiver anonymer Profile (Cleanup)</td><td><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> &ndash; Berechtigtes Interesse (Datenhygiene)</td></tr>
           <tr><td>Verbindung mit Strava, Intervals.icu, Garmin Connect, ROUVY, Apple Health</td><td><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> &ndash; Einwilligung</td></tr>
           <tr><td>Wettervorschau mit dem Standort deines Ger&auml;ts</td><td><strong>Art. 6 Abs. 1 lit. a DSGVO i. V. m. &sect; 25 Abs. 1 TDDDG</strong> &ndash; Einwilligung (&uuml;ber den Systemdialog deines Ger&auml;ts)</td></tr>
@@ -413,10 +416,13 @@
           -->
           <!-- TODO(retention): Automatischen Gemini-Log-Cleanup implementieren (90-Tage-Cron) -->
           <tr><td>Systemprotokolle (Gemini Logs)</td><td>90 Tage, dann anonymisiert oder gel&ouml;scht</td></tr>
-          <tr><td>Zahlungsdaten</td><td>Verwaltet durch Apple/Google und RevenueCat; wir speichern keine Zahlungsinformationen direkt</td></tr>
+          <tr><td>Zahlungsdaten bei K&auml;ufen im App Store oder bei Google Play (Karte, Konto)</td><td>Nicht bei uns: Apple bzw. Google wickeln die Zahlung ab, wir erhalten diese Daten nicht</td></tr>
+          <tr><td>Abo-Ereignisse, die RevenueCat uns meldet (Produkt, Preis, W&auml;hrung, Zeitpunkt, Transaktions-ID)</td><td>Solange Handels- und Steuerrecht es verlangen (bis zu 10 Jahre), auch nach Kontol&ouml;schung; dann nur noch unter einer Kennung des gel&ouml;schten Kontos, ohne Name und E-Mail-Adresse</td></tr>
+          <tr><td>Rechnungen (Name, Anschrift, E-Mail-Adresse, Betrag), bei &Uuml;berweisung auch Name und IBAN aus der Zahlung</td><td>Solange Handels- und Steuerrecht es verlangen (bis zu 10 Jahre), auch nach Kontol&ouml;schung</td></tr>
+          <tr><td>Dass du &uuml;ber einen Partner zu uns kamst (Datum der Einladung und der Anmeldung, Kennung des Kontos)</td><td>Nach Kontol&ouml;schung, solange daraus noch Provision f&uuml;r den Partner entsteht, danach f&uuml;r die gesetzliche Aufbewahrung der Abrechnung; ohne Name und E-Mail-Adresse</td></tr>
         </tbody>
       </table>
-      <p>Nach Kontol&ouml;schung werden alle personenbezogenen Daten innerhalb von <strong>30 Tagen</strong> vollst&auml;ndig gel&ouml;scht.</p>
+      <p>Nach Kontol&ouml;schung werden deine personenbezogenen Daten innerhalb von <strong>30 Tagen</strong> gel&ouml;scht. Ausgenommen sind die Abo-Ereignisse, Rechnungen und Partner-Hinweise aus der Tabelle oben: Sie bleiben f&uuml;r die dort genannte Dauer. Rechnungen behalten Name, Anschrift und E-Mail-Adresse, weil eine Rechnung unver&auml;ndert bleiben muss; die anderen beiden tragen dann nur noch eine Kennung des gel&ouml;schten Kontos.</p>
 
       <hr>
 
