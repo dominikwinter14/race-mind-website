@@ -390,7 +390,7 @@ strong { font-weight: 600; }
 /* ── Mockup Images ── */
 
 .mockup-img {
-  max-width: 340px;
+  max-width: 300px;
   width: 100%;
   border-radius: var(--radius-lg);
   object-fit: cover;
@@ -1933,7 +1933,7 @@ strong { font-weight: 600; }
   }
 
   .mockup-img {
-    max-width: 320px;
+    max-width: 300px;
   }
 
   .mockup-img--wide {
