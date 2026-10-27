@@ -825,7 +825,7 @@
     "name_en": "Bonn Triathlon",
     "race_type": "half_ironman",
     "date": "2027-06-06",
-    "course_factor_swim": 0.97,
+    "course_factor_swim": 0.94,
     "course_factor_bike": 1.08,
     "course_factor_run": 0.98
   },
