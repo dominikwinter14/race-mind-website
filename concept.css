@@ -215,3 +215,148 @@
     height: 100%;
   }
 }
+
+/* ── 07 Devices: one plan on the phone and in the browser, dark or light ── */
+
+.devices-head {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+/* Segmented switch, like the app's own "Woche | Monat" */
+.theme-switch {
+  display: flex;
+  gap: 4px;
+  width: max-content;
+  margin: 0 auto 1.75rem;
+  padding: 4px;
+  border-radius: 0.85rem;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.theme-switch button {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 0.65rem;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.theme-switch button:hover {
+  color: var(--foreground);
+}
+
+.theme-switch button.is-active {
+  background: rgba(255, 138, 0, 0.15);
+  color: var(--primary);
+}
+
+.theme-switch button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Browser window behind, phone in front at the bottom right; both crossfade per theme */
+.devices-shots {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  aspect-ratio: 100 / 52;
+}
+
+.devices-browser {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 85%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.devices-phone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 21%;
+  aspect-ratio: 1350 / 2760;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.55));
+}
+
+.devices-browser img,
+.devices-phone img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.devices-browser img.is-active,
+.devices-phone img.is-active {
+  opacity: 1;
+}
+
+/* An open list rather than cards: the tiles' texts differ in length */
+.devices-tiles {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 2.5rem;
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
+}
+
+.devices-tiles li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.devices-tiles strong {
+  display: block;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.devices-tiles li div span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .devices-browser img,
+  .devices-phone img {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .devices-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .devices-tiles {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+
+  .devices-browser {
+    border-radius: 0.5rem;
+  }
+}

@@ -73,6 +73,28 @@
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
+
+  // ── Devices section: the dark/light switch swaps phone and browser together ──
+
+  const themeButtons = document.querySelectorAll('[data-theme-pick]');
+  const themeShots = document.querySelectorAll('[data-theme-shot]');
+
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const theme = button.dataset.themePick;
+      themeButtons.forEach((b) => {
+        b.classList.toggle('is-active', b === button);
+        b.setAttribute('aria-pressed', String(b === button));
+      });
+      themeShots.forEach((img) => {
+        const on = img.dataset.themeShot === theme;
+        img.classList.toggle('is-active', on);
+        if (on) img.removeAttribute('aria-hidden');
+        else img.setAttribute('aria-hidden', 'true');
+      });
+    });
+  });
+
   // ── Contact form ──
   //
   // Posts to our own Supabase edge function instead of a third-party form
