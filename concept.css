@@ -287,7 +287,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 21%;
+  width: 17%;
   aspect-ratio: 1350 / 2760;
   filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.55));
 }
@@ -356,7 +356,17 @@
     margin-top: 2rem;
   }
 
+  /* A larger phone on small screens, so the container grows to hold it */
+  .devices-shots {
+    aspect-ratio: 100 / 62;
+  }
+
   .devices-browser {
+    width: 80%;
     border-radius: 0.5rem;
+  }
+
+  .devices-phone {
+    width: 30%;
   }
 }
