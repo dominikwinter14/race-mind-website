@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.11 &middot; Last updated: October 2026</p>
+      <p class="legal-meta">Version 1.12 &middot; Last updated: October 2026</p>
 
       <hr>
 
@@ -225,7 +225,8 @@
         </thead>
         <tbody>
           <tr><td><strong>Supabase Inc.</strong></td><td>Database, authentication, serverless functions</td><td>EU (Ireland)</td><td>Data processing within the EU</td></tr>
-          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach chat, coach memory</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Training plan generation, training analysis, coach memory, voice input; coach chat where not handled via Microsoft Azure (see 6.3)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
+          <tr><td><strong>Microsoft Ireland Operations Ltd. (Microsoft Azure, AI models by OpenAI)</strong></td><td>Coach chat</td><td>EU (processing only in EU member states)</td><td>Data processing agreement (Microsoft Products and Services Data Protection Addendum), data processing within the EU</td></tr>
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Subscription management, in-app purchases</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs)</td></tr>
           <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push notification delivery (FCM to Android devices)</td><td>USA</td><td>EU Standard Contractual Clauses (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Training import (only when connected)</td><td>USA</td><td>You authorize access directly with Strava (OAuth)</td></tr>
@@ -255,7 +256,7 @@
       <p>The training plan itself (weekly structure, intensity distribution, load management) is calculated entirely <strong>deterministically on our servers</strong> &mdash; using mathematical formulas, threshold models, and load ratios. No AI is involved in this calculation.</p>
       <p>For the <strong>accompanying coaching texts</strong> (e.g., plan introduction, week descriptions, motivational notes), we send relevant profile and plan-context data to Google Gemini to phrase these texts in a personalized way. In this process:</p>
       <ul>
-        <li><strong>No</strong> real names are sent to Gemini (only anonymized user IDs)</li>
+        <li><strong>No</strong> real names are sent to Gemini (only pseudonymous user IDs)</li>
         <li>Data is used solely for text generation and is not used by Google for its own purposes</li>
         <li>Results are stored in our database (Supabase, EU)</li>
       </ul>
@@ -270,7 +271,8 @@
       </ul>
 
       <h3>6.3 Coach Chat</h3>
-      <p>Your chat messages are sent to Google Gemini along with relevant training context to provide personalized answers. Chat histories are stored in our database. If you record a voice message, the recording is sent to Google Gemini to be converted into text; we do not store the recording itself.</p>
+      <p>Your chat messages are sent to an AI service along with relevant training context to give you personalized answers. Depending on the conversation, this is a language model by OpenAI (GPT) that Microsoft runs in its data centers in the EU (Microsoft Azure, processing only in EU member states), or Google Gemini. We decide which service answers a conversation when it starts; if Microsoft Azure is overloaded or unavailable, Google Gemini answers. Chat histories are stored in our database. If you record a voice message, the recording is sent to Google Gemini to be converted into text; we do not store the recording itself.</p>
+      <p>For both services: we do not transmit real names or email addresses, only pseudonymous user IDs. Neither Microsoft nor Google uses your data for its own purposes or to train AI models; OpenAI has no access. Both providers automatically check requests for abuse of their services. Microsoft stores only content that this check flags as suspicious, for a limited time within the EU; only authorized Microsoft employees located in the European Economic Area may view it. Google stores requests and responses for a limited period to detect abuse.</p>
       <p><strong>Coach memory:</strong> So that your coach knows you beyond single conversations, Google Gemini notes once a day from your new chat messages and your session notes (&ldquo;Note for your coach&rdquo;) what matters for your coaching in the long run &ndash; including health-related information. Your coach uses the memory in the chat and when analysing new sessions. Under Settings &rarr; Coach Personality &rarr; &ldquo;What your coach knows about you&rdquo; you can see every note and delete it. The &ldquo;Coach memory&rdquo; switch turns the feature off; when you do, we delete all notes.</p>
 
       <h3>6.4 Health Data (Apple Health / Google Health Connect)</h3>
@@ -295,7 +297,7 @@
       </ul>
 
       <h3>6.5 Automated Processing</h3>
-      <p>Training plans, metrics, and prognoses are primarily based on <strong>deterministic calculations</strong> (mathematical formulas, threshold models, workload ratios). Google Gemini provides supplementary qualitative interpretation and coaching text. This does not constitute solely automated decision-making with legal or similarly significant effects within the meaning of Art. 22 GDPR. All outputs are recommendations for fitness purposes &mdash; you are free to adjust or disregard them at any time.</p>
+      <p>Training plans, metrics, and prognoses are primarily based on <strong>deterministic calculations</strong> (mathematical formulas, threshold models, workload ratios). AI language models (Google Gemini, and in the coach chat also models by OpenAI via Microsoft Azure) provide supplementary qualitative interpretation, coaching text and chat answers. This does not constitute solely automated decision-making with legal or similarly significant effects within the meaning of Art. 22 GDPR. All outputs are recommendations for fitness purposes &mdash; you are free to adjust or disregard them at any time.</p>
       <p>In accordance with Art. 50 of Regulation (EU) 2024/1689 (AI Act), we inform you that the coach chat, training plans, and analysis texts are generated with the assistance of an AI system (Large Language Model). AI-generated content is labeled accordingly in the App.</p>
 
       <h3>6.6 Anonymous Usage and Account Linking</h3>
@@ -352,17 +354,17 @@
       <p><strong>How we use this data</strong></p>
       <ul>
         <li><strong>Training analysis</strong> &ndash; metrics such as Efficiency Factor, Drift, and Pacing, and your Performance Score (see Section 6.2)</li>
-        <li><strong>Thresholds and load</strong> &ndash; your Garmin activities update the threshold values and load metrics (e.g., FTP, threshold pace, critical swim speed, training load, personal bests) from which your <strong>training plan</strong> is calculated. The plan structure itself is computed deterministically on our servers; Garmin raw data is <strong>not</strong> transmitted to Google Gemini for this purpose.</li>
+        <li><strong>Thresholds and load</strong> &ndash; your Garmin activities update the threshold values and load metrics (e.g., FTP, threshold pace, critical swim speed, training load, personal bests) from which your <strong>training plan</strong> is calculated. The plan structure itself is computed deterministically on our servers; Garmin raw data is <strong>not</strong> transmitted to AI services for this purpose.</li>
         <li><strong>Training Readiness</strong> &ndash; HRV, resting heart rate, and sleep data feed into the daily recovery indicator (see Section 6.4)</li>
         <li><strong>Workout push</strong> &ndash; if you use this feature, we transmit planned workouts <em>back</em> to your Garmin account so they appear on your watch</li>
       </ul>
 
-      <p><strong>Processing with AI (Google Gemini)</strong></p>
-      <p>For the qualitative interpretation of a session and for coach chat responses, we transmit the relevant training context to Google Gemini (USA, EU Standard Contractual Clauses). This includes values that originate from your Garmin data &mdash; for example duration, distance, pace, heart rate zones, calculated metrics, and recovery status. In this process:</p>
+      <p><strong>Processing with AI (Google Gemini, Microsoft Azure)</strong></p>
+      <p>For the qualitative interpretation of a session we transmit the relevant training context to Google Gemini (USA, EU Standard Contractual Clauses); for coach chat responses, to Microsoft Azure (EU) or Google Gemini (see Section 6.3). This includes values that originate from your Garmin data &mdash; for example duration, distance, pace, heart rate zones, calculated metrics, and recovery status. In this process:</p>
       <ul>
-        <li><strong>No</strong> real names are sent to Gemini (only anonymized user IDs)</li>
-        <li>The <strong>original payload</strong> transmitted by Garmin is not forwarded to Gemini</li>
-        <li>Data is used solely for text generation and is not used by Google for its own purposes</li>
+        <li><strong>No</strong> real names are sent to the AI services (only pseudonymous user IDs)</li>
+        <li>The <strong>original payload</strong> transmitted by Garmin is not forwarded to the AI services</li>
+        <li>Data is used solely for text generation and is not used by Google or Microsoft for their own purposes</li>
         <li>AI-generated content is labeled accordingly in the App (see Section 6.5)</li>
       </ul>
 
@@ -444,7 +446,7 @@
           <tr><td>Anonymous profiles with subscription, no account link</td><td>Until subscription expires + 90 days of inactivity</td></tr>
           -->
           <!-- TODO(retention): Automatischen Gemini-Log-Cleanup implementieren (90-Tage-Cron) -->
-          <tr><td>System logs (Gemini Logs)</td><td>90 days, then anonymized or deleted</td></tr>
+          <tr><td>System logs of AI calls</td><td>90 days, then anonymized or deleted</td></tr>
           <tr><td>Payment data for purchases in the App Store or on Google Play (card, account)</td><td>Not with us: Apple or Google process the payment, we never receive this data</td></tr>
           <tr><td>Subscription events reported to us by RevenueCat (product, price, currency, time, transaction ID)</td><td>As long as commercial and tax law require (up to 10 years), also after account deletion; then only under an identifier of the deleted account, without name or email address</td></tr>
           <tr><td>Invoices (name, postal address, email address, amount), for bank transfers also the name and IBAN from the payment</td><td>As long as commercial and tax law require (up to 10 years), also after account deletion</td></tr>
