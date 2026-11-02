@@ -1630,6 +1630,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/nordschwarzwald-triathlon-mitteldistanz-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/ironman-kalmar-sweden.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-kalmar-sweden.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-kalmar-sweden-en.html"/>
