@@ -3,12 +3,12 @@
   "sources": {
     "lib/realismCheck.ts": "46350c34592ea31e1e35e9961de4be162e08b10b697a8b334e650d370ae46156",
     "lib/raceDurationPredictor.ts": "2865e39650449138a50376c9287be3d67eec4dfc8d5cc895a3b9c2eff4d2a3d9",
-    "lib/goalAssessment.ts": "1ceaa7f1e0efa17322e6329dc35d3d9a5a3109a050ccfc501d72484f573df8d3",
+    "lib/goalAssessment.ts": "94bd9cc1a1ae9320a88f044dd54932644170b87f8a04d1ecb3274a68c652a639",
     "lib/goalVerdict.ts": "2ad7d71707851d5123394754f9d3e8cd3fd6a61bfb2b06d38aa507b5d82697e2",
     "lib/moreHoursSuggestion.ts": "f563933a48b9cb787dfe03e30ff477df6422d75851f8ed4641dd35b20dc57052",
     "lib/athleteLevel.ts": "b474cc7beb07eeaf99322db2dfa5ecf73f4430a3518e9b765d35dc7095410431",
     "lib/improvementHeadroom.ts": "ab291ead5aed6dbcd719a2892c98c28578489496f04c57e96dfe3b4aaeb1ed4b",
-    "lib/onboardingRaceDay.ts": "2abaeab5045dff5f1e17875fe0d65e0019f2feca53d3a35e5b5e21e4c59cee27",
+    "lib/onboardingRaceDay.ts": "ddcbffadd76c47213af826536c5d6beed0dd9db55aaa86f63cc8f8509e95b6cb",
     "lib/format.ts": "08c4fcfa13a66255f498c09b8b1013d3dda0082c195441513f78d3a764118d01",
     "lib/thresholdBounds.ts": "d8329fb2e2688ae3aa791b8242fade0cc1e7db6ffb3bbc6d2d2ae49d0834f528",
     "constants/raceVolume.ts": "e79eb4128bd082665aab224b0a8100450d5cb5be5cd335cfec1f7f7ef39c44a7"

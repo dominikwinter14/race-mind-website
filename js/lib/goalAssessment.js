@@ -80,7 +80,7 @@ export function classifyGoalTime(goalHours, projectedBest, projectedProb, projec
     scalePosition = round2(Math.max(0, Math.min(1, scalePosition)));
     return { scale_label: scaleLabel, scale_position: scalePosition, likelihood, gap_hours: round2(gapHours), gap_pct: gapPct };
 }
-// ── Limiting split + ★ recommendation (mirror of the edge copy) ──
+// ── Limiting split (mirror of the edge copy) ──
 const TYPICAL_SPLIT_SHARE = {
     ironman: { swim: 0.10, bike: 0.55, run: 0.35 },
     half_ironman: { swim: 0.11, bike: 0.52, run: 0.37 },
@@ -111,77 +111,4 @@ export function deriveLimitingSplit(raceType, splits) {
         }
     }
     return limiter;
-}
-const AMBITIOUS_GOALS = new Set(['stretch', 'high_effort', 'unrealistic']);
-/** Per-discipline training responsiveness (§16.2 constraintCap). See edge copy. */
-const TRAINABILITY = { bike: 1.0, run: 0.85, swim: 0.55 };
-/** §16.2 leverScore = headroom × zeitAnteil × trainability. See edge copy. */
-export function computeLeverScores(raceType, splits) {
-    const typical = TYPICAL_SPLIT_SHARE[raceType];
-    if (!typical)
-        return {};
-    const total = (splits.swim ?? 0) + (splits.bike ?? 0) + (splits.run ?? 0);
-    if (total <= 0)
-        return {};
-    const scores = {};
-    for (const d of ['swim', 'bike', 'run']) {
-        const v = splits[d];
-        if (v == null)
-            continue;
-        const actualShare = v / total;
-        const headroom = actualShare / typical[d];
-        scores[d] = headroom * actualShare * TRAINABILITY[d];
-    }
-    return scores;
-}
-/** ★ recommended default_sport_focus (advisory, opt-in). See edge copy. */
-export function recommendSportFocus(raceType, strategy, splits) {
-    if (!TYPICAL_SPLIT_SHARE[raceType])
-        return 'balanced';
-    if (strategy == null || !AMBITIOUS_GOALS.has(strategy))
-        return 'balanced';
-    const scores = computeLeverScores(raceType, splits);
-    let best = null;
-    let bestScore = -Infinity;
-    for (const d of ['swim', 'bike', 'run']) {
-        const s = scores[d];
-        if (s != null && s > bestScore) {
-            bestScore = s;
-            best = d;
-        }
-    }
-    if (best == null)
-        return 'balanced';
-    return best === 'run' ? 'run_focus' : best === 'bike' ? 'bike_focus' : 'swim_focus';
-}
-/** Minimum general-phase block count before the ★ focus rotates per block. Below
- *  this the lead window is too short to sequence — the single top lever is kept
- *  on every block (identical to the pre-sequence behaviour). */
-const MIN_SEQUENCE_BLOCKS = 3;
-function focusOf(d) {
-    return d === 'run' ? 'run_focus' : d === 'bike' ? 'bike_focus' : 'swim_focus';
-}
-/** §16.7 ★ focus sequence across general-phase blocks (mirror of edge copy). */
-export function recommendSportFocusSequence(raceType, strategy, splits, generalBlockCount) {
-    if (generalBlockCount <= 0)
-        return [];
-    const top = recommendSportFocus(raceType, strategy, splits);
-    if (top === 'balanced')
-        return Array(generalBlockCount).fill('balanced');
-    if (generalBlockCount < MIN_SEQUENCE_BLOCKS)
-        return Array(generalBlockCount).fill(top);
-    const typical = TYPICAL_SPLIT_SHARE[raceType];
-    const total = (splits.swim ?? 0) + (splits.bike ?? 0) + (splits.run ?? 0);
-    const scores = computeLeverScores(raceType, splits);
-    const weaknesses = ['swim', 'bike', 'run']
-        .filter((d) => {
-        const v = splits[d];
-        if (v == null || total <= 0 || !typical)
-            return false;
-        return (v / total) / typical[d] > 1;
-    })
-        .sort((a, b) => (scores[b] ?? 0) - (scores[a] ?? 0));
-    const topDisc = top === 'run_focus' ? 'run' : top === 'bike_focus' ? 'bike' : 'swim';
-    const ranked = [topDisc, ...weaknesses.filter((d) => d !== topDisc)];
-    return Array.from({ length: generalBlockCount }, (_unused, i) => i < ranked.length ? focusOf(ranked[i]) : 'balanced');
 }

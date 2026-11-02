@@ -14,11 +14,13 @@ import { predictRaceDuration } from './raceDurationPredictor.js';
 /** The athlete from the onboarding store's answers (weight is added where it is parsed). */
 export function onboardingAthleteOf(store) {
     const year = parseInt(store.birthYear, 10);
+    const seed = (field) => (store.seededThresholdFields ?? []).includes(field) && !(store.thresholdsEditedFields ?? []).includes(field);
     return {
         birthYear: Number.isFinite(year) && year > 1900 ? year : null,
         experienceMonths: EXPERIENCE_TO_MONTHS[store.experience] ?? null,
         trainingWeeks: store.levelGrowth?.trainingWeeks ?? 0,
         chosen: store.levelChosen,
+        seeded: { run: seed('run_threshold_pace_sec_km'), bike: seed('ftp_watts'), swim: seed('css_pace_100m') },
     };
 }
 const MAIN_RACE_TYPES = [
@@ -62,15 +64,17 @@ export function onboardingRaceDay(params) {
     const now = new Date();
     const ageNow = ageYearsAt(born, now);
     const ageThen = ageYearsAt(born, new Date(now.getTime() + weeksToRace * 7 * 86400000));
+    // A chip or a distance + time is never measured — the server's 'seed'. An
+    // exact value is the athlete's own, the server's 'manual': no chip — unless
+    // a new race prefilled it from the first onboarding's seed (athlete.seeded).
+    const seeded = athlete.seeded ?? {};
+    const chips = {
+        run: (p.source_run ?? p.source) === 'onboarding' && (!p.exact?.run || seeded.run === true),
+        bike: (p.source_bike ?? p.source) === 'onboarding' && (!p.exact?.bike || seeded.bike === true),
+        swim: (p.source_swim ?? p.source) === 'onboarding' && (!p.exact?.swim || seeded.swim === true),
+    };
     const headroom = disciplineHeadroom({
-        thresholds, ageYears: ageNow, raceType, distances: params.distances, level, execution: today,
-        // A chip or a distance + time is never measured — the server's 'seed'. An
-        // exact value is the athlete's own, the server's 'manual': no chip.
-        chips: {
-            run: (p.source_run ?? p.source) === 'onboarding' && !p.exact?.run,
-            bike: (p.source_bike ?? p.source) === 'onboarding' && !p.exact?.bike,
-            swim: (p.source_swim ?? p.source) === 'onboarding' && !p.exact?.swim,
-        },
+        thresholds, ageYears: ageNow, raceType, distances: params.distances, level, execution: today, chips,
     }, predictRaceDuration);
     const rp = RACE_PARAMS[raceType] || RACE_PARAMS.ironman;
     const at = (weeklyHours) => projectRaceDay({
@@ -104,12 +108,27 @@ export function onboardingRaceDay(params) {
             today: base.probable,
             cone: { best: fromToday('best'), probable, worst: fromToday('worst') },
             breakdown: projection.breakdown,
+            legs: legsOf(headroom, projection.breakdown, {
+                swim: (thresholds.css_pace_sec_per_100m ?? 0) > 0 && !chips.swim,
+                bike: (thresholds.ftp_watts ?? 0) > 0 && !chips.bike,
+                run: (thresholds.run_threshold_pace_sec_km ?? 0) > 0 && !chips.run,
+            }),
         },
         probableAt: (weeklyHours) => {
             const other = at(weeklyHours);
             return other ? clamp(other.hours.probable, base.probable) : base.probable;
         },
     };
+}
+/** The server's raceDayHeadroom (_shared/race-day-headroom.ts) on the onboarding's numbers. */
+function legsOf(headroom, breakdown, measured) {
+    const pos = (n) => (Number.isFinite(n) && n > 0 ? n : 0);
+    const leg = (l) => ({
+        gain_hours: round4(pos(breakdown.headroom[l])),
+        headroom: round4(pos(headroom[l].probable)),
+        measured: measured[l],
+    });
+    return { swim: leg('swim'), bike: leg('bike'), run: leg('run') };
 }
 function round4(n) {
     return Math.round(n * 10000) / 10000;
