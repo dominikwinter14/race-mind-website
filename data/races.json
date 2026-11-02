@@ -1380,16 +1380,6 @@
     "course_factor_run": 1
   },
   {
-    "slug": "klagenfurt-halbmarathon",
-    "name": "Klagenfurt Halbmarathon",
-    "name_en": "Klagenfurt Half Marathon",
-    "race_type": "half_marathon",
-    "date": "2027-08-29",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
     "slug": "koelner-halbmarathon-muengersdorf",
     "name": "Kölner Halbmarathon (Müngersdorf)",
     "name_en": "Cologne Half Marathon (Müngersdorf)",
