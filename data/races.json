@@ -520,6 +520,26 @@
     "course_factor_run": 0.97
   },
   {
+    "slug": "trollinger-halbmarathon",
+    "name": "Trollinger Halbmarathon",
+    "name_en": "Trollinger Half Marathon",
+    "race_type": "half_marathon",
+    "date": "2027-04-25",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.05
+  },
+  {
+    "slug": "trollinger-marathon",
+    "name": "Trollinger Marathon",
+    "name_en": "Trollinger Marathon",
+    "race_type": "marathon",
+    "date": "2027-04-25",
+    "course_factor_swim": 0,
+    "course_factor_bike": 0,
+    "course_factor_run": 1.08
+  },
+  {
     "slug": "gutenberg-halbmarathon-mainz",
     "name": "Gutenberg Halbmarathon Mainz",
     "name_en": "Gutenberg Half Marathon Mainz",
@@ -1007,6 +1027,16 @@
     "date": "2027-06-20",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
+    "slug": "steinbecker-triathlon-mitteldistanz",
+    "name": "Steinbecker Triathlon Mitteldistanz",
+    "name_en": "Steinbeck Triathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-06-20",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.02,
     "course_factor_run": 1
   },
   {
