@@ -9,6 +9,7 @@
   <link rel="alternate" hreflang="de" href="https://race-mind.com/">
   <link rel="alternate" hreflang="en" href="https://race-mind.com/index-en.html">
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preload" href="fonts/lexend-deca-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="concept.css">
@@ -67,7 +68,7 @@
         <p class="hero-eyebrow reveal">RaceMind &ndash; Your Coach for Triathlon and Running</p>
         <p class="hero-scope reveal">5K &middot; 10K &middot; Half Marathon &middot; Marathon &middot; Triathlon: sprint to full distance</p>
         <div class="hero-questions reveal">
-          <a href="#q1" class="hero-q" data-q="0">Your goal time is set &ndash; <span>but not the path to get there?</span></a>
+          <a href="#q1" class="hero-q active" data-q="0">Your goal time is set &ndash; <span>but not the path to get there?</span></a>
           <a href="#q2" class="hero-q" data-q="1">Signed up for the Ironman &ndash; <span>but no idea where to start?</span></a>
           <a href="#q3" class="hero-q" data-q="2">A coach would help &ndash; <span>but not for &euro;200 a month?</span></a>
         </div>
@@ -88,9 +89,9 @@
         </div>
       </div>
       <div class="hero-mockup reveal">
-        <img src="images/app-home-light-en.webp" class="hero-shot is-active" data-q="0" alt="RaceMind app &ndash; home with race countdown, weekly progress and the week&rsquo;s sessions">
-        <img src="images/hero-plan-en.webp" class="hero-shot" data-q="1" alt="RaceMind app &ndash; training plan with phases">
-        <img src="images/app-coach-chat-en.webp" class="hero-shot" data-q="2" alt="RaceMind app &ndash; coach chat with quick actions">
+        <img src="images/app-home-light-en-800.webp" srcset="images/app-home-light-en-600.webp 600w, images/app-home-light-en-800.webp 800w" sizes="(max-width: 768px) 265px, (max-width: 1024px) 380px, 320px" class="hero-shot is-active" data-q="0" alt="RaceMind app &ndash; home with race countdown, weekly progress and the week&rsquo;s sessions">
+        <img src="images/hero-plan-en-800.webp" srcset="images/hero-plan-en-600.webp 600w, images/hero-plan-en-800.webp 800w" sizes="(max-width: 768px) 265px, (max-width: 1024px) 380px, 320px" fetchpriority="low" class="hero-shot" data-q="1" alt="RaceMind app &ndash; training plan with phases">
+        <img src="images/app-coach-chat-en-800.webp" srcset="images/app-coach-chat-en-600.webp 600w, images/app-coach-chat-en-800.webp 800w" sizes="(max-width: 768px) 265px, (max-width: 1024px) 380px, 320px" fetchpriority="low" class="hero-shot" data-q="2" alt="RaceMind app &ndash; coach chat with quick actions">
       </div>
     </div>
   </header>
@@ -129,7 +130,7 @@
         </ul>
       </div>
       <div class="feature-mockup reveal">
-        <img src="images/app-analyse-en.webp" class="mockup-img" alt="Workout analysis with route, key stats, time in HR zones and coach&rsquo;s verdict">
+        <img src="images/app-analyse-en-800.webp" srcset="images/app-analyse-en-600.webp 600w, images/app-analyse-en-800.webp 800w" sizes="300px" loading="lazy" decoding="async" class="mockup-img" alt="Workout analysis with route, key stats, time in HR zones and coach&rsquo;s verdict">
       </div>
     </div>
   </section>
@@ -149,7 +150,7 @@
         </ul>
       </div>
       <div class="feature-mockup reveal" style="direction: ltr;">
-        <img src="images/hero-plan-marathon-en.webp" class="mockup-img" alt="Training plan with phases and volume progression">
+        <img src="images/hero-plan-marathon-en-800.webp" srcset="images/hero-plan-marathon-en-600.webp 600w, images/hero-plan-marathon-en-800.webp 800w" sizes="300px" loading="lazy" decoding="async" class="mockup-img" alt="Training plan with phases and volume progression">
       </div>
     </div>
   </section>
@@ -168,7 +169,7 @@
         </ul>
       </div>
       <div class="feature-mockup reveal">
-        <img src="images/app-coach-sick-en.webp" class="mockup-img" alt="Coach responds to illness and adjusts the plan">
+        <img src="images/app-coach-sick-en-800.webp" srcset="images/app-coach-sick-en-600.webp 600w, images/app-coach-sick-en-800.webp 800w" sizes="300px" loading="lazy" decoding="async" class="mockup-img" alt="Coach responds to illness and adjusts the plan">
       </div>
     </div>
   </section>
@@ -188,7 +189,7 @@
         </ul>
       </div>
       <div class="feature-mockup reveal" style="direction: ltr;">
-        <img src="images/app-planer-en.webp" class="mockup-img" alt="Week planner with training availability, fixed sessions and this week&rsquo;s period">
+        <img src="images/app-planer-en-800.webp" srcset="images/app-planer-en-600.webp 600w, images/app-planer-en-800.webp 800w" sizes="300px" loading="lazy" decoding="async" class="mockup-img" alt="Week planner with training availability, fixed sessions and this week&rsquo;s period">
       </div>
     </div>
   </section>
@@ -208,7 +209,7 @@
         </ul>
       </div>
       <div class="feature-mockup reveal">
-        <img src="images/friend-week-en.webp" class="mockup-img" alt="Friends story: Lena’s weekly review with 6.1 hours, 100% of plan done and a marathon projection of 3:29&nbsp;h">
+        <img src="images/friend-week-en-800.webp" srcset="images/friend-week-en-600.webp 600w, images/friend-week-en-800.webp 800w" sizes="300px" loading="lazy" decoding="async" class="mockup-img" alt="Friends story: Lena’s weekly review with 6.1 hours, 100% of plan done and a marathon projection of 3:29&nbsp;h">
       </div>
     </div>
   </section>
@@ -953,7 +954,7 @@
   <section class="section" id="contact">
     <div class="container contact-split">
       <div class="contact-image reveal">
-        <img src="images/mood-run.webp" class="mockup-img mockup-img--mood" alt="RaceMind app with running shoes and training notes">
+        <img src="images/mood-run-1080.webp" srcset="images/mood-run-720.webp 720w, images/mood-run-1080.webp 1080w" sizes="(max-width: 768px) 360px, 480px" loading="lazy" decoding="async" class="mockup-img mockup-img--mood" alt="RaceMind app with running shoes and training notes">
       </div>
       <div class="contact-form-wrapper">
         <h2 class="section-title reveal">Contact</h2>
