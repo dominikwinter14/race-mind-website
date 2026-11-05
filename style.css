@@ -1540,6 +1540,21 @@ strong { font-weight: 600; }
   color: var(--foreground);
 }
 
+/* The withdrawal link (§ 356a BGB): set apart from the legal links next to it. */
+.footer-links a.footer-withdraw {
+  margin: -0.25rem 0;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.footer-links a.footer-withdraw:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
+}
+
 .footer-copy {
   font-size: 0.75rem;
   color: rgba(148, 148, 148, 0.5);

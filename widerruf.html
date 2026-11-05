@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertrag widerrufen – RaceMind</title>
+  <link rel="canonical" href="https://race-mind.com/widerruf.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <style>[hidden] { display: none !important; }</style>
+</head>
+<body class="subpage">
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="logo-full.svg" class="logo-svg" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">So funktioniert's</a>
+        <a href="index.html#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <h1>Vertrag widerrufen</h1>
+      <p>Hier widerrufst du deinen Vertrag mit Race Mind, den du direkt bei uns abgeschlossen hast. K&auml;ufe &uuml;ber den App Store oder Google Play widerrufst du dort.</p>
+
+      <form id="withdrawal-form" class="contact-form">
+        <input type="checkbox" name="botcheck" style="display:none">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" required maxlength="200">
+        </div>
+        <div class="form-group">
+          <label for="invoice">Rechnungsnummer (falls zur Hand)</label>
+          <input type="text" id="invoice" name="invoice" maxlength="100">
+        </div>
+        <button type="submit" class="btn btn-primary">Vertrag widerrufen</button>
+      </form>
+
+      <div id="withdrawal-review" hidden>
+        <p>Bitte pr&uuml;fe deine Angaben:</p>
+        <p>Name: <span id="withdrawal-review-name"></span><br>E-Mail: <span id="withdrawal-review-email"></span><br>Rechnungsnummer: <span id="withdrawal-review-invoice"></span></p>
+        <button type="button" id="withdrawal-confirm" class="btn btn-primary">Widerruf best&auml;tigen</button>
+        <button type="button" id="withdrawal-back" class="btn">Zur&uuml;ck</button>
+        <p id="withdrawal-failed" hidden>Das hat nicht geklappt. Bitte versuch es noch einmal oder schreib an help@race-mind.com.</p>
+      </div>
+
+      <div id="withdrawal-done" hidden>
+        <p>Dein Widerruf ist bei uns eingegangen. Du bekommst gleich eine Best&auml;tigung per E-Mail.</p>
+      </div>
+      <script src="js/withdrawal.js" defer></script>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="index.html">
+          <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="index.html#contact">Kontakt</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
