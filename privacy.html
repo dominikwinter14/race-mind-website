@@ -39,7 +39,7 @@
       </div>
 
       <h1>Privacy Policy</h1>
-      <p class="legal-meta">Version 1.13 &middot; Last updated: November 2026</p>
+      <p class="legal-meta">Version 1.14 &middot; Last updated: November 2026</p>
 
       <hr>
 
@@ -167,7 +167,7 @@
       </ul>
 
       <h3>3.6 Web App (app.race-mind.com)</h3>
-      <p>At <code>app.race-mind.com</code> you can also use Race Mind in your browser. You sign in there with your existing account. In the browser you can buy access for 3 or 12 months or the Supporter License by invoice. You do not take out a subscription there. Your training data is handled the same way as in the App.</p>
+      <p>At <code>app.race-mind.com</code> you can also use Race Mind in your browser. You can create a new account there or sign in with your existing account. In the browser you can buy access for 3 or 12 months or the Supporter License by invoice. You do not take out a subscription there. Your training data is handled the same way as in the App.</p>
 
       <p><strong>Provision</strong></p>
       <p>The web app is delivered via Cloudflare Pages, a service provided by Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA. When you open it, Cloudflare processes your IP address, browser type and version, operating system, the requested address, the referrer URL, and the time. We do not store this data ourselves.</p>
@@ -183,9 +183,12 @@
         <li><strong>Legal basis:</strong> Sec. 25(2) no. 2 TDDDG &ndash; strictly necessary to use the web app.</li>
       </ul>
 
+      <p><strong>Creating an Account</strong></p>
+      <p>If you create an account in the browser with email and password, we process your email address and store your password only as a hash. To confirm your address we send you a code by email through Resend. The legal basis is Art. 6(1)(b) GDPR (performance of a contract).</p>
+
       <p><strong>Sign In with Apple or Google</strong></p>
       <p>On the sign-in page we offer sign-in with Apple and Google. For this, your browser loads program code from Apple (<code>appleid.cdn-apple.com</code>) and from Google (<code>accounts.google.com</code>) when the page opens. Google's button appears as an embedded frame from Google. Apple and Google receive your IP address, details about your browser, and the address of our page, even if you sign in with email. If you are signed in to Google in your browser, Google can recognise you through its own cookies and show your name in the button.</p>
-      <p>If you choose to sign in with Apple or Google, we receive a confirmation from them with your Apple or Google ID and your email address. We use it to find your existing account. We do not create a new account in the browser. To prevent abuse, we briefly count sign-in attempts without an account per IP address in our server's memory; the address is not stored.</p>
+      <p>If you choose to sign in with Apple or Google, we receive a confirmation from them with your Apple or Google ID and your email address. We use it to find your existing account. If you do not have one yet, we create a new one with it. To prevent abuse, we briefly count sign-in attempts without an account per IP address in our server's memory; the address is not stored.</p>
       <ul>
         <li><strong>Providers:</strong> Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Ireland, and Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. A transfer to Apple Inc. or Google LLC in the USA is possible. Both are certified under the EU-US Data Privacy Framework.</li>
         <li><strong>Legal basis:</strong> For loading the sign-in buttons, Art. 6(1)(f) GDPR. The legitimate interest lies in offering you the sign-in you know from the App. For the sign-in itself, Art. 6(1)(b) GDPR (performance of a contract).</li>
@@ -307,7 +310,7 @@
       <p>In accordance with Art. 50 of Regulation (EU) 2024/1689 (AI Act), we inform you that the coach chat, training plans, and analysis texts are generated with the assistance of an AI system (Large Language Model). AI-generated content is labeled accordingly in the App.</p>
 
       <h3>6.6 Anonymous Usage and Account Linking</h3>
-      <p>When you start the App, an <strong>anonymous session</strong> is created. You can initially use the App without personal registration. After onboarding, we recommend linking your account with Apple, Google, or email to enable data recovery on device changes.</p>
+      <p>When you start the App, an <strong>anonymous session</strong> is created. You can initially use the App without personal registration. After onboarding, we recommend linking your account with Apple, Google, or email to enable data recovery on device changes. There is no anonymous session in the browser: you create an account there first.</p>
 
       <h3>6.7 Weather Forecast in Weekly Planning</h3>
       <p>On the weekly planning screen, we show you a 7-day weather forecast so you can plan your training around it. We determine which place it is for in one of two ways.</p>
@@ -451,6 +454,7 @@
           <tr><td>Last place derived from your IP address (detected travel location)</td><td>Until a new place replaces it, the App sends its location with your permission, you remove it, or you delete your account</td></tr>
           <tr><td>Last IP address with place, if our table for the EU and Switzerland cannot match it</td><td>No more than 30 days after your last weather request</td></tr>
           <tr><td>Anonymous profiles without completed onboarding</td><td><strong>48 hours</strong>, then automatically deleted</td></tr>
+          <tr><td>Started registrations without a confirmed email address</td><td><strong>7 days</strong>, then automatic deletion</td></tr>
           <!-- TODO(iap): Subscription + Payment-Zeilen wieder einblenden wenn IAP implementiert
           <tr><td>Anonymous profiles with subscription, no account link</td><td>Until subscription expires + 90 days of inactivity</td></tr>
           -->
