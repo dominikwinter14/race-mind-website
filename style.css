@@ -1748,27 +1748,15 @@ strong { font-weight: 600; }
   transform: translateY(0);
 }
 
-/* The hero is the first thing a visitor sees: same fade as .reveal, but in CSS,
-   so it neither waits for script.js nor stays empty if the script never runs.
-   0.01, not 0: Chrome doesn't count text painted at opacity 0 for LCP and would
-   only see it at the next repaint, when the questions rotate 3.5 s later. */
+/* The hero is the first thing a visitor sees, so it stands at once, without a
+   fade. Its CSS fade (from 0.01, d174a0503) sometimes stayed near its first
+   frame: the questions rotated on while text and phone stayed dim (Dominik,
+   09.11.2026). Without one nothing can hold the hero back, it needs no
+   script.js, and LCP measured the same (2.2 s, 05.11.2026). */
 .hero .reveal {
   opacity: 1;
   transform: none;
-  animation: hero-reveal 0.7s ease both;
-}
-
-@keyframes hero-reveal {
-  from {
-    opacity: 0.01;
-    transform: translateY(30px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero .reveal {
-    animation: none;
-  }
+  transition: none;
 }
 
 /* ══════════════════════════════════════

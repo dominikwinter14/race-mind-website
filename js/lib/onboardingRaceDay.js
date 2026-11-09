@@ -120,13 +120,6 @@ export function onboardingRaceDay(params) {
         },
     };
 }
-/** The probable gain no leg's focus tile holds: the race-day execution and the
- *  transitions (the line under the tiles, Dominik 02.11.2026). A beginner's
- *  forecast gains most of its minutes here, so without it the tiles read short. */
-export function raceCraftGainHours(breakdown) {
-    const n = breakdown.level.swim + breakdown.level.bike + breakdown.level.run + breakdown.transitions;
-    return Number.isFinite(n) && n > 0 ? n : 0;
-}
 /** The server's raceDayHeadroom (_shared/race-day-headroom.ts) on the onboarding's numbers. */
 function legsOf(headroom, breakdown, measured) {
     const pos = (n) => (Number.isFinite(n) && n > 0 ? n : 0);
