@@ -168,7 +168,7 @@
 @media (max-width: 768px) {
   .hero--fullbleed {
     min-height: auto;
-    padding: 7rem 0 3rem;
+    padding: 5.5rem 0 3rem;
   }
 
   .hero-split {
@@ -200,6 +200,32 @@
     font-size: 1.1rem;
     line-height: 1.35;
     padding-left: 0.9rem;
+  }
+
+  /* Store buttons right under eyebrow + scope, so a phone shows them without
+     scrolling (below the answer they started at 786 px on an iPhone 15).
+     Side by side they take one row; under ~340 px they wrap instead of
+     overflowing. "So funktioniert's" steps aside, the page scrolls there. */
+  .hero-questions,
+  .hero-answer {
+    order: 1;
+  }
+
+  .hero-cta {
+    gap: 0.6rem;
+    margin: 1.25rem 0 0.25rem;
+  }
+
+  .hero-cta .store-btn {
+    flex: 1 1 8.5rem;
+    justify-content: center;
+    padding: 0.8rem 0.75rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .hero-cta .btn-secondary {
+    display: none;
   }
 
   /* Show the rotating mockup below the CTAs (auto-swap keeps running) */
