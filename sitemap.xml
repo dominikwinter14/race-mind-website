@@ -82,90 +82,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://race-mind.com/events/ironman-florida.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-florida.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-florida-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/ironman-florida-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-florida.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-florida-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/athens-authentic-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/athens-authentic-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/athens-authentic-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/athens-authentic-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/athens-authentic-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/athens-authentic-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/edp-porto-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/edp-porto-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/generali-maraton-malaga.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/generali-maraton-malaga-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/marathon-nice-cannes.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/marathon-nice-cannes-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/maratona-di-ravenna.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/maratona-di-ravenna-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/rursee-marathon.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://race-mind.com/events/rursee-marathon-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://race-mind.com/events/verona-marathon.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/verona-marathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/verona-marathon-en.html"/>
@@ -2635,6 +2551,90 @@
     <loc>https://race-mind.com/events/venicemarathon-en.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/venicemarathon.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/venicemarathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-florida.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-florida.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-florida-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/ironman-florida-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/ironman-florida.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/ironman-florida-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/athens-authentic-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/athens-authentic-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/athens-authentic-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/athens-authentic-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/athens-authentic-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/athens-authentic-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/edp-porto-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/edp-porto-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/edp-porto-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/edp-porto-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-maraton-malaga.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/generali-maraton-malaga-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/generali-maraton-malaga.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/generali-maraton-malaga-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-nice-cannes.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/marathon-nice-cannes-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/marathon-nice-cannes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/marathon-nice-cannes-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/maratona-di-ravenna.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/maratona-di-ravenna-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/maratona-di-ravenna.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/maratona-di-ravenna-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/rursee-marathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/rursee-marathon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/rursee-marathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/rursee-marathon-en.html"/>
     <priority>0.7</priority>
   </url>
   <url>

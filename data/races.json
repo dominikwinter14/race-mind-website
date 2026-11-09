@@ -1,75 +1,5 @@
 [
   {
-    "slug": "ironman-florida",
-    "name": "IRONMAN Florida",
-    "name_en": "IRONMAN Florida",
-    "race_type": "ironman",
-    "date": "2026-11-07",
-    "course_factor_swim": 1.02,
-    "course_factor_bike": 0.98,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "athens-authentic-marathon",
-    "name": "Athens Authentic Marathon",
-    "name_en": "Athens Authentic Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.15
-  },
-  {
-    "slug": "edp-porto-marathon",
-    "name": "EDP Porto Marathon",
-    "name_en": "EDP Porto Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "generali-maraton-malaga",
-    "name": "Generali Maratón Málaga",
-    "name_en": "Generali Málaga Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "marathon-nice-cannes",
-    "name": "Marathon Nice-Cannes",
-    "name_en": "French Riviera Marathon Nice-Cannes",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1
-  },
-  {
-    "slug": "maratona-di-ravenna",
-    "name": "Maratona di Ravenna",
-    "name_en": "Ravenna Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.98
-  },
-  {
-    "slug": "rursee-marathon",
-    "name": "Rursee-Marathon",
-    "name_en": "Rursee Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-08",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 1.12
-  },
-  {
     "slug": "verona-marathon",
     "name": "Verona Marathon",
     "name_en": "Verona Marathon",
@@ -766,7 +696,7 @@
     "race_type": "half_ironman",
     "date": "2027-05-23",
     "course_factor_swim": 1,
-    "course_factor_bike": 1.04,
+    "course_factor_bike": 1,
     "course_factor_run": 1
   },
   {
