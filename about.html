@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceMind &ndash; &Uuml;ber uns</title>
+  <meta name="description" content="Warum es RaceMind gibt: entstanden aus der eigenen Vorbereitung auf die Challenge Roth, gebaut f&uuml;r Training, das in ein volles Leben passt. Entwickelt in Freiburg.">
+  <link rel="canonical" href="https://race-mind.com/about.html">
+  <link rel="alternate" hreflang="de" href="https://race-mind.com/about.html">
+  <link rel="alternate" hreflang="en" href="https://race-mind.com/about-en.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="index,follow">
+  <script src="/js/store-buttons.js"></script>
+  <script defer src="/js/store-links.js"></script>
+
+  <style>
+    /* ── Über uns ── */
+    .ab-main { padding-top: 7rem; }
+    .ab-hero { text-align: center; padding: 2rem 0 1rem; }
+    .ab-hero .lang-toggle { justify-content: center; margin-bottom: 1.5rem; }
+    .ab-eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .ab-title { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .ab-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.7; }
+
+    .ab-story {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+      gap: 4rem; align-items: center; max-width: 1000px; margin: 0 auto;
+    }
+    .ab-photo { margin: 0; }
+    .ab-photo img {
+      width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+      border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .ab-story h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .ab-story p { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; line-height: 1.75; }
+    .ab-story p + p { margin-top: 1rem; }
+    .ab-sign { margin-top: 1.75rem; line-height: 1.4; }
+    .ab-sign strong { display: block; font-size: 1.05rem; }
+    .ab-sign span { color: var(--muted); font-size: 0.9rem; }
+    .ab-reel { display: inline-block; margin-top: 1.5rem; color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+    .ab-reel:hover { opacity: 0.85; }
+
+    .ab-alt { background: var(--surface); }
+    .ab-icon { width: 3rem; height: 3rem; border-radius: 0.85rem; margin-bottom: 1rem; }
+    .ab-icon svg { width: 1.5rem; height: 1.5rem; }
+    .ab-alt .trust-badge { background: var(--bg); }
+    .ab-follow { text-align: center; margin-top: 2.5rem; color: var(--muted); font-size: 0.95rem; }
+    .ab-follow a { color: var(--primary); font-weight: 600; }
+
+    .ab-web { margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem; }
+    .ab-web a { color: var(--foreground); font-weight: 600; }
+    .ab-company { margin-top: 2.5rem; color: var(--muted); font-size: 0.8rem; line-height: 1.6; }
+    .ab-company a { color: var(--muted); text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .ab-story { grid-template-columns: 1fr; gap: 2rem; }
+      .ab-photo { max-width: 320px; width: 100%; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════ NAV ════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="nav-logo" aria-label="RaceMind Home">
+        <img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind">
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Preise</a>
+        <a href="events.html">Rennen</a>
+        <a href="index.html#contact">Kontakt</a>
+        <a href="https://app.race-mind.com">Web-App</a>
+        <a href="index.html#download" class="btn btn-sm">Jetzt starten</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="ab-main">
+
+    <!-- ════════════ HERO ════════════ -->
+    <header class="container ab-hero">
+      <div class="lang-toggle">
+        <a href="about.html" class="active">DE</a>
+        <a href="about-en.html">EN</a>
+      </div>
+      <p class="ab-eyebrow">&Uuml;ber RaceMind</p>
+      <h1 class="ab-title">Training, das in ein <span class="gradient-text">volles Leben passt.</span></h1>
+      <p class="ab-sub">RaceMind ist aus einem eigenen Triathlon-Aufbau entstanden, gebaut von jemandem, der selbst Familie, Firma und Training unter einen Hut bringen muss.</p>
+    </header>
+
+    <!-- ════════════ STORY ════════════ -->
+    <section class="section" id="story">
+      <div class="container ab-story">
+        <figure class="ab-photo reveal">
+          <img src="images/founder-dominik.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Dominik Winter, Gr&uuml;nder von RaceMind, mit Familie auf einem Boot">
+        </figure>
+        <div class="reveal">
+          <h2>Warum es RaceMind gibt</h2>
+          <p>Ich wollte mich auf die Challenge Roth 2026 vorbereiten, und keine der bestehenden Apps hat wirklich gepasst. Also habe ich selbst get&uuml;ftelt: erst mit ChatGPT und Notion. Als immer mehr Leute nach dem System gefragt haben, wurde aus dem Hobbyprojekt eine eigene App.</p>
+          <p>Als zweifacher Vater und Unternehmer wei&szlig; ich, wie schwer es ist, festes Training in einen vollen Alltag zu bekommen. Genau daf&uuml;r ist RaceMind da.</p>
+          <p class="ab-sign"><strong>Dominik Winter</strong><span>Gr&uuml;nder von RaceMind</span></p>
+          <a class="ab-reel" href="https://www.instagram.com/reel/DdGrp5eIFwE/" target="_blank" rel="noopener">Die Geschichte als Reel auf Instagram &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ PRINCIPLES ════════════ -->
+    <section class="section ab-alt" id="principles">
+      <div class="container">
+        <h2 class="section-title reveal">Woran wir uns halten</h2>
+        <p class="section-subtitle reveal">Was RaceMind von Anfang an sein sollte.</p>
+        <div class="trust-grid reveal">
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h4.5v-4.5H12V12h4.5V7.5H21V3"/></svg></span>
+            <h4>Aufbau statt Sprung</h4>
+            <p>Strukturiertes Ausdauertraining ohne Spr&uuml;nge in der Belastung. Nicht von 10&nbsp;km direkt auf den Marathon.</p>
+          </div>
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
+            <h4>Regeln statt Bauchgef&uuml;hl</h4>
+            <p>Der Plan kommt aus einer Trainingslogik, die man nachrechnen kann, nicht aus einem Modell, das sich etwas ausdenkt.</p>
+          </div>
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+            <h4>Dein Leben zuerst</h4>
+            <p>Das Training passt sich deinem Leben an, nicht umgekehrt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ BEHIND THE SCENES ════════════ -->
+    <section class="section" id="behind">
+      <div class="container">
+        <h2 class="section-title reveal">Hinter den Kulissen</h2>
+        <p class="section-subtitle reveal">Nah an den Leuten, die mit RaceMind trainieren.</p>
+        <div class="trust-grid reveal">
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+            <h4>Aus der Community gebaut</h4>
+            <p>Als wir gesehen haben, wie viele mit falschen Zonen trainieren, kam der Leistungstest in die App. Viele Funktionen beginnen mit einer Nachricht aus der Community.</p>
+          </div>
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg></span>
+            <h4>Selbst im Plan</h4>
+            <p>Ich trainiere selbst mit RaceMind. Der Plan gilt zuverl&auml;ssig f&uuml;r alle, nur bei mir gewinnt manchmal das Backlog.</p>
+          </div>
+          <div class="trust-badge">
+            <span class="compare-card-icon compare-card-icon--primary ab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <h4>Klein und aus Freiburg</h4>
+            <p>Entwickelt in Freiburg, Hosting in der EU. Digital gegr&uuml;ndet, und das Merch verschicke ich trotzdem von Hand.</p>
+          </div>
+        </div>
+        <p class="ab-follow reveal">Mehr aus dem Alltag auf Instagram: <a href="https://www.instagram.com/race.mind.app/" target="_blank" rel="noopener">@race.mind.app</a></p>
+      </div>
+    </section>
+
+    <!-- ════════════ DOWNLOAD ════════════ -->
+    <section class="section section--download" id="download">
+      <div class="hero-glow hero-glow--orange"></div>
+      <div class="hero-glow hero-glow--cyan"></div>
+      <div class="container download-inner">
+        <h2 class="reveal">Klingt nach deinem Alltag?<br><span class="gradient-text">Probier&rsquo;s selbst.</span></h2>
+        <p class="reveal" style="color: var(--muted); margin-bottom: 1.75rem;">14 Tage kostenlos &middot; ohne Zahlungsdaten &middot; jederzeit k&uuml;ndbar.</p>
+        <div class="download-buttons reveal">
+          <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
+            Google Play
+          </a>
+        </div>
+        <p class="ab-web reveal">Oder direkt im Browser: <a href="https://app.race-mind.com">app.race-mind.com</a></p>
+        <p class="ab-company reveal">RaceMind ist ein Produkt der Digital Creatives UG (haftungsbeschr&auml;nkt), Freiburg im Breisgau &middot; <a href="mailto:help@race-mind.com">help@race-mind.com</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <a href="index.html"><img src="logo-full.svg" class="logo-svg logo-svg--sm" alt="RaceMind"></a>
+      </div>
+      <div class="footer-links">
+        <a href="events.html">Rennen</a>
+        <a href="race-time.html">Zielzeit</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 RaceMind. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b0da8d71dcd94389a3ccf078dc6f5ed9"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>
