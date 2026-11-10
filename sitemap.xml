@@ -1222,6 +1222,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://race-mind.com/events/biest-chiemgau-triathlon.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/biest-chiemgau-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/biest-chiemgau-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://race-mind.com/events/biest-chiemgau-triathlon-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/biest-chiemgau-triathlon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/biest-chiemgau-triathlon-en.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://race-mind.com/events/indeland-triathlon-mitteldistanz.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://race-mind.com/events/indeland-triathlon-mitteldistanz.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://race-mind.com/events/indeland-triathlon-mitteldistanz-en.html"/>

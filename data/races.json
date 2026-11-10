@@ -940,6 +940,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "biest-chiemgau-triathlon",
+    "name": "BIEST Chiemgau Triathlon",
+    "name_en": "BIEST Chiemgau Triathlon",
+    "race_type": "half_ironman",
+    "date": "2027-06-19",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1.03,
+    "course_factor_run": 1
+  },
+  {
     "slug": "indeland-triathlon-mitteldistanz",
     "name": "indeland-Triathlon Mitteldistanz",
     "name_en": "indeland Triathlon Middle Distance",
