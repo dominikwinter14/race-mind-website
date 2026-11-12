@@ -1550,6 +1550,16 @@
     "course_factor_run": 1
   },
   {
+    "slug": "brombachseetriathlon-mitteldistanz",
+    "name": "Brombachseetriathlon Mitteldistanz",
+    "name_en": "Brombachseetriathlon Middle Distance",
+    "race_type": "half_ironman",
+    "date": "2027-09-19",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
+  },
+  {
     "slug": "copenhagen-half",
     "name": "Copenhagen Half",
     "name_en": "Copenhagen Half",
