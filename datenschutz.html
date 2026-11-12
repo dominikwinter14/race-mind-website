@@ -40,7 +40,7 @@
       </div>
 
       <h1>Datenschutzerkl&auml;rung</h1>
-      <p class="legal-meta">Version 1.17 &middot; Stand: November 2026</p>
+      <p class="legal-meta">Version 1.18 &middot; Stand: November 2026</p>
 
       <hr>
 
@@ -235,8 +235,8 @@
         </thead>
         <tbody>
           <tr><td><strong>Supabase Inc.</strong></td><td>Datenbank, Authentifizierung, Serverless Functions</td><td>EU (Irland)</td><td>Datenverarbeitung in der EU</td></tr>
-          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Trainingsplan-Generierung, Trainingsanalyse, Coach-Ged&auml;chtnis, Spracheingabe; Coach-Chat, soweit nicht &uuml;ber Microsoft Azure (siehe 6.3)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
-          <tr><td><strong>Microsoft Ireland Operations Ltd. (Microsoft Azure, KI-Modelle von OpenAI)</strong></td><td>Coach-Chat</td><td>EU (Verarbeitung ausschlie&szlig;lich in EU-Mitgliedstaaten)</td><td>Auftragsverarbeitungsvertrag (Microsoft Products and Services Data Protection Addendum), Datenverarbeitung in der EU</td></tr>
+          <tr><td><strong>Google LLC (Gemini API)</strong></td><td>Trainingsplan-Generierung, Trainingsanalyse, Coach-Ged&auml;chtnis; Spracheingabe und Coach-Chat, soweit nicht &uuml;ber Microsoft Azure (siehe 6.3)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
+          <tr><td><strong>Microsoft Ireland Operations Ltd. (Microsoft Azure, KI-Modelle von OpenAI, Spracherkennung von Microsoft)</strong></td><td>Coach-Chat, Spracheingabe</td><td>EU (Verarbeitung ausschlie&szlig;lich in EU-Mitgliedstaaten)</td><td>Auftragsverarbeitungsvertrag (Microsoft Products and Services Data Protection Addendum), Datenverarbeitung in der EU</td></tr>
           <tr><td><strong>RevenueCat Inc.</strong></td><td>Abo-Verwaltung, In-App-K&auml;ufe</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs)</td></tr>
           <tr><td><strong>Google LLC (Firebase Cloud Messaging)</strong></td><td>Push-Notification-Zustellung (FCM an Android-Ger&auml;te)</td><td>USA</td><td>EU-Standardvertragsklauseln (SCCs), Data Privacy Framework</td></tr>
           <tr><td><strong>Strava Inc.</strong></td><td>Trainingsimport (nur bei Verbindung)</td><td>USA</td><td>Du autorisierst den Zugriff direkt bei Strava (OAuth)</td></tr>
@@ -282,7 +282,7 @@
       </ul>
 
       <h3>6.3 Coach-Chat</h3>
-      <p>Deine Chat-Nachrichten werden zusammen mit relevantem Trainingskontext an einen KI-Dienst &uuml;bermittelt, um dir personalisierte Antworten zu geben. Je nach Gespr&auml;ch ist das ein Sprachmodell von OpenAI (GPT), das Microsoft in seinen Rechenzentren in der EU betreibt (Microsoft Azure, Verarbeitung ausschlie&szlig;lich in EU-Mitgliedstaaten), oder Google Gemini. Welcher Dienst ein Gespr&auml;ch beantwortet, legen wir zu Beginn des Gespr&auml;chs fest; ist Microsoft Azure ausgelastet oder gest&ouml;rt, antwortet Google Gemini. Chat-Verl&auml;ufe werden in unserer Datenbank gespeichert. Sprichst du eine Nachricht ein, wird die Aufnahme zur Umwandlung in Text an Google Gemini &uuml;bermittelt; die Aufnahme selbst speichern wir nicht.</p>
+      <p>Deine Chat-Nachrichten werden zusammen mit relevantem Trainingskontext an einen KI-Dienst &uuml;bermittelt, um dir personalisierte Antworten zu geben. Je nach Gespr&auml;ch ist das ein Sprachmodell von OpenAI (GPT), das Microsoft in seinen Rechenzentren in der EU betreibt (Microsoft Azure, Verarbeitung ausschlie&szlig;lich in EU-Mitgliedstaaten), oder Google Gemini. Welcher Dienst ein Gespr&auml;ch beantwortet, legen wir zu Beginn des Gespr&auml;chs fest; ist Microsoft Azure ausgelastet oder gest&ouml;rt, antwortet Google Gemini. Chat-Verl&auml;ufe werden in unserer Datenbank gespeichert. Sprichst du eine Nachricht ein, wird die Aufnahme zur Umwandlung in Text an Microsoft Azure &uuml;bermittelt (Verarbeitung in der EU); ist der Dienst gest&ouml;rt, an Google Gemini. Die Aufnahme selbst speichern wir nicht.</p>
       <p>F&uuml;r beide Dienste gilt: Wir &uuml;bermitteln keine Klarnamen oder E-Mail-Adressen, nur pseudonyme Nutzer-IDs. Weder Microsoft noch Google nutzen deine Daten f&uuml;r eigene Zwecke oder zum Training von KI-Modellen; OpenAI erh&auml;lt keinen Zugriff. Beide Anbieter pr&uuml;fen Anfragen automatisch auf Missbrauch ihrer Dienste. Microsoft speichert dabei nur Inhalte, die diese Pr&uuml;fung als auff&auml;llig markiert, befristet in der EU; einsehen d&uuml;rfen sie nur daf&uuml;r berechtigte Microsoft-Mitarbeiter im Europ&auml;ischen Wirtschaftsraum. Google speichert Anfragen und Antworten zur Missbrauchserkennung f&uuml;r einen begrenzten Zeitraum.</p>
       <p><strong>Coach-Ged&auml;chtnis:</strong> Damit dein Coach dich &uuml;ber einzelne Gespr&auml;che hinaus kennt, h&auml;lt Google Gemini einmal t&auml;glich aus deinen neuen Chat-Nachrichten und deinen Notizen zu Einheiten (&bdquo;Notiz f&uuml;r den Coach&ldquo;) fest, was f&uuml;r dein Coaching dauerhaft wichtig ist &ndash; auch gesundheitsbezogene Angaben. Das Ged&auml;chtnis nutzt dein Coach im Chat und bei der Analyse neuer Einheiten. Unter Einstellungen &rarr; Coach Pers&ouml;nlichkeit &rarr; &bdquo;Was dein Coach &uuml;ber dich wei&szlig;&ldquo; siehst du jede Notiz und kannst sie l&ouml;schen. Mit dem Schalter &bdquo;Coach-Ged&auml;chtnis&ldquo; schaltest du die Funktion aus; dabei l&ouml;schen wir alle Notizen.</p>
 
