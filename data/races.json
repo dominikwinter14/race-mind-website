@@ -516,7 +516,7 @@
     "race_type": "half_ironman",
     "date": "2027-05-09",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.98,
     "course_factor_run": 1
   },
   {
@@ -686,7 +686,7 @@
     "race_type": "half_ironman",
     "date": "2027-05-23",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.98,
     "course_factor_run": 1
   },
   {
@@ -696,7 +696,7 @@
     "race_type": "half_ironman",
     "date": "2027-05-23",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.98,
     "course_factor_run": 1
   },
   {
@@ -746,7 +746,7 @@
     "race_type": "half_ironman",
     "date": "2027-05-30",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.99,
     "course_factor_run": 1
   },
   {
@@ -766,7 +766,7 @@
     "race_type": "half_ironman",
     "date": "2027-06-06",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.99,
     "course_factor_run": 1
   },
   {
@@ -866,8 +866,8 @@
     "race_type": "half_ironman",
     "date": "2027-06-13",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.98
   },
   {
     "slug": "ironman-austria-klagenfurt",
@@ -917,7 +917,7 @@
     "date": "2027-06-13",
     "course_factor_swim": 1,
     "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_run": 0.98
   },
   {
     "slug": "wasserstadt-triathlon-hannover-mitteldistanz",
@@ -966,7 +966,7 @@
     "race_type": "half_ironman",
     "date": "2027-06-20",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
+    "course_factor_bike": 0.98,
     "course_factor_run": 1
   },
   {
@@ -1336,8 +1336,8 @@
     "race_type": "ironman",
     "date": "2027-08-28",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.98
   },
   {
     "slug": "ironman-70-3-duisburg",
@@ -1376,8 +1376,8 @@
     "race_type": "half_ironman",
     "date": "2027-08-29",
     "course_factor_swim": 0.9,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.98
   },
   {
     "slug": "uster-triathlon-mitteldistanz",
@@ -1406,8 +1406,8 @@
     "race_type": "half_ironman",
     "date": "2027-09-04",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.98
   },
   {
     "slug": "austria-triathlon-podersdorf-langdistanz",
@@ -1486,8 +1486,8 @@
     "race_type": "half_ironman",
     "date": "2027-09-12",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.99
   },
   {
     "slug": "ironman-70-3-nice",
@@ -1556,8 +1556,8 @@
     "race_type": "ironman",
     "date": "2027-09-18",
     "course_factor_swim": 1,
-    "course_factor_bike": 1,
-    "course_factor_run": 1
+    "course_factor_bike": 0.98,
+    "course_factor_run": 0.99
   },
   {
     "slug": "brombachseetriathlon-mitteldistanz",
@@ -1628,6 +1628,16 @@
     "course_factor_swim": 0,
     "course_factor_bike": 0,
     "course_factor_run": 1.02
+  },
+  {
+    "slug": "triathlon-de-cup-koenigsbrunn",
+    "name": "triathlon.de CUP Königsbrunn",
+    "name_en": "triathlon.de CUP Königsbrunn",
+    "race_type": "half_ironman",
+    "date": "2027-09-19",
+    "course_factor_swim": 1,
+    "course_factor_bike": 1,
+    "course_factor_run": 1
   },
   {
     "slug": "trierer-stadtlauf",
