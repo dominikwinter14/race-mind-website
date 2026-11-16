@@ -856,6 +856,12 @@
     <div class="container">
       <h2 class="section-title reveal">Pricing.</h2>
       <p class="section-subtitle reveal">Try it free for 14 days &ndash; no payment details required.</p>
+      <div class="pricing-deal" data-deal hidden>
+        <span class="pricing-deal-badge">Black Week until 30 Nov</span>
+        <p class="pricing-deal-title"><span>12 months for &euro;85,</span> <span>3 months for &euro;33</span></p>
+        <p class="pricing-deal-sub">When you buy in the browser and pay by bank transfer.</p>
+        <a href="https://app.race-mind.com/?utm_source=website&amp;utm_medium=pricing&amp;utm_campaign=web_blackweek" class="btn btn-primary">Open the web app</a>
+      </div>
       <div class="pricing-grid reveal">
         <div class="pricing-card pricing-card--highlight">
           <h3>Monthly</h3>
@@ -888,7 +894,16 @@
           </div>
         </div>
       </div>
-      <p class="pricing-note reveal"><em>All prices incl. VAT. Billed via the App Store or Google Play.</em></p>
+      <p class="pricing-note reveal"><em>All prices incl. VAT. Billed via the App Store or Google Play<span data-deal hidden>, the Black Week offer by bank transfer in the browser</span>.</em></p>
+      <script>
+        // Black Week (web prices by bank transfer, app_config.web_paywall): show
+        // [data-deal] until 30.11.2026 23:59 Berlin time. Remove after 01.12.
+        (function () {
+          if (!(Date.now() < Date.parse('2026-12-01T00:00:00+01:00'))) return;
+          var els = document.querySelectorAll('[data-deal]');
+          for (var i = 0; i < els.length; i++) els[i].hidden = false;
+        })();
+      </script>
     </div>
   </section>
 
