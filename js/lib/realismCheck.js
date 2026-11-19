@@ -11,6 +11,7 @@ import { classifyGoalTime } from './goalAssessment.js';
 import { goalVerdict } from './goalVerdict.js';
 import { MIN_GAIN_HOURS, moreHoursSuggestion } from './moreHoursSuggestion.js';
 import { isInBounds, seedInBand } from './thresholdBounds.js';
+import { clearTotalWithoutLeg, fillLegsFromBaseline, legTotals, missingLeg } from './prognosisLegs.js';
 // ══════════════════════════════════════════════════════════
 // CONSTANTS
 // ══════════════════════════════════════════════════════════
@@ -153,8 +154,10 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
     // the forecast screen and score overview.
     const hasBaselinePrognosis = !thresholdsEdited
         && baseline.adjusted_total_hours != null
-        && baseline.prognose_source_run != null;
+        && baseline.prognose_source_run != null
+        && !missingLeg(baseline, raceDist);
     let recalc;
+    let legsFromBaseline = false;
     if (hasBaselinePrognosis) {
         recalc = {
             swim_prognose_hours: baseline.swim_prognose_hours ?? null,
@@ -192,6 +195,8 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
             runInput: null, bikeInput: null, swimInput: null,
             raceDist, courseFactors, raceType, level, weight, execution, source: 'strava',
         });
+        // The legs the server priced stay; onboarding never asked for them (lib/prognosisLegs.ts).
+        ({ prognosis: recalc, filled: legsFromBaseline } = fillLegsFromBaseline(recalc, baseline, raceDist, !thresholdsEdited));
     }
     const needsSwim = isTriRace && !recalc.swim_prognose_hours;
     const needsBike = isTriRace && !recalc.bike_prognose_hours;
@@ -260,23 +265,20 @@ export function calculateStravaRealism({ baseline, onboardingData, raceType, ath
         prognosis.derived_threshold_pace = fallbackRun.derived_threshold_pace;
         prognosis.confidence_run = fallbackRun.confidence_run ?? 'low';
     }
-    if (isHybrid) {
-        const T1h = raceDist.t1_min / 60;
-        const T2h = raceDist.t2_min / 60;
-        const sw = prognosis.adjusted_swim_hours ?? prognosis.swim_prognose_hours ?? 0;
-        const bk = prognosis.adjusted_bike_hours ?? prognosis.bike_prognose_hours ?? 0;
-        const rn = prognosis.adjusted_run_hours ?? prognosis.run_prognose_hours ?? 0;
-        const adjTotal = round4(sw + T1h + bk + T2h + rn);
-        prognosis.total_prognose_hours = adjTotal > 0 ? adjTotal : null;
-        prognosis.adjusted_total_hours = adjTotal > 0 ? adjTotal : null;
+    if (isHybrid || legsFromBaseline) {
+        // No total while a leg is unpriced: 0 h for it is a wrong time, not a partial one.
+        const adjTotal = legTotals(prognosis, raceDist)?.adjusted ?? null;
+        prognosis.total_prognose_hours = adjTotal;
+        prognosis.adjusted_total_hours = adjTotal;
         const overallConf = worstOf(prognosis.confidence_run, prognosis.confidence_bike, prognosis.confidence_swim);
         prognosis.confidence_overall = overallConf;
         const spreadPct = BASE_SPREAD[overallConf] ?? 0.10;
-        prognosis.best_case_hours = round4(adjTotal * (1 - spreadPct));
-        prognosis.worst_case_hours = round4(adjTotal * (1 + spreadPct * 1.5));
+        prognosis.best_case_hours = adjTotal == null ? null : round4(adjTotal * (1 - spreadPct));
+        prognosis.worst_case_hours = adjTotal == null ? null : round4(adjTotal * (1 + spreadPct * 1.5));
         prognosis.adjusted_best_hours = prognosis.best_case_hours;
         prognosis.adjusted_worst_hours = prognosis.worst_case_hours;
     }
+    clearTotalWithoutLeg(prognosis, raceDist);
     const realism = realismCheck({
         prognosis,
         goalTimeHours,
@@ -409,8 +411,6 @@ export function resolveRaceDist(raceType, raceConfig) {
 // BUILD PROGNOSIS (from derived thresholds)
 // ══════════════════════════════════════════════════════════
 function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swimInput, raceDist, courseFactors, raceType, level, weight, execution, source, }) {
-    const T1h = raceDist.t1_min / 60;
-    const T2h = raceDist.t2_min / 60;
     // ── Per-discipline race times via shared predictor ──
     // Single source of truth: same formulas as supabase/functions/_shared/race-duration-predictor.ts
     // (parity verified by supabase/functions/_test/race-duration-parity.test.ts).
@@ -457,25 +457,28 @@ function buildPrognosis({ thresholdPace, ftp, cssPace, runInput, bikeInput, swim
         swimConfidence = swimInput?.mode === 'css' ? 'high'
             : swimInput?._corridor === 'threshold' ? 'high' : 'medium';
     }
-    // ── Total ──
-    const rawTotal = (swimHours ?? 0) + T1h + (bikeHours ?? 0) + T2h + (runHours ?? 0);
+    // ── Total ── none while a leg the race has is unpriced (lib/prognosisLegs.ts)
     const adjSwim = swimHours ? round4(swimHours * courseFactors.swim) : null;
     const adjBike = bikeHours ? round4(bikeHours * courseFactors.bike) : null;
     const adjRun = runHours ? round4(runHours * courseFactors.run) : null;
-    const adjTotal = round4((adjSwim ?? 0) + T1h + (adjBike ?? 0) + T2h + (adjRun ?? 0));
+    const totals = legTotals({
+        swim_prognose_hours: swimHours, bike_prognose_hours: bikeHours, run_prognose_hours: runHours,
+        adjusted_swim_hours: adjSwim, adjusted_bike_hours: adjBike, adjusted_run_hours: adjRun,
+    }, raceDist);
+    const adjTotal = totals?.adjusted ?? null;
     const overallConfidence = worstOf(runConfidence, bikeConfidence, swimConfidence);
     const spreadPct = BASE_SPREAD[overallConfidence] ?? 0.10;
-    const bestCase = round4(adjTotal * (1 - spreadPct));
-    const worstCase = round4(adjTotal * (1 + spreadPct * 1.5));
+    const bestCase = adjTotal == null ? null : round4(adjTotal * (1 - spreadPct));
+    const worstCase = adjTotal == null ? null : round4(adjTotal * (1 + spreadPct * 1.5));
     return {
         swim_prognose_hours: swimHours,
         bike_prognose_hours: bikeHours,
         run_prognose_hours: runHours,
-        total_prognose_hours: rawTotal > 0 ? round4(rawTotal) : null,
+        total_prognose_hours: totals?.raw ?? null,
         adjusted_swim_hours: adjSwim,
         adjusted_bike_hours: adjBike,
         adjusted_run_hours: adjRun,
-        adjusted_total_hours: adjTotal > 0 ? adjTotal : null,
+        adjusted_total_hours: adjTotal,
         adjusted_best_hours: bestCase,
         adjusted_worst_hours: worstCase,
         best_case_hours: bestCase,
