@@ -1,15 +1,5 @@
 [
   {
-    "slug": "verona-marathon",
-    "name": "Verona Marathon",
-    "name_en": "Verona Marathon",
-    "race_type": "marathon",
-    "date": "2026-11-15",
-    "course_factor_swim": 0,
-    "course_factor_bike": 0,
-    "course_factor_run": 0.98
-  },
-  {
     "slug": "ironman-cozumel",
     "name": "IRONMAN Cozumel",
     "name_en": "IRONMAN Cozumel",
