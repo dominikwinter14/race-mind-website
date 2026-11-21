@@ -10,7 +10,8 @@
    analytics, Play reads the UTM string in `referrer`.
 
    The campaign is `utm_campaign` from the page URL (ig_ad, ig_bio,
-   ig_story), `web` without one. Nothing is stored on the device — the site
+   ig_story, bing_search), `web` without one. Links to the web app get the
+   same three UTM values when the visit came with a campaign. Nothing is stored on the device — the site
    runs without a consent banner (Datenschutz 3.5) — so a visitor who opens
    another page before tapping a store link arrives as `web`. /start/ builds
    the same links with its own copy of this logic.
@@ -24,6 +25,7 @@
   // emits; the prettier /app/race-mind/ slug has lost attribution before.
   var IOS_URL = 'https://apps.apple.com/app/apple-store/id6759935305';
   var PLAY_URL = 'https://play.google.com/store/apps/details?id=com.racemind.app';
+  var WEB_APP_URL = 'https://app.race-mind.com';
 
   var params = new URLSearchParams(window.location.search);
 
@@ -48,4 +50,19 @@
   document.querySelectorAll('a[href^="' + PLAY_URL + '"]').forEach(function (link) {
     link.setAttribute('href', playUrl);
   });
+
+  // The web app links ("Web-App" in the nav, "Zur Web-App" under the prices)
+  // carry the visitor's campaign too, so a desktop visitor from a search ad
+  // who registers in the browser keeps it. Only when the visit came with a
+  // campaign: the ad that brought them beats the link's own placement tag
+  // (utm_campaign=web_blackweek), a plain visit keeps that tag.
+  if (clean(params.get('utm_campaign'))) {
+    document.querySelectorAll('a[href^="' + WEB_APP_URL + '"]').forEach(function (link) {
+      var url = new URL(link.href);
+      url.searchParams.set('utm_source', source);
+      url.searchParams.set('utm_medium', medium);
+      url.searchParams.set('utm_campaign', campaign);
+      link.setAttribute('href', url.toString());
+    });
+  }
 })();
