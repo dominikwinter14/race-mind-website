@@ -876,12 +876,6 @@
     <div class="container">
       <h2 class="section-title reveal">Preise.</h2>
       <p class="section-subtitle reveal">14 Tage kostenlos testen, ohne Zahlungsdaten.</p>
-      <div class="pricing-deal" data-deal hidden>
-        <span class="pricing-deal-badge">Black Week bis 30.11.</span>
-        <p class="pricing-deal-title"><span>12 Monate f&uuml;r 85&nbsp;&euro;,</span> <span>3 Monate f&uuml;r 33&nbsp;&euro;</span></p>
-        <p class="pricing-deal-sub">Beim Kauf im Browser per &Uuml;berweisung.</p>
-        <a href="https://app.race-mind.com/?utm_source=website&amp;utm_medium=pricing&amp;utm_campaign=web_blackweek" class="btn btn-primary">Zur Web-App</a>
-      </div>
       <div class="pricing-grid reveal">
         <div class="pricing-card pricing-card--highlight">
           <h3>Monatlich</h3>
@@ -914,16 +908,7 @@
           </div>
         </div>
       </div>
-      <p class="pricing-note reveal"><em>Alle Preise inkl. MwSt. Abrechnung &uuml;ber App Store oder Google Play<span data-deal hidden>, das Black-Week-Angebot per &Uuml;berweisung im Browser</span>.</em></p>
-      <script>
-        // Black Week (web prices by bank transfer, app_config.web_paywall): show
-        // [data-deal] until 30.11.2026 23:59 Berlin time. Remove after 01.12.
-        (function () {
-          if (!(Date.now() < Date.parse('2026-12-01T00:00:00+01:00'))) return;
-          var els = document.querySelectorAll('[data-deal]');
-          for (var i = 0; i < els.length; i++) els[i].hidden = false;
-        })();
-      </script>
+      <p class="pricing-note reveal"><em>Alle Preise inkl. MwSt. Abrechnung &uuml;ber App Store oder Google Play.</em></p>
     </div>
   </section>
 
