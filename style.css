@@ -395,9 +395,14 @@ strong { font-weight: 600; }
 
 /* ── Mockup Images ── */
 
+/* The img tags carry width/height, so a lazy image holds its place before it
+   loads; height: auto keeps the CSS width in charge. Without them the six
+   screenshots grew ~1,200px during the smooth scroll and "Preise" stopped at
+   the trust section (27.11.2026). */
 .mockup-img {
   max-width: 300px;
   width: 100%;
+  height: auto;
   border-radius: var(--radius-lg);
   object-fit: cover;
   object-position: center top;
