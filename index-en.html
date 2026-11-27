@@ -791,7 +791,7 @@
           </ul>
           <div class="compare-card-price">
             <span class="ccp-label">Price</span>
-            <span class="ccp-value ccp-value--primary">From &euro;9.42 / month</span>
+            <span class="ccp-value ccp-value--primary">From &euro;7.08 / month</span>
           </div>
         </div>
 
@@ -876,39 +876,45 @@
     <div class="container">
       <h2 class="section-title reveal">Pricing.</h2>
       <p class="section-subtitle reveal">Try it free for 14 days &ndash; no payment details required.</p>
-      <div class="pricing-grid reveal">
+      <!-- Browser prices (app_config.web_paywall): early bird in the first 4 trial days,
+           Supporter has none. The app prices sit small below (Dominik 27.11.2026). -->
+      <div class="pricing-grid pricing-grid--tiers reveal">
         <div class="pricing-card pricing-card--highlight">
-          <h3>Monthly</h3>
-          <div class="pricing-amount"><span class="pricing-price">&euro;12.99</span><span class="pricing-period">&nbsp;/ month</span></div>
-          <p class="pricing-monthly">Cancel anytime via the App Store or Google Play.</p>
-          <div class="download-buttons" style="margin-top: 1.25rem; margin-bottom: 0;">
-            <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
-              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
-              <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
-              Google Play
-            </a>
-          </div>
+          <span class="pricing-badge">Early bird</span>
+          <h3>12 months</h3>
+          <div class="pricing-amount"><span class="pricing-price">&euro;85</span></div>
+          <p class="pricing-monthly">Equals &euro;7.08 per month.<br>No subscription, ends on its own.</p>
+          <a href="https://app.race-mind.com/?utm_source=website&amp;utm_medium=pricing&amp;utm_campaign=web_earlybird" class="btn btn-primary pricing-cta">Start in the browser</a>
         </div>
         <div class="pricing-card">
-          <h3>Yearly</h3>
-          <div class="pricing-amount"><span class="pricing-price">&euro;112.99</span><span class="pricing-period">&nbsp;/ year</span></div>
-          <p class="pricing-monthly">Equals &euro;9.42 / month &ndash; 27% cheaper than monthly.</p>
-          <div class="download-buttons" style="margin-top: 1.25rem; margin-bottom: 0;">
-            <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
+          <span class="pricing-badge">Early bird</span>
+          <h3>3 months</h3>
+          <div class="pricing-amount"><span class="pricing-price">&euro;31</span></div>
+          <p class="pricing-monthly">Equals &euro;10.33 per month.<br>No subscription, ends on its own.</p>
+          <a href="https://app.race-mind.com/?utm_source=website&amp;utm_medium=pricing&amp;utm_campaign=web_earlybird" class="btn btn-secondary pricing-cta">Start in the browser</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Supporter</h3>
+          <div class="pricing-amount"><span class="pricing-price">&euro;290</span></div>
+          <p class="pricing-monthly">Pay once, stay for good, shirt included.</p>
+          <a href="https://app.race-mind.com/?utm_source=website&amp;utm_medium=pricing&amp;utm_campaign=web_earlybird" class="btn btn-secondary pricing-cta">Start in the browser</a>
+        </div>
+      </div>
+      <p class="pricing-app reveal">In the app &euro;89 / year or &euro;10.90 / month, Supporter &euro;299.</p>
+      <div class="pricing-stores reveal">
+        <span class="pricing-stores-label">Or straight in the app:</span>
+        <div class="download-buttons">
+          <a href="https://apps.apple.com/app/race-mind/id6759935305" class="store-btn store-btn--ios">
               <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
               App Store
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
+          <a href="https://play.google.com/store/apps/details?id=com.racemind.app" class="store-btn store-btn--android">
               <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.197 12l2.501-2.492zM5.864 2.658L16.8 9.49l-2.302 2.302-8.634-8.634z"/></svg>
               Google Play
             </a>
-          </div>
         </div>
       </div>
-      <p class="pricing-note reveal"><em>All prices incl. VAT. Billed via the App Store or Google Play.</em></p>
+      <p class="pricing-note reveal"><em>Early-bird prices during the first 4 days of the trial; after that &euro;107 / 12 months and &euro;36 / 3 months in the browser, &euro;112.99 / year and &euro;12.99 / month in the app. In the browser by bank transfer on app.race-mind.com, as a one-time purchase that does not renew. App prices for Germany and Austria. All prices incl. VAT.</em></p>
     </div>
   </section>
 
